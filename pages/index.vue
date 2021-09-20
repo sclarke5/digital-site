@@ -6,7 +6,23 @@
       class="text-blue-400 hover:text-blue-600 p-4 text-xl"
       >About</nuxt-link
     >
-    <ButtonCta>Hello</ButtonCta>
-    <ButtonCta>Hello there</ButtonCta>
+    <ButtonCta v-for="(cta, index) in ctas" :key="index">
+      {{ cta.title }}
+    </ButtonCta>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    ctas: [
+      {
+        title: 'hello',
+      },
+      {
+        title: 'elo',
+      },
+    ],
+  }),
+}
+</script>
