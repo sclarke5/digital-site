@@ -1,0 +1,19 @@
+<template>
+  <button
+    class="
+      rounded-full
+      w-20
+      overflow-ellipsis
+      truncate
+      px-2
+      py-1
+      bg-green-400
+      hover:bg-green-600
+      m-2
+      shadow-lg
+      hover:shadow-xl
+    "
+  >
+    <slot></slot>
+  </button>
+</template>
