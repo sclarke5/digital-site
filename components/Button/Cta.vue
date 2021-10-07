@@ -2,7 +2,7 @@
   <button
     class="
       rounded-full
-      w-20
+      w-40
       overflow-ellipsis
       truncate
       px-2
