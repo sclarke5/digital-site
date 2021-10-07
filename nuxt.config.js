@@ -25,6 +25,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/components',
+    '~/plugins/composition-api.js',
+    '~/plugins/storyblok-rich-text-renderer.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -46,6 +49,13 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    [
+      'storyblok-nuxt',
+      {
+        accessToken: process.env.STORYBLOK_ACCESS_KEY,
+        cacheProvider: 'memory'
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

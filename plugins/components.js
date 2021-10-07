@@ -1,0 +1,19 @@
+import Vue from 'vue'
+import Page from '~/components/Page.vue'
+import Teaser from '~/components/Teaser.vue'
+import Grid from '~/components/Grid.vue'
+import Feature from '~/components/Feature.vue'
+import FeaturedArticles from '~/components/FeaturedArticles.vue'
+import ArticlesTeaser from '~/components/ArticlesTeaser.vue'
+import FeaturedCaseStudies from '~/components/FeaturedCaseStudies.vue'
+import CaseStudyTeaser from '~/components/CaseStudyTeaser.vue'
+
+ 
+Vue.component('page', Page)
+Vue.component('teaser', Teaser)
+Vue.component('grid', Grid)
+Vue.component('feature', Feature)
+Vue.component('featured-articles', FeaturedArticles)
+Vue.component('articles-teaser', ArticlesTeaser)
+Vue.component('featured-case-studies', FeaturedCaseStudies)
+Vue.component('case-study-teaser', CaseStudyTeaser)
