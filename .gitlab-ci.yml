@@ -9,7 +9,7 @@ build staging:
   variables:
     NODE_ENV: staging
   script:
-    # - cp .env.docker .env
+    - cp .env.docker .env
     - docker-compose -f app.docker-compose.yml run node yarn nuxt generate
     - docker-compose down --remove-orphans --volumes
     - docker-compose up -d
