@@ -1,6 +1,6 @@
 <template>
   <div v-editable="blok">
-    <h2 class="pt-2 pl-6 text-lg text-gray-400 italic">{{ blok.title }}</h2>
+    <h2 class="pt-2 pl-6 text-lg text-white text-5xl">{{ blok.title }}</h2>
     <ul class="flex py-6 mb-6">
       <li
         v-for="article in sortedArticles" :key="article._uid"
@@ -40,3 +40,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  h2 {
+    transform: rotate(90deg);
+    text-transform: uppercase;
+    font-family: 'Gotham', sans-serif;
+    font-weight: 800;
+    margin-right: -12em;
+  }
+</style>

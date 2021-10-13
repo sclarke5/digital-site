@@ -1,8 +1,8 @@
 <template>
-  <section class="mt-28">
+  <section class="mt-60">
     <h2 class="py-10 text-center font-bold text-4xl text-white">Case Studies Overview</h2>
     {{ caseStudies }}
-    <ul class="flex py-6 mb-6">
+    <ul class="flex flex-col py-6 mb-6">
       <li
         v-for="caseStudy in stories" :key="caseStudy._uid"
         class="flex-auto px-6" style="min-width: 33%">
@@ -41,3 +41,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  ul {
+    margin-top: 60em;
+  }
+</style>
