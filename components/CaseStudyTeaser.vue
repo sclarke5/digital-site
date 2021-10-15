@@ -1,6 +1,5 @@
 <template>
-  <nuxt-link
-    :to="caseStudyLink"
+  <div
     class="case-study-teaser block py-4 px-6 border rounded border-gray-400">
     <div class="case-study-container flex">
       <div class="case-study-left px-6">
@@ -17,18 +16,15 @@
             The Challenge: <br />
             {{ caseStudyContent.challenge }}
           </p>
-          <p class="pb-6 leading-relaxed text-white">The Approach: <br />
-            {{ caseStudyContent.approach }}
-          </p>
       </div>
       <div class="case-study-right">
         <img :src="caseStudyContent.primary_image.filename" />
-        <p class="pb-6 leading-relaxed text-white">Price Range: {{ caseStudyContent.price_range }}</p>
-        <p class="pb-6 leading-relaxed text-white">Results: {{ caseStudyContent.results }}</p>
+        <button @click="showModal = true">TEST</button>
+        <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" @close-modal="showModal = false" />
       </div>
     </div>
 
-  </nuxt-link>
+  </div>
 </template>
  
 <script>
@@ -42,17 +38,32 @@ export default {
       type: String,
       required: true
     }
-  }, 
+  },
+  data() {
+    return {
+      showModal: false
+    }
+  },
 }
 </script>
 
 <style scoped>
-  .case-study-teaser {
-    transform: rotate(90deg);
-    margin-bottom: 200vh;
-    margin-top: -10em;
-  }
-  .case-study-left {
-    width: 50%;
-  }
+.case-study-teaser {
+  transform: rotate(90deg);
+  margin-bottom: 200vh;
+  margin-top: -10em;
+}
+.case-study-left {
+  width: 50%;
+}
+
+button {
+  background-color: #727D4F;
+  width: 150px;
+  height: 40px;
+  color: white;
+  font-size: 14px;
+  border-radius: 16px;
+  margin-top: 50px;
+}
 </style>
