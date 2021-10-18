@@ -1,10 +1,10 @@
 <template>
-  <div class="modal-overlay">
-    <div class="modal flex flex-col">
-      <h3 class="pt-2 pl-6 text-white text-3xl">
+  <div class="modal-overlay bg-black flex fixed inset-0">
+    <div class="modal flex flex-col bg-black p-24 h-screen w-screen overflow-auto">
+      <h3 class="pt-2 pl-6 text-white text-3xl text-left uppercase">
         {{ this.caseStudyContent.client }}
       </h3>
-      <h1 class="pt-2 pl-6 text-white text-5xl">
+      <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">
         {{ this.caseStudyContent.name }}
       </h1>
       <img class="check w-full" :src="caseStudyContent.primary_image.filename" alt="caseStudyContent.primary_image.filename" />
@@ -12,13 +12,13 @@
         <h3 class="text-white">DELIVERABLES</h3>
         <div class="challenege-approach-container w-1/2">
           <div class="challenge-approach-left flex flex-col">
-            <h6 class="text-white">The Challenge: </h6>
+            <h6 class="text-white uppercase">The Challenge: </h6>
             <p class="text-white">
               {{ this.caseStudyContent.challenge }}
             </p>
           </div>
           <div class="challenge-approach-right flex flex-col">
-            <h6 class="text-white">The Approach: </h6>
+            <h6 class="text-white uppercase">The Approach: </h6>
             <p class="text-white">
               {{ this.caseStudyContent.approach }}
             </p>
@@ -36,8 +36,8 @@
       {{ this.caseStudyContent }}
 
     </div>
-    <div class="close" @click="$emit('close-modal')">
-      <img class="close-img" src="~/assets/x-mark-64.png" alt="">
+    <div class="close mt-20 mr-8" @click="$emit('close-modal')">
+      <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
     </div>
   </div>
 </template>
@@ -55,43 +55,10 @@ export default {
 
 <style scoped>
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #000000da;
-}
-
-.modal {
-  display: flex;
-  text-align: center;
-  background-color: black;
-  height: 1000px;
-  width: 1000px;
-  padding: 60px 0;
-  border-radius: 20px;
-  overflow: auto;
-}
-.close {
-  margin: 10% 0 0 16px;
-  cursor: pointer;
-}
-
-.close-img {
-  width: 50px;
-  margin-top: -8em;
-}
 
 h1, h3, h6 {
   font-family: 'Gotham Black', sans-serif;
-  text-align: left;
-  text-transform: uppercase;
 }
-
 
 p {
   font-size: 16px;
@@ -100,13 +67,4 @@ p {
   text-align: left;
 }
 
-button {
-  background-color: #ac003e;
-  width: 150px;
-  height: 40px;
-  color: white;
-  font-size: 14px;
-  border-radius: 16px;
-  margin-top: 50px;
-}
 </style>
