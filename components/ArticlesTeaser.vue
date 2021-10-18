@@ -25,3 +25,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .articles-teaser {
+    transform: rotate(90deg);
+    margin-bottom: 100vh;
+  }
+</style>

@@ -1,13 +1,13 @@
 <template>
   <div
     v-editable="blok"
-    class="mb-6 text-5xl font-bold text-center">
-    <img 
-      class="h-full w-full mb-4 object-cover"
-      :src="blok.image.filename" />
-    <div class="about-us-content flex-col justify-center mt-20 p-8 pt-32 pb-32">
-    	<h3 class="text-5xl p-6 text-white">{{ blok.headline }}</h3>
-			<p class="text-2xl text-gray-400">{{ blok.body }}</p>
+    class="mb-6 text-5xl font-bold text-center teaser-container">
+    <div class="about-us-content flex-col justify-center pt-32 pb-32">
+    	<h1 class="text-5xl p-6 text-white">{{ blok.headline }}</h1>
+			<p class="text-2xl text-gray-400">{{ blok.body_1 }}</p>
+    </div>
+    <div>
+      <p class="text-2xl text-gray-400">{{ blok.body_2 }}</p>
     </div>
   </div>
 </template>
@@ -24,13 +24,22 @@ export default {
 </script>
 
 <style scoped>
-    h3 {
-        font-family: 'Gotham Black', sans-serif;
+    h1 {
+        font-family: 'Gotham', sans-serif;
+        text-transform: uppercase;
+        font-weight: 800;
     }
 		p {
-        font-family: 'Gotham Black', sans-serif;
+        font-family: 'Gotham', sans-serif;
     }
     img {
         height: 90vh;
+    }
+    .teaser-container {
+      transform: rotate(90deg);
+      margin-bottom: 200vh;
+      margin-top: 30em;
+      
+      /* height: 100vw; */
     }
 </style>
