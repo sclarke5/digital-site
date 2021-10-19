@@ -17,15 +17,20 @@ class ShapeObject {
     this.color = color
   }
 
-  whenOver(x, y) {
-    this.x = x
-    this.y = y
+  whenOver() {
+    // this.x = x
+    // this.y = y
 
     for (let i = 0; i < this.shapes.length; i++) {
-      // this.shapes[i].material = new THREE.MeshLambertMaterial({
-      //   color: this.color,
-      //   transparent: true,
-      // })
+      this.shapes[i].material = new THREE.MeshLambertMaterial({
+        map: this.color,
+        transparent: true,
+      })
+
+      new TWEEN.Tween(this.shapes[i].material)
+        .to({ opacity: 1 }, 500)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start()
 
       new TWEEN.Tween(this.shapes[i].position)
         .to(this.shapes[i].targetPos, 1000)
@@ -38,6 +43,16 @@ class ShapeObject {
     for (let i = 0; i < this.shapes.length; i++) {
       new TWEEN.Tween(this.shapes[i].material)
         .to({ opacity: 0.5 }, 500)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start()
+
+      new TWEEN.Tween(this.shapes[i].position)
+        .to(this.shapes[i].initialPos, 1000)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start()
+
+      new TWEEN.Tween(this.shapes[i].rotation)
+        .to(this.shapes[i].initialRot, 1000)
         .easing(TWEEN.Easing.Quadratic.Out)
         .start()
 
@@ -84,7 +99,10 @@ class ShapeObject {
         .easing(TWEEN.Easing.Quadratic.Out)
         .start()
 
-      this.shapes[i].material = this.color
+      this.shapes[i].material = new THREE.MeshBasicMaterial({
+        map: this.color,
+        transparent: true,
+      })
     }
   }
 
@@ -95,7 +113,7 @@ class ShapeObject {
           {
             x: this.shapes[i].rotation.x,
             y: (this.shapes[i].rotation.y += 0.005),
-            z: this.shapes[i].rotation.z,
+            z: (this.shapes[i].rotation.z += 0.001),
           },
           1000
         )
@@ -105,98 +123,22 @@ class ShapeObject {
   }
 }
 
-const orange = new THREE.Color(0xff4e00)
-const teal = new THREE.Color(0x1dade4)
-const green = new THREE.Color(0x727d4f)
+const tealOrangeColor = new THREE.TextureLoader().load('./assets/gradient1.png')
+const greenOrangeColor = new THREE.TextureLoader().load(
+  './assets/gradient4.png'
+)
+const tealGreenColor = new THREE.TextureLoader().load('./assets/gradient3.png')
 
-const tealOrange = new THREE.ShaderMaterial({
-  uniforms: {
-    color1: {
-      value: orange,
-    },
-    color2: {
-      value: teal,
-    },
-  },
-  vertexShader: `
-    varying vec2 vUv;
-
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform vec3 color1;
-    uniform vec3 color2;
-
-    varying vec2 vUv;
-
-    void main() {
-
-      gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
-    }
-  `,
+const tealOrange = new THREE.MeshBasicMaterial({
+  map: tealOrangeColor,
 })
 
-const greenOrange = new THREE.ShaderMaterial({
-  uniforms: {
-    color1: {
-      value: orange,
-    },
-    color2: {
-      value: green,
-    },
-  },
-  vertexShader: `
-    varying vec2 vUv;
-
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform vec3 color1;
-    uniform vec3 color2;
-
-    varying vec2 vUv;
-
-    void main() {
-
-      gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
-    }
-  `,
+const greenOrange = new THREE.MeshBasicMaterial({
+  map: greenOrangeColor,
 })
 
-const tealGreen = new THREE.ShaderMaterial({
-  uniforms: {
-    color1: {
-      value: green,
-    },
-    color2: {
-      value: teal,
-    },
-  },
-  vertexShader: `
-    varying vec2 vUv;
-
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform vec3 color1;
-    uniform vec3 color2;
-
-    varying vec2 vUv;
-
-    void main() {
-
-      gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
-    }
-  `,
+const tealGreen = new THREE.MeshBasicMaterial({
+  map: tealGreenColor,
 })
 
 let moving = false
@@ -244,7 +186,7 @@ export default {
 
       this.clock = new THREE.Clock()
 
-      const aLight = new THREE.AmbientLight(0x404040)
+      const aLight = new THREE.AmbientLight(0x888888)
       this.scene.add(aLight)
 
       const light = new THREE.SpotLight()
@@ -286,7 +228,11 @@ export default {
         z: 1,
       }
 
-      this.sphereObject = new ShapeObject(this.spheres, 'circle', greenOrange)
+      this.sphereObject = new ShapeObject(
+        this.spheres,
+        'circle',
+        greenOrangeColor
+      )
 
       const pGeometry = new THREE.ConeGeometry(5, 8, 4)
       this.pyramid = new THREE.Mesh(pGeometry, tealOrange)
@@ -330,7 +276,7 @@ export default {
       this.pyramidObject = new ShapeObject(
         this.pyramids,
         'triangle',
-        tealOrange
+        tealOrangeColor
       )
 
       const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
@@ -371,7 +317,7 @@ export default {
       this.pyramids[0].material.transparent = true
       this.cubes[0].material.transparent = true
 
-      this.cubeObject = new ShapeObject(this.cubes, 'rectangle', tealGreen)
+      this.cubeObject = new ShapeObject(this.cubes, 'rectangle', tealGreenColor)
 
       this.camera.position.z = 5
 
@@ -522,6 +468,8 @@ void main() {
       this.scene.add(this.mesh)
       this.container.addEventListener('mousemove', this.onmousemove, false)
       this.container.addEventListener('mouseout', this.onmouseout, false)
+
+      this.count = 0
     },
     animate() {
       requestAnimationFrame(this.animate)
@@ -551,6 +499,8 @@ void main() {
       moving = false
     },
     onmousemove(event) {
+      this.count++
+
       moving = true
       this.mouse.x = (event.offsetX / this.renderer.domElement.width) * 2 - 1
       this.mouse.y = -(event.offsetY / this.renderer.domElement.height) * 2 + 1
@@ -560,32 +510,56 @@ void main() {
       this.intersects = this.raycaster.intersectObjects(this.scene.children)
 
       if (this.intersects.length > 0) {
-        this.serviceText.style.opacity = 1
-
-        switch (this.intersects[0].object) {
-          case this.spheres[0]:
-            this.sphereObject.whenOver(this.mouse.x, this.mouse.y)
-            this.pyramidObject.becomeOther()
-            this.cubeObject.becomeOther()
-            this.serviceText.innerHTML = 'Digital Craft'
-            break
-          case this.pyramids[0]:
-            this.pyramidObject.whenOver(this.mouse.x, this.mouse.y)
-            this.sphereObject.becomeOther()
-            this.cubeObject.becomeOther()
-            this.serviceText.innerHTML = 'Extended Reality'
-            break
-          case this.cubes[0]:
-            this.cubeObject.whenOver(this.mouse.x, this.mouse.y)
-            this.pyramidObject.becomeOther()
-            this.sphereObject.becomeOther()
-            this.serviceText.innerHTML = 'Virtual Events'
-            break
-          default:
-            break
-        }
-
         this.currentOver = this.intersects[0].object
+
+        if (this.currentOver === this.spheres[0]) {
+          this.sphereObject.whenOver()
+          this.pyramidObject.becomeOther()
+          this.cubeObject.becomeOther()
+          this.serviceText.style.opacity = 1
+          this.serviceText.innerHTML = 'Digital Craft'
+        } else if (this.currentOver === this.pyramids[0]) {
+          this.pyramidObject.whenOver()
+          this.sphereObject.becomeOther()
+          this.cubeObject.becomeOther()
+          this.serviceText.style.opacity = 1
+          this.serviceText.innerHTML = 'Extended Reality'
+        } else if (this.currentOver === this.cubes[0]) {
+          this.cubeObject.whenOver()
+          this.pyramidObject.becomeOther()
+          this.sphereObject.becomeOther()
+          this.serviceText.style.opacity = 1
+          this.serviceText.innerHTML = 'Virtual Events'
+        } else {
+          this.cubeObject.whenOut()
+          this.pyramidObject.whenOut()
+          this.sphereObject.whenOut()
+        }
+        // switch (this.intersects[0].object) {
+        //   case this.spheres[0]:
+        //     this.sphereObject.whenOver(this.mouse.x, this.mouse.y)
+        //     this.pyramidObject.becomeOther()
+        //     this.cubeObject.becomeOther()
+        //     this.serviceText.style.opacity = 1
+        //     this.serviceText.innerHTML = 'Digital Craft'
+        //     break
+        //   case this.pyramids[0]:
+        //     this.pyramidObject.whenOver(this.mouse.x, this.mouse.y)
+        //     this.sphereObject.becomeOther()
+        //     this.cubeObject.becomeOther()
+        //     this.serviceText.style.opacity = 1
+        //     this.serviceText.innerHTML = 'Extended Reality'
+        //     break
+        //   case this.cubes[0]:
+        //     this.cubeObject.whenOver(this.mouse.x, this.mouse.y)
+        //     this.pyramidObject.becomeOther()
+        //     this.sphereObject.becomeOther()
+        //     this.serviceText.style.opacity = 1
+        //     this.serviceText.innerHTML = 'Virtual Events'
+        //     break
+        //   default:
+        //     break
+        // }
       } else {
         this.serviceText.style.opacity = 0
         this.currentOver = null
