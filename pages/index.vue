@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <component 
+  <div class="top-level-container">
+    <component
       :is="story.content.component"
       v-if="story.content.component"
       :key="story.content._uid"
-      :blok="story.content"  />
+      :blok="story.content"
+    />
     <ButtonCta v-for="(cta, index) in ctas" :key="index">
       {{ cta.title }}
     </ButtonCta>
@@ -81,3 +82,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.top-level-container {
+  scroll-snap-type: y proximity;
+}
+</style>
