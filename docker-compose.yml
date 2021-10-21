@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: staging-digital-server
+    image: nginx:1.21.3-alpine
+    restart: always
+    working_dir: /var/www/
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./:/var/www/website
+      - ./ssl:/etc/nginx/ssl
+      - ./vhost.conf:/etc/nginx/conf.d/default.conf
+    logging:
+      options:
+        max-file: '10'
+        max-size: 10m
+    networks:
+      - astoundlab
+
+networks:
+  astoundlab:
