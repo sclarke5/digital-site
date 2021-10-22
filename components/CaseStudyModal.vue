@@ -1,11 +1,11 @@
 <template>
   <div class="modal-overlay bg-black flex fixed inset-0">
-    <div class="modal flex flex-col bg-black p-24 h-screen w-screen overflow-auto">
+    <div class="modal flex flex-col bg-black h-screen w-screen overflow-auto">
       <h3 class="pt-2 pl-6 text-white text-3xl text-left uppercase">
-        {{ this.caseStudyContent.client }}
+        {{ caseStudyContent.client }}
       </h3>
       <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">
-        {{ this.caseStudyContent.name }}
+        {{ caseStudyContent.name }}
       </h1>
       <img class="check w-full" :src="caseStudyContent.primary_image.filename" alt="caseStudyContent.primary_image.filename" />
       <div class="body-container flex justify-evenly">
@@ -14,29 +14,27 @@
           <div class="challenge-approach-left flex flex-col">
             <h6 class="text-white uppercase">The Challenge: </h6>
             <p class="text-white">
-              {{ this.caseStudyContent.challenge }}
+              {{ caseStudyContent.challenge }}
             </p>
           </div>
           <div class="challenge-approach-right flex flex-col">
             <h6 class="text-white uppercase">The Approach: </h6>
             <p class="text-white">
-              {{ this.caseStudyContent.approach }}
+              {{ caseStudyContent.approach }}
             </p>
-            <!-- <img :src="caseStudyContent.visuals" alt=""> -->
-            <p class="text-white">{{ this.caseStudyContent.visuals }}</p>
-            <p class="text-white">{{typeof(this.caseStudyContent.visuals)}}</p>
+            <p class="text-white testimonial">
+              " 
+              {{ caseStudyContent.testimonial }}
+              "
+            </p>
+            <a class="cta text-white" :href="ctaURL" >Learn More</a>
+            <!-- keep below for now to ensure that the modal is exapanded to a big enough size for debugging -->
+              {{parsedCaseStudies}}
           </div>
         </div>
       </div>
-
-      {{ this.caseStudyContent.name }}
-      {{ this.caseStudyContent.client }}
-
-      {{ this.caseStudyContent }}
-      {{ this.caseStudyContent }}
-
     </div>
-    <div class="close mt-20 mr-8" @click="$emit('close-modal')">
+    <div class="close absolute -right-8 -top-8" @click="$emit('close-modal')">
       <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
     </div>
   </div>
@@ -50,6 +48,14 @@ export default {
       required: true
     },
   },
+  computed: {
+    parsedCaseStudies() {
+      return JSON.parse(JSON.stringify(this.caseStudyContent))
+    },
+    ctaURL() {
+      return this.caseStudyContent.cta?.url
+    }
+  }
 }
 </script>
 

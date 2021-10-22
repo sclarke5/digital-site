@@ -1,7 +1,7 @@
 <template>
   <div v-editable="blok">
     <h2 class="pt-2 pl-6 text-white text-5xl">{{ blok.title }}</h2>
-    <ul class="flex flex-col py-6 mb-6">
+    <ul class="flex flex-col py-6 mb-6 case-list">
       <li
         v-for="caseStudy in sortedCaseStudies" :key="caseStudy._uid"
         class="flex-auto px-6" style="min-width: 33%">
@@ -47,5 +47,9 @@ export default {
     font-family: 'Gotham', sans-serif;
     font-weight: 800;
     margin-right: -12em;
+  }
+
+  .case-study-teaser {
+    scroll-snap-align: center;
   }
 </style>

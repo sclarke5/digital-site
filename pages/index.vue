@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="top-level-container">
     <ThreeScene />
     <component
       :is="story.content.component"
@@ -106,3 +106,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.top-level-container {
+  scroll-snap-type: y proximity;
+}
+</style>

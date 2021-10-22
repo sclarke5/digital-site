@@ -19,7 +19,7 @@
       </div>
       <div class="case-study-right">
         <img :src="caseStudyContent.primary_image.filename" />
-        <button @click="showModal = true">TEST</button>
+        <button @click="showModal = true">LEARN MORE</button>
         <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" @close-modal="showModal = false" />
       </div>
     </div>
@@ -49,11 +49,16 @@ export default {
 
 <style scoped>
 .case-study-teaser {
+  width: 90%;
   transform: rotate(90deg);
   margin-bottom: 200vh;
   margin-top: -10em;
 }
 .case-study-left {
+  width: 50%;
+}
+
+.case-study-right {
   width: 50%;
 }
 
