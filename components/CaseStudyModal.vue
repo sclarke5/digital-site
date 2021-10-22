@@ -12,7 +12,7 @@
         <h3 class="text-white">DELIVERABLES</h3>
         <div class="challenege-approach-container w-1/2">
           <div class="challenge-approach-left flex flex-col">
-            <h6 class="text-white uppercase">The Challenge: </h6>
+            <h6 class="text-white uppercase">The Challenge (test): </h6>
             <p class="text-white">
               {{ caseStudyContent.challenge }}
             </p>
