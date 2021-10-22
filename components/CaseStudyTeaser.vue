@@ -19,7 +19,10 @@
       </div>
       <div class="case-study-right">
         <img :src="caseStudyContent.primary_image.filename" />
-        <button @click="showModal = true">LEARN MORE</button>
+        <div class="view-case-study flex items-center" @click="showModal = true">
+          <span>VIEW CASE STUDY</span>
+          <img src="~/assets/arrow-right.png" />
+        </div>
         <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" @close-modal="showModal = false" />
       </div>
     </div>
@@ -49,26 +52,42 @@ export default {
 
 <style scoped>
 .case-study-teaser {
-  width: 90%;
+  width: 60%;
   transform: rotate(90deg);
   margin-bottom: 200vh;
   margin-top: -10em;
+  margin-left: 25em;
 }
+
 .case-study-left {
   width: 50%;
 }
 
 .case-study-right {
   width: 50%;
+  scroll-snap-align: center;
 }
 
-button {
-  background-color: #727D4F;
-  width: 150px;
+.view-case-study {
+  /* background-color: #4FC8ED; */
+  width: 40%;
   height: 40px;
   color: white;
   font-size: 14px;
-  border-radius: 16px;
   margin-top: 50px;
+  cursor: pointer;
+  border: 2px solid white;
+  justify-content: space-around;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
+
+.view-case-study:hover {
+  color: black;
+  background-color: white;
+}
+
+/* 
+.view-case-study img {
+
+} */
 </style>

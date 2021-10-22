@@ -49,7 +49,7 @@ export default {
     margin-right: -12em;
   }
 
-  .case-study-teaser {
+  /* .case-study-teaser {
     scroll-snap-align: center;
-  }
+  } */
 </style>

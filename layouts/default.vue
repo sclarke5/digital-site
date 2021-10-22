@@ -7,6 +7,10 @@
 </template>
 
 <style>
+@import url('http://fonts.cdnfonts.com/css/din-pro');
+@import url('http://fonts.cdnfonts.com/css/dinpro-bold');
+@import url('http://fonts.cdnfonts.com/css/dinpro-black');
+
   body {
     overflow-x: hidden;
     overflow-y: hidden;
