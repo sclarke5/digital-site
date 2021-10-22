@@ -27,7 +27,7 @@
               {{ caseStudyContent.testimonial }}
               "
             </p>
-            <a class="cta text-white" :href="parsedCaseStudies.cta.url" >Learn More</a>
+            <a class="cta text-white" :href="ctaURL" >Learn More</a>
             <!-- keep below for now to ensure that the modal is exapanded to a big enough size for debugging -->
               {{parsedCaseStudies}}
           </div>
@@ -50,8 +50,10 @@ export default {
   },
   computed: {
     parsedCaseStudies() {
-      const parsedData = JSON.parse(JSON.stringify(this.caseStudyContent))
-      return parsedData;
+      return JSON.parse(JSON.stringify(this.caseStudyContent))
+    },
+    ctaURL() {
+      return this.caseStudyContent.cta?.url
     }
   }
 }
