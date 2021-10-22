@@ -32,21 +32,27 @@ const tealOrangeTexture = new THREE.TextureLoader().load(
   './assets/gradient1.png'
 )
 const greenOrangeTexture = new THREE.TextureLoader().load(
-  './assets/gradient4.png'
+  './assets/gradient16.png'
 )
 const tealGreenTexture = new THREE.TextureLoader().load(
   './assets/gradient3.png'
 )
-const tealOrange = new THREE.MeshLambertMaterial({
+const tealOrange = new THREE.MeshPhongMaterial({
   map: tealOrangeTexture,
+  transparent: true,
+  opacity: 1,
 })
 
-const greenOrange = new THREE.MeshLambertMaterial({
+const greenOrange = new THREE.MeshPhongMaterial({
   map: greenOrangeTexture,
+  transparent: true,
+  opacity: 1,
 })
 
-const tealGreen = new THREE.MeshLambertMaterial({
+const tealGreen = new THREE.MeshPhongMaterial({
   map: tealGreenTexture,
+  transparent: true,
+  opacity: 1,
 })
 
 export default {
@@ -68,16 +74,16 @@ export default {
       // animation timing
       this.keyframes = {
         digitalCraft: {
-          start: 2,
-          end: 25,
+          start: 5,
+          end: 10,
         },
         xr: {
           start: 35,
-          end: 55,
+          end: 40,
         },
         virtualEvents: {
           start: 65,
-          end: 90,
+          end: 70,
         },
       }
 
@@ -105,6 +111,9 @@ export default {
         this.container.clientWidth,
         this.container.clientHeight
       )
+      this.renderer.shadowMap.enabled = true
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
       this.container.appendChild(this.renderer.domElement)
       this.scene = new THREE.Scene()
       this.clock = new THREE.Clock()
@@ -114,10 +123,13 @@ export default {
       // adding lights to the scene
       const aLight = new THREE.AmbientLight(0x888888)
       this.scene.add(aLight)
+      aLight.castShadow = true // default false
 
-      const light = new THREE.SpotLight()
+      const light = new THREE.SpotLight(0xffffff)
       light.position.set(5, 5, 5)
       this.scene.add(light)
+      light.intensity = 0.5
+      light.castShadow = true // default false
 
       this.gridColor = new THREE.Color(0x444444)
 
@@ -146,9 +158,11 @@ export default {
         this.sphere = new THREE.Mesh(sphereGeometry, greenOrange)
         this.sphere.scale.set(sphereScale, sphereScale, sphereScale)
         this.sphere.position.set(-1, 1, 1)
-        this.sphere.rotation.set(90, 0, 0)
+        this.sphere.rotation.set(Math.PI / 4, 0, Math.PI / 4)
         this.sphere.material.needsUpdate = true
         this.sphere.material.transparent = true
+        this.sphere.castShadow = true
+        this.sphere.receiveShadow = true
         this.spheres.push(this.sphere)
 
         this.spheres[i].initialPos = this.sphere.position
@@ -175,6 +189,8 @@ export default {
         this.pyramid.rotation.set(0.2, Math.PI / 4, -Math.PI / 4)
         this.pyramid.material.needsUpdate = true
         this.pyramid.material.transparent = true
+        this.pyramid.castShadow = true
+        this.pyramid.receiveShadow = true
 
         this.pyramids.push(this.pyramid)
         this.scene.add(this.pyramid)
@@ -187,6 +203,16 @@ export default {
           z: 2,
         }
       }
+
+      // this.pEdges = new THREE.EdgesGeometry(pGeometry)
+      // this.pMesh = new THREE.LineSegments(
+      //   this.pEdges,
+      //   new THREE.LineBasicMaterial({
+      //     color: 0xffffff,
+      //   })
+      // )
+      // this.scene.add(this.pMesh)
+      // this.pyramids.push(this.pMesh)
 
       this.cube = new THREE.Mesh(cubeGeometry, tealGreen)
       this.scene.add(this.cube)
@@ -210,6 +236,8 @@ export default {
         this.cubes[i].scale.set(cubeScale, cubeScale, cubeScale)
         this.cubes[i].material.needsUpdate = true
         this.cubes[i].material.transparent = true
+        this.cubes[i].castShadow = true
+        this.cubes[i].receiveShadow = true
 
         this.cubes[i].initialPos = this.cube.position
         this.cubes[i].initialRot = this.cube.rotation
@@ -294,7 +322,7 @@ export default {
         document.getElementById('container').style.opacity = scale(
           this.currentScrollPos,
           96,
-          110,
+          100,
           1,
           0
         )
@@ -357,7 +385,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const scaleCube = new TWEEN.Tween(this.cubes[i].scale)
           .to(
@@ -368,7 +396,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const rotateCube = new TWEEN.Tween(this.cubes[i].rotation)
           .to(
@@ -379,7 +407,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         // CUBE CONTROLLERS
         moveCube.start()
@@ -433,7 +461,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const scaleSphere = new TWEEN.Tween(this.spheres[i].scale)
           .to(
@@ -444,7 +472,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
         // SPHERE CONTROLLERS
 
         moveSphere.start()
@@ -520,7 +548,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const rotatePyramid = new TWEEN.Tween(this.pyramids[i].rotation)
           .to(
@@ -531,7 +559,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const scalePyramid = new TWEEN.Tween(this.pyramids[i].scale)
           .to(
@@ -542,7 +570,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         // PYRAMID CONTROLLERS
         movePyramid.start()
@@ -559,7 +587,7 @@ export default {
         const solidOpac = scale(
           this.currentScrollPos,
           this.keyframes.xr.start,
-          this.keyframes.xr.start + 5,
+          this.keyframes.xr.end,
           1,
           0
         )
@@ -567,7 +595,7 @@ export default {
         const meshOpac = scale(
           this.currentScrollPos,
           this.keyframes.xr.start,
-          this.keyframes.xr.start + 5,
+          this.keyframes.xr.end,
           0,
           1
         )
@@ -575,7 +603,7 @@ export default {
         const solidZPos = scale(
           this.currentScrollPos,
           this.keyframes.xr.start,
-          this.keyframes.xr.start + 5,
+          this.keyframes.xr.end,
           1,
           0
         )
@@ -588,7 +616,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const fadeMesh = new TWEEN.Tween(this.cubes[1].material)
           .to(
@@ -597,7 +625,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const moveSolid = new TWEEN.Tween(this.cubes[0].position)
           .to(
@@ -608,15 +636,13 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         // CUBE CONTROLLERS
 
-        if (this.currentScrollPos <= this.keyframes.xr.start + 5) {
-          fadeSolid.start()
-          fadeMesh.start()
-          moveSolid.start()
-        }
+        fadeSolid.start()
+        fadeMesh.start()
+        moveSolid.start()
       }
 
       // SPHERE ACTIONS
@@ -624,18 +650,18 @@ export default {
         // SPHERE MEASUREMENT
         const xPos = scale(
           this.currentScrollPos,
-          this.keyframes.xr.start + 3,
+          this.keyframes.xr.start,
           this.keyframes.xr.end,
           0.75,
-          0.67
+          0.7
         )
 
         const yPos = scale(
           this.currentScrollPos,
-          this.keyframes.xr.start + 3,
+          this.keyframes.xr.start,
           this.keyframes.xr.end,
           0.3,
-          -0.27
+          -0.45
         )
 
         const allScale = scale(
@@ -643,7 +669,7 @@ export default {
           this.keyframes.xr.start,
           this.keyframes.xr.end,
           0.07,
-          0.13
+          0.08
         )
 
         // SPHERE MOVEMENTS
@@ -656,7 +682,7 @@ export default {
             },
             100
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const scaleSphere = new TWEEN.Tween(this.spheres[i].scale)
           .to(
@@ -667,20 +693,9 @@ export default {
             },
             100
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         // SPHERE CONTROLLERS
-
-        // if (
-        //   this.currentScrollPos >= this.keyframes.xr.start + 3 &&
-        //   this.currentScrollPos <= this.keyframes.xr.start + 5
-        // ) {
-        //   moveSphere.start()
-        // }
-
-        // if (this.currentScrollPos <= this.keyframes.xr.start + 5) {
-        //   scaleSphere.start()
-        // }
 
         moveSphere.start()
         scaleSphere.start()
@@ -722,14 +737,6 @@ export default {
           -0.5
         )
 
-        // const yPos = scale(
-        //   this.currentScrollPos,
-        //   this.keyframes.xr.start,
-        //   this.keyframes.xr.end,
-        //   -0.25,
-        //   -0.24
-        // )
-
         // PYRAMID MOVEMENTS
 
         const scalePyramid = new TWEEN.Tween(this.pyramids[i].scale)
@@ -741,7 +748,7 @@ export default {
             },
             100
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const rotatePyramid = new TWEEN.Tween(this.pyramids[i].rotation)
           .to(
@@ -752,7 +759,7 @@ export default {
             },
             100
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const movePyramid = new TWEEN.Tween(this.pyramids[i].position)
           .to(
@@ -763,7 +770,7 @@ export default {
             },
             100
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
         // PYRAMID CONTROLLERS
 
         scalePyramid.start()
@@ -779,7 +786,7 @@ export default {
         const solidOpac = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           0,
           1
         )
@@ -787,7 +794,7 @@ export default {
         const meshOpac = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           1,
           0
         )
@@ -795,15 +802,15 @@ export default {
         const xRot = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           0,
-          -Math.PI / 3
+          -Math.PI / 2.5
         )
 
         const zRot = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           Math.PI / 4,
           -Math.PI / 4
         )
@@ -811,7 +818,7 @@ export default {
         const yPos = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           0,
           -0.2
         )
@@ -824,7 +831,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const fadeMesh = new TWEEN.Tween(this.cubes[1].material)
           .to(
@@ -833,18 +840,18 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const moveSolid = new TWEEN.Tween(this.cubes[i].position)
           .to(
             {
-              x: this.cubes[0].position.x,
+              x: 0,
               y: yPos,
               z: 1,
             },
             100
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const scaleCube = new TWEEN.Tween(this.cubes[i].scale)
           .to(
@@ -855,7 +862,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const rotateCube = new TWEEN.Tween(this.cubes[i].rotation)
           .to(
@@ -866,17 +873,15 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         // CUBE CONTROLLERS
 
-        if (this.currentScrollPos <= this.keyframes.virtualEvents.start + 5) {
-          fadeSolid.start()
-          fadeMesh.start()
-          scaleCube.start()
-          moveSolid.start()
-          rotateCube.start()
-        }
+        fadeSolid.start()
+        fadeMesh.start()
+        scaleCube.start()
+        moveSolid.start()
+        rotateCube.start()
       }
 
       // SPHERE ACTIONS
@@ -886,25 +891,25 @@ export default {
         const xPos = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           0.75,
-          0.55
+          0.5
         )
 
         const yPos = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           -0.27,
-          -0.2
+          0.1
         )
 
         const allScale = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           0.13,
-          0.05
+          0.04
         )
         // SPHERE MOVEMENTS
 
@@ -913,11 +918,11 @@ export default {
             {
               x: xPos,
               y: yPos,
-              z: this.spheres[i].position.z,
+              z: 1,
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const scaleSphere = new TWEEN.Tween(this.spheres[i].scale)
           .to(
@@ -928,14 +933,12 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         // SPHERE CONTROLLERS
 
-        if (this.currentScrollPos <= this.keyframes.virtualEvents.start + 5) {
-          moveSphere.start()
-          scaleSphere.start()
-        }
+        moveSphere.start()
+        scaleSphere.start()
       }
 
       // PYRAMID ACTIONS
@@ -944,22 +947,22 @@ export default {
         const allScale = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           0.09,
-          0.05
+          0.07
         )
 
         const xRot = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           0,
           Math.PI / 6
         )
         const xPos = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           -0.5,
           0
         )
@@ -967,9 +970,9 @@ export default {
         const yPos = scale(
           this.currentScrollPos,
           this.keyframes.virtualEvents.start,
-          this.keyframes.virtualEvents.start + 5,
+          this.keyframes.virtualEvents.end,
           -0.25,
-          0
+          0.1
         )
 
         // PYRAMID MOVEMENTS
@@ -982,7 +985,7 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const rotatePyramid = new TWEEN.Tween(this.pyramids[i].rotation)
           .to(
@@ -993,26 +996,23 @@ export default {
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
-
-        console.log(this.pyramids[i].position.z)
+          .easing(TWEEN.Easing.Quadratic.InOut)
 
         const movePyramid = new TWEEN.Tween(this.pyramids[i].position)
           .to(
             {
               x: xPos,
               y: yPos,
-              z: this.pyramids[i].position.z,
+              z: 1.5,
             },
             500
           )
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(TWEEN.Easing.Quadratic.InOut)
         // PYRAMID CONTROLLERS
-        if (this.currentScrollPos <= this.keyframes.virtualEvents.start + 5) {
-          scalePyramid.start()
-          rotatePyramid.start()
-          movePyramid.start()
-        }
+
+        scalePyramid.start()
+        rotatePyramid.start()
+        movePyramid.start()
       }
     },
     onmouseout() {},
