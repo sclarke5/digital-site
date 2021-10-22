@@ -1,6 +1,5 @@
 <template>
   <div>
-    <ThreeScene />
     <component
       :is="story.content.component"
       v-if="story.content.component"
@@ -14,12 +13,6 @@
 </template>
 
 <script>
-// window.addEventListener('wheel', onscroll, false)
-
-// function onscroll(event) {
-//   console.log(event)
-// }
-
 export default {
   asyncData(context) {
     return context.app.$storyapi
