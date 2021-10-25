@@ -70,7 +70,7 @@ export default {
 
 .view-case-study {
   /* background-color: #4FC8ED; */
-  width: 40%;
+  width: fit-content;
   height: 40px;
   color: white;
   font-size: 14px;
@@ -79,6 +79,16 @@ export default {
   border: 2px solid white;
   justify-content: space-around;
   transition: background-color 0.5s ease, color 0.5s ease;
+  padding: 1.5em;
+}
+
+.view-case-study span {
+  font-family: 'Gotham', sans-serif;
+  font-weight: 700;
+}
+
+.view-case-study img {
+  margin-left: 1em;
 }
 
 .view-case-study:hover {
@@ -86,8 +96,4 @@ export default {
   background-color: white;
 }
 
-/* 
-.view-case-study img {
-
-} */
 </style>

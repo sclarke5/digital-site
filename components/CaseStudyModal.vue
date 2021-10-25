@@ -31,15 +31,24 @@
               {{ caseStudyContent.challenge }}
             </p>
           </div>
-          <img :src="visualsArray[0]" alt="">
+
+          <!-- whenever we render a visual, check whether the filetype includes video extentions. TODO: add other formats in addition to webm -->
+          <video v-if="visualsArray[0].filename.includes('webm')" controls :src="visualsArray[0].filename"></video>
+          <img v-else :src="visualsArray[0].filename" alt="">
+
           <div class="challenge-approach-second flex flex-col pt-8">
             <h4 class="text-white uppercase">Approach</h4>
             <p class="text-white">
               {{ caseStudyContent.approach }}
             </p>
           </div>
-          <img :src="visualsArray[1]" alt="" class="mb-16 second-image">
-          <img :src="visualsArray[2]" alt="" class="mb-16 third-image">
+
+          
+          <video v-if="visualsArray[1].filename.includes('webm')" controls :src="visualsArray[1].filename"></video>
+          <img v-else :src="visualsArray[1].filename" alt="" class="mb-16 second-image">
+
+          <video v-if="visualsArray[2].filename.includes('webm')" controls :src="visualsArray[2].filename"></video>
+          <img :src="visualsArray[2].filename" alt="" class="mb-16 third-image">
 
         </div>
       </div>
@@ -64,12 +73,25 @@
         </div>
 
       </div>
-        <p class="testimonial">
-        " 
-        {{ caseStudyContent.testimonial }}
-        "
-        </p>
-        <a class="cta text-white" :href="ctaURL" >Learn More</a>
+      <div class="flex flex-col items-end">
+        <div class="flex flex-col p-12 w-2/3">
+          <p class="testimonial text-white">
+          "{{ caseStudyContent.testimonial }}"
+          </p>
+          <p class="testimonial-author text-white mt-4 mb-8">
+            {{ caseStudyContent.testimonial_author }}
+          </p>
+          <div class="flex cta items-center justify-around">
+            <a :href="ctaURL" target="_blank" class="flex">
+              <span class="uppercase" :href="ctaURL" >Go to Site</span>
+              <img src="~/assets/arrow-right.png" />
+            </a>
+          </div>
+        </div>
+
+
+      </div>
+        
 
         <!-- keep below for now to ensure that the modal is exapanded to a big enough size for debugging -->
             {{parsedCaseStudies}}
@@ -104,12 +126,12 @@ export default {
       const visualsArr = [];
       this.caseStudyContent.visuals?.forEach((visual) => {
         if(visual.filename){
-          visualsArr.push(visual.filename)
+          visualsArr.push(visual)
         }
       })
       return visualsArr
     },
-  }
+  },
 }
 </script>
 
@@ -132,7 +154,7 @@ h4 {
   font-family: 'DinPro-Black', sans-serif;
 }
 
-p {
+.body-container p {
   font-size: 16px;
   margin: 20px 0;
   font-family: 'Gotham', sans-serif;
@@ -149,9 +171,10 @@ p {
   font-weight: 200;
 }
 
-/* .third-image {
-
-} */
+.third-image {
+  margin-left: -20em;
+  margin-top: -10em;
+}
 
 .results-column {
   padding-top: 0;
@@ -160,5 +183,43 @@ p {
 .results-column p {
   font-weight: 300;
 }
+
+.testimonial {
+  font-size: 2em;
+  line-height: 2;
+  font-family: 'Adobe Caslon Pro', sans-serif;
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-family: 'Gotham', sans-serif;
+}
+
+.cta {
+  border: 2px solid white;
+  color: white;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  height: 40px;
+  width: fit-content;
+  padding: 1.5em;
+
+  /* cursor: pointer; */
+}
+
+.cta span {
+  font-family: 'Gotham', sans-serif;
+  font-weight: 700;
+}
+
+.cta img {
+  margin-left: 1em;
+}
+
+.cta:hover {
+  color: black;
+  background-color: white;
+}
+
+
 
 </style>

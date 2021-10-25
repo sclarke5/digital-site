@@ -10,6 +10,8 @@
 @import url('http://fonts.cdnfonts.com/css/din-pro');
 @import url('http://fonts.cdnfonts.com/css/dinpro-bold');
 @import url('http://fonts.cdnfonts.com/css/dinpro-black');
+@import url('http://fonts.cdnfonts.com/css/adobe-caslon-pro');
+
 
   body {
     overflow-x: hidden;
