@@ -1,6 +1,7 @@
 <template>
   <div>
     <HeaderAstound />
+    <SideNav class="side-nav" />
     <Nuxt class="bg-black layout-container"/>
     <!-- <Footer /> -->
   </div>
@@ -17,6 +18,13 @@
     overflow-x: hidden;
     overflow-y: hidden;
   }
+
+  .side-nav {
+    transform: rotate(-90deg);
+    left: 40vw;
+    top: 50vh;
+  }
+
   .layout-container {
     display: flex; 
     flex-direction: column;

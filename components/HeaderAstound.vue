@@ -1,7 +1,7 @@
 <template>
-  	<header class="header h-28 fixed z-50 w-screen flex bg-white justify-between -top-0">
+  	<header class="header h-28 fixed z-50 w-screen flex bg-black justify-between -top-0">
         <div class="header-left w-1/4 ml-12">
-            <a href="/"><img class="company-logo h-full min-w-max" src="https://mma.prnewswire.com/media/1503191/ASTOUND_Logo.jpg?p=facebook" alt="ASTOUND Group"></a>
+            <a href="/"><img class="company-logo h-full min-w-max" src="../assets/Digital__White_-1-removebg-preview.png" alt="ASTOUND Group"></a>
         </div>
 		<div class="header-right flex mr-12">
             <nav class="navbar flex justify-between items-center">
