@@ -43,7 +43,6 @@
             </p>
           </div>
 
-          
           <video v-if="visualsArray[1].filename.includes('webm')" controls :src="visualsArray[1].filename"></video>
           <img v-else :src="visualsArray[1].filename" alt="" class="mb-16 second-image">
 
@@ -71,8 +70,8 @@
             </p>
           </div>
         </div>
-
       </div>
+
       <div class="flex flex-col items-end">
         <div class="flex flex-col p-12 w-2/3">
           <p class="testimonial text-white">
@@ -88,10 +87,26 @@
             </a>
           </div>
         </div>
-
-
       </div>
-        
+
+      <div class="more-work mt-8">
+        <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">See more work</h1>
+        <ul class="flex py-6 mb-6 case-list">
+          <li v-for="caseStudy in seeMoreWork" :key="caseStudy._uid"
+        class="flex-auto px-6 w-1/3">
+            <img :src="caseStudy.content.primary_image.filename" alt="">
+            <h1 class="mt-2 text-2xl text-white uppercase">{{ caseStudy.name }}</h1>
+            <h5 class="mt-2 text-white uppercase">{{caseStudy.content.client}}</h5>
+            <div class="mt-4 flex cta items-center justify-around">
+              <a href="#" target="_blank" class="flex">
+                <span class="uppercase">View Case Study</span>
+                <img src="~/assets/arrow-right.png" />
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+        {{seeMoreWork}}
 
         <!-- keep below for now to ensure that the modal is exapanded to a big enough size for debugging -->
             {{parsedCaseStudies}}
@@ -111,6 +126,10 @@ export default {
       type: Object,
       required: true
     },
+    caseStudiesList: {
+      type: Array,
+      required: true
+    }
   },
   computed: {
     parsedCaseStudies() {
@@ -122,7 +141,7 @@ export default {
     servicesProvided() {
       return this.caseStudyContent.services_provided
     },
-    visualsArray(){
+    visualsArray() {
       const visualsArr = [];
       this.caseStudyContent.visuals?.forEach((visual) => {
         if(visual.filename){
@@ -131,6 +150,15 @@ export default {
       })
       return visualsArr
     },
+    seeMoreWork() {
+      const otherCaseStudies = []
+      this.caseStudiesList.forEach((caseStudy) => {
+        if(caseStudy.content._uid !== this.caseStudyContent._uid){
+          otherCaseStudies.push(caseStudy)
+        }
+      })
+      return otherCaseStudies
+    }
   },
 }
 </script>

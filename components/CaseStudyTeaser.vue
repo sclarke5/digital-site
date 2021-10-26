@@ -23,7 +23,7 @@
           <span>VIEW CASE STUDY</span>
           <img src="~/assets/arrow-right.png" />
         </div>
-        <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" @close-modal="showModal = false" />
+        <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" :case-studies-list="caseStudiesList" @close-modal="showModal = false" />
       </div>
     </div>
 
@@ -39,6 +39,10 @@ export default {
     },
     caseStudyLink: {
       type: String,
+      required: true
+    },
+    caseStudiesList: {
+      type: Array,
       required: true
     }
   },
