@@ -92,26 +92,23 @@
       <div class="more-work mt-8">
         <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">See more work</h1>
         <ul class="flex py-6 mb-6 case-list">
-          <li v-for="caseStudy in seeMoreWork" :key="caseStudy._uid"
-        class="flex-auto px-6 w-1/3">
+          <li v-for="caseStudy in seeMoreWork" 
+            :key="caseStudy._uid"
+            class="flex-auto px-6 w-1/3">
             <img :src="caseStudy.content.primary_image.filename" alt="">
             <h1 class="mt-2 text-2xl text-white uppercase">{{ caseStudy.name }}</h1>
             <h5 class="mt-2 text-white uppercase">{{caseStudy.content.client}}</h5>
-            <div class="mt-4 flex cta items-center justify-around">
-              <a href="#" target="_blank" class="flex">
-                <span class="uppercase">View Case Study</span>
+            <div class="mt-4 flex cta items-center justify-around case-study-link" @click="scrollToCaseStudy" >
+              <div class="flex">
+                <span  v-bind:id="caseStudy.content._uid" class="uppercase">View Case Study</span>
                 <img src="~/assets/arrow-right.png" />
-              </a>
+              </div>
             </div>
           </li>
         </ul>
       </div>
+      <!-- placeholder copy to keep modal expanded--TODO: replace with margin or something -->
         {{seeMoreWork}}
-
-        <!-- keep below for now to ensure that the modal is exapanded to a big enough size for debugging -->
-            {{parsedCaseStudies}}
-
-      
     </div>
     <div class="close absolute -right-8 -top-8" @click="$emit('close-modal')">
       <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
@@ -158,8 +155,19 @@ export default {
         }
       })
       return otherCaseStudies
-    }
+    },
   },
+  methods: {
+    scrollToCaseStudy(e) {
+      const idString = e.target.id
+      const destination = document.getElementsByClassName(`${idString}`)
+      destination[0].scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'center'
+      })
+    }
+  }
 }
 </script>
 
@@ -230,8 +238,7 @@ h4 {
   height: 40px;
   width: fit-content;
   padding: 1.5em;
-
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 
 .cta span {

@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div v-bind:class="caseStudyContent._uid"
     class="case-study-teaser block py-4 px-6 border rounded border-gray-400">
     <div class="case-study-container flex">
       <div class="case-study-left px-6">
@@ -58,7 +58,7 @@ export default {
 .case-study-teaser {
   width: 60%;
   transform: rotate(90deg);
-  margin-bottom: 200vh;
+  margin-bottom: 150vh;
   margin-top: -10em;
   margin-left: 25em;
 }

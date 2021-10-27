@@ -1,10 +1,12 @@
 <template>
-  <div v-editable="blok">
-    <h2 class="pt-2 pl-6 text-white text-5xl">{{ blok.title }}</h2>
-    <ul class="flex flex-col py-6 mb-6 case-list">
+  <div v-editable="blok" class="case-studies-list">
+    <h1 class="pt-2 pl-6 text-white text-5xl">{{ blok.title }}</h1>
+    <ul class="flex flex-col py-6 mb-6">
       <li
-        v-for="caseStudy in sortedCaseStudies" :key="caseStudy._uid"
-        class="flex-auto px-6" style="min-width: 33%">
+        v-for="caseStudy in sortedCaseStudies" 
+        :key="caseStudy._uid"
+        class="flex-auto px-6" 
+        style="min-width: 33%">
         <case-study-teaser
           v-if="caseStudy.content"
           :case-study-link="caseStudy.full_slug"
@@ -42,7 +44,7 @@ export default {
 </script>
 
 <style scoped>
-  h2 {
+  h1 {
     transform: rotate(90deg);
     text-transform: uppercase;
     font-family: 'Gotham', sans-serif;
