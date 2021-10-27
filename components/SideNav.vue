@@ -1,19 +1,19 @@
 <template>
-  <header class="header fixed z-50 w-screen flex bg-black">
-    <ul class="flex flex-col test bg-black">
-      <li class="ribbon flex about" @click="aboutScroll">
+  <header class="header z-50 w-screen flex bg-black">
+    <div class="flex flex-col test bg-black">
+      <div class="ribbon flex about" @click="aboutScroll">
         <h1>About Us</h1>
-      </li>
-      <li class="ribbon flex" @click="servicesScroll">
+      </div>
+      <div class="ribbon flex" @click="servicesScroll">
         <h1>Services</h1>
-      </li>
-      <li class="ribbon flex" @click="caseStudyScroll">
-        <h1>Case Studies</h1>
-      </li>
-      <li class="ribbon flex">
+      </div>
+      <div class="ribbon flex" @click="caseStudyScroll">
+        <h1>Our Work</h1>
+      </div>
+      <div class="ribbon flex">
         <h1>Contact Us</h1>
-      </li>
-    </ul>
+      </div>
+    </div>
   </header>
 </template>
 

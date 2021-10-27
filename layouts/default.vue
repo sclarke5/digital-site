@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderAstound />
-    <SideNav class="side-nav" />
+    <SideNav class="side-nav fixed" />
     <Nuxt class="bg-black layout-container"/>
     <!-- <Footer /> -->
   </div>
@@ -21,8 +21,9 @@
 
   .side-nav {
     transform: rotate(-90deg);
-    left: 40vw;
+    left: 50vw;
     top: 50vh;
+    margin-left: -8em;
   }
 
   .layout-container {
