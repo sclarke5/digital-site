@@ -34,12 +34,12 @@ export default {
 
         services.scrollIntoView({
           behavior: 'smooth',
-          inline: 'center',
+          inline: 'start',
           block: 'center'
         });
       },
       caseStudyScroll() {
-        const caseStudyTeaser = document.querySelector('.case-study-teaser')
+        const caseStudyTeaser = document.querySelector('.case-studies-sub')
 
         caseStudyTeaser.scrollIntoView({
           behavior: 'smooth',
