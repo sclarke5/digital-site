@@ -14,7 +14,6 @@
             <div class="col-span-1 max-w-screen-sm p-8">
               <form
                 id="astoundContactForm"
-                action="https://vuejs.org/"
                 method="post"
                 @submit="checkForm"
               >
@@ -92,9 +91,9 @@
                     class="p-2 mb-2 block text-black w-full"
                     name="contactSubservices"
                   >
+                    <option value="Digital Craft">Digital Craft</option>
+                    <option value="Extended Reality">Extended Reality</option>
                     <option value="Virtual Events">Virtual Events</option>
-                    <option value="Augmented Reality">Augmented Reality</option>
-                    <option value="Digital Services">Digital Services</option>
                   </select>
                 </div>
                 <div class="mb-4 block">
@@ -142,7 +141,21 @@ export default {
     }
   },
   methods: {
+    submitContactForm(data){
+
+      console.log(JSON.stringify({fields:data}))
+      fetch(hubspotURL, {
+        method: 'POST',
+        headers: {
+      'Content-Type': 'application/json',
+      body: JSON.stringify({fields:data})
+      },
+     }).then((res)=>{res.json()})
+    },
     checkForm(e) {
+
+      e.preventDefault()
+
       if (
         this.contactEmail &&
         this.contactFirstName &&
@@ -153,7 +166,21 @@ export default {
       ) {
         alert('Form submitted!')
 
-        fetch(hubspotURL + encodeURI())
+        this.data = [{
+          name: 'email', value: this.contactEmail,
+        },{
+          name: 'firstname', value: this.contactFirstName,
+        },{
+          name: 'lastname', value: this.contactLastName,
+        },{
+          name: 'phone', value: this.contactPhone,
+        },{
+          name: 'subservices', value: this.contactSubservices,
+        },{
+          name: 'comments', value: this.contactMessage,
+        }]
+
+       this.submitContactForm(this.data)
 
         return true
       }
@@ -179,7 +206,7 @@ export default {
         this.errors.push('Message required.')
       }
 
-      e.preventDefault()
+
     },
   },
 }
