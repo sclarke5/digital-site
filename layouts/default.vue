@@ -1,8 +1,9 @@
 <template>
   <div>
-    <HeaderAstound />
+    <!-- <HeaderAstound /> -->
     <Nuxt class="layout-container" id="scrollEl" />
     <ThreeScene id="three" />
+
     <!-- <Footer /> -->
   </div>
 </template>
