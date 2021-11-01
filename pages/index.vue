@@ -1,15 +1,17 @@
 <template>
-  <div>
+  <div class="top-level-container">
+    <ThreeScene />
     <component
       :is="story.content.component"
       v-if="story.content.component"
       :key="story.content._uid"
       :blok="story.content"
     />
-    <ButtonCta v-for="(cta, index) in ctas" :key="index">
+    <!-- <ButtonCta v-for="(cta, index) in ctas" :key="index">
       {{ cta.title }}
     </ButtonCta>
     <Contact />
+-->
   </div>
 </template>
 
@@ -100,3 +102,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.top-level-container {
+  scroll-snap-type: y proximity;
+}
+</style>
