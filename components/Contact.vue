@@ -142,15 +142,19 @@ export default {
   },
   methods: {
     submitContactForm(data){
-
-      console.log(JSON.stringify({fields:data}))
       fetch(hubspotURL, {
         method: 'POST',
         headers: {
-      'Content-Type': 'application/json',
-      body: JSON.stringify({fields:data})
+        'Content-Type': 'application/json',
       },
-     }).then((res)=>{res.json()})
+        body: JSON.stringify({fields:data})
+     })
+     .then((res)=>{res.json()})
+     .then(data => console.log('submitted' + data) )
+     .catch(error => {
+       return console.log('error: ' + error);
+     } )
+
     },
     checkForm(e) {
 
@@ -164,7 +168,6 @@ export default {
         this.contactSubservices &&
         this.contactMessage
       ) {
-        alert('Form submitted!')
 
         this.data = [{
           name: 'email', value: this.contactEmail,

@@ -2,6 +2,12 @@
   <div id="threescene">
     <div id="container">
       <span id="serviceText"></span>
+      <!-- <video id="tealgreen" autoplay muted loop style="display: none">
+        <source
+          src="/assets/movingGradient.mp4"
+          type='video/ogg; codecs="theora, vorbis"'
+        />
+      </video> -->
     </div>
   </div>
 </template>
@@ -11,10 +17,6 @@ import * as THREE from 'three'
 import * as TWEEN from '@tweenjs/tween.js'
 import { animations } from './animation'
 
-const scale = (number, inMin, inMax, outMin, outMax) => {
-  return ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
-}
-
 // texture imports
 
 const tealOrangeTexture = new THREE.TextureLoader().load(
@@ -23,9 +25,9 @@ const tealOrangeTexture = new THREE.TextureLoader().load(
 const greenOrangeTexture = new THREE.TextureLoader().load(
   './assets/gradient16.png'
 )
-const tealGreenTexture = new THREE.TextureLoader().load(
-  './assets/gradient3.png'
-)
+// const tealGreenTexture = new THREE.TextureLoader().load(
+//   './assets/gradient3.png'
+// )
 const tealOrange = new THREE.MeshPhongMaterial({
   map: tealOrangeTexture,
   transparent: true,
@@ -40,11 +42,34 @@ const greenOrange = new THREE.MeshPhongMaterial({
   depthWrite: false,
 })
 
-const tealGreen = new THREE.MeshPhongMaterial({
-  map: tealGreenTexture,
-  transparent: true,
+const video = document.createElement('video')
+video.id = 'video'
+video.playsInline = true
+video.autoplay = true
+video.muted = true
+video.loop = true
+video.type = 'video/mp4'
+video.src = './assets/movingGradient.mp4'
+video.load()
+video.pause()
+
+const videoImage = document.createElement('canvas')
+videoImage.width = 1920
+videoImage.height = 1080
+
+const videoImageContext = videoImage.getContext('2d')
+videoImageContext.fillStyle = '#000000'
+videoImageContext.fillRect(0, 0, videoImage.width, videoImage.height)
+
+const tealGreenVideoTexture = new THREE.Texture(videoImage)
+tealGreenVideoTexture.minFilter = THREE.LinearFilter
+tealGreenVideoTexture.magFilter = THREE.LinearFilter
+
+const tealGreen = new THREE.MeshBasicMaterial({
+  map: tealGreenVideoTexture,
   opacity: 1,
   depthWrite: false,
+  side: THREE.DoubleSide,
 })
 
 let currentStage
@@ -101,7 +126,7 @@ export default {
         0.01,
         10
       )
-      this.renderer = new THREE.WebGLRenderer({ antialias: true })
+      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       this.renderer.setSize(
         this.container.clientWidth,
         this.container.clientHeight
@@ -113,7 +138,7 @@ export default {
       this.scene = new THREE.Scene()
       this.clock = new THREE.Clock()
 
-      this.scene.background = new THREE.Color(0x000000)
+      // this.scene.background = new THREE.Color(0x000000)
 
       // adding lights to the scene
       const aLight = new THREE.AmbientLight(0x888888)
@@ -145,8 +170,6 @@ export default {
       const sphereGeometry = new THREE.SphereGeometry(4, 32, 16)
       const pGeometry = new THREE.ConeGeometry(5, 8, 4)
       const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
-
-      this.thresholdAngle = 11
 
       const initialCube = animations[0].enterAnimation.movements[0]
 
@@ -241,6 +264,8 @@ export default {
       this.sphere = new THREE.Mesh(sphereGeometry, greenOrange)
       this.scene.add(this.sphere)
       this.spheres.push(this.sphere)
+
+      this.thresholdAngle = 11
 
       this.sEdges = new THREE.EdgesGeometry(sphereGeometry, this.thresholdAngle)
       this.sMesh = new THREE.LineSegments(
@@ -399,6 +424,10 @@ export default {
       TWEEN.update()
     },
     render() {
+      if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        videoImageContext.drawImage(video, 0, 0)
+        if (tealGreenVideoTexture) tealGreenVideoTexture.needsUpdate = true
+      }
       this.renderer.render(this.scene, this.camera)
     },
     onscroll() {
@@ -418,6 +447,12 @@ export default {
         ) {
           this.startMovement(i)
           currentStage = animations[i].stage
+
+          if (currentStage === 'digital craft') {
+            video.play()
+          } else {
+            video.pause()
+          }
         } else if (this.currentScrollPos > 100 && this.currentScrollPos < 110) {
           new TWEEN.Tween(this.camera.position)
             .to(
@@ -430,25 +465,13 @@ export default {
             )
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
-        } else if (this.currentScrollPos < 111) {
-          document.getElementById('container').style.opacity = scale(
-            this.currentScrollPos,
-            96,
-            100,
-            1,
-            0
-          )
+        } else if (this.currentScrollPos > 100 && this.currentScrollPos < 220) {
+          document.getElementById('container').style.opacity = 0
         } else if (
           this.currentScrollPos >= 223 &&
           this.currentScrollPos <= 230
         ) {
-          document.getElementById('container').style.opacity = scale(
-            this.currentScrollPos,
-            223,
-            230,
-            0,
-            1
-          )
+          document.getElementById('container').style.opacity = 1
 
           currentStage = 'contact'
 
@@ -602,6 +625,7 @@ export default {
 #container {
   width: 100vw;
   height: 100vh;
+  transition: 1s opacity linear;
 }
 
 #serviceText {
