@@ -2,12 +2,6 @@
   <div id="threescene">
     <div id="container">
       <span id="serviceText"></span>
-      <!-- <video id="tealgreen" autoplay muted loop style="display: none">
-        <source
-          src="/assets/movingGradient.mp4"
-          type='video/ogg; codecs="theora, vorbis"'
-        />
-      </video> -->
     </div>
   </div>
 </template>
@@ -43,6 +37,7 @@ const greenOrange = new THREE.MeshPhongMaterial({
 })
 
 const video = document.createElement('video')
+video.style = 'display: none;'
 video.id = 'video'
 video.playsInline = true
 video.autoplay = true
@@ -453,6 +448,8 @@ export default {
           } else {
             video.pause()
           }
+
+          document.getElementById('container').style.opacity = 1
         } else if (this.currentScrollPos > 100 && this.currentScrollPos < 110) {
           new TWEEN.Tween(this.camera.position)
             .to(
@@ -465,6 +462,7 @@ export default {
             )
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
+          document.getElementById('container').style.opacity = 1
         } else if (this.currentScrollPos > 100 && this.currentScrollPos < 220) {
           document.getElementById('container').style.opacity = 0
         } else if (

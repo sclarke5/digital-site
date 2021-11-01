@@ -1,6 +1,5 @@
 <template>
   <div class="top-level-container">
-    <ThreeScene />
     <component
       :is="story.content.component"
       v-if="story.content.component"
@@ -10,8 +9,8 @@
     <!-- <ButtonCta v-for="(cta, index) in ctas" :key="index">
       {{ cta.title }}
     </ButtonCta>
-    <Contact />
 -->
+    <Contact />
   </div>
 </template>
 
