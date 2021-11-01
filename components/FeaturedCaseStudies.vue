@@ -2,8 +2,24 @@
   <div v-editable="blok">
     <!-- <h1 class="text-white text-5xl case-studies-title">Case studies</h1> -->
     <div class="flex"></div>
-    <div class="dot-pattern"></div>
+    <!-- <div class="dot-pattern"></div> -->
     <h2 class="text-white text-5xl case-studies-sub">Case Studies</h2>
+    <img class="lines" src="../assets/bad-grid.jpg" />
+    <div class="icons-container">
+      <div class="flex items-center justify-center">
+        <img src="../assets/nike-icon.png" alt="nike">
+      </div>
+      <div class="flex items-center justify-center">
+        <img src="../assets/stryker-icon.png" alt="nike">
+      </div>
+      <div class="flex items-center justify-center">
+        <img src="../assets/astound-icon.webp" alt="nike">
+      </div>
+      <div class="flex items-center justify-center">
+        <img src="../assets/hbo-icon.png" alt="nike">
+      </div>
+    </div>
+
     <ul class="flex flex-col py-6 mb-6 case-studies-list">
       <li
         v-for="caseStudy in sortedCaseStudies" 
@@ -58,10 +74,38 @@ h1 {
 .case-studies-sub {
   transform: rotate(90deg);
   margin-left: 13em;
-  margin-bottom: 10em;
+
+  /* margin-bottom: 10em; */
   text-transform: uppercase;
   font-family: 'Gotham', sans-serif;
   font-weight: 800;
+}
+
+.lines {
+    margin-left: -12em;
+    width: 80%;
+    margin-top: -30em;
+
+    /* margin-bottom: 5em;
+    height: 800px; */
+}
+
+.icons-container {
+  transform: rotate(90deg);
+  display: grid;
+
+  /* grid-template-columns: repeat(auto-fit, minmax(400px, 2fr)); */
+	grid-template-columns: repeat(auto-fit, 400px 400px);
+  grid-gap: 50px;
+	list-style-type: none;
+	padding-left: 0;
+  margin-right: 10em;
+  margin-top: -25em;
+}
+
+.icon {
+  position: relative;
+  width: 300px;
 }
 
 .dot-pattern {
