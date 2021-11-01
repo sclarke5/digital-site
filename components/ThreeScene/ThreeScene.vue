@@ -60,7 +60,7 @@ const tealGreenVideoTexture = new THREE.Texture(videoImage)
 tealGreenVideoTexture.minFilter = THREE.LinearFilter
 tealGreenVideoTexture.magFilter = THREE.LinearFilter
 
-const tealGreen = new THREE.MeshBasicMaterial({
+const tealGreen = new THREE.MeshPhongMaterial({
   map: tealGreenVideoTexture,
   opacity: 1,
   depthWrite: false,
@@ -435,13 +435,17 @@ export default {
 
       this.currentScrollPos = Math.round((pos / total) * 100)
 
+      console.log(this.currentScrollPos)
+
       for (let i = 0; i < animations.length; i++) {
         if (
           this.currentScrollPos >= animations[i].enterAnimation.start &&
           this.currentScrollPos <= animations[i].enterAnimation.end
         ) {
-          this.startMovement(i)
-          currentStage = animations[i].stage
+          if (currentStage !== animations[i].stage) {
+            this.startMovement(i)
+            currentStage = animations[i].stage
+          }
 
           if (currentStage === 'digital craft') {
             video.play()
@@ -463,7 +467,7 @@ export default {
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
           document.getElementById('container').style.opacity = 1
-        } else if (this.currentScrollPos > 100 && this.currentScrollPos < 220) {
+        } else if (this.currentScrollPos >= 97 && this.currentScrollPos < 220) {
           document.getElementById('container').style.opacity = 0
         } else if (
           this.currentScrollPos >= 223 &&
@@ -471,9 +475,11 @@ export default {
         ) {
           document.getElementById('container').style.opacity = 1
 
-          currentStage = 'contact'
+          if (currentStage !== 'contact') {
+            this.startMovement(4)
+            currentStage = 'contact'
+          }
 
-          this.startMovement(4)
           this.startContact()
         }
       }
