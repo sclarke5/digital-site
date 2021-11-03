@@ -14,8 +14,8 @@
         <img src="~/assets/arrow-right.png" />
       </div>
       <div class="case-study-panel bg-white">
-        <h1 class="text-black">TEST</h1>
-        <p class="text-black">TESTING</p>
+        <h1 class="text-black">{{ caseStudyContent.name }}</h1>
+        <p class="text-black">{{ caseStudyContent.client }}</p>
       </div>
       <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" :case-studies-list="caseStudiesList" @close-modal="showModal = false" />
     </div>
@@ -46,6 +46,10 @@ export default {
   methods: {
     openModal(e){
       const panel = e.target.parentNode.nextElementSibling
+
+      if(panel === null){
+        return 
+      }
 
       if(window.innerWidth > 800){
         this.showModal = true
