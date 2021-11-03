@@ -1,8 +1,8 @@
 <template>
 <div class="flex grid-container">
-  <div class="flex flex-col grid-left mr-16">
+  <div class="flex flex-col grid-left md:mr-16 px-6">
     <h1 class="text-white">{{ title }}</h1>
-    <p class="text-white pl-48 pt-8">{{ blurb }}</p>
+    <p class="text-white md:pl-48 pt-8">{{ blurb }}</p>
   </div>
   <div class="flex grid-right">
     <ul
@@ -11,7 +11,7 @@
       <li
         :key="blok._uid"
         v-for="blok in blok.columns"
-        class="flex-auto px-6 w-1/3 text-white mr-12">
+        class="flex-auto px-6 md:w-1/3 text-white md:mr-12">
         <component :blok="blok" :is="blok.component" />
       </li>
     </ul>
@@ -46,26 +46,46 @@ export default {
 </script>
 
 <style scoped>
+
+.grid-container {
+  flex-direction: column;
+  margin-top: 15em;
+}
+
+.grid-container h1 {
+  font-size: 3em;
+  font-family: 'Gotham', sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.grid-container p {
+  font-family: 'Gotham', sans-serif;
+  font-weight: 300;
+}
+
+.grid-right ul {
+  flex-direction: column;
+}
+
+@media screen and (min-width: 800px) {
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 200vh;
+    flex-direction: row;
   }
 
   .grid-left {
-    width: 250%;
+    width: 550%;
   }
 
-  .grid-container h1 {
-    font-size: 3em;
-    font-family: 'Gotham', sans-serif;
-    text-transform: uppercase;
-    font-weight: 800;
-    line-height: 1.1;;
+  .grid-right ul {
+    min-width: 200%;
+    flex-direction: row;
   }
+}
 
-  .grid-container p {
-    font-family: 'Gotham', sans-serif;
-    font-weight: 300;
-  }
+
 
 </style>

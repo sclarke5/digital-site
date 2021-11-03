@@ -1,16 +1,17 @@
 <template>
-  <div class="contactContainer" id="contact">
-    <div class="container">
-        <div class="grid grid-cols-2 gap-4 text-white">
-            <div class="col-span-1">
-              <h1>GET IN TOUCH</h1>
+  <!-- <div class="contactContainer"> -->
+    <!-- <div id="response">Hello world</div> -->
+    <div class="container mt-40">
+        <div class="two-column-container flex flex-col gap-4 text-white">
+            <div class="col-span-1 px-6">
+              <h1 class="text-5xl">GET IN TOUCH</h1>
               <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus blandit in eget ipsum sodales.
               </p>
               <br>
               <p>support@example.com</p>
             </div>
-            <div class="col-span-1 max-w-screen-sm p-8">
+            <div class="col-span-1 max-w-screen-sm p-8 w-full">
               <form
                 id="astoundContactForm"
                 method="post"
@@ -121,7 +122,7 @@
             </div>
           </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -222,18 +223,33 @@ export default {
 </script>
 
 <style scoped>
-.contactContainer {
-  transform: rotate(90deg);
+
+.container {
   font-family: 'Gotham', sans-serif;
 }
 
 button {
-    border: 1px solid white;
+    border: 2px solid white;
 }
 
 h1 {
     font-family: 'Gotham-Black', sans-serif;
-    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+input, select, textarea {
+  border: 2px solid white;
+}
+
+@media screen and (min-width: 800px) {
+  .container {
+    transform: rotate(90deg);
+    margin-bottom: 40rem;
+  }
+  .two-column-container {
+    flex-direction: row;
+  }
 }
 
 #errorContainer {

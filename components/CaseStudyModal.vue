@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <div class="more-work mt-8">
+      <div class="more-work mt-8 mb-80">
         <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">See more work</h1>
         <ul class="flex py-6 mb-6 case-list">
           <li v-for="caseStudy in seeMoreWork" 
@@ -107,8 +107,6 @@
           </li>
         </ul>
       </div>
-      <!-- placeholder copy to keep modal expanded--TODO: replace with margin or something -->
-        {{seeMoreWork}}
     </div>
     <div class="close absolute -right-8 -top-8" @click="$emit('close-modal')">
       <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
