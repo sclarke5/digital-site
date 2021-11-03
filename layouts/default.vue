@@ -14,45 +14,58 @@
 @import url('http://fonts.cdnfonts.com/css/dinpro-black');
 @import url('http://fonts.cdnfonts.com/css/adobe-caslon-pro');
 
-body {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  background: black;
+
+.layout-container {
+  margin-top: -20em;
 }
 
 .side-nav {
-  transform: rotate(-90deg);
-  left: 50vw;
-  top: 50vh;
-  margin-left: -8em;
+  display: none;
 }
 
-.layout-container {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
-  min-width: 100vh;
+@media screen and (min-width: 800px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: black;
+  }
 
-  /* width: 100vh; */
-  height: 200vh;
-  transform: rotate(-90deg);
-  position: absolute;
-  bottom: -30em;
-}
-#scrollEl {
-  background: none;
+  .side-nav {
+    display: block;
+    transform: rotate(-90deg);
+    left: 50vw;
+    top: 50vh;
+    margin-left: -8em;
+  }
+
+  .layout-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 100vh;
+
+    /* width: 100vh; */
+    height: 200vh;
+    transform: rotate(-90deg);
+    position: absolute;
+    bottom: -30em;
+  }
+  #scrollEl {
+    background: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  #three {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
 }
 
-::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
-}
-
-#three {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
 </style>

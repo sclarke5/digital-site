@@ -43,7 +43,7 @@ export default {
 
         caseStudyTeaser.scrollIntoView({
           behavior: 'smooth',
-          inline: 'center',
+          inline: 'start',
           block: 'center'
         });
       }
