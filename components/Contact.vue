@@ -1,6 +1,5 @@
 <template>
-  <div class="contactContainer">
-    <div id="response">Hello world</div>
+  <div class="contactContainer" id="contact">
     <div class="container">
         <div class="grid grid-cols-2 gap-4 text-white">
             <div class="col-span-1">
@@ -17,56 +16,58 @@
                 method="post"
                 @submit="checkForm"
               >
-                <p v-if="errors.length" class="text-red-500">
-                    <b>Please correct the following error(s):</b>
+                <p v-if="errors.length" id="errorContainer" class="text-red-500">
+                    <b>There were {{errors.length}} errors with your submission.</b>
                     <ul>
                         <li v-for="error in errors" :key="error">{{ error }}</li>
                     </ul>
                 </p>
-                <div class="mb-4 block">
-                  <label class="block text-sm mb-2" for="contactFirstName"
-                    >First name</label
+                <div id="firstName" class="mb-4 block">
+                  <label class="block text-sm mb-2" :class="{'text-red-500': fNameError}" for="contactFirstName"
+                    >First name *</label
                   >
                   <input
                     id="contactFirstName"
                     v-model="contactFirstName"
+                    :class="{'border-red-500': fNameError}"
                     type="text"
-                    class="p-2 text-black block w-full"
+                    class="text-white block w-full appearance-none border border-white bg-black py-2 px-3"
                     name="contactFirstName"
                     placeholder="First Name"
                     aria-describedby="fnameHelp"
                   />
                 </div>
-                <div class="mb-4 block">
-                  <label class="block text-sm mb-2" for="contactLastName"
-                    >Last name</label
+                <div id="lastName" class="mb-4 block">
+                  <label class="block text-sm mb-2"  :class="{'text-red-500': lNameError}" for="contactLastName"
+                    >Last name *</label
                   >
                   <input
                     id="contactLastName"
                     v-model="contactLastName"
+                    :class="{'border-red-500': lNameError}"
                     type="text"
-                    class="p-2 text-black block w-full"
+                    class="text-white block w-full appearance-none border border-white bg-black py-2 px-3"
                     name="contactLastName"
                     placeholder="Last Name"
                     aria-describedby="lnameHelp"
                   />
                 </div>
-                     <div class="mb-4 block">
+                     <div class="mb-4 block" :class="{'text-red-500': emailError}">
                   <label class="block text-sm mb-2" for="contactEmail"
-                    >E-Mail</label
+                    >Email *</label
                   >
                   <input
                     id="contactEmail"
                     v-model="contactEmail"
+                    :class="{'border-red-500': emailError}"
                     type="email"
-                    required
-                    class="p-2 text-black block w-full"
+                    class="text-white block w-full appearance-none border border-white bg-black py-2 px-3"
                     name="contactEmail"
                     placeholder="Email Address"
                     aria-describedby="emailHelp"
                   />
                 </div>
-                <div class="mb-4 block">
+                <div id="phone" class="mb-4 block">
                   <label class="block text-sm mb-2" for="contactPhone"
                     >Phone</label
                   >
@@ -74,21 +75,20 @@
                     id="contactPhone"
                     v-model="contactPhone"
                     type="text"
-                    class="p-2 text-black block w-full"
+                    class="text-white block w-full appearance-none border border-white bg-black py-2 px-3"
                     name="contactPhone"
-                    placeholder="Last Name"
+                    placeholder="Phone"
                     aria-describedby="phoneHelp"
                   />
                 </div>
-
-                <div class="mb-4 block">
-                  <label class="block text-sm" for="contactSubservices"
+                <div id="services" class="mb-4 block">
+                  <label class="block text-sm mb-2" for="contactSubservices"
                     >Services</label
                   >
                   <!-- removed multiple=true from select. change to checkboxes? -->
                   <select
                     v-model="contactSubservices"
-                    class="p-2 mb-2 block text-black w-full"
+                    class="text-white block w-full border border-white bg-black pr-24 py-2 px-3 "
                     name="contactSubservices"
                   >
                     <option value="Digital Craft">Digital Craft</option>
@@ -96,7 +96,7 @@
                     <option value="Virtual Events">Virtual Events</option>
                   </select>
                 </div>
-                <div class="mb-4 block">
+                <div id="message" class="mb-4 block">
                   <label class="block text-sm mb-2" for="contactMessage"
                     >Message</label
                   >
@@ -104,7 +104,7 @@
                     id="contactMessage"
                     v-model="contactMessage"
                     rows="5"
-                    class="p-2 text-black block w-full"
+                    class="text-white block w-full appearance-none border border-white bg-black py-2 px-3"
                     name="contactMessage"
                     placeholder="Message"
                     aria-describedby="messageHelp"
@@ -138,6 +138,9 @@ export default {
       contactPhone: null,
       contactSubservices: [],
       contactMessage: null,
+      emailError: false,
+      fNameError: false,
+      lNameError: false,
     }
   },
   methods: {
@@ -175,13 +178,14 @@ export default {
           name: 'firstname', value: this.contactFirstName,
         },{
           name: 'lastname', value: this.contactLastName,
-        },{
+        }, {
           name: 'phone', value: this.contactPhone,
         },{
           name: 'subservices', value: this.contactSubservices,
         },{
           name: 'comments', value: this.contactMessage,
-        }]
+        }
+        ]
 
        this.submitContactForm(this.data)
 
@@ -192,23 +196,25 @@ export default {
 
       if (!this.contactEmail) {
         this.errors.push('Email required.')
+        this.emailError = true;
       }
       if (!this.contactFirstName) {
         this.errors.push('First name required.')
+        this.fNameError = true;
       }
       if (!this.contactLastName) {
         this.errors.push('Last name required.')
+        this.lNameError = true;
       }
-      if (!this.contactPhone) {
-        this.errors.push('Phone required.')
-      }
-      if (!this.contactSubservices) {
-        this.errors.push('Subservices required.')
-      }
-      if (!this.contactMessage) {
-        this.errors.push('Message required.')
-      }
-
+      // if (!this.contactPhone) {
+      //   this.errors.push('Phone required.')
+      // }
+      // if (!this.contactSubservices) {
+      //   this.errors.push('Subservices required.')
+      // }
+      // if (!this.contactMessage) {
+      //   this.errors.push('Message required.')
+      // }
 
     },
   },
@@ -226,8 +232,12 @@ button {
 }
 
 h1 {
-    font-family: 'Gotham', sans-serif;
-    font-weight: 800;
+    font-family: 'Gotham-Black', sans-serif;
     font-size: 5rem;
+}
+
+#errorContainer {
+  padding: 2rem;
+  border: 1px red solid
 }
 </style>

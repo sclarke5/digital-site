@@ -37,9 +37,12 @@ body {
   /* width: 100vh; */
   height: 200vh;
   transform: rotate(-90deg);
+  transition: 0.1s linear transform;
   position: absolute;
   bottom: -30em;
+  will-change: transform;
 }
+
 #scrollEl {
   background: none;
 }

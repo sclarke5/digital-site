@@ -26,6 +26,6 @@ export default {
 <style scoped>
 #spacer {
   width: 100vw;
-  height: 1000vh;
+  height: 500vh;
 }
 </style>
