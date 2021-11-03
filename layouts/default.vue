@@ -2,8 +2,8 @@
   <div>
     <HeaderAstound />
     <SideNav class="side-nav fixed" />
-    <Nuxt id="scrollEl" class="bg-black layout-container" />
     <ThreeScene id="three" />
+    <Nuxt id="scrollEl" class="layout-container" />
     <!-- <Footer /> -->
   </div>
 </template>
@@ -21,12 +21,14 @@
 .side-nav {
   display: none;
 }
+body {
+  background: black;
+}
 
 @media screen and (min-width: 800px) {
   body {
     overflow-x: hidden;
     overflow-y: hidden;
-    background: black;
   }
 
   .side-nav {

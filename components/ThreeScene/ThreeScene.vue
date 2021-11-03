@@ -1,7 +1,7 @@
 <template>
-  <div id="threescene">
+  <div>
     <div id="container">
-      <div id="landingText" class="text-7xl">
+      <div id="landingText" class="text-5xl">
         Human Design for a Digital World
       </div>
       <div id="scrollTextContainer">
@@ -12,6 +12,18 @@
         <div id="scrollPrompt">
           <span id="scrollText"> Scroll for More</span>
           <span id="scrollLine"><span id="movingLine"></span></span>
+        </div>
+      </div>
+      <div id="mobileScroll">
+        <div id="mobileTagline">
+          We design for the future, obsess about the present, and unlock
+          potential.
+        </div>
+        <div id="scrollIndicators">
+          <div class="indicator"></div>
+          <div class="indicator"></div>
+          <div class="indicator"></div>
+          <div class="indicator"></div>
         </div>
       </div>
     </div>
@@ -98,8 +110,7 @@ export default {
   methods: {
     init() {
       // declaring global variables
-
-      this.initialCameraPos = new THREE.Vector3(0, 0, 8)
+      this.mobileSwipes = 0
 
       this.angles = []
 
@@ -137,11 +148,19 @@ export default {
         0.01,
         100
       )
+
+      if (this.container.clientWidth < 800) {
+        this.initialCameraPos = new THREE.Vector3(0, 0, 15)
+      } else {
+        this.initialCameraPos = new THREE.Vector3(0, 0, 8)
+      }
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       this.renderer.setSize(
         this.container.clientWidth,
-        this.container.clientHeight
+        this.container.clientHeight,
+        false
       )
+
       this.renderer.shadowMap.enabled = true
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
@@ -327,6 +346,10 @@ export default {
         this.initialCameraPos.z
       )
 
+      window.addEventListener('touchstart', this.ontouchstart, false)
+
+      window.addEventListener('touchmove', this.ontouchmove, false)
+
       document
         .getElementById('scrollEl')
         .addEventListener('wheel', this.onscroll, false)
@@ -336,11 +359,87 @@ export default {
         .addEventListener('scroll', this.onscroll, false)
 
       window.addEventListener('resize', this.onresize, true)
+
+      this.changeIndicator()
+
+      this.xDown = null
+      this.yDown = null
+    },
+    getTouches(e) {
+      return e.touches
+    },
+    ontouchstart(e) {
+      const firstTouch = this.getTouches(e)[0]
+      this.xDown = firstTouch.clientX
+      this.yDown = firstTouch.clientY
+    },
+    ontouchmove(e) {
+      if (!this.xDown || !this.yDown) {
+        return
+      }
+
+      const xUp = e.touches[0].clientX
+      const yUp = e.touches[0].clientY
+
+      const xDiff = this.xDown - xUp
+      const yDiff = this.yDown - yUp
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        /* most significant */
+        if (xDiff > 0) {
+          /* left swipe */
+          console.log('left')
+          if (this.mobileSwipes > 0) {
+            this.mobileSwipes--
+          }
+        } else {
+          /* right swipe */
+          console.log('right')
+
+          if (this.mobileSwipes < 3) {
+            this.mobileSwipes++
+          }
+        }
+      } else {
+        // eslint-disable-next-line no-lonely-if
+        if (yDiff > 0) {
+          /* up swipe */
+          console.log('up')
+        } else {
+          /* down swipe */
+          console.log('down')
+        }
+      }
+
+      if (currentStage !== animations[this.mobileSwipes].stage) {
+        this.startMovement(this.mobileSwipes)
+      }
+
+      this.changeIndicator()
+
+      /* reset values */
+      this.xDown = null
+      this.yDown = null
+    },
+    changeIndicator() {
+      const indicators = document.querySelectorAll('.indicator')
+
+      for (let i = 0; i < indicators.length; i++) {
+        const element = indicators[i]
+
+        if (i === this.mobileSwipes) {
+          element.style.outline = ' 5px solid rgba(29, 173, 228, 0.3)'
+          element.style.backgroundColor = '#1dade4'
+        } else {
+          element.style.outline = 'none'
+          element.style.backgroundColor = 'white'
+        }
+      }
     },
     onresize() {
       this.camera.aspect = window.innerWidth / window.innerHeight
       this.camera.updateProjectionMatrix()
-      this.renderer.setSize(window.innerWidth, window.innerHeight)
+      this.renderer.setSize(window.innerWidth, window.innerHeight, false)
       this.render()
     },
     animate() {
@@ -515,17 +614,14 @@ export default {
           this.scrollText.style.opacity = 1
         } else if (
           this.currentScrollPos >= 100 &&
-          this.currentScrollPos < 350
+          this.currentScrollPos < 310
         ) {
           new TWEEN.Tween(this.camera.position)
             .to(this.initialCameraPos, 1000)
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
           this.container.style.opacity = 0
-        } else if (
-          this.currentScrollPos >= 350 &&
-          this.currentScrollPos <= 360
-        ) {
+        } else if (this.currentScrollPos >= 320) {
           this.container.style.opacity = 1
 
           if (currentStage !== 'contact') {
@@ -665,36 +761,27 @@ export default {
 </script>
 
 <style scoped>
-#container {
-  width: 100vw;
-  height: 100vh;
-  transition: 0.5s linear;
-}
-
-#serviceText {
-  color: white;
-  font-family: 'Gotham', sans-serif;
-  font-weight: 900;
-  text-transform: uppercase;
-  position: absolute;
-  z-index: 10001;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 2rem;
-  transition: linear 1s;
-}
-
 #landingText {
+  top: 7rem;
+  left: 0;
   position: absolute;
-  top: 8rem;
-  left: 5rem;
   color: white;
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   margin-top: 1rem;
   text-transform: uppercase;
   font-family: 'Gotham-Black', sans-serif;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 800px) {
+  #landingText {
+    top: 8rem;
+    left: 5rem;
+  }
+  #mobileScroll {
+    display: none;
+  }
 }
 
 #scrollTextContainer {
@@ -706,10 +793,53 @@ export default {
   margin-top: 1rem;
   text-transform: uppercase;
   font-family: 'DINPro-Bold', sans-serif;
+  display: block;
 }
 
 #tagline {
   margin-right: 30%;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  transition: 0.5s linear;
+  position: relative;
+}
+
+@media screen and (max-width: 799px) {
+  #mobileScroll {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  #mobileTagline {
+    color: white;
+    text-transform: uppercase;
+    font-family: 'DINPro-Bold', sans-serif;
+  }
+
+  #scrollIndicators {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1rem;
+  }
+
+  .indicator {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+  }
+
+  #scrollTextContainer {
+    display: none;
+  }
 }
 
 #scrollPrompt {
