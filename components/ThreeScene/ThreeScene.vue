@@ -362,6 +362,17 @@ export default {
 
       this.changeIndicator()
 
+      const indicators = document.querySelectorAll('.indicator')
+
+      for (let i = 0; i < indicators.length; i++) {
+        const element = indicators[i]
+
+        element.addEventListener('click', () => {
+          this.mobileSwipes = i
+          this.changeIndicator()
+        })
+      }
+
       this.xDown = null
       this.yDown = null
     },
@@ -387,17 +398,17 @@ export default {
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
         /* most significant */
         if (xDiff > 0) {
-          /* left swipe */
-          console.log('left')
-          if (this.mobileSwipes > 0) {
-            this.mobileSwipes--
-          }
-        } else {
           /* right swipe */
           console.log('right')
 
           if (this.mobileSwipes < 3) {
             this.mobileSwipes++
+          }
+        } else {
+          /* left swipe */
+          console.log('left')
+          if (this.mobileSwipes > 0) {
+            this.mobileSwipes--
           }
         }
       } else {
@@ -409,10 +420,6 @@ export default {
           /* down swipe */
           console.log('down')
         }
-      }
-
-      if (currentStage !== animations[this.mobileSwipes].stage) {
-        this.startMovement(this.mobileSwipes)
       }
 
       this.changeIndicator()
@@ -434,6 +441,10 @@ export default {
           element.style.outline = 'none'
           element.style.backgroundColor = 'white'
         }
+      }
+
+      if (currentStage !== animations[this.mobileSwipes].stage) {
+        this.startMovement(this.mobileSwipes)
       }
     },
     onresize() {
@@ -835,6 +846,7 @@ export default {
     width: 10px;
     height: 10px;
     background-color: white;
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   #scrollTextContainer {
