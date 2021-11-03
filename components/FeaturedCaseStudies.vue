@@ -1,11 +1,11 @@
 <template>
-  <div v-editable="blok">
+  <div v-editable="blok" class="mt-40">
     <!-- <h1 class="text-white text-5xl case-studies-title">Case studies</h1> -->
     <div class="flex"></div>
     <!-- <div class="dot-pattern"></div> -->
-    <h2 class="text-white text-5xl case-studies-sub">Case Studies</h2>
-    <img class="lines" src="../assets/bad-grid.jpg" />
-    <div class="icons-container">
+    <h2 class="text-white text-5xl case-studies-sub px-6">Case Studies</h2>
+    <!-- <img class="lines" src="../assets/bad-grid.jpg" /> -->
+    <div class="icons-container lines-background">
       <div class="flex items-center justify-center">
         <img src="../assets/nike-icon.png" alt="nike">
       </div>
@@ -63,44 +63,54 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  transform: rotate(90deg);
-  text-transform: uppercase;
-  font-family: 'Gotham', sans-serif;
-  font-weight: 800;
-  margin-right: -12em;
-}
 
 .case-studies-sub {
-  transform: rotate(90deg);
-  margin-left: 13em;
-
-  /* margin-bottom: 10em; */
   text-transform: uppercase;
   font-family: 'Gotham', sans-serif;
   font-weight: 800;
 }
 
-.lines {
-    margin-left: -12em;
-    width: 80%;
-    margin-top: -30em;
-
-    /* margin-bottom: 5em;
-    height: 800px; */
+.lines-background {
+  background-image: url("../assets/bad-grid.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 1em;
 }
 
 .icons-container {
-  transform: rotate(90deg);
   display: grid;
-
-  /* grid-template-columns: repeat(auto-fit, minmax(400px, 2fr)); */
-	grid-template-columns: repeat(auto-fit, 400px 400px);
+	grid-template-columns: 1fr 1fr;
   grid-gap: 50px;
 	list-style-type: none;
 	padding-left: 0;
-  margin-right: 10em;
-  margin-top: -25em;
+
+  /* margin-right: 8em; */
+}
+
+@media screen and (min-width: 800px) {
+  .case-studies-sub {
+    transform: rotate(90deg);
+    margin-left: 13em;
+  }
+
+  .lines {
+    margin-left: -12em;
+    width: 100%;
+  }
+
+  .icons-container {
+    transform: rotate(90deg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
+    list-style-type: none;
+    padding-left: 0;
+    margin-right: 8em;
+  }
+  
+  .case-studies-list {
+    margin-top: 60%;
+  }
 }
 
 .icon {
