@@ -13,6 +13,10 @@
         <span>VIEW CASE STUDY</span>
         <img src="~/assets/arrow-right.png" />
       </div>
+      <div class="case-study-panel bg-white">
+        <h1 class="text-black">TEST</h1>
+        <p class="text-black">TESTING</p>
+      </div>
       <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" :case-studies-list="caseStudiesList" @close-modal="showModal = false" />
     </div>
   </div>
@@ -40,9 +44,15 @@ export default {
     }
   },
   methods: {
-    openModal(){
+    openModal(e){
+      const panel = e.target.parentNode.nextElementSibling
+
       if(window.innerWidth > 800){
-        this.showModal = true;
+        this.showModal = true
+      } else if(panel.style.display === 'block') {
+        panel.style.display = 'none'
+      } else {
+        panel.style.display = 'block'
       }
     }
   }
@@ -52,6 +62,10 @@ export default {
 <style scoped>
 .case-study-teaser {
   background-color: black;
+}
+
+.case-study-panel {
+  display: none;
 }
 
 h1, h5 {
