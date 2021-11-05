@@ -82,14 +82,14 @@
                     aria-describedby="phoneHelp"
                   />
                 </div>
-                <div id="services" class="mb-4 block">
+                <div id="services" class="text-white mb-4 block">
                   <label class="block text-sm mb-2" for="contactSubservices"
                     >Services</label
                   >
                   <!-- removed multiple=true from select. change to checkboxes? -->
                   <select
                     v-model="contactSubservices"
-                    class="text-white block w-full border border-white bg-black pr-24 py-2 px-3 "
+                    class="block w-full border border-white bg-black pr-24 py-2 px-3 "
                     name="contactSubservices"
                   >
                     <option value="Digital Craft">Digital Craft</option>
@@ -233,13 +233,27 @@ button {
 }
 
 h1 {
-    font-family: 'Gotham-Black', sans-serif;
-    font-weight: 800;
+    font-family: 'Gotham-Ultra', sans-serif !important;
     line-height: 1.1;
 }
 
-input, select, textarea {
-  border: 2px solid white;
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+ background-image:
+    linear-gradient(45deg, transparent 50%, white 50%),
+    linear-gradient(135deg, white 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+
 }
 
 @media screen and (min-width: 800px) {

@@ -43,9 +43,8 @@ const tealOrangeTexture = new THREE.TextureLoader().load(
 const greenOrangeTexture = new THREE.TextureLoader().load(
   './assets/tealOrange.png'
 )
-// const tealGreenTexture = new THREE.TextureLoader().load(
-//   './assets/gradient3.png'
-// )
+const tealGreenPhoto = new THREE.TextureLoader().load('./assets/tealGreen.png')
+
 const tealOrange = new THREE.MeshPhongMaterial({
   map: tealOrangeTexture,
   transparent: true,
@@ -149,20 +148,12 @@ export default {
         100
       )
 
-      if (this.container.clientWidth < 800) {
-        this.initialCameraPos = new THREE.Vector3(0, 0, 15)
-      } else {
-        this.initialCameraPos = new THREE.Vector3(0, 0, 8)
-      }
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       this.renderer.setSize(
         this.container.clientWidth,
         this.container.clientHeight,
         false
       )
-
-      this.renderer.shadowMap.enabled = true
-      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
       this.container.appendChild(this.renderer.domElement)
       this.scene = new THREE.Scene()
@@ -237,8 +228,6 @@ export default {
         )
         this.cubes[i].material.needsUpdate = true
         this.cubes[i].material.transparent = true
-        this.cubes[i].castShadow = true
-        this.cubes[i].receiveShadow = true
       }
 
       this.cubes[1].material.opacity = 0
@@ -281,8 +270,6 @@ export default {
         )
         this.pyramids[i].material.needsUpdate = true
         this.pyramids[i].material.transparent = true
-        this.pyramids[i].castShadow = true
-        this.pyramids[i].receiveShadow = true
       }
 
       this.pyramids[1].material.opacity = 0
@@ -327,8 +314,6 @@ export default {
         )
         this.spheres[i].material.needsUpdate = true
         this.spheres[i].material.transparent = true
-        this.spheres[i].castShadow = true
-        this.spheres[i].receiveShadow = true
       }
 
       this.spheres[1].material.opacity = 0
@@ -339,7 +324,33 @@ export default {
       this.allShapes.push(this.pMesh)
       this.allShapes.push(this.sMesh)
 
+      this.renderer.shadowMap.enabled = true
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
+      for (let i = 0; i < this.allShapes.length; i++) {
+        const shape = this.allShapes[i]
+        if (i < 2) {
+          // solid shapes
+          shape.castShadow = true
+          shape.receiveShadow = true
+
+          if (i === 0) {
+            shape.castShadow = false
+          }
+        } else {
+          // outline shapes
+          shape.castShadow = false
+          shape.receiveShadow = false
+        }
+      }
+
       // other
+      if (this.container.clientWidth < 800) {
+        this.initialCameraPos = new THREE.Vector3(0, 0, 15)
+      } else {
+        this.initialCameraPos = new THREE.Vector3(0, 0, 8)
+      }
+
       this.camera.position.set(
         this.initialCameraPos.x,
         this.initialCameraPos.y,
@@ -358,7 +369,30 @@ export default {
         .getElementById('scrollEl')
         .addEventListener('scroll', this.onscroll, false)
 
-      window.addEventListener('resize', this.onresize, true)
+      window.addEventListener(
+        'resize',
+        () => {
+          this.camera.aspect = window.innerWidth / window.innerHeight
+          this.camera.updateProjectionMatrix()
+          this.renderer.setSize(window.innerWidth, window.innerHeight, false)
+          this.render()
+
+          if (this.container.clientWidth < 800) {
+            this.initialCameraPos = new THREE.Vector3(0, 0, 15)
+          } else {
+            this.initialCameraPos = new THREE.Vector3(0, 0, 8)
+          }
+
+          if (currentStage !== 'contact') {
+            this.camera.position.set(
+              this.initialCameraPos.x,
+              this.initialCameraPos.y,
+              this.initialCameraPos.z
+            )
+          }
+        },
+        true
+      )
 
       this.changeIndicator()
 
@@ -376,6 +410,7 @@ export default {
       this.xDown = null
       this.yDown = null
     },
+
     getTouches(e) {
       return e.touches
     },
@@ -617,30 +652,36 @@ export default {
             video.currentTime = 0
           }
 
+          if (i >= 3) {
+            this.allShapes[0].material.map = tealGreenPhoto
+          } else {
+            this.allShapes[0].material.map = tealGreenVideoTexture
+          }
+
           this.container.style.opacity = 1
         } else if (this.currentScrollPos >= 0 && this.currentScrollPos < 100) {
           this.container.style.opacity = 1
-
           this.serviceText.style.opacity = 1
           this.scrollText.style.opacity = 1
         } else if (
           this.currentScrollPos >= 100 &&
-          this.currentScrollPos < 310
+          this.currentScrollPos < 250
         ) {
+          this.container.style.opacity = 0
           new TWEEN.Tween(this.camera.position)
-            .to(this.initialCameraPos, 1000)
+            .to(this.initialCameraPos, 500)
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
+        } else if (this.currentScrollPos > 300 && this.currentScrollPos < 330) {
+          this.startContact()
           this.container.style.opacity = 0
-        } else if (this.currentScrollPos >= 320) {
+        } else if (this.currentScrollPos >= 332) {
           this.container.style.opacity = 1
 
           if (currentStage !== 'contact') {
             this.startMovement(4)
             currentStage = 'contact'
           }
-
-          this.startContact()
 
           this.serviceText.style.opacity = 0
           this.scrollText.style.opacity = 0
@@ -660,7 +701,7 @@ export default {
             y: 2,
             z: 15,
           },
-          1000
+          500
         )
         .easing(TWEEN.Easing.Quadratic.InOut)
         .start()
@@ -781,7 +822,7 @@ export default {
   max-width: 600px;
   margin-top: 1rem;
   text-transform: uppercase;
-  font-family: 'Gotham-Black', sans-serif;
+  font-family: 'Gotham-Ultra', sans-serif;
   padding: 1rem;
 }
 
@@ -819,6 +860,9 @@ export default {
 }
 
 @media screen and (max-width: 799px) {
+  #container {
+    height: 85vh;
+  }
   #mobileScroll {
     display: block;
     position: absolute;
