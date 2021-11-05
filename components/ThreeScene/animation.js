@@ -5,7 +5,7 @@ export const animations = [
     stage: 'initial',
     enterAnimation: {
       start: 0,
-      end: 2,
+      end: 5,
       movements: [
         {
           object: 'cube',
@@ -73,8 +73,8 @@ export const animations = [
   {
     stage: 'digital craft',
     enterAnimation: {
-      start: 2,
-      end: 5,
+      start: 5,
+      end: 15,
       anEnd: 30,
       movements: [
         {
@@ -92,7 +92,7 @@ export const animations = [
           scale: {
             x: 3,
             y: 2,
-            z: 0.9,
+            z: 0.1,
           },
           opacitySolid: 1,
           opacityLine: 0,
@@ -162,7 +162,7 @@ export const animations = [
           scale: {
             x: 3,
             y: 2,
-            z: 0.9,
+            z: 2,
           },
           opacitySolid: 0,
           opacityLine: 1,

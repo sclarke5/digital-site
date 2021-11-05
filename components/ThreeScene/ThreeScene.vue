@@ -1,7 +1,31 @@
 <template>
-  <div id="threescene">
+  <div>
     <div id="container">
-      <span id="serviceText"></span>
+      <div id="landingText" class="text-5xl">
+        Human Design for a Digital World
+      </div>
+      <div id="scrollTextContainer">
+        <div id="tagline">
+          We design for the future, obsess about the present, and unlock
+          potential.
+        </div>
+        <div id="scrollPrompt">
+          <span id="scrollText"> Scroll for More</span>
+          <span id="scrollLine"><span id="movingLine"></span></span>
+        </div>
+      </div>
+      <div id="mobileScroll">
+        <div id="mobileTagline">
+          We design for the future, obsess about the present, and unlock
+          potential.
+        </div>
+        <div id="scrollIndicators">
+          <div class="indicator"></div>
+          <div class="indicator"></div>
+          <div class="indicator"></div>
+          <div class="indicator"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -14,14 +38,13 @@ import { animations } from './animation'
 // texture imports
 
 const tealOrangeTexture = new THREE.TextureLoader().load(
-  './assets/gradient1.png'
+  './assets/blueOrange.png'
 )
 const greenOrangeTexture = new THREE.TextureLoader().load(
-  './assets/gradient16.png'
+  './assets/tealOrange.png'
 )
-// const tealGreenTexture = new THREE.TextureLoader().load(
-//   './assets/gradient3.png'
-// )
+const tealGreenPhoto = new THREE.TextureLoader().load('./assets/tealGreen.png')
+
 const tealOrange = new THREE.MeshPhongMaterial({
   map: tealOrangeTexture,
   transparent: true,
@@ -60,7 +83,7 @@ const tealGreenVideoTexture = new THREE.Texture(videoImage)
 tealGreenVideoTexture.minFilter = THREE.LinearFilter
 tealGreenVideoTexture.magFilter = THREE.LinearFilter
 
-const tealGreen = new THREE.MeshBasicMaterial({
+const tealGreen = new THREE.MeshPhongMaterial({
   map: tealGreenVideoTexture,
   opacity: 1,
   depthWrite: false,
@@ -86,6 +109,7 @@ export default {
   methods: {
     init() {
       // declaring global variables
+      this.mobileSwipes = 0
 
       this.angles = []
 
@@ -111,23 +135,25 @@ export default {
       this.mouse = new THREE.Vector2()
 
       // access HTML elements
-      this.serviceText = document.getElementById('serviceText')
+      this.serviceText = document.getElementById('landingText')
+      this.scrollText = document.getElementById('scrollTextContainer')
+
       this.container = document.getElementById('container')
 
       // setting up the threejs scene
       this.camera = new THREE.PerspectiveCamera(
-        70,
+        45,
         this.container.clientWidth / this.container.clientHeight,
         0.01,
-        10
+        100
       )
+
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       this.renderer.setSize(
         this.container.clientWidth,
-        this.container.clientHeight
+        this.container.clientHeight,
+        false
       )
-      this.renderer.shadowMap.enabled = true
-      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
       this.container.appendChild(this.renderer.domElement)
       this.scene = new THREE.Scene()
@@ -155,7 +181,7 @@ export default {
         this.gridColor,
         this.gridColor
       )
-      this.gridScale = 0.7
+      this.gridScale = 0.6
       this.gridHelper.scale.set(this.gridScale, this.gridScale, this.gridScale)
       this.gridHelper.rotation.x = Math.PI / 2
       this.gridHelper.position.set(0, -0.5, -2)
@@ -202,8 +228,6 @@ export default {
         )
         this.cubes[i].material.needsUpdate = true
         this.cubes[i].material.transparent = true
-        this.cubes[i].castShadow = true
-        this.cubes[i].receiveShadow = true
       }
 
       this.cubes[1].material.opacity = 0
@@ -246,8 +270,6 @@ export default {
         )
         this.pyramids[i].material.needsUpdate = true
         this.pyramids[i].material.transparent = true
-        this.pyramids[i].castShadow = true
-        this.pyramids[i].receiveShadow = true
       }
 
       this.pyramids[1].material.opacity = 0
@@ -292,8 +314,6 @@ export default {
         )
         this.spheres[i].material.needsUpdate = true
         this.spheres[i].material.transparent = true
-        this.spheres[i].castShadow = true
-        this.spheres[i].receiveShadow = true
       }
 
       this.spheres[1].material.opacity = 0
@@ -304,21 +324,168 @@ export default {
       this.allShapes.push(this.pMesh)
       this.allShapes.push(this.sMesh)
 
-      // other
-      this.camera.position.z = 5
+      this.renderer.shadowMap.enabled = true
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
-      this.container.addEventListener('mousemove', this.onmousemove, false)
-      this.container.addEventListener('mouseout', this.onmouseout, false)
+      for (let i = 0; i < this.allShapes.length; i++) {
+        const shape = this.allShapes[i]
+        if (i < 2) {
+          // solid shapes
+          shape.castShadow = true
+          shape.receiveShadow = true
+
+          if (i === 0) {
+            shape.castShadow = false
+          }
+        } else {
+          // outline shapes
+          shape.castShadow = false
+          shape.receiveShadow = false
+        }
+      }
+
+      // other
+      if (this.container.clientWidth < 800) {
+        this.initialCameraPos = new THREE.Vector3(0, 0, 15)
+      } else {
+        this.initialCameraPos = new THREE.Vector3(0, 0, 8)
+      }
+
+      this.camera.position.set(
+        this.initialCameraPos.x,
+        this.initialCameraPos.y,
+        this.initialCameraPos.z
+      )
+
+      window.addEventListener('touchstart', this.ontouchstart, false)
+
+      window.addEventListener('touchmove', this.ontouchmove, false)
+
       document
         .getElementById('scrollEl')
         .addEventListener('wheel', this.onscroll, false)
 
-      window.addEventListener('resize', this.onresize, true)
+      document
+        .getElementById('scrollEl')
+        .addEventListener('scroll', this.onscroll, false)
+
+      window.addEventListener(
+        'resize',
+        () => {
+          this.camera.aspect = window.innerWidth / window.innerHeight
+          this.camera.updateProjectionMatrix()
+          this.renderer.setSize(window.innerWidth, window.innerHeight, false)
+          this.render()
+
+          if (this.container.clientWidth < 800) {
+            this.initialCameraPos = new THREE.Vector3(0, 0, 15)
+          } else {
+            this.initialCameraPos = new THREE.Vector3(0, 0, 8)
+          }
+
+          if (currentStage !== 'contact') {
+            this.camera.position.set(
+              this.initialCameraPos.x,
+              this.initialCameraPos.y,
+              this.initialCameraPos.z
+            )
+          }
+        },
+        true
+      )
+
+      this.changeIndicator()
+
+      const indicators = document.querySelectorAll('.indicator')
+
+      for (let i = 0; i < indicators.length; i++) {
+        const element = indicators[i]
+
+        element.addEventListener('click', () => {
+          this.mobileSwipes = i
+          this.changeIndicator()
+        })
+      }
+
+      this.xDown = null
+      this.yDown = null
+    },
+
+    getTouches(e) {
+      return e.touches
+    },
+    ontouchstart(e) {
+      const firstTouch = this.getTouches(e)[0]
+      this.xDown = firstTouch.clientX
+      this.yDown = firstTouch.clientY
+    },
+    ontouchmove(e) {
+      if (!this.xDown || !this.yDown) {
+        return
+      }
+
+      const xUp = e.touches[0].clientX
+      const yUp = e.touches[0].clientY
+
+      const xDiff = this.xDown - xUp
+      const yDiff = this.yDown - yUp
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        /* most significant */
+        if (xDiff > 0) {
+          /* right swipe */
+          console.log('right')
+
+          if (this.mobileSwipes < 3) {
+            this.mobileSwipes++
+          }
+        } else {
+          /* left swipe */
+          console.log('left')
+          if (this.mobileSwipes > 0) {
+            this.mobileSwipes--
+          }
+        }
+      } else {
+        // eslint-disable-next-line no-lonely-if
+        if (yDiff > 0) {
+          /* up swipe */
+          console.log('up')
+        } else {
+          /* down swipe */
+          console.log('down')
+        }
+      }
+
+      this.changeIndicator()
+
+      /* reset values */
+      this.xDown = null
+      this.yDown = null
+    },
+    changeIndicator() {
+      const indicators = document.querySelectorAll('.indicator')
+
+      for (let i = 0; i < indicators.length; i++) {
+        const element = indicators[i]
+
+        if (i === this.mobileSwipes) {
+          element.style.outline = ' 5px solid rgba(29, 173, 228, 0.3)'
+          element.style.backgroundColor = '#1dade4'
+        } else {
+          element.style.outline = 'none'
+          element.style.backgroundColor = 'white'
+        }
+      }
+
+      if (currentStage !== animations[this.mobileSwipes].stage) {
+        this.startMovement(this.mobileSwipes)
+      }
     },
     onresize() {
       this.camera.aspect = window.innerWidth / window.innerHeight
       this.camera.updateProjectionMatrix()
-      this.renderer.setSize(window.innerWidth, window.innerHeight)
+      this.renderer.setSize(window.innerWidth, window.innerHeight, false)
       this.render()
     },
     animate() {
@@ -370,15 +537,37 @@ export default {
           break
 
         case 'contact':
-          this.bounds = 1.6
+          this.bounds = [
+            {
+              // cube
+              x1: 2.45,
+              x2: -1.3,
+              y1: 1.9,
+              y2: -2,
+            },
+            {
+              // pyramid
+              x1: 2.7,
+              x2: -1.25,
+              y1: 2,
+              y2: -2,
+            },
+            {
+              // sphere
+              x1: 3,
+              x2: -1.25,
+              y1: 1.9,
+              y2: -1.8,
+            },
+          ]
 
-          for (let i = 0; i < this.allShapes.length; i++) {
+          for (let i = 0; i < this.allShapes.length / 2; i++) {
             this.allShapes[i].position.x += this.angles[i].xAngle
             this.allShapes[i].position.y += this.angles[i].yAngle
 
             if (
-              this.allShapes[i].position.x >= this.bounds ||
-              this.allShapes[i].position.x <= -this.bounds
+              this.allShapes[i].position.x >= this.bounds[i].x1 ||
+              this.allShapes[i].position.x <= this.bounds[i].x2
             ) {
               this.angles[i].xAngle = -this.angles[i].xAngle
 
@@ -394,8 +583,8 @@ export default {
             }
 
             if (
-              this.allShapes[i].position.y >= this.bounds ||
-              this.allShapes[i].position.y <= -this.bounds
+              this.allShapes[i].position.y >= this.bounds[i].y1 ||
+              this.allShapes[i].position.y <= this.bounds[i].y2
             ) {
               this.angles[i].yAngle = -this.angles[i].yAngle
 
@@ -426,55 +615,76 @@ export default {
       this.renderer.render(this.scene, this.camera)
     },
     onscroll() {
+      clearTimeout(this.timer)
       const self = document.getElementById('scrollEl')
       const spacer = document.getElementById('spacer')
 
+      this.content = document.querySelector('.layout-container')
       const pos = self.scrollTop
 
       const total = spacer.scrollHeight
 
       this.currentScrollPos = Math.round((pos / total) * 100)
 
+      // scroll effect
+
+      // this.timer = setTimeout(() => {
+      //   this.content.style.transform = `rotate(-90deg) skewY(0deg)`
+      // }, 100)
+
+      // this.content.style.transform = `rotate(-90deg) skewY(10deg)`
+
+      //
       for (let i = 0; i < animations.length; i++) {
         if (
           this.currentScrollPos >= animations[i].enterAnimation.start &&
           this.currentScrollPos <= animations[i].enterAnimation.end
         ) {
-          this.startMovement(i)
-          currentStage = animations[i].stage
+          if (currentStage !== animations[i].stage) {
+            this.startMovement(i)
+            currentStage = animations[i].stage
+          }
 
           if (currentStage === 'digital craft') {
             video.play()
           } else {
             video.pause()
+            video.currentTime = 0
           }
 
-          document.getElementById('container').style.opacity = 1
-        } else if (this.currentScrollPos > 100 && this.currentScrollPos < 110) {
+          if (i >= 3) {
+            this.allShapes[0].material.map = tealGreenPhoto
+          } else {
+            this.allShapes[0].material.map = tealGreenVideoTexture
+          }
+
+          this.container.style.opacity = 1
+        } else if (this.currentScrollPos >= 0 && this.currentScrollPos < 100) {
+          this.container.style.opacity = 1
+          this.serviceText.style.opacity = 1
+          this.scrollText.style.opacity = 1
+        } else if (
+          this.currentScrollPos >= 100 &&
+          this.currentScrollPos < 250
+        ) {
+          this.container.style.opacity = 0
           new TWEEN.Tween(this.camera.position)
-            .to(
-              {
-                x: 0,
-                y: 0,
-                z: 5,
-              },
-              100
-            )
+            .to(this.initialCameraPos, 500)
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
-          document.getElementById('container').style.opacity = 1
-        } else if (this.currentScrollPos > 100 && this.currentScrollPos < 220) {
-          document.getElementById('container').style.opacity = 0
-        } else if (
-          this.currentScrollPos >= 223 &&
-          this.currentScrollPos <= 230
-        ) {
-          document.getElementById('container').style.opacity = 1
-
-          currentStage = 'contact'
-
-          this.startMovement(4)
+        } else if (this.currentScrollPos > 300 && this.currentScrollPos < 330) {
           this.startContact()
+          this.container.style.opacity = 0
+        } else if (this.currentScrollPos >= 332) {
+          this.container.style.opacity = 1
+
+          if (currentStage !== 'contact') {
+            this.startMovement(4)
+            currentStage = 'contact'
+          }
+
+          this.serviceText.style.opacity = 0
+          this.scrollText.style.opacity = 0
         }
       }
     },
@@ -487,11 +697,11 @@ export default {
       new TWEEN.Tween(this.camera.position)
         .to(
           {
-            x: 0,
-            y: 0.75,
-            z: 7,
+            x: 5,
+            y: 2,
+            z: 15,
           },
-          100
+          500
         )
         .easing(TWEEN.Easing.Quadratic.InOut)
         .start()
@@ -504,7 +714,7 @@ export default {
       if (arrPos > 0 && arrPos < 4) {
         this.serviceText.innerHTML = self.stage
       } else {
-        this.serviceText.innerHTML = ''
+        this.serviceText.innerHTML = 'Human Design for a Digital World'
       }
 
       for (let i = 0; i < 3; i++) {
@@ -598,46 +808,141 @@ export default {
           .start()
       }
     },
-    onmouseout() {},
-    onmousemove(event) {
-      this.count++
-      this.mouse.x = (event.offsetX / this.renderer.domElement.width) * 2 - 1
-      this.mouse.y = -(event.offsetY / this.renderer.domElement.height) * 2 + 1
-
-      this.raycaster.setFromCamera(this.mouse, this.camera)
-
-      this.intersects = this.raycaster.intersectObjects(this.scene.children)
-
-      if (this.intersects.length > 0) {
-        this.currentOver = this.intersects[0].object
-        this.serviceText.style.opacity = 1
-      } else {
-        //
-      }
-    },
   },
 }
 </script>
 
 <style scoped>
+#landingText {
+  top: 7rem;
+  left: 0;
+  position: absolute;
+  color: white;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  font-family: 'Gotham-Ultra', sans-serif;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 800px) {
+  #landingText {
+    top: 8rem;
+    left: 5rem;
+  }
+  #mobileScroll {
+    display: none;
+  }
+}
+
+#scrollTextContainer {
+  position: absolute;
+  bottom: 10rem;
+  right: 7rem;
+  color: white;
+  width: 500px;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  font-family: 'DINPro-Bold', sans-serif;
+  display: block;
+}
+
+#tagline {
+  margin-right: 30%;
+}
+
 #container {
   width: 100vw;
   height: 100vh;
-  transition: 1s opacity linear;
+  transition: 0.5s linear;
+  position: relative;
 }
 
-#serviceText {
-  color: white;
+@media screen and (max-width: 799px) {
+  #container {
+    height: 85vh;
+  }
+  #mobileScroll {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  #mobileTagline {
+    color: white;
+    text-transform: uppercase;
+    font-family: 'DINPro-Bold', sans-serif;
+  }
+
+  #scrollIndicators {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1rem;
+  }
+
+  .indicator {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  #scrollTextContainer {
+    display: none;
+  }
+}
+
+#scrollPrompt {
+  margin: 1rem 0 0 0;
   font-family: 'Gotham', sans-serif;
-  font-weight: 900;
-  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#scrollText {
+  width: 100%;
+  margin-left: 30%;
+}
+
+#scrollLine {
+  width: 100%;
+  height: 2px;
+  background-color: #666;
+  position: relative;
+}
+
+#movingLine {
+  width: 50%;
+  height: 2px;
+  background: white;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 25%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 1) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
   position: absolute;
-  z-index: 10001;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 2rem;
-  transition: linear 1s;
+  top: 0;
+  left: 0;
+  animation: moveLine 1s infinite;
+}
+
+@keyframes moveLine {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(400%);
+  }
 }
 </style>

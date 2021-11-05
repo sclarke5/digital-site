@@ -27,8 +27,7 @@ export default {
 @media screen and (min-width: 800px) {
   #spacer {
     width: 100vw;
-    height: 1000vh;
+    height: 500vh;
   }
 }
-
 </style>

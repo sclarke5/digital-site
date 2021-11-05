@@ -2,8 +2,8 @@
   <div>
     <HeaderAstound />
     <SideNav class="side-nav fixed" />
-    <Nuxt id="scrollEl" class="bg-black layout-container" />
     <ThreeScene id="three" />
+    <Nuxt id="scrollEl" class="layout-container" />
     <!-- <Footer /> -->
   </div>
 </template>
@@ -14,7 +14,6 @@
 @import url('http://fonts.cdnfonts.com/css/dinpro-black');
 @import url('http://fonts.cdnfonts.com/css/adobe-caslon-pro');
 
-
 .layout-container {
   margin-top: -20em;
 }
@@ -22,12 +21,14 @@
 .side-nav {
   display: none;
 }
+body {
+  background: black;
+}
 
 @media screen and (min-width: 800px) {
   body {
     overflow-x: hidden;
     overflow-y: hidden;
-    background: black;
   }
 
   .side-nav {
@@ -50,6 +51,7 @@
     transform: rotate(-90deg);
     position: absolute;
     bottom: -30em;
+    will-change: transform;
   }
   #scrollEl {
     background: none;
@@ -67,5 +69,4 @@
     z-index: -1;
   }
 }
-
 </style>
