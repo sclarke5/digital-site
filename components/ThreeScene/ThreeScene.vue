@@ -181,7 +181,7 @@ export default {
         this.gridColor,
         this.gridColor
       )
-      this.gridScale = 0.6
+      this.gridScale = 0.8
       this.gridHelper.scale.set(this.gridScale, this.gridScale, this.gridScale)
       this.gridHelper.rotation.x = Math.PI / 2
       this.gridHelper.position.set(0, -0.5, -2)
@@ -344,12 +344,7 @@ export default {
         }
       }
 
-      // other
-      if (this.container.clientWidth < 800) {
-        this.initialCameraPos = new THREE.Vector3(0, 0, 15)
-      } else {
-        this.initialCameraPos = new THREE.Vector3(0, 0, 8)
-      }
+      this.initialCameraPos = new THREE.Vector3(0, 0, 10)
 
       this.camera.position.set(
         this.initialCameraPos.x,
@@ -369,30 +364,7 @@ export default {
         .getElementById('scrollEl')
         .addEventListener('scroll', this.onscroll, false)
 
-      window.addEventListener(
-        'resize',
-        () => {
-          this.camera.aspect = window.innerWidth / window.innerHeight
-          this.camera.updateProjectionMatrix()
-          this.renderer.setSize(window.innerWidth, window.innerHeight, false)
-          this.render()
-
-          if (this.container.clientWidth < 800) {
-            this.initialCameraPos = new THREE.Vector3(0, 0, 15)
-          } else {
-            this.initialCameraPos = new THREE.Vector3(0, 0, 8)
-          }
-
-          if (currentStage !== 'contact') {
-            this.camera.position.set(
-              this.initialCameraPos.x,
-              this.initialCameraPos.y,
-              this.initialCameraPos.z
-            )
-          }
-        },
-        true
-      )
+      window.addEventListener('resize', this.onresize, true)
 
       this.changeIndicator()
 
@@ -882,7 +854,8 @@ export default {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 1rem;
+    margin: 1rem auto;
+    max-width: 200px;
   }
 
   .indicator {
