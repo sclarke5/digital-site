@@ -2,9 +2,9 @@
   <div
     v-editable="blok"
     class="py-2 flex flex-col feature-container">
-    <img 
-      class="mx-auto"
-      :src="blok.icon.filename" />
+    <video autoplay loop>
+      <source :src="blok.animation.filename" type="video/mp4">
+    </video>
     <h1 class="mt-8 text-lg text-left uppercase">{{ blok.name }}</h1>
     <p class="mt-8 text-white text-left"> {{ blok.description }}</p>
   </div>
