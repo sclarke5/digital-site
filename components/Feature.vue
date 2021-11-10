@@ -2,7 +2,7 @@
   <div
     v-editable="blok"
     class="py-2 flex flex-col feature-container">
-    <video autoplay loop>
+    <video autoplay="autoplay" loop muted>
       <source :src="blok.animation.filename" type="video/mp4">
     </video>
     <h1 class="mt-8 text-lg text-left uppercase">{{ blok.name }}</h1>
