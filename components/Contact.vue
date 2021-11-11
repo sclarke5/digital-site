@@ -23,40 +23,24 @@
                         <li v-for="error in errors" :key="error">{{ error }}</li>
                     </ul>
                 </p>
-                <div id="firstName" class="mb-4 block">
-                  <label class="block text-sm mb-2" :class="{'text-red-500': fNameError}" for="contactFirstName"
-                    >First name *</label
+                <div id="fullName" class="mb-4 block">
+                  <label class="block text-sm mb-2" :class="{'text-red-500': fNameError}" for="contactFullName"
+                    >Name *</label
                   >
                   <input
-                    id="contactFirstName"
-                    v-model="contactFirstName"
+                    id="contactFullName"
+                    v-model="contactFullName"
                     :class="{'border-red-500': fNameError}"
                     type="text"
                     class="text-white block w-full appearance-none border border-white bg-black py-2 px-3"
-                    name="contactFirstName"
-                    placeholder="First Name"
+                    name="contactFullName"
+                    placeholder="Name"
                     aria-describedby="fnameHelp"
                   />
                 </div>
-                <div id="lastName" class="mb-4 block">
-                  <label class="block text-sm mb-2"  :class="{'text-red-500': lNameError}" for="contactLastName"
-                    >Last name *</label
-                  >
-                  <input
-                    id="contactLastName"
-                    v-model="contactLastName"
-                    :class="{'border-red-500': lNameError}"
-                    type="text"
-                    class="text-white block w-full appearance-none border border-white bg-black py-2 px-3"
-                    name="contactLastName"
-                    placeholder="Last Name"
-                    aria-describedby="lnameHelp"
-                  />
-                </div>
-                     <div class="mb-4 block" :class="{'text-red-500': emailError}">
+                <div class="mb-4 block" :class="{'text-red-500': emailError}">
                   <label class="block text-sm mb-2" for="contactEmail"
-                    >Email *</label
-                  >
+                    >Email *</label>
                   <input
                     id="contactEmail"
                     v-model="contactEmail"
@@ -134,14 +118,12 @@ export default {
     return {
       errors: [],
       contactEmail: null,
-      contactFirstName: null,
-      contactLastName: null,
+      contactFullName: null,
       contactPhone: null,
       contactSubservices: [],
       contactMessage: null,
       emailError: false,
       fNameError: false,
-      lNameError: false,
     }
   },
   methods: {
@@ -154,7 +136,7 @@ export default {
         body: JSON.stringify({fields:data})
      })
      .then((res)=>{res.json()})
-     .then(data => console.log('submitted' + data) )
+     .then(data => console.log('submitted: ' + data) )
      .catch(error => {
        return console.log('error: ' + error);
      } )
@@ -166,26 +148,28 @@ export default {
 
       if (
         this.contactEmail &&
-        this.contactFirstName &&
-        this.contactLastName &&
+        this.contactFullName &&
         this.contactPhone &&
         this.contactSubservices &&
         this.contactMessage
       ) {
 
-        this.data = [{
-          name: 'email', value: this.contactEmail,
-        },{
-          name: 'firstname', value: this.contactFirstName,
-        },{
-          name: 'lastname', value: this.contactLastName,
-        }, {
-          name: 'phone', value: this.contactPhone,
-        },{
-          name: 'subservices', value: this.contactSubservices,
-        },{
-          name: 'comments', value: this.contactMessage,
-        }
+        this.data = [
+          {
+            name: 'email', value: this.contactEmail,
+          },
+          {
+            name: 'full_name', value: this.contactFullName,
+          },
+          {
+            name: 'phone', value: this.contactPhone,
+          },
+          {
+            name: 'subservices', value: this.contactSubservices,
+          },
+          {
+            name: 'comments', value: this.contactMessage,
+          }
         ]
 
        this.submitContactForm(this.data)
@@ -199,13 +183,9 @@ export default {
         this.errors.push('Email required.')
         this.emailError = true;
       }
-      if (!this.contactFirstName) {
-        this.errors.push('First name required.')
+      if (!this.contactFullName) {
+        this.errors.push('Name required.')
         this.fNameError = true;
-      }
-      if (!this.contactLastName) {
-        this.errors.push('Last name required.')
-        this.lNameError = true;
       }
       // if (!this.contactPhone) {
       //   this.errors.push('Phone required.')
