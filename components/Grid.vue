@@ -5,7 +5,7 @@
       <p class="text-white md:pl-48 pt-8">{{ blurb }}</p>
     </div>
     <div class="flex grid-right">
-      <ul v-editable="blok" class="flex py-8 mb-6">
+      <ul v-editable="blok" class="services-list flex py-8 mb-6">
         <li
           :key="blok._uid"
           v-for="blok in blok.columns"
@@ -54,7 +54,7 @@ export default {
 .grid-container h1 {
   /* changed to 2em from 3em because it was adding a few px to the width! */
 
-  font-size: 2em;
+  font-size: 3em;
   font-family: 'Gotham', sans-serif;
   text-transform: uppercase;
   font-weight: 800;
@@ -68,6 +68,7 @@ export default {
 
 .grid-right ul {
   flex-direction: column;
+  margin-top: -10em;
 }
 
 @media screen and (min-width: 800px) {
