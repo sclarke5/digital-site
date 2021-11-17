@@ -2,7 +2,7 @@
   <div v-bind:class="caseStudyContent._uid"
     class="case-study-teaser block py-4">
     <div class="case-study-container flex flex-col">
-      <img :src="caseStudyContent.primary_image.filename" />
+      <img class="primary-image" :src="caseStudyContent.primary_image.filename" />
       <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
         {{ caseStudyContent.name }}
       </h1>
@@ -11,13 +11,9 @@
       </h5>
       <div class="view-case-study flex items-center" @click="openModal">
         <span>VIEW CASE STUDY</span>
-        <img src="~/assets/arrow-right.png" />
       </div>
-      <div class="case-study-panel bg-white">
-        <h1 class="text-black">TEST</h1>
-        <p class="text-black">TESTING</p>
-      </div>
-      <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" :case-studies-list="caseStudiesList" @close-modal="showModal = false" />
+      <case-study-panel v-show="showPanel" :case-study-content="caseStudyContent" />
+      <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" :case-studies-list="caseStudiesList" @close-modal="closeModal" />
     </div>
   </div>
 </template>
@@ -40,20 +36,25 @@ export default {
   },
   data() {
     return {
-      showModal: false
+      showModal: false,
+      showPanel: false
     }
   },
   methods: {
     openModal(e){
-      const panel = e.target.parentNode.nextElementSibling
-
       if(window.innerWidth > 800){
         this.showModal = true
-      } else if(panel.style.display === 'block') {
-        panel.style.display = 'none'
-      } else {
-        panel.style.display = 'block'
+        e.path[3].classList.add('bring-forward')
+      } else if (this.showPanel === false) {
+        this.showPanel = true
+      } else if (this.showPanel === true) {
+        this.showPanel = false
       }
+    },
+    closeModal(){
+      const teaser = this.$el;
+      teaser.classList.remove('bring-forward')
+      this.showModal = false;
     }
   }
 }
@@ -61,11 +62,7 @@ export default {
 
 <style scoped>
 .case-study-teaser {
-  background-color: black;
-}
-
-.case-study-panel {
-  display: none;
+  /* background-color: black; */
 }
 
 h1, h5 {
@@ -81,6 +78,12 @@ h1 {
 h5 {
   font-weight: 200;
   margin-top: -0.6em;
+}
+
+.primary-image {
+  width: 620px;
+  height: 280px;
+  object-fit: cover;
 }
 
 .view-case-study {
@@ -109,13 +112,15 @@ h5 {
   background-color: white;
 }
 
+.bring-forward {
+  z-index: 999;
+}
+
 @media screen and (min-width: 800px) {
   .case-study-teaser {
-    background-color: black;
-    width: 60%;
     transform: rotate(90deg);
-    margin-bottom: 80vh;
-    margin-left: 15em;
+    margin-bottom: 10vh;
+    min-width: 45em;
   }
 }
 

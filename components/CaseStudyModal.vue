@@ -108,7 +108,7 @@
         </ul>
       </div>
     </div>
-    <div class="close absolute -right-8 -top-8" @click="$emit('close-modal')">
+    <div class="close" @click="$emit('close-modal')">
       <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
     </div>
   </div>
@@ -251,6 +251,13 @@ h4 {
 .cta:hover {
   color: black;
   background-color: white;
+}
+
+@media screen and (min-width: 800px) {
+  .modal {
+    position: absolute;
+    width: 120%;
+  }
 }
 
 
