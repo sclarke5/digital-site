@@ -7,22 +7,22 @@
     <!-- <img class="lines" src="../assets/bad-grid.jpg" /> -->
     <div class="icons-container lines-background-case-studies">
       <div class="flex items-center justify-center">
-        <img class="icon" src="../assets/nike.png" alt="nike" />
+        <img class="icon" src="../assets/Nike.png" alt="nike" />
       </div>
       <div class="flex items-center justify-center">
-        <img class="icon" src="../assets/pwc.png" alt="nike" />
+        <img class="icon" src="../assets/PWC.png" alt="nike" />
       </div>
       <div class="flex items-center justify-center">
-        <img class="icon" src="../assets/volkswagen.png" alt="nike" />
+        <img class="icon" src="../assets/Volkswagen.png" alt="nike" />
       </div>
       <div class="flex items-center justify-center">
-        <img class="icon" src="../assets/jordan.png" alt="nike" />
+        <img class="icon" src="../assets/Jordan.png" alt="nike" />
       </div>
       <div class="flex items-center justify-center">
-        <img class="icon" src="../assets/shure.png" alt="nike" />
+        <img class="icon" src="../assets/Shure.png" alt="nike" />
       </div>
       <div class="flex items-center justify-center">
-        <img class="icon" src="../assets/hbo.png" alt="nike" />
+        <img class="icon" src="../assets/HBO.png" alt="nike" />
       </div>
 
     </div>
