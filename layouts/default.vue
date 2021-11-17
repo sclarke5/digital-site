@@ -14,9 +14,9 @@
 @import url('http://fonts.cdnfonts.com/css/dinpro-black');
 @import url('http://fonts.cdnfonts.com/css/adobe-caslon-pro');
 
-.layout-container {
+/* .layout-container {
   margin-top: -20em;
-}
+} */
 
 .side-nav {
   display: none;
