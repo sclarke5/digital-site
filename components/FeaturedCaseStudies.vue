@@ -5,19 +5,26 @@
     <!-- <div class="dot-pattern"></div> -->
     <h2 class="text-white text-5xl case-studies-sub px-6">Case Studies</h2>
     <!-- <img class="lines" src="../assets/bad-grid.jpg" /> -->
-    <div class="icons-container lines-background">
+    <div class="icons-container lines-background-case-studies">
       <div class="flex items-center justify-center">
-        <img src="../assets/nike-icon.png" alt="nike">
+        <img class="icon" src="../assets/nike.png" alt="nike" />
       </div>
       <div class="flex items-center justify-center">
-        <img src="../assets/stryker-icon.png" alt="stryker">
+        <img class="icon" src="../assets/pwc.png" alt="nike" />
       </div>
       <div class="flex items-center justify-center">
-        <img src="../assets/astound-icon.webp" alt="astound">
+        <img class="icon" src="../assets/volkswagen.png" alt="nike" />
       </div>
       <div class="flex items-center justify-center">
-        <img src="../assets/hbo-icon.png" alt="hbo">
+        <img class="icon" src="../assets/jordan.png" alt="nike" />
       </div>
+      <div class="flex items-center justify-center">
+        <img class="icon" src="../assets/shure.png" alt="nike" />
+      </div>
+      <div class="flex items-center justify-center">
+        <img class="icon" src="../assets/hbo.png" alt="nike" />
+      </div>
+
     </div>
 
     <div class="case-studies-wrapper">
@@ -31,6 +38,9 @@
           :case-study-content="caseStudy.content"
           :case-studies-list="sortedCaseStudies" />
       </div>
+        <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
+        <img id="square" class="bg-shape" src="../assets/square.png" />
+        <img id="circle" class="bg-shape" src="../assets/circle.png" />
     </div>
     <!-- <ul class="flex flex-col case-studies-list">
       <li
@@ -70,7 +80,24 @@ export default {
  
       return featuredCaseStudies
     }
-  }
+  },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    init() {
+      document
+        .getElementById('scrollEl')
+        .addEventListener('scroll', this.animateCS, false)
+
+      document
+        .getElementById('scrollEl')
+        .addEventListener('wheel', this.animateCS, false)
+    },
+    animateCS() {
+      console.log('scroll')
+    },
+  },
 }
 </script>
 
@@ -82,10 +109,9 @@ export default {
   font-weight: 800;
 }
 
-.lines-background {
-  background-image: url("../assets/bad-grid.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+.lines-background-case-studies {
+  background-image: url("../assets/grid.png");
+  background-size: contain;
   margin-top: 1em;
 }
 
@@ -95,8 +121,10 @@ export default {
   grid-gap: 50px;
 	list-style-type: none;
 	padding-left: 0;
+}
 
-  
+.bg-shape {
+  display: none;
 }
 
 @media screen and (min-width: 800px) {
@@ -114,7 +142,7 @@ export default {
     transform: rotate(90deg);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
+    grid-gap: 2rem;
     list-style-type: none;
     padding-left: 0;
     margin-right: 8em;
@@ -161,14 +189,41 @@ export default {
     margin-bottom: 50em;
     grid-gap: 20px;
   }
+
+  .bg-shape {
+    display: block;
+    width: 300px;
+    position: absolute;
+    z-index: -1;
+  }
+
+  #triangle {
+    left: 10%;
+    top: 0%;
+  }
+
+  #square {
+    left: 50%;
+    top: 35%;
+    transform: rotate(30deg);
+  }
+
+  #circle {
+    left: 70%;
+    top: 70%;
+  }
 }
 
-.icon {
-  position: relative;
-  width: 300px;
-}
+  .icon {
+    min-width: 100px;
+    width: 40%;
+    max-width: 300px;
+  }
 
   .case-study-teaser {
     scroll-snap-align: center;
   }
+
+
+
 </style>

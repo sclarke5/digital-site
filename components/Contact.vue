@@ -213,8 +213,9 @@ button {
 }
 
 h1 {
-    font-family: 'Gotham-Ultra', sans-serif !important;
+    font-family: 'Gotham', sans-serif !important;
     line-height: 1.1;
+    font-weight: 800;
 }
 
 select {

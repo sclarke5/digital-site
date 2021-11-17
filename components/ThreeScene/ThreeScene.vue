@@ -794,7 +794,8 @@ export default {
   max-width: 600px;
   margin-top: 1rem;
   text-transform: uppercase;
-  font-family: 'Gotham-Ultra', sans-serif;
+  font-family: 'Gotham', sans-serif;
+  font-weight: 800;
   padding: 1rem;
 }
 
