@@ -586,6 +586,21 @@ export default {
       }
       this.renderer.render(this.scene, this.camera)
     },
+    isElementInViewport(elem) {
+      const rect = elem.getBoundingClientRect()
+
+      // DOMRect { x: 8, y: 8, width: 100, height: 100, top: 8, right: 108, bottom: 108, left: 8 }
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight
+      const windowWidth =
+        window.innerWidth || document.documentElement.clientWidth
+
+      // http://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap
+      const vertInView = rect.top <= windowHeight && rect.top + rect.height >= 0
+      const horInView = rect.left <= windowWidth && rect.left + rect.width >= 0
+
+      return vertInView && horInView
+    },
     onscroll() {
       clearTimeout(this.timer)
       const self = document.getElementById('scrollEl')
@@ -607,57 +622,61 @@ export default {
       // this.content.style.transform = `rotate(-90deg) skewY(10deg)`
 
       //
-      for (let i = 0; i < animations.length; i++) {
-        if (
-          this.currentScrollPos >= animations[i].enterAnimation.start &&
-          this.currentScrollPos <= animations[i].enterAnimation.end
-        ) {
-          if (currentStage !== animations[i].stage) {
-            this.startMovement(i)
-            currentStage = animations[i].stage
+
+      if (this.isElementInViewport(document.getElementById('spacer'))) {
+        console.log('animating')
+        for (let i = 0; i < animations.length; i++) {
+          if (
+            this.currentScrollPos >= animations[i].enterAnimation.start &&
+            this.currentScrollPos <= animations[i].enterAnimation.end
+          ) {
+            if (currentStage !== animations[i].stage) {
+              this.startMovement(i)
+              currentStage = animations[i].stage
+            }
+
+            if (currentStage === 'digital craft') {
+              video.play()
+            } else {
+              video.pause()
+              video.currentTime = 0
+            }
+
+            if (i >= 3) {
+              this.allShapes[0].material.map = tealGreenPhoto
+            } else {
+              this.allShapes[0].material.map = tealGreenVideoTexture
+            }
+
+            this.container.style.opacity = 1
           }
-
-          if (currentStage === 'digital craft') {
-            video.play()
-          } else {
-            video.pause()
-            video.currentTime = 0
-          }
-
-          if (i >= 3) {
-            this.allShapes[0].material.map = tealGreenPhoto
-          } else {
-            this.allShapes[0].material.map = tealGreenVideoTexture
-          }
-
-          this.container.style.opacity = 1
-        } else if (this.currentScrollPos >= 0 && this.currentScrollPos < 100) {
-          this.container.style.opacity = 1
-          this.serviceText.style.opacity = 1
-          this.scrollText.style.opacity = 1
-        } else if (
-          this.currentScrollPos >= 100 &&
-          this.currentScrollPos < 250
-        ) {
-          this.container.style.opacity = 0
-          new TWEEN.Tween(this.camera.position)
-            .to(this.initialCameraPos, 500)
-            .easing(TWEEN.Easing.Quadratic.InOut)
-            .start()
-        } else if (this.currentScrollPos > 300 && this.currentScrollPos < 330) {
-          this.startContact()
-          this.container.style.opacity = 0
-        } else if (this.currentScrollPos >= 332) {
-          this.container.style.opacity = 1
-
-          if (currentStage !== 'contact') {
-            this.startMovement(4)
-            currentStage = 'contact'
-          }
-
-          this.serviceText.style.opacity = 0
-          this.scrollText.style.opacity = 0
         }
+      } else if (
+        this.isElementInViewport(document.getElementById('contactContainer'))
+      ) {
+        console.log('contact')
+
+        new TWEEN.Tween(this.camera.position)
+          .to(this.initialCameraPos, 500)
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .start()
+
+        this.startContact()
+
+        this.container.style.opacity = 1
+
+        if (currentStage !== 'contact') {
+          this.startMovement(4)
+          currentStage = 'contact'
+        }
+
+        this.serviceText.style.opacity = 0
+        this.scrollText.style.opacity = 0
+      } else {
+        console.log('between')
+        this.container.style.opacity = 0
+        this.serviceText.style.opacity = 1
+        this.scrollText.style.opacity = 1
       }
     },
     getRandomNumber(min, max) {
