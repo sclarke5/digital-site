@@ -24,23 +24,24 @@
       <div class="flex items-center justify-center">
         <img class="icon" src="../assets/HBO.png" alt="nike" />
       </div>
-
     </div>
 
     <div class="case-studies-wrapper">
-      <div 
-        v-for="caseStudy in sortedCaseStudies" 
+      <div
+        v-for="caseStudy in sortedCaseStudies"
         :key="caseStudy._uid"
-        class="flex h-full case-study-outer-container">
+        class="flex h-full case-study-outer-container"
+      >
         <case-study-teaser
           v-if="caseStudy.content"
           :case-study-link="caseStudy.full_slug"
           :case-study-content="caseStudy.content"
-          :case-studies-list="sortedCaseStudies" />
+          :case-studies-list="sortedCaseStudies"
+        />
       </div>
-        <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
+      <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
         <img id="square" class="bg-shape" src="../assets/square.png" />
-        <img id="circle" class="bg-shape" src="../assets/circle.png" />
+        <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
     </div>
     <!-- <ul class="flex flex-col case-studies-list">
       <li
@@ -64,22 +65,25 @@ export default {
   props: {
     blok: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     sortedCaseStudies() {
-      const featuredCaseStudies = this.$store.state.caseStudies.caseStudies.filter((caseStudy) => {
-        return this.blok.case_studies.includes(caseStudy.uuid)
-      })
- 
+      const featuredCaseStudies =
+        this.$store.state.caseStudies.caseStudies.filter((caseStudy) => {
+          return this.blok.case_studies.includes(caseStudy.uuid)
+        })
 
       featuredCaseStudies.sort((a, b) => {
-        return this.blok.case_studies.indexOf(a.uuid) - this.blok.case_studies.indexOf(b.uuid);
+        return (
+          this.blok.case_studies.indexOf(a.uuid) -
+          this.blok.case_studies.indexOf(b.uuid)
+        )
       })
- 
+
       return featuredCaseStudies
-    }
+    },
   },
   mounted() {
     this.init()
@@ -102,7 +106,6 @@ export default {
 </script>
 
 <style>
-
 .case-studies-sub {
   text-transform: uppercase;
   font-family: 'Gotham', sans-serif;
@@ -110,17 +113,17 @@ export default {
 }
 
 .lines-background-case-studies {
-  background-image: url("../assets/grid.png");
+  background-image: url('../assets/grid.png');
   background-size: contain;
   margin-top: 1em;
 }
 
 .icons-container {
   display: grid;
-	grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 50px;
-	list-style-type: none;
-	padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .bg-shape {
@@ -159,13 +162,13 @@ export default {
   .case-study-outer-container:nth-child(odd) .close {
     /* position: absolute; */
     top: -17em;
-    right: -10em;  
+    right: -10em;
   }
 
   .case-study-outer-container:nth-child(even) .close {
     /* position: absolute; */
     top: 28em;
-    right: -10em;  
+    right: -10em;
   }
 
   .case-study-outer-container:nth-child(even) .modal {
@@ -176,10 +179,9 @@ export default {
     top: -300px;
   }
 
-
   .case-study-outer-container:nth-child(odd) .modal .close {
     top: -17em;
-    right: -10em;  
+    right: -10em;
   }
 
   .case-studies-wrapper {
@@ -214,16 +216,13 @@ export default {
   }
 }
 
-  .icon {
-    min-width: 100px;
-    width: 40%;
-    max-width: 300px;
-  }
+.icon {
+  min-width: 100px;
+  width: 40%;
+  max-width: 300px;
+}
 
-  .case-study-teaser {
-    scroll-snap-align: center;
-  }
-
-
-
+.case-study-teaser {
+  scroll-snap-align: center;
+}
 </style>
