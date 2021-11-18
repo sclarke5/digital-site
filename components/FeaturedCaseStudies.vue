@@ -1,10 +1,6 @@
 <template>
   <div v-editable="blok" class="mt-20">
-    <!-- <h1 class="text-white text-5xl case-studies-title">Case studies</h1> -->
-    <div class="flex"></div>
-    <!-- <div class="dot-pattern"></div> -->
     <h2 class="text-white text-5xl case-studies-sub px-6">Case Studies</h2>
-    <!-- <img class="lines" src="../assets/bad-grid.jpg" /> -->
     <div class="icons-container lines-background-case-studies">
       <div class="flex items-center justify-center">
         <img class="icon" src="../assets/Nike.png" alt="nike" />
@@ -107,12 +103,18 @@ export default {
   text-transform: uppercase;
   font-family: 'Gotham', sans-serif;
   font-weight: 800;
+  margin-bottom: 1em;
 }
 
 .lines-background-case-studies {
   background-image: url("../assets/grid.png");
   background-size: contain;
   margin-top: 1em;
+  margin-bottom: 5em;
+}
+
+.case-study-container {
+  padding: 1.5em;
 }
 
 .icons-container {
@@ -146,6 +148,10 @@ export default {
     list-style-type: none;
     padding-left: 0;
     margin-right: 8em;
+  }
+
+  .case-study-container {
+    padding: 0;
   }
 
   .case-study-outer-container:nth-child(even) .case-study-container {

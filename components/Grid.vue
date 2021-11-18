@@ -113,10 +113,6 @@ li {
   background-size: contain;
 }
 
-.about-container {
-  margin-right: 5rem;
-}
-
 .process-container {
   justify-content: center;
   align-items: flex-end;
@@ -150,6 +146,10 @@ li {
   .grid-right ul {
     min-width: 200%;
     flex-direction: row;
+  }
+
+  .about-container {
+    margin-right: 5rem;
   }
 
   .process-item {
