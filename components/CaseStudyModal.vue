@@ -152,7 +152,9 @@ export default {
           otherCaseStudies.push(caseStudy)
         }
       })
-      return otherCaseStudies
+      // below temporary to keep it simple; TODO: figure out how many/which "other case studies" to display
+      const selectedCaseStudies = otherCaseStudies.slice(0, 3)
+      return selectedCaseStudies
     },
   },
   methods: {

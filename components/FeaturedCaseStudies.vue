@@ -161,6 +161,14 @@ export default {
     margin-top: 20em;
   }
 
+  .case-study-outer-container:nth-child(odd) {
+    margin-left: 1em;
+  }
+
+   .case-study-outer-container:nth-child(even) {
+    margin-left: -1em;
+  }
+
   .close {
     position: absolute;
   }

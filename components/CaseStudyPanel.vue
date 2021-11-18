@@ -24,8 +24,8 @@
 
     <video v-if="visualsArray[2].filename.includes('webm')" controls :src="visualsArray[2].filename" class="pt-4"></video>
     <img :src="visualsArray[2].filename" alt="" class="pt-4">
-    <div class="bg-white pt-4">
-      <h4 class="text-black uppercase pt-4">Results</h4>
+    <div class="results-container bg-white py-4 -mx-6 px-6">
+      <h4 class="text-black uppercase">Results</h4>
       <p class="text-black pt-4">
         {{ caseStudyContent.result_1 }}
       </p>
@@ -36,7 +36,7 @@
         {{ caseStudyContent.result_2 }}
       </p>
     </div>
-    <div class="flex flex-col bg-black pt-4">
+    <div class="flex flex-col bg-black pt-12">
       <p class="testimonial text-white">
       "{{ caseStudyContent.testimonial }}"
       </p>
@@ -50,6 +50,7 @@
         </a>
       </div> -->
     </div>
+    <hr class="mt-16">
 
   </div>
 </template>
@@ -107,5 +108,6 @@ img {
 .testimonial-author {
   font-family: 'Gotham', sans-serif;
 }
+
 
 </style>
