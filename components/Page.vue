@@ -5,8 +5,8 @@
       <component
         v-for="blok in blok.body"
         :key="blok._uid"
-        :blok="blok"
         :is="blok.component"
+        :blok="blok"
       />
     </div>
   </div>
@@ -27,7 +27,8 @@ export default {
 @media screen and (min-width: 800px) {
   #spacer {
     width: 100vw;
-    height: 500vh;
+    height: 300vh;
+    margin-bottom: 300vh;
   }
 }
 </style>

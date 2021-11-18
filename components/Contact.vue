@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="contactContainer"> -->
     <!-- <div id="response">Hello world</div> -->
-    <div class="container mt-40">
+    <div class="container mt-40" >
         <div class="two-column-container flex flex-col gap-4 text-white">
             <div class="col-span-1 px-6">
               <h1 class="text-5xl">GET IN TOUCH</h1>
@@ -11,7 +11,7 @@
               <br>
               <p>support@example.com</p>
             </div>
-            <div class="col-span-1 max-w-screen-sm p-8 w-full">
+            <div id="contactContainer" class="col-span-1 max-w-screen-sm p-8 w-full">
               <form
                 id="astoundContactForm"
                 method="post"
