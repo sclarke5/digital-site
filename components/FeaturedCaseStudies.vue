@@ -170,27 +170,27 @@ export default {
   }
 
   .close {
-    position: absolute;
+    /* position: absolute; */
   }
 
   .case-study-outer-container:nth-child(odd) .close {
     /* position: absolute; */
-    top: -17em;
-    right: -10em;
+    top: -25em;
+    right: -16em;
   }
 
   .case-study-outer-container:nth-child(even) .close {
     /* position: absolute; */
-    top: 28em;
-    right: -10em;
+    top: 23em;
+    right: -26em;
   }
 
   .case-study-outer-container:nth-child(even) .modal {
-    top: 400px;
+    top: 20em;
   }
 
   .case-study-outer-container:nth-child(odd) .modal {
-    top: -300px;
+    top: -28em;
   }
 
   .case-study-outer-container:nth-child(odd) .modal .close {
@@ -236,7 +236,8 @@ export default {
   max-width: 300px;
 }
 
-.case-study-teaser {
-  scroll-snap-align: center;
+.case-study-outer-container {
+  scroll-snap-align: start;
+  scroll-margin: 10em;
 }
 </style>

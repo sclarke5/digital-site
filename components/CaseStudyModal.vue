@@ -1,7 +1,10 @@
 <template>
   <div class="modal-overlay bg-black flex fixed inset-0">
-    <div class="modal flex flex-col bg-black h-screen w-screen overflow-auto">
+    <div class="modal flex flex-col bg-black overflow-auto">
       <div class="title-container flex flex-col p-9">
+        <div class="close" @click="$emit('close-modal')">
+          <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
+        </div>
         <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">
           {{ caseStudyContent.name }}
         </h1>
@@ -107,9 +110,6 @@
           </li>
         </ul>
       </div>
-    </div>
-    <div class="close" @click="$emit('close-modal')">
-      <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
     </div>
   </div>
 </template>
@@ -258,7 +258,8 @@ h4 {
 @media screen and (min-width: 800px) {
   .modal {
     position: absolute;
-    width: 120%;
+    width: 90vw;
+    height: 100vh;
   }
 }
 
