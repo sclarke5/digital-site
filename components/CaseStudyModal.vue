@@ -1,7 +1,10 @@
 <template>
   <div class="modal-overlay bg-black flex fixed inset-0">
-    <div class="modal flex flex-col bg-black h-screen w-screen overflow-auto">
+    <div class="modal flex flex-col bg-black overflow-auto">
       <div class="title-container flex flex-col p-9">
+        <div class="close" @click="$emit('close-modal')">
+          <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
+        </div>
         <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">
           {{ caseStudyContent.name }}
         </h1>
@@ -94,12 +97,12 @@
         <ul class="flex py-6 mb-6 case-list">
           <li v-for="caseStudy in seeMoreWork" 
             :key="caseStudy._uid"
-            class="flex-auto px-6 w-1/3">
-            <img :src="caseStudy.content.primary_image.filename" alt="">
+            class="list-item flex flex-column px-6 w-1/3">
+            <img class= "see-more-image" :src="caseStudy.content.primary_image.filename" alt="">
             <h1 class="mt-2 text-2xl text-white uppercase">{{ caseStudy.name }}</h1>
             <h5 class="mt-2 text-white uppercase">{{caseStudy.content.client}}</h5>
             <div class="mt-4 flex cta items-center justify-around case-study-link" @click="scrollToCaseStudy" >
-              <div class="flex">
+              <div class="flex button-container">
                 <span  v-bind:id="caseStudy.content._uid" class="uppercase">View Case Study</span>
                 <img src="~/assets/arrow-right.png" />
               </div>
@@ -107,9 +110,6 @@
           </li>
         </ul>
       </div>
-    </div>
-    <div class="close" @click="$emit('close-modal')">
-      <img class="close-img cursor-pointer w-16" src="~/assets/x-mark-64.png" alt="">
     </div>
   </div>
 </template>
@@ -152,7 +152,9 @@ export default {
           otherCaseStudies.push(caseStudy)
         }
       })
-      return otherCaseStudies
+      // below temporary to keep it simple; TODO: figure out how many/which "other case studies" to display
+      const selectedCaseStudies = otherCaseStudies.slice(0, 3)
+      return selectedCaseStudies
     },
   },
   methods: {
@@ -256,7 +258,14 @@ h4 {
 @media screen and (min-width: 800px) {
   .modal {
     position: absolute;
-    width: 120%;
+    width: 90vw;
+    height: 100vh;
+  }
+
+  .see-more-image {
+    height: 12em;
+    width: -webkit-fill-available;
+    object-fit: cover;
   }
 }
 
