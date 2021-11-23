@@ -97,12 +97,12 @@
         <ul class="flex py-6 mb-6 case-list">
           <li v-for="caseStudy in seeMoreWork" 
             :key="caseStudy._uid"
-            class="flex-auto px-6 w-1/3">
-            <img :src="caseStudy.content.primary_image.filename" alt="">
+            class="list-item flex flex-column px-6 w-1/3">
+            <img class= "see-more-image" :src="caseStudy.content.primary_image.filename" alt="">
             <h1 class="mt-2 text-2xl text-white uppercase">{{ caseStudy.name }}</h1>
             <h5 class="mt-2 text-white uppercase">{{caseStudy.content.client}}</h5>
             <div class="mt-4 flex cta items-center justify-around case-study-link" @click="scrollToCaseStudy" >
-              <div class="flex">
+              <div class="flex button-container">
                 <span  v-bind:id="caseStudy.content._uid" class="uppercase">View Case Study</span>
                 <img src="~/assets/arrow-right.png" />
               </div>
@@ -260,6 +260,12 @@ h4 {
     position: absolute;
     width: 90vw;
     height: 100vh;
+  }
+
+  .see-more-image {
+    height: 12em;
+    width: -webkit-fill-available;
+    object-fit: cover;
   }
 }
 

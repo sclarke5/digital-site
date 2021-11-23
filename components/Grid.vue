@@ -3,7 +3,14 @@
     <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
       <div class="text-container">
         <h1 class="text-white">{{ title }}</h1>
-        <p class="text-white md:pl-48 pt-8">{{ blurb }}</p>
+        <div class="paragraph-container md:flex">
+          <p class="text-white pt-8 md:w-1/2">{{ blurb }}</p>
+          <p class="text-white underline pt-8 md:w-1/2 md:pl-16">
+            <a :href="astoundgroup_cta.link">
+              {{ astoundgroup_cta.text }}
+            </a>  
+          </p>
+        </div>
       </div>
       <ul class="flex process-container">
         <li class="process-item">
@@ -32,8 +39,9 @@
         </li>
       </ul>
     </div>
-    <div class="flex grid-right">
-      <ul v-editable="blok" class="services-list flex py-8 mb-6 lines-background">
+    <div class="flex flex-col grid-right">
+      <h1 class="our-work-heading text-white px-6">OUR SERVICES</h1>
+      <ul v-editable="blok" class="services-list flex mb-6 lines-background">
         <li
           :key="blok._uid"
           v-for="blok in blok.columns"
@@ -57,15 +65,15 @@ export default {
   data() {
     return {
       title:
-        "We're human-centered design thinkers who solve business challenges and spark connections.",
+        "We're creatively led Digital Thinkers who solve business challenges and spark human connection.",
       blurb:
-        'Technology is an opportunity to enhance human connection. We tell stories that inspire new audiences, we find tech solutions that serve new markets, and we reveal opportunities that drive new business.',
+        'Technology is a tool to enhance human connection. We bring stories to life that inspire audiences, we innovate solutions that enhance experiences, and we reveal opportunities that serve new markets and drive business.',
       archfab_cta: {
         text: 'Looking for architectural fabrication?',
         link: 'https://www.astoundarchfab.com',
       },
       astoundgroup_cta: {
-        text: 'Looking for other services?',
+        text: 'Looking for Strategy & Creative, Brand Experience, Tradeshow & Event, Architectural Fabrication or Sports & Venues?',
         link: 'https://www.astoundgroup.com',
       },
     }
@@ -100,12 +108,11 @@ li {
 }
 
 .grid-left {
-  margin-bottom: 10em;
+  margin-bottom: 5em;
 }
 
 .grid-right ul {
   flex-direction: column;
-  margin-top: -10em;
 }
 
 .lines-background {
@@ -116,18 +123,29 @@ li {
 .process-container {
   justify-content: center;
   align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .process-item {
   width: 100%;
 }
 
+.process-item > p {
+  height: 2em;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'Gotham', sans-serif !important;
+  font-weight: 800;
+  padding: 0.5em 0.25em 0 0.25em;
+}
+
 @media screen and (min-width: 800px) {
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;
-    margin-left: -25em;
-    width: 150%;
+    
+    /* width: 100vw; */
     flex-direction: row;
   }
 
@@ -136,10 +154,11 @@ li {
   }
 
   .grid-left {
-    width: 550%;
+    /* width: 550%; */
   }
 
   .grid-right {
+    flex-direction: row;
     margin-left: 20em;
   }
 
@@ -148,8 +167,12 @@ li {
     flex-direction: row;
   }
 
-  .about-container {
-    margin-right: 5rem;
+  .our-work-heading {
+    display: none;
+  }
+
+  .process-container {
+    flex-wrap: nowrap;
   }
 
   .process-item {
@@ -157,17 +180,6 @@ li {
     flex-grow: 1;
     padding: 1rem;
   }
-
-  .process-item > p {
-    height: 2em;
-    color: white;
-    text-transform: uppercase;
-    text-align: center;
-    font-family: 'Gotham', sans-serif !important;
-    font-weight: 800;
-    padding: 0.5em 0.25em 0 0.25em;
-  }
-
 
 }
 </style>

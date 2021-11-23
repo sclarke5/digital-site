@@ -95,7 +95,6 @@ export default {
         .addEventListener('wheel', this.animateCS, false)
     },
     animateCS() {
-      console.log('scroll')
     },
   },
 }
@@ -158,15 +157,15 @@ export default {
   }
 
   .case-study-outer-container:nth-child(even) .case-study-container {
-    margin-top: 20em;
+    /* margin-top: 20em; */
   }
 
   .case-study-outer-container:nth-child(odd) {
-    margin-left: 1em;
+    /* margin-left: 1em; */
   }
 
    .case-study-outer-container:nth-child(even) {
-    margin-left: -1em;
+    /* margin-left: -1em; */
   }
 
   .close {
@@ -186,11 +185,11 @@ export default {
   }
 
   .case-study-outer-container:nth-child(even) .modal {
-    top: 20em;
+    top: 21em;
   }
 
   .case-study-outer-container:nth-child(odd) .modal {
-    top: -28em;
+    top: -27em;
   }
 
   .case-study-outer-container:nth-child(odd) .modal .close {
@@ -200,10 +199,10 @@ export default {
 
   .case-studies-wrapper {
     display: grid;
-    grid-template-columns: 2fr 2fr;
-    margin-top: 50em;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 100em;
     margin-bottom: 50em;
-    grid-gap: 20px;
+    transform: rotate(90deg);
   }
 
   .bg-shape {
@@ -238,6 +237,5 @@ export default {
 
 .case-study-outer-container {
   scroll-snap-align: start;
-  scroll-margin: 10em;
 }
 </style>
