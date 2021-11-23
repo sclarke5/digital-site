@@ -1,23 +1,23 @@
 <template>
   <div v-editable="blok" class="mt-20">
-    <h2 class="text-white text-5xl case-studies-sub px-6">Case Studies</h2>
+    <h2 class="text-white text-5xl case-studies-sub">Case <br/> Studies</h2>
     <div class="icons-container lines-background-case-studies">
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Nike.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/PWC.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Volkswagen.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Jordan.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Shure.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/HBO.png" alt="nike" />
       </div>
     </div>
@@ -106,6 +106,8 @@ export default {
   font-family: 'Gotham', sans-serif;
   font-weight: 800;
   margin-bottom: 1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .lines-background-case-studies {
@@ -135,6 +137,7 @@ export default {
   .case-studies-sub {
     transform: rotate(90deg);
     margin-left: 13em;
+    margin-bottom: -10em;
   }
 
   .lines {
@@ -145,12 +148,19 @@ export default {
   .icons-container {
     transform: rotate(90deg);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 30em 30em;
     grid-gap: 2rem;
     list-style-type: none;
     padding-left: 0;
-    margin-right: 8em;
+    margin-left: 25em;
+    width: fit-content;
   }
+
+  .icon-item {
+    /* width: 50%; */
+  }
+
+
 
   .case-study-container {
     padding: 0;
@@ -200,7 +210,7 @@ export default {
   .case-studies-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 100em;
+    margin-top: 60em;
     margin-bottom: 50em;
     transform: rotate(90deg);
   }
@@ -236,6 +246,6 @@ export default {
 }
 
 .case-study-outer-container {
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
 }
 </style>
