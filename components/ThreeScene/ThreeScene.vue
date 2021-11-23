@@ -625,10 +625,12 @@ export default {
 
       if (this.isElementInViewport(document.getElementById('spacer'))) {
         console.log('animating')
+
         new TWEEN.Tween(this.camera.position)
           .to(this.initialCameraPos, 500)
           .easing(TWEEN.Easing.Quadratic.InOut)
           .start()
+
         for (let i = 0; i < animations.length; i++) {
           if (
             this.currentScrollPos >= animations[i].enterAnimation.start &&
@@ -658,14 +660,18 @@ export default {
       } else if (
         this.isElementInViewport(document.getElementById('services'))
       ) {
-        new TWEEN.Tween(this.camera.position)
-          .to(this.initialCameraPos, 500)
-          .easing(TWEEN.Easing.Quadratic.InOut)
-          .start()
+        if (window.innerWidth >= 800) {
+          new TWEEN.Tween(this.camera.position)
+            .to(this.initialCameraPos, 500)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .start()
+        }
       } else if (
         this.isElementInViewport(document.getElementById('case-studies'))
       ) {
-        this.startContact()
+        if (window.innerWidth >= 800) {
+          this.startContact()
+        }
       } else if (
         this.isElementInViewport(document.getElementById('contactContainer'))
       ) {
@@ -678,9 +684,11 @@ export default {
           currentStage = 'contact'
         }
 
-        this.serviceText.style.opacity = 0
-        this.scrollText.style.opacity = 0
-      } else {
+        if (window.innerWidth >= 800) {
+          this.serviceText.style.opacity = 0
+          this.scrollText.style.opacity = 0
+        }
+      } else if (window.innerWidth >= 800) {
         this.container.style.opacity = 0
         this.serviceText.style.opacity = 1
         this.scrollText.style.opacity = 1

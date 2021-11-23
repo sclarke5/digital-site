@@ -8,7 +8,7 @@
           <p class="text-white underline pt-8 md:w-1/2 md:pl-16">
             <a :href="astoundgroup_cta.link">
               {{ astoundgroup_cta.text }}
-            </a>  
+            </a>
           </p>
         </div>
       </div>
@@ -127,7 +127,14 @@ li {
 }
 
 .process-item {
-  width: 100%;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 799px) {
+  .process-item {
+    width: 50%;
+    margin: 1rem 0;
+  }
 }
 
 .process-item > p {
@@ -138,13 +145,14 @@ li {
   font-family: 'Gotham', sans-serif !important;
   font-weight: 800;
   padding: 0.5em 0.25em 0 0.25em;
+  width: 100%;
 }
 
 @media screen and (min-width: 800px) {
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;
-    
+
     /* width: 100vw; */
     flex-direction: row;
   }
@@ -176,10 +184,9 @@ li {
   }
 
   .process-item {
+    max-width: calc(100% / 6);
     flex-basis: 0;
     flex-grow: 1;
-    padding: 1rem;
   }
-
 }
 </style>

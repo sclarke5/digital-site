@@ -38,9 +38,9 @@
           :case-studies-list="sortedCaseStudies"
         />
       </div>
-      <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
+      <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
       <img id="square" class="bg-shape" src="../assets/square.png" />
-      <img id="circle" class="bg-shape" src="../assets/circle.png" />
+      <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
     </div>
     <!-- <ul class="flex flex-col case-studies-list">
       <li
