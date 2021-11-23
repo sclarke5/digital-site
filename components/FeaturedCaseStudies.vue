@@ -185,11 +185,11 @@ export default {
   }
 
   .case-study-outer-container:nth-child(even) .modal {
-    top: 21em;
+    top: 5em;
   }
 
   .case-study-outer-container:nth-child(odd) .modal {
-    top: -27em;
+    top: 5em;
   }
 
   .case-study-outer-container:nth-child(odd) .modal .close {
