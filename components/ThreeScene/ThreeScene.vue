@@ -681,7 +681,6 @@ export default {
         this.serviceText.style.opacity = 0
         this.scrollText.style.opacity = 0
       } else {
-        console.log('between')
         this.container.style.opacity = 0
         this.serviceText.style.opacity = 1
         this.scrollText.style.opacity = 1

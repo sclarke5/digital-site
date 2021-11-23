@@ -1,27 +1,26 @@
 <template>
   <div v-editable="blok" class="mt-20" id="case-studies">
-    <!-- <h1 class="text-white text-5xl case-studies-title">Case studies</h1> -->
-    <div class="flex"></div>
-    <!-- <div class="dot-pattern"></div> -->
-    <h2 class="text-white text-5xl case-studies-sub px-6">Case Studies</h2>
-    <!-- <img class="lines" src="../assets/bad-grid.jpg" /> -->
+    <h2 class="text-white text-5xl case-studies-sub">
+      Case <br />
+      Studies
+    </h2>
     <div class="icons-container lines-background-case-studies">
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Nike.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/PWC.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Volkswagen.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Jordan.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Shure.png" alt="nike" />
       </div>
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/HBO.png" alt="nike" />
       </div>
     </div>
@@ -98,9 +97,7 @@ export default {
         .getElementById('scrollEl')
         .addEventListener('wheel', this.animateCS, false)
     },
-    animateCS() {
-      console.log('scroll')
-    },
+    animateCS() {},
   },
 }
 </script>
@@ -110,12 +107,20 @@ export default {
   text-transform: uppercase;
   font-family: 'Gotham', sans-serif;
   font-weight: 800;
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .lines-background-case-studies {
   background-image: url('../assets/grid.png');
   background-size: contain;
   margin-top: 1em;
+  margin-bottom: 5em;
+}
+
+.case-study-container {
+  padding: 1.5em;
 }
 
 .icons-container {
@@ -134,6 +139,7 @@ export default {
   .case-studies-sub {
     transform: rotate(90deg);
     margin-left: 13em;
+    margin-bottom: -10em;
   }
 
   .lines {
@@ -144,39 +150,56 @@ export default {
   .icons-container {
     transform: rotate(90deg);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 30em 30em;
     grid-gap: 2rem;
     list-style-type: none;
     padding-left: 0;
-    margin-right: 8em;
+    margin-left: 25em;
+    width: fit-content;
+  }
+
+  .icon-item {
+    /* width: 50%; */
+  }
+
+  .case-study-container {
+    padding: 0;
   }
 
   .case-study-outer-container:nth-child(even) .case-study-container {
-    margin-top: 20em;
+    /* margin-top: 20em; */
+  }
+
+  .case-study-outer-container:nth-child(odd) {
+    /* margin-left: 1em; */
+  }
+
+  .case-study-outer-container:nth-child(even) {
+    /* margin-left: -1em; */
   }
 
   .close {
-    position: absolute;
+    /* position: absolute; */
   }
 
   .case-study-outer-container:nth-child(odd) .close {
     /* position: absolute; */
-    top: -17em;
-    right: -10em;
+    top: -25em;
+    right: -16em;
   }
 
   .case-study-outer-container:nth-child(even) .close {
     /* position: absolute; */
-    top: 28em;
-    right: -10em;
+    top: 23em;
+    right: -26em;
   }
 
   .case-study-outer-container:nth-child(even) .modal {
-    top: 400px;
+    top: 5em;
   }
 
   .case-study-outer-container:nth-child(odd) .modal {
-    top: -300px;
+    top: 5em;
   }
 
   .case-study-outer-container:nth-child(odd) .modal .close {
@@ -186,10 +209,10 @@ export default {
 
   .case-studies-wrapper {
     display: grid;
-    grid-template-columns: 2fr 2fr;
-    margin-top: 50em;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 60em;
     margin-bottom: 50em;
-    grid-gap: 20px;
+    transform: rotate(90deg);
   }
 
   .bg-shape {
@@ -222,7 +245,7 @@ export default {
   max-width: 300px;
 }
 
-.case-study-teaser {
-  scroll-snap-align: center;
+.case-study-outer-container {
+  /* scroll-snap-align: start; */
 }
 </style>

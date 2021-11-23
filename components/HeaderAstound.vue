@@ -1,5 +1,5 @@
 <template>
-  	<header class="header h-28 fixed z-50 w-screen flex bg-black justify-between -top-0">
+  	<header class="header h-28 fixed z-50 w-screen flex bg-black md:bg-opacity-0 justify-between -top-0">
         <div class="header-left w-1/4 ml-12">
             <a href="/"><img class="company-logo h-full min-w-max" src="../assets/Digital__White_-1-removebg-preview.png" alt="ASTOUND Group"></a>
         </div>

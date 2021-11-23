@@ -43,6 +43,15 @@ export default {
   methods: {
     openModal(e){
       if(window.innerWidth > 800){
+        // const destination = e.path[3]
+
+        console.log(e.path)
+        // const destination = e.path[3]
+        // destination.scrollIntoView({
+        //   behavior: 'smooth',
+        //   block: 'start',
+        // })
+       
         this.showModal = true
         e.path[3].classList.add('bring-forward')
       } else if (this.showPanel === false) {
@@ -118,9 +127,9 @@ h5 {
 
 @media screen and (min-width: 800px) {
   .case-study-teaser {
-    transform: rotate(90deg);
-    margin-bottom: 10vh;
-    min-width: 45em;
+    /* transform: rotate(90deg);
+    margin-bottom: 30vw;
+    min-width: 45em; */
   }
 }
 
