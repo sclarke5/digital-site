@@ -625,6 +625,10 @@ export default {
 
       if (this.isElementInViewport(document.getElementById('spacer'))) {
         console.log('animating')
+        new TWEEN.Tween(this.camera.position)
+          .to(this.initialCameraPos, 500)
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .start()
         for (let i = 0; i < animations.length; i++) {
           if (
             this.currentScrollPos >= animations[i].enterAnimation.start &&
@@ -652,16 +656,20 @@ export default {
           }
         }
       } else if (
-        this.isElementInViewport(document.getElementById('contactContainer'))
+        this.isElementInViewport(document.getElementById('services'))
       ) {
-        console.log('contact')
-
         new TWEEN.Tween(this.camera.position)
           .to(this.initialCameraPos, 500)
           .easing(TWEEN.Easing.Quadratic.InOut)
           .start()
-
+      } else if (
+        this.isElementInViewport(document.getElementById('case-studies'))
+      ) {
         this.startContact()
+      } else if (
+        this.isElementInViewport(document.getElementById('contactContainer'))
+      ) {
+        console.log('contact')
 
         this.container.style.opacity = 1
 

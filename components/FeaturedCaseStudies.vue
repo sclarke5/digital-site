@@ -1,5 +1,5 @@
 <template>
-  <div v-editable="blok" class="mt-20">
+  <div v-editable="blok" class="mt-20" id="case-studies">
     <!-- <h1 class="text-white text-5xl case-studies-title">Case studies</h1> -->
     <div class="flex"></div>
     <!-- <div class="dot-pattern"></div> -->
@@ -39,9 +39,9 @@
           :case-studies-list="sortedCaseStudies"
         />
       </div>
-      <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
-        <img id="square" class="bg-shape" src="../assets/square.png" />
-        <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
+      <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
+      <img id="square" class="bg-shape" src="../assets/square.png" />
+      <img id="circle" class="bg-shape" src="../assets/circle.png" />
     </div>
     <!-- <ul class="flex flex-col case-studies-list">
       <li
