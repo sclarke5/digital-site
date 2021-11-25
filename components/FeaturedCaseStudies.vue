@@ -1,6 +1,9 @@
 <template>
-  <div v-editable="blok" class="mt-20">
-    <h2 class="text-white text-5xl case-studies-sub">Case <br/> Studies</h2>
+  <div v-editable="blok" class="mt-20" id="case-studies">
+    <h2 class="text-white text-5xl case-studies-sub">
+      Case <br />
+      Studies
+    </h2>
     <div class="icons-container lines-background-case-studies">
       <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Nike.png" alt="nike" />
@@ -36,8 +39,8 @@
         />
       </div>
       <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
-        <img id="square" class="bg-shape" src="../assets/square.png" />
-        <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
+      <img id="square" class="bg-shape" src="../assets/square.png" />
+      <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
     </div>
     <!-- <ul class="flex flex-col case-studies-list">
       <li
@@ -79,22 +82,6 @@ export default {
       })
 
       return featuredCaseStudies
-    },
-  },
-  mounted() {
-    this.init()
-  },
-  methods: {
-    init() {
-      document
-        .getElementById('scrollEl')
-        .addEventListener('scroll', this.animateCS, false)
-
-      document
-        .getElementById('scrollEl')
-        .addEventListener('wheel', this.animateCS, false)
-    },
-    animateCS() {
     },
   },
 }
@@ -160,8 +147,6 @@ export default {
     /* width: 50%; */
   }
 
-
-
   .case-study-container {
     padding: 0;
   }
@@ -174,7 +159,7 @@ export default {
     /* margin-left: 1em; */
   }
 
-   .case-study-outer-container:nth-child(even) {
+  .case-study-outer-container:nth-child(even) {
     /* margin-left: -1em; */
   }
 
