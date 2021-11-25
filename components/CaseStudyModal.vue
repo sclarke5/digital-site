@@ -55,7 +55,7 @@
         <div class="challenege-approach-container w-2/3">
           <div class="challenge-approach-first flex flex-col mb-12">
             <h4 class="text-white uppercase">Challenge</h4>
-            <p class="text-white pr-14">
+            <p class="text-white">
               {{ caseStudyContent.challenge }}
             </p>
           </div>
@@ -66,7 +66,7 @@
 
           <div class="challenge-approach-second flex flex-col py-12">
             <h4 class="text-white uppercase">Approach</h4>
-            <p class="text-white pr-14">
+            <p class="text-white">
               {{ caseStudyContent.approach }}
             </p>
           </div>
