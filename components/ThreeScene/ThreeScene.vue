@@ -689,27 +689,27 @@ export default {
       } else if (
         this.isElementInViewport(document.getElementById('case-studies'))
       ) {
-        // if (window.innerWidth >= 800) {
-        //   document.getElementById('triangle').style.top = `${triangleTop}%`
-        //   document.getElementById('triangle').style.left = `${triangleLeft}%`
+        if (window.innerWidth >= 800) {
+          // document.getElementById('triangle').style.top = `${triangleTop}%`
+          // document.getElementById('triangle').style.left = `${triangleLeft}%`
 
-        //   triangleTop += 0.05
-        //   triangleLeft += 0.05
+          // triangleTop += 0.05
+          // triangleLeft += 0.05
 
-        //   document.getElementById('circle').style.top = `${circleTop}%`
-        //   document.getElementById('circle').style.left = `${circleLeft}%`
+          // document.getElementById('circle').style.top = `${circleTop}%`
+          // document.getElementById('circle').style.left = `${circleLeft}%`
 
-        //   circleTop += 0.05
-        //   circleLeft += 0.05
+          // circleTop += 0.05
+          // circleLeft += 0.05
 
-        //   document.getElementById('square').style.top = `${squareTop}%`
-        //   document.getElementById('square').style.left = `${squareLeft}%`
+          // document.getElementById('square').style.top = `${squareTop}%`
+          // document.getElementById('square').style.left = `${squareLeft}%`
 
-        //   squareTop += 0.05
-        //   squareLeft += 0.05
+          // squareTop += 0.05
+          // squareLeft += 0.05
 
-        //   this.startContact()
-        // }
+          this.startContact()
+        }
         this.container.style.opacity = 0
       } else if (
         this.isElementInViewport(document.getElementById('contactContainer'))
