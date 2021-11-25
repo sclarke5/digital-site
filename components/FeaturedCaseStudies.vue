@@ -53,6 +53,7 @@
         <p v-else class="px-4 py-2 text-white bg-red-700 text-center rounded">This content loads on save. <strong>Save the entry & reload.</strong></p>
       </li>
     </ul> -->
+      <Contact />
   </div>
 </template>
 

@@ -44,12 +44,12 @@ body {
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
-    min-width: 100vh;
 
     /* width: 100vh; */
-    height: 200vh;
+    height: 100vw;
     transform: rotate(-90deg);
-    position: absolute;
+
+    /* position: absolute; */
     bottom: -30em;
     will-change: transform;
   }
