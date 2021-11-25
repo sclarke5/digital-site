@@ -459,6 +459,7 @@ export default {
 
       if (currentStage !== animations[this.mobileSwipes].stage) {
         this.startMovement(this.mobileSwipes)
+        currentStage = animations[this.mobileSwipes].stage
       }
     },
     onresize() {
@@ -666,6 +667,7 @@ export default {
         this.isElementInViewport(document.getElementById('services'))
       ) {
         if (window.innerWidth < 800) {
+          this.changeIndicator(this.mobileSwipes)
           this.startMovement(this.mobileSwipes)
           currentStage = animations[this.mobileSwipes].stage
         }
@@ -689,27 +691,9 @@ export default {
       } else if (
         this.isElementInViewport(document.getElementById('case-studies'))
       ) {
-        // if (window.innerWidth >= 800) {
-        //   document.getElementById('triangle').style.top = `${triangleTop}%`
-        //   document.getElementById('triangle').style.left = `${triangleLeft}%`
-
-        //   triangleTop += 0.05
-        //   triangleLeft += 0.05
-
-        //   document.getElementById('circle').style.top = `${circleTop}%`
-        //   document.getElementById('circle').style.left = `${circleLeft}%`
-
-        //   circleTop += 0.05
-        //   circleLeft += 0.05
-
-        //   document.getElementById('square').style.top = `${squareTop}%`
-        //   document.getElementById('square').style.left = `${squareLeft}%`
-
-        //   squareTop += 0.05
-        //   squareLeft += 0.05
-
-        //   this.startContact()
-        // }
+        if (window.innerWidth >= 800) {
+          this.startContact()
+        }
         this.container.style.opacity = 0
       } else if (
         this.isElementInViewport(document.getElementById('contactContainer'))
