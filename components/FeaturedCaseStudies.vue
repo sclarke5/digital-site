@@ -84,21 +84,6 @@ export default {
       return featuredCaseStudies
     },
   },
-  mounted() {
-    this.init()
-  },
-  methods: {
-    init() {
-      document
-        .getElementById('scrollEl')
-        .addEventListener('scroll', this.animateCS, false)
-
-      document
-        .getElementById('scrollEl')
-        .addEventListener('wheel', this.animateCS, false)
-    },
-    animateCS() {},
-  },
 }
 </script>
 

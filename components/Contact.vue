@@ -105,6 +105,7 @@
               </form>
             </div>
           </div>
+          <div id="mobile-end-spacer"></div>
     </div>
   <!-- </div> -->
 </template>
@@ -203,6 +204,13 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (max-width: 799px) {
+  #mobile-end-spacer {
+    width: 100vw;
+    height: 100vh;
+  }
+}
 
 .container {
   font-family: 'Gotham', sans-serif;

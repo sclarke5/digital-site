@@ -12,6 +12,12 @@
           </p>
         </div>
       </div>
+      <h2
+        id="process-title"
+        class="text-white text-center m-5 font-black uppercase"
+      >
+        Our Process
+      </h2>
       <ul class="flex process-container">
         <li class="process-item">
           <img src="../assets/1-SpotTheProblem.png" alt="" />
@@ -27,15 +33,15 @@
         </li>
         <li class="process-item">
           <img src="../assets/4-Ideate.png" alt="" />
-          <p>Ideate & Create Mockups</p>
+          <p>Ideate &amp; Create Mockups</p>
         </li>
         <li class="process-item">
           <img src="../assets/5-BuildMVP.png" alt="" />
-          <p>Build MVP & Distribute</p>
+          <p>Build MVP &amp; Distribute</p>
         </li>
         <li class="process-item">
           <img src="../assets/6-ReviewFeedbackIterate.png" alt="" />
-          <p>Review Feedback & Iterate</p>
+          <p>Review Feedback &amp; Iterate</p>
         </li>
       </ul>
     </div>
@@ -149,6 +155,9 @@ li {
 }
 
 @media screen and (min-width: 800px) {
+  #process-title {
+    display: none;
+  }
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;

@@ -35,6 +35,13 @@ import * as THREE from 'three'
 import * as TWEEN from '@tweenjs/tween.js'
 import { animations } from './animation'
 
+// let triangleTop = 0,
+//   triangleLeft = 10,
+//   circleTop = 70,
+//   circleLeft = 70,
+//   squareTop = 35,
+//   squareLeft = 50
+
 // texture imports
 
 const tealOrangeTexture = new THREE.TextureLoader().load(
@@ -624,7 +631,7 @@ export default {
       //
 
       if (this.isElementInViewport(document.getElementById('spacer'))) {
-        console.log('animating')
+        this.container.style.opacity = 1
 
         new TWEEN.Tween(this.camera.position)
           .to(this.initialCameraPos, 500)
@@ -653,25 +660,57 @@ export default {
             } else {
               this.allShapes[0].material.map = tealGreenVideoTexture
             }
-
-            this.container.style.opacity = 1
           }
         }
       } else if (
         this.isElementInViewport(document.getElementById('services'))
       ) {
+        if (window.innerWidth < 800) {
+          this.startMovement(this.mobileSwipes)
+          currentStage = animations[this.mobileSwipes].stage
+        }
+
+        this.container.style.opacity = 0
         if (window.innerWidth >= 800) {
           new TWEEN.Tween(this.camera.position)
             .to(this.initialCameraPos, 500)
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
         }
+
+        if (window.innerWidth < 800) {
+          document.getElementById('three').style.position = 'static'
+          document.getElementById('three').style.zIndex = '0'
+
+          document.getElementById('landingText').style.display = 'block'
+          document.getElementById('mobileScroll').style.display = 'block'
+        }
+        // else position is always fixed
       } else if (
         this.isElementInViewport(document.getElementById('case-studies'))
       ) {
-        if (window.innerWidth >= 800) {
-          this.startContact()
-        }
+        // if (window.innerWidth >= 800) {
+        //   document.getElementById('triangle').style.top = `${triangleTop}%`
+        //   document.getElementById('triangle').style.left = `${triangleLeft}%`
+
+        //   triangleTop += 0.05
+        //   triangleLeft += 0.05
+
+        //   document.getElementById('circle').style.top = `${circleTop}%`
+        //   document.getElementById('circle').style.left = `${circleLeft}%`
+
+        //   circleTop += 0.05
+        //   circleLeft += 0.05
+
+        //   document.getElementById('square').style.top = `${squareTop}%`
+        //   document.getElementById('square').style.left = `${squareLeft}%`
+
+        //   squareTop += 0.05
+        //   squareLeft += 0.05
+
+        //   this.startContact()
+        // }
+        this.container.style.opacity = 0
       } else if (
         this.isElementInViewport(document.getElementById('contactContainer'))
       ) {
@@ -687,6 +726,17 @@ export default {
         if (window.innerWidth >= 800) {
           this.serviceText.style.opacity = 0
           this.scrollText.style.opacity = 0
+        }
+
+        if (window.innerWidth < 800) {
+          this.container.style.opacity = 1
+          document.getElementById('three').style.position = 'fixed'
+          document.getElementById('three').style.top = '0'
+          document.getElementById('three').style.left = '0'
+          document.getElementById('three').style.zIndex = '-1'
+
+          document.getElementById('landingText').style.display = 'none'
+          document.getElementById('mobileScroll').style.display = 'none'
         }
       } else if (window.innerWidth >= 800) {
         this.container.style.opacity = 0
