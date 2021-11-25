@@ -30,7 +30,7 @@
         </h5>
       </div>
       
-      <img class="check w-full" :src="caseStudyContent.primary_image.filename" alt="caseStudyContent.primary_image.filename" />
+      <img class="check w-full" :src="caseStudyContent.primary_image.filename" :alt="caseStudyContent.primary_image.alt" />
 
       <div class="body-container flex justify-between pt-12">
         <div class="services-container flex flex-col">
@@ -62,7 +62,7 @@
 
           <!-- whenever we render a visual, check whether the filetype includes video extentions. TODO: add other formats in addition to webm -->
           <video v-if="visualsArray[0].filename.includes('webm')" controls :src="visualsArray[0].filename"></video>
-          <img v-else :src="visualsArray[0].filename" alt="">
+          <img v-else :src="visualsArray[0].filename" :alt="visualsArray[0].alt">
 
           <div class="challenge-approach-second flex flex-col py-12">
             <h4 class="text-white uppercase">Approach</h4>
@@ -72,10 +72,10 @@
           </div>
 
           <video v-if="visualsArray[1].filename.includes('webm')" controls :src="visualsArray[1].filename"></video>
-          <img v-else :src="visualsArray[1].filename" alt="" class="mb-16 second-image">
+          <img v-else :src="visualsArray[1].filename" :alt="visualsArray[1].alt" class="mb-16 second-image">
 
           <video v-if="visualsArray[2].filename.includes('webm')" controls :src="visualsArray[2].filename"></video>
-          <img :src="visualsArray[2].filename" alt="" class="mb-16 third-image">
+          <img :src="visualsArray[2].filename" :alt="visualsArray[2].alt" class="mb-16 third-image">
 
         </div>
       </div>
