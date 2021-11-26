@@ -61,7 +61,7 @@
           </div>
 
           <!-- whenever we render a visual, check whether the filetype includes video extentions. TODO: add other formats in addition to webm -->
-          <video v-if="visualsArray[0].filename.includes('webm')" controls :src="visualsArray[0].filename"></video>
+          <video v-if="visualsArray[0].filename.includes('webm')" controls :src="visualsArray[0].filename" :alt="visualsArray[0].alt"></video>
           <img v-else :src="visualsArray[0].filename" :alt="visualsArray[0].alt">
 
           <div class="challenge-approach-second flex flex-col py-12">
@@ -71,10 +71,10 @@
             </p>
           </div>
 
-          <video v-if="visualsArray[1].filename.includes('webm')" controls :src="visualsArray[1].filename"></video>
+          <video v-if="visualsArray[1].filename.includes('webm')" controls :src="visualsArray[1].filename" :alt="visualsArray[1].alt"></video>
           <img v-else :src="visualsArray[1].filename" :alt="visualsArray[1].alt" class="mb-16 second-image">
 
-          <video v-if="visualsArray[2].filename.includes('webm')" controls :src="visualsArray[2].filename"></video>
+          <video v-if="visualsArray[2].filename.includes('webm')" controls :src="visualsArray[2].filename" :alt="visualsArray[2].alt"></video>
           <img :src="visualsArray[2].filename" :alt="visualsArray[2].alt" class="mb-16 third-image">
 
         </div>
@@ -327,6 +327,10 @@ h4 {
 
   .close {
     align-self: flex-end;
+  }
+
+  video {
+    border: 2px solid white;
   }
 }
 
