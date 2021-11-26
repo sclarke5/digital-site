@@ -2,7 +2,7 @@
   <div>
     <div id="container">
       <div id="landingText" class="text-5xl">
-        Human Design for a Digital World
+        Digital Demystified
       </div>
       <div id="scrollTextContainer">
         <div id="tagline">
@@ -754,7 +754,7 @@ export default {
       if (arrPos > 0 && arrPos < 4) {
         this.serviceText.innerHTML = self.stage
       } else {
-        this.serviceText.innerHTML = 'Human Design for a Digital World'
+        this.serviceText.innerHTML = 'Digital Demystified'
       }
 
       for (let i = 0; i < 3; i++) {
