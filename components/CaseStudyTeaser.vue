@@ -1,16 +1,18 @@
 <template>
   <div v-bind:class="caseStudyContent._uid"
-    class="case-study-teaser block py-4">
+    class="case-study-teaser block py-4 pb-40 relative">
     <div class="case-study-container flex flex-col">
       <img class="primary-image" :src="caseStudyContent.primary_image.filename" :alt="caseStudyContent.primary_image.alt" />
-      <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
-        {{ caseStudyContent.name }}
-      </h1>
-      <h5 class="pt-2 pb-4 text-xl font-bold text-white">
-        {{ caseStudyContent.tagline }}
-      </h5>
-      <div class="view-case-study flex items-center" @click="openModal">
-        <span>VIEW CASE STUDY</span>
+      <div class="flex flex-col absolute bottom-0">
+        <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
+          {{ caseStudyContent.name }}
+        </h1>
+        <h5 class="pt-2 pb-4 text-xl font-bold text-white">
+          {{ caseStudyContent.tagline }}
+        </h5>
+        <div class="view-case-study flex items-center" @click="openModal">
+          <span>VIEW CASE STUDY</span>
+        </div>
       </div>
       <case-study-panel v-show="showPanel" :case-study-content="caseStudyContent" />
       <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" :case-studies-list="caseStudiesList" @close-modal="closeModal" />
@@ -43,17 +45,22 @@ export default {
   methods: {
     openModal(e){
       if(window.innerWidth > 800){
-        // const destination = e.path[3]
+        const doc = document
 
-        console.log(e.path)
-        // const destination = e.path[3]
+        console.log(doc.documentElement)
+
+        // window.scrollTo(destination.x);
+
         // destination.scrollIntoView({
         //   behavior: 'smooth',
-        //   block: 'start',
-        // })
+        //   // inline: 'start',
+        //   block: 'start'
+        // });
+
        
         this.showModal = true
-        e.path[3].classList.add('bring-forward')
+        const teaser = this.$el
+        teaser.classList.add('bring-forward')
       } else if (this.showPanel === false) {
         this.showPanel = true
       } else if (this.showPanel === true) {
