@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-overlay bg-black flex fixed inset-0">
+  <div class="modal-overlay bg-black flex">
     <div class="modal flex flex-col bg-black overflow-auto">
       <div class="title-container flex flex-col py-9">
         <div class="close" @click="$emit('close-modal')">
@@ -314,9 +314,10 @@ h4 {
 
 @media screen and (min-width: 800px) {
   .modal {
-    position: absolute;
-    width: 80vw;
+    position: fixed;
+    width: 85vw;
     height: 100vh;
+    top: 10px !important;
   }
 
   .see-more-image {

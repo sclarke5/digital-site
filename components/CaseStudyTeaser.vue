@@ -45,17 +45,22 @@ export default {
   methods: {
     openModal(e){
       if(window.innerWidth > 800){
-        // const destination = e.path[3]
+        const doc = document
 
-        console.log(e.path)
-        // const destination = e.path[3]
+        console.log(doc.documentElement)
+
+        // window.scrollTo(destination.x);
+
         // destination.scrollIntoView({
         //   behavior: 'smooth',
-        //   block: 'start',
-        // })
+        //   // inline: 'start',
+        //   block: 'start'
+        // });
+
        
         this.showModal = true
-        e.path[3].classList.add('bring-forward')
+        const teaser = this.$el
+        teaser.classList.add('bring-forward')
       } else if (this.showPanel === false) {
         this.showPanel = true
       } else if (this.showPanel === true) {
