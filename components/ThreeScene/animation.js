@@ -211,7 +211,7 @@ export const animations = [
     },
   },
   {
-    stage: 'virtual events',
+    stage: 'virtual events & experiences',
     enterAnimation: {
       start: 65,
       end: 70,
