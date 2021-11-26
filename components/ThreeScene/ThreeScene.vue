@@ -1,9 +1,7 @@
 <template>
   <div>
     <div id="container">
-      <div id="landingText" class="text-5xl">
-        Human Design for a Digital World
-      </div>
+      <div id="landingText" class="text-5xl">Digital Demystified</div>
       <div id="scrollTextContainer">
         <div id="tagline">
           We design for the future, obsess about the present, and unlock
@@ -507,7 +505,7 @@ export default {
           }
 
           break
-        case 'virtual events':
+        case 'virtual events & experiences':
           this.t += 0.05
           this.allShapes[2].rotation.x -= 0.03
 
@@ -713,11 +711,10 @@ export default {
         }
 
         if (window.innerWidth < 800) {
-          this.container.style.opacity = 1
-          document.getElementById('three').style.position = 'fixed'
-          document.getElementById('three').style.top = '0'
-          document.getElementById('three').style.left = '0'
-          document.getElementById('three').style.zIndex = '-1'
+          // document.getElementById('three').style.position = 'fixed'
+          // document.getElementById('three').style.top = '0'
+          // document.getElementById('three').style.left = '0'
+          // document.getElementById('three').style.zIndex = '-1'
 
           document.getElementById('landingText').style.display = 'none'
           document.getElementById('mobileScroll').style.display = 'none'
@@ -754,7 +751,7 @@ export default {
       if (arrPos > 0 && arrPos < 4) {
         this.serviceText.innerHTML = self.stage
       } else {
-        this.serviceText.innerHTML = 'Human Design for a Digital World'
+        this.serviceText.innerHTML = 'Digital Demystified'
       }
 
       for (let i = 0; i < 3; i++) {
