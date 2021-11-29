@@ -100,4 +100,10 @@ export default {
 .hamburger.active .bar:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
 }
+
+@media screen and (min-width: 800px) {
+  .hamburger {
+    display: none;
+  }
+}
 </style>
