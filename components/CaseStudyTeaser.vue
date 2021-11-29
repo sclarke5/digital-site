@@ -99,7 +99,7 @@ h5 {
 h1 {
   font-weight: 800;
   margin-top: -0.7em;
-  text-shadow: 2px 2px black;
+  text-shadow: 0 8px 50px #000;
 }
 
 h5 {

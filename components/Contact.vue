@@ -473,6 +473,11 @@ h1 {
   padding: 0.5rem;
 }
 
+input[type='text'],
+input[type='email'] {
+  border-radius: 0;
+}
+
 input[type='checkbox'] {
   width: 1rem !important;
   height: 1rem !important;
@@ -484,6 +489,7 @@ input[type='checkbox'] {
   outline: 1px solid white;
   box-shadow: none;
   font-size: 2em;
+  border-radius: 0;
 }
 
 input[type='checkbox']:checked {
