@@ -28,9 +28,9 @@
         <!-- <h3 class="pt-2 pl-6 text-white text-3xl text-left uppercase">
           {{ caseStudyContent.client }}
         </h3> -->
-        <h5 class="pt-2 text-white text-xl text-left">
+        <p class="pt-2 text-white text-xl text-left">
           {{ caseStudyContent.tagline }}
-        </h5>
+        </p>
       </div>
 
       <img
@@ -199,7 +199,7 @@
           </p>
           <div class="flex cta items-center justify-around">
             <a :href="ctaURL" target="_blank" class="flex">
-              <span class="uppercase" :href="ctaURL">Go to Site</span>
+              <p class="uppercase" :href="ctaURL">Go to Site</p>
               <img src="~/assets/arrow-right.png" />
             </a>
           </div>
@@ -224,17 +224,17 @@
             <h1 class="mt-2 text-2xl text-white uppercase">
               {{ caseStudy.name }}
             </h1>
-            <h5 class="mt-2 text-white uppercase">
+            <p class="mt-2 text-white uppercase">
               {{ caseStudy.content.client }}
-            </h5>
+            </p>
             <div
               class="mt-4 flex cta items-center justify-around case-study-link"
               @click="scrollToCaseStudy"
             >
               <div class="flex button-container">
-                <span :id="caseStudy.content._uid" class="uppercase"
-                  >View Case Study</span
-                >
+                <p :id="caseStudy.content._uid" class="uppercase">
+                  View Case Study
+                </p>
                 <img src="~/assets/arrow-right.png" />
               </div>
             </div>
@@ -303,41 +303,14 @@ export default {
 </script>
 
 <style scoped>
-h1,
-h3,
-h5,
-h6 {
-  font-family: 'Gotham', sans-serif;
-}
-
-h1,
-h3 {
-  font-weight: 800;
-}
-
-h5 {
-  font-weight: 200;
-}
-
-h4 {
-  font-family: 'DinPro-Black', sans-serif;
-}
-
 .body-container p {
-  font-size: 16px;
+  font-size: 1rem;
   margin-top: 0.5em;
-  font-family: 'Gotham', sans-serif;
   text-align: left;
-  font-weight: 200;
 }
 
 .services-container ul {
   margin: 20px 0;
-}
-
-.services-container li {
-  font-family: 'Gotham', sans-serif;
-  font-weight: 200;
 }
 
 .third-image {
@@ -348,20 +321,11 @@ h4 {
 .results-column {
   padding-top: 0;
 }
-
-.results-column p {
-  font-weight: 300;
-}
-
 .testimonial {
   font-size: 2em;
   line-height: 1.5;
-  font-family: 'Adobe Caslon Pro', sans-serif;
+  font-family: 'Adobe Caslon Pro', serif;
   font-style: italic;
-}
-
-.testimonial-author {
-  font-family: 'Gotham', sans-serif;
 }
 
 .cta {

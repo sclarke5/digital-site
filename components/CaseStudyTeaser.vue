@@ -13,14 +13,14 @@
         <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
           {{ caseStudyContent.name }}
         </h1>
-        <h5 class="pt-2 pb-4 text-xl font-bold text-white">
+        <p class="pt-2 pb-4 text-xl font-bold text-white">
           {{ caseStudyContent.tagline }}
-        </h5>
+        </p>
         <div
           class="view-case-study flex items-center"
           @click="openModal(caseStudyContent, caseStudiesList)"
         >
-          <span>VIEW CASE STUDY</span>
+          <p class="uppercase">View case study</p>
         </div>
       </div>
       <case-study-panel
@@ -91,19 +91,12 @@ export default {
   /* background-color: black; */
 }
 
-h1,
-h5 {
-  font-family: 'Gotham', sans-serif;
-}
-
 h1 {
-  font-weight: 800;
   margin-top: -0.7em;
   text-shadow: 0 8px 50px #000;
 }
 
 h5 {
-  font-weight: 200;
   margin-top: -0.6em;
 }
 

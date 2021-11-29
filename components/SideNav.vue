@@ -2,16 +2,16 @@
   <header class="header z-40 w-screen flex bg-black">
     <div class="flex flex-col test bg-black">
       <div class="ribbon flex about" @click="aboutScroll">
-        <h1>About Us</h1>
+        <h2>About Us</h2>
       </div>
       <div class="ribbon flex" @click="servicesScroll">
-        <h1>Services</h1>
+        <h2>Services</h2>
       </div>
       <div class="ribbon flex" @click="caseStudyScroll">
-        <h1>Our Work</h1>
+        <h2>Our Work</h2>
       </div>
       <div class="ribbon flex">
-        <h1>Contact Us</h1>
+        <h2>Contact Us</h2>
       </div>
     </div>
   </header>

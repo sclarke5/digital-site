@@ -1,9 +1,9 @@
 <template>
   <div v-editable="blok" class="mt-20" id="case-studies">
-    <h2 class="text-white text-5xl case-studies-sub">
+    <h1 class="text-white text-5xl case-studies-sub">
       Case <br />
       Studies
-    </h2>
+    </h1>
     <div class="icons-container lines-background-case-studies">
       <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Nike.png" alt="nike" />
@@ -89,9 +89,6 @@ export default {
 
 <style>
 .case-studies-sub {
-  text-transform: uppercase;
-  font-family: 'Gotham', sans-serif;
-  font-weight: 800;
   margin-bottom: 1em;
   padding-left: 0.5em;
   padding-right: 0.5em;
