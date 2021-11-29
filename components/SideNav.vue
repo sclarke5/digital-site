@@ -1,5 +1,5 @@
 <template>
-  <header class="header z-50 w-screen flex bg-black">
+  <header class="header z-40 w-screen flex bg-black">
     <div class="flex flex-col test bg-black">
       <div class="ribbon flex about" @click="aboutScroll">
         <h1>About Us</h1>
