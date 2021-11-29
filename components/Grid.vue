@@ -1,5 +1,5 @@
 <template>
-  <div class="flex grid-container">
+  <div class="flex grid-container absolute">
     <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
       <div class="text-container">
         <h1 class="text-white">{{ title }}</h1>
@@ -147,6 +147,7 @@ li {
     
     /* width: 100vw; */
     flex-direction: row;
+    right: -30em;
   }
 
   .grid-container h1 {
