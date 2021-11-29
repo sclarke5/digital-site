@@ -1,8 +1,13 @@
 <template>
-  <div v-bind:class="caseStudyContent._uid"
-    class="case-study-teaser block py-4">
+  <div
+    v-bind:class="caseStudyContent._uid"
+    class="case-study-teaser block py-4"
+  >
     <div class="case-study-container flex flex-col">
-      <img class="primary-image" :src="caseStudyContent.primary_image.filename" />
+      <img
+        class="primary-image"
+        :src="caseStudyContent.primary_image.filename"
+      />
       <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
         {{ caseStudyContent.name }}
       </h1>
@@ -12,37 +17,45 @@
       <div class="view-case-study flex items-center" @click="openModal">
         <span>VIEW CASE STUDY</span>
       </div>
-      <case-study-panel v-show="showPanel" :case-study-content="caseStudyContent" />
-      <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" :case-studies-list="caseStudiesList" @close-modal="closeModal" />
+      <case-study-panel
+        v-show="showPanel"
+        :case-study-content="caseStudyContent"
+      />
+      <case-study-modal
+        v-show="showModal"
+        :case-study-content="caseStudyContent"
+        :case-studies-list="caseStudiesList"
+        @close-modal="closeModal"
+      />
     </div>
   </div>
 </template>
- 
+
 <script>
 export default {
   props: {
     caseStudyContent: {
       type: Object,
-      required: true
+      required: true,
     },
     caseStudyLink: {
       type: String,
-      required: true
+      required: true,
     },
     caseStudiesList: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       showModal: false,
-      showPanel: false
+      showPanel: false,
     }
   },
   methods: {
-    openModal(e){
-      if(window.innerWidth > 800){
+    openModal(e) {
+      if (window.innerWidth > 800) {
         // const destination = e.path[3]
 
         console.log(e.path)
@@ -51,7 +64,7 @@ export default {
         //   behavior: 'smooth',
         //   block: 'start',
         // })
-       
+
         this.showModal = true
         e.path[3].classList.add('bring-forward')
       } else if (this.showPanel === false) {
@@ -60,12 +73,12 @@ export default {
         this.showPanel = false
       }
     },
-    closeModal(){
-      const teaser = this.$el;
+    closeModal() {
+      const teaser = this.$el
       teaser.classList.remove('bring-forward')
-      this.showModal = false;
-    }
-  }
+      this.showModal = false
+    },
+  },
 }
 </script>
 
@@ -74,14 +87,15 @@ export default {
   /* background-color: black; */
 }
 
-h1, h5 {
+h1,
+h5 {
   font-family: 'Gotham', sans-serif;
 }
 
 h1 {
   font-weight: 800;
   margin-top: -0.7em;
-  text-shadow: 2px 2px black;
+  text-shadow: 0 8px 50px #000;
 }
 
 h5 {
@@ -132,5 +146,4 @@ h5 {
     min-width: 45em; */
   }
 }
-
 </style>
