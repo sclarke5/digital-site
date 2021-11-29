@@ -1,8 +1,14 @@
 <template>
-  <div v-bind:class="caseStudyContent._uid"
-    class="case-study-teaser block py-4 pb-40 relative">
+  <div
+    :class="caseStudyContent._uid"
+    class="case-study-teaser block py-4 pb-40 relative"
+  >
     <div class="case-study-container flex flex-col">
-      <img class="primary-image" :src="caseStudyContent.primary_image.filename" :alt="caseStudyContent.primary_image.alt" />
+      <img
+        class="primary-image"
+        :src="caseStudyContent.primary_image.filename"
+        :alt="caseStudyContent.primary_image.alt"
+      />
       <div class="flex flex-col absolute bottom-0">
         <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
           {{ caseStudyContent.name }}
@@ -10,54 +16,56 @@
         <h5 class="pt-2 pb-4 text-xl font-bold text-white">
           {{ caseStudyContent.tagline }}
         </h5>
-        <div class="view-case-study flex items-center" @click="openModal">
+        <div
+          class="view-case-study flex items-center"
+          @click="openModal(caseStudyContent, caseStudiesList)"
+        >
           <span>VIEW CASE STUDY</span>
         </div>
       </div>
-      <case-study-panel v-show="showPanel" :case-study-content="caseStudyContent" />
-      <case-study-modal v-show="showModal" :case-study-content="caseStudyContent" :case-studies-list="caseStudiesList" @close-modal="closeModal" />
+      <case-study-panel
+        v-show="showPanel"
+        :case-study-content="caseStudyContent"
+      />
+      <case-study-modal
+        v-show="showModal"
+        :case-study-content="caseStudyContent"
+        :case-studies-list="caseStudiesList"
+        @close-modal="closeModal"
+      />
     </div>
   </div>
 </template>
- 
+
 <script>
 export default {
   props: {
     caseStudyContent: {
       type: Object,
-      required: true
+      required: true,
     },
     caseStudyLink: {
       type: String,
-      required: true
+      required: true,
     },
     caseStudiesList: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       showModal: false,
-      showPanel: false
+      showPanel: false,
     }
   },
   methods: {
-    openModal(e){
-      if(window.innerWidth > 800){
-        const doc = document
+    openModal(content, list) {
+      if (window.innerWidth > 800) {
+        // const doc = document
 
-        console.log(doc.documentElement)
+        // console.log(doc.documentElement)
 
-        // window.scrollTo(destination.x);
-
-        // destination.scrollIntoView({
-        //   behavior: 'smooth',
-        //   // inline: 'start',
-        //   block: 'start'
-        // });
-
-       
         this.showModal = true
         const teaser = this.$el
         teaser.classList.add('bring-forward')
@@ -66,13 +74,15 @@ export default {
       } else if (this.showPanel === true) {
         this.showPanel = false
       }
+
+      this.$store.dispatch('modal/toggle', { content, list })
     },
-    closeModal(){
-      const teaser = this.$el;
+    closeModal() {
+      const teaser = this.$el
       teaser.classList.remove('bring-forward')
-      this.showModal = false;
-    }
-  }
+      this.showModal = false
+    },
+  },
 }
 </script>
 
@@ -81,7 +91,8 @@ export default {
   /* background-color: black; */
 }
 
-h1, h5 {
+h1,
+h5 {
   font-family: 'Gotham', sans-serif;
 }
 
@@ -139,5 +150,4 @@ h5 {
     min-width: 45em; */
   }
 }
-
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div>
     <HeaderAstound />
+    <DummyModal />
     <SideNav class="side-nav fixed" />
     <ThreeScene id="three" />
     <Nuxt id="scrollEl" class="layout-container" />
