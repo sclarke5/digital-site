@@ -1,22 +1,22 @@
 <template>
   <div>
     <div id="container">
-      <div id="landingText" class="text-5xl">Digital Demystified</div>
+      <h1 id="landingText" class="text-5xl">Digital Demystified</h1>
       <div id="scrollTextContainer">
-        <div id="tagline">
+        <h2 id="tagline">
           We design for the future, obsess about the present, and unlock
           potential.
-        </div>
+        </h2>
         <div id="scrollPrompt">
-          <span id="scrollText"> Scroll for More</span>
+          <p id="scrollText">Scroll for More</p>
           <span id="scrollLine"><span id="movingLine"></span></span>
         </div>
       </div>
       <div id="mobileScroll">
-        <div id="mobileTagline">
+        <h2 id="mobileTagline">
           We design for the future, obsess about the present, and unlock
           potential.
-        </div>
+        </h2>
         <div id="scrollIndicators">
           <div class="indicator"></div>
           <div class="indicator"></div>
@@ -859,8 +859,6 @@ export default {
   max-width: 600px;
   margin-top: 1rem;
   text-transform: uppercase;
-  font-family: 'Gotham', sans-serif;
-  font-weight: 800;
   padding: 1rem;
 }
 
@@ -939,7 +937,6 @@ export default {
 
 #scrollPrompt {
   margin: 1rem 0 0 0;
-  font-family: 'Gotham', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;

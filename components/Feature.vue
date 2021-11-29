@@ -25,14 +25,8 @@ export default {
 
 <style scoped>
 h1 {
-  font-family: 'Gotham', sans-serif;
-  font-weight: 800;
   font-size: 2em;
   z-index: 10;
-}
-.feature-container p {
-  font-family: 'Gotham', sans-serif;
-  font-weight: 300;
 }
 
 .learn-more {
@@ -47,7 +41,7 @@ h1 {
   padding: 1.5em;
   text-transform: uppercase;
   margin-top: 1em;
-  font-family: 'Gotham', sans-serif;
+  font-family: 'Gotham Book', sans-serif;
 }
 
 img {

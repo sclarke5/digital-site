@@ -28,7 +28,7 @@
             nav-menu
             fixed
             -right-full
-            top-28
+            top-20
             flex-col
             bg-black
             w-full
@@ -36,7 +36,6 @@
             transition-all
             duration-300
             text-white
-            border-2 border-solid border-gray-400
           "
         >
           <li class="nav-item my-6" @click="toggleNav">
@@ -105,5 +104,11 @@ export default {
   .hamburger {
     display: none;
   }
+}
+
+li {
+  font-family: 'DINPro', sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
 }
 </style>

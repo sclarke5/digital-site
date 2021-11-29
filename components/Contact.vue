@@ -420,16 +420,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  font-family: 'Gotham', sans-serif;
-}
-
 button {
   border: 2px solid white;
 }
 
 h1 {
-  font-family: 'Gotham', sans-serif !important;
   line-height: 1.1;
   font-weight: 800;
 }
