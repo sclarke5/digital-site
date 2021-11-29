@@ -1,21 +1,27 @@
 <template>
   <div
-    v-bind:class="caseStudyContent._uid"
-    class="case-study-teaser block py-4"
+    :class="caseStudyContent._uid"
+    class="case-study-teaser block py-4 pb-40 relative"
   >
     <div class="case-study-container flex flex-col">
       <img
         class="primary-image"
         :src="caseStudyContent.primary_image.filename"
+        :alt="caseStudyContent.primary_image.alt"
       />
-      <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
-        {{ caseStudyContent.name }}
-      </h1>
-      <h5 class="pt-2 pb-4 text-2xl font-bold text-white uppercase">
-        {{ caseStudyContent.client }}
-      </h5>
-      <div class="view-case-study flex items-center" @click="openModal">
-        <span>VIEW CASE STUDY</span>
+      <div class="flex flex-col absolute bottom-0">
+        <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
+          {{ caseStudyContent.name }}
+        </h1>
+        <h5 class="pt-2 pb-4 text-xl font-bold text-white">
+          {{ caseStudyContent.tagline }}
+        </h5>
+        <div
+          class="view-case-study flex items-center"
+          @click="openModal(caseStudyContent, caseStudiesList)"
+        >
+          <span>VIEW CASE STUDY</span>
+        </div>
       </div>
       <case-study-panel
         v-show="showPanel"
@@ -54,24 +60,22 @@ export default {
     }
   },
   methods: {
-    openModal(e) {
+    openModal(content, list) {
       if (window.innerWidth > 800) {
-        // const destination = e.path[3]
+        // const doc = document
 
-        console.log(e.path)
-        // const destination = e.path[3]
-        // destination.scrollIntoView({
-        //   behavior: 'smooth',
-        //   block: 'start',
-        // })
+        // console.log(doc.documentElement)
 
         this.showModal = true
-        e.path[3].classList.add('bring-forward')
+        const teaser = this.$el
+        teaser.classList.add('bring-forward')
       } else if (this.showPanel === false) {
         this.showPanel = true
       } else if (this.showPanel === true) {
         this.showPanel = false
       }
+
+      this.$store.dispatch('modal/toggle', { content, list })
     },
     closeModal() {
       const teaser = this.$el
