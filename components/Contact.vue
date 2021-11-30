@@ -420,16 +420,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  font-family: 'Gotham', sans-serif;
-}
-
 button {
   border: 2px solid white;
 }
 
 h1 {
-  font-family: 'Gotham', sans-serif !important;
   line-height: 1.1;
   font-weight: 800;
 }
@@ -475,6 +470,11 @@ h1 {
   padding: 0.5rem;
 }
 
+input[type='text'],
+input[type='email'] {
+  border-radius: 0;
+}
+
 input[type='checkbox'] {
   width: 1rem !important;
   height: 1rem !important;
@@ -486,6 +486,7 @@ input[type='checkbox'] {
   outline: 1px solid white;
   box-shadow: none;
   font-size: 2em;
+  border-radius: 0;
 }
 
 input[type='checkbox']:checked {

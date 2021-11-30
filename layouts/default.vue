@@ -10,10 +10,10 @@
 </template>
 
 <style>
-@import url('http://fonts.cdnfonts.com/css/din-pro');
+/* @import url('http://fonts.cdnfonts.com/css/din-pro');
 @import url('http://fonts.cdnfonts.com/css/dinpro-bold');
 @import url('http://fonts.cdnfonts.com/css/dinpro-black');
-@import url('http://fonts.cdnfonts.com/css/adobe-caslon-pro');
+@import url('http://fonts.cdnfonts.com/css/adobe-caslon-pro'); */
 
 /* .layout-container {
   margin-top: -20em;
@@ -69,5 +69,25 @@ body {
     left: 0;
     z-index: -1;
   }
+}
+
+h1,
+h3,
+h5,
+h6 {
+  font-family: 'Gotham Ultra', sans-serif;
+  text-transform: uppercase;
+}
+
+h2,
+h4 {
+  font-family: 'DINPro', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+p,
+li {
+  font-family: 'Gotham Book', sans-serif;
 }
 </style>

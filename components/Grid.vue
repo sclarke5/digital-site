@@ -45,9 +45,9 @@
         </li>
       </ul>
     </div>
-    <div class="flex flex-col grid-right">
-      <h1 class="our-work-heading text-white px-6">OUR SERVICES</h1>
-      <ul v-editable="blok" class="services-list flex mb-6 lines-background">
+    <div class="flex flex-col grid-right lines-background">
+      <h2 class="our-work-heading text-white px-6 mt-6">OUR SERVICES</h2>
+      <ul v-editable="blok" class="services-list flex mb-6">
         <li
           :key="blok._uid"
           v-for="blok in blok.columns"
@@ -100,17 +100,8 @@ li {
 
 .grid-container h1 {
   /* changed to 2em from 3em because it was adding a few px to the width! */
-
   font-size: 2em;
-  font-family: 'Gotham', sans-serif;
-  text-transform: uppercase;
-  font-weight: 800;
   line-height: 1.1;
-}
-
-.grid-container p {
-  font-family: 'Gotham', sans-serif;
-  font-weight: 300;
 }
 
 .grid-left {
@@ -136,22 +127,21 @@ li {
   padding: 1rem;
 }
 
+.process-item > p {
+  height: 2em;
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Gotham Ultra', sans-serif;
+  text-align: center;
+  padding: 0.5em 0.25em 0 0.25em;
+  width: 100%;
+}
+
 @media screen and (max-width: 799px) {
   .process-item {
     width: 50%;
     margin: 1rem 0;
   }
-}
-
-.process-item > p {
-  height: 2em;
-  color: white;
-  text-transform: uppercase;
-  text-align: center;
-  font-family: 'Gotham', sans-serif !important;
-  font-weight: 800;
-  padding: 0.5em 0.25em 0 0.25em;
-  width: 100%;
 }
 
 @media screen and (min-width: 800px) {
