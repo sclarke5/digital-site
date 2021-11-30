@@ -107,4 +107,8 @@ img {
   font-family: 'Adobe Caslon Pro', sans-serif;
   font-style: italic;
 }
+
+hr {
+  color: white;
+}
 </style>

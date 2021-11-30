@@ -441,7 +441,16 @@ h1 {
   background-repeat: no-repeat;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 800px) and (max-height: 800px){
+  .container {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 560em;
+    right: -12em;
+  }
+}
+
+@media screen and (min-width: 800px) and (min-height: 801px) {
   .container {
     transform: rotate(90deg);
     position: absolute;
