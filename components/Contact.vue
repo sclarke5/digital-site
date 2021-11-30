@@ -444,7 +444,9 @@ h1 {
 @media screen and (min-width: 800px) {
   .container {
     transform: rotate(90deg);
-    margin-bottom: 40rem;
+    position: absolute;
+    top: 460em;
+    right: -12em;
   }
   .two-column-container {
     flex-direction: row;
