@@ -6,7 +6,7 @@
       :key="story.content._uid"
       :blok="story.content"
     />
-    <Contact />
+    <!-- <Contact /> -->
   </div>
 </template>
 

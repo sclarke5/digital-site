@@ -1,5 +1,5 @@
 <template>
-  <div class="flex grid-container">
+  <div class="flex grid-container md:absolute">
     <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
       <div class="text-container">
         <h1 class="text-white">{{ title }}</h1>
@@ -151,9 +151,9 @@ li {
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;
-
-    /* width: 100vw; */
+    max-width: 1971px;
     flex-direction: row;
+    right: -30em;
   }
 
   .grid-container h1 {
