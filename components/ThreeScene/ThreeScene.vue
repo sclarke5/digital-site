@@ -189,7 +189,7 @@ export default {
       this.gridScale = 0.8
       this.gridHelper.scale.set(this.gridScale, this.gridScale, this.gridScale)
       this.gridHelper.rotation.x = Math.PI / 2
-      this.gridHelper.position.set(0, -0.5, -2)
+      this.gridHelper.position.set(0, 0, -2)
       this.scene.add(this.gridHelper)
 
       // initialize all geometries
@@ -349,7 +349,7 @@ export default {
         }
       }
 
-      this.initialCameraPos = new THREE.Vector3(0, 0, 10)
+      this.initialCameraPos = new THREE.Vector3(0, 0.5, 10)
 
       this.camera.position.set(
         this.initialCameraPos.x,
