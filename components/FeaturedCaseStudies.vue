@@ -1,5 +1,5 @@
 <template>
-  <div v-editable="blok" class="mt-20" id="case-studies">
+  <div v-editable="blok" class="mt-20 relative" id="case-studies">
     <h1 class="text-white text-5xl case-studies-sub">
       Case <br />
       Studies
@@ -56,6 +56,7 @@
         <p v-else class="px-4 py-2 text-white bg-red-700 text-center rounded">This content loads on save. <strong>Save the entry & reload.</strong></p>
       </li>
     </ul> -->
+      <Contact />
   </div>
 </template>
 
@@ -120,8 +121,9 @@ export default {
 @media screen and (min-width: 800px) {
   .case-studies-sub {
     transform: rotate(90deg);
-    margin-left: 13em;
-    margin-bottom: -10em;
+    position: absolute;
+    top: 60em;
+    right: 1.8em;
   }
 
   .lines {
@@ -138,6 +140,9 @@ export default {
     padding-left: 0;
     margin-left: 25em;
     width: fit-content;
+    position: absolute;
+    top: 200em;
+    right: 1em;
   }
 
   .icon-item {
@@ -192,9 +197,13 @@ export default {
   .case-studies-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 60em;
+    margin-top: 120em;
     margin-bottom: 50em;
     transform: rotate(90deg);
+    position: absolute;
+    top: 200em;
+    right: -29em;
+    width: max-content;
   }
 
   .bg-shape {
@@ -225,6 +234,12 @@ export default {
   min-width: 100px;
   width: 40%;
   max-width: 300px;
+}
+
+.featured-cases-container {
+  position: absolute;
+  top: 600em;
+  right: 15em;
 }
 
 .case-study-outer-container {

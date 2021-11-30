@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-screen">
     <div id="spacer"></div>
     <div v-editable="blok" class="mt-28">
       <component
