@@ -8,10 +8,16 @@
           <p class="text-white underline pt-8 md:w-1/2 md:pl-16">
             <a :href="astoundgroup_cta.link">
               {{ astoundgroup_cta.text }}
-            </a>  
+            </a>
           </p>
         </div>
       </div>
+      <h2
+        id="process-title"
+        class="text-white text-center m-5 font-black uppercase"
+      >
+        Our Process
+      </h2>
       <ul class="flex process-container">
         <li class="process-item">
           <img src="../assets/1-SpotTheProblem.png" alt="" />
@@ -27,15 +33,15 @@
         </li>
         <li class="process-item">
           <img src="../assets/4-Ideate.png" alt="" />
-          <p>Ideate & Create Mockups</p>
+          <p>Ideate &amp; Create Mockups</p>
         </li>
         <li class="process-item">
           <img src="../assets/5-BuildMVP.png" alt="" />
-          <p>Build MVP & Distribute</p>
+          <p>Build MVP &amp; Distribute</p>
         </li>
         <li class="process-item">
           <img src="../assets/6-ReviewFeedbackIterate.png" alt="" />
-          <p>Review Feedback & Iterate</p>
+          <p>Review Feedback &amp; Iterate</p>
         </li>
       </ul>
     </div>
@@ -127,7 +133,14 @@ li {
 }
 
 .process-item {
-  width: 100%;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 799px) {
+  .process-item {
+    width: 50%;
+    margin: 1rem 0;
+  }
 }
 
 .process-item > p {
@@ -138,14 +151,17 @@ li {
   font-family: 'Gotham', sans-serif !important;
   font-weight: 800;
   padding: 0.5em 0.25em 0 0.25em;
+  width: 100%;
 }
 
 @media screen and (min-width: 800px) {
+  #process-title {
+    display: none;
+  }
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;
-    
-    /* width: 100vw; */
+    max-width: 1971px;
     flex-direction: row;
     right: -30em;
   }
@@ -177,10 +193,9 @@ li {
   }
 
   .process-item {
+    max-width: calc(100% / 6);
     flex-basis: 0;
     flex-grow: 1;
-    padding: 1rem;
   }
-
 }
 </style>

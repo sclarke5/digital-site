@@ -24,6 +24,12 @@ export default {
 </script>
 
 <style scoped>
+/* #spacer {
+  width: 100vw;
+  height: 100vh;
+  margin-top: -100vh;
+} */
+
 @media screen and (min-width: 800px) {
   #spacer {
     width: 100vw;

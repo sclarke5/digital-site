@@ -2,6 +2,7 @@
   <div
     v-editable="blok"
     class="h-full py-2 flex flex-col justify-center feature-container"
+    id="services"
   >
     <img :src="blok.icon.filename" alt="" />
 

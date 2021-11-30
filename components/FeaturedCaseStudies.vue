@@ -1,6 +1,9 @@
 <template>
-  <div v-editable="blok" class="mt-20 featured-cases-container">
-    <h2 class="text-white text-5xl case-studies-sub">Case <br/> Studies</h2>
+  <div v-editable="blok" class="mt-20 relative" id="case-studies">
+    <h2 class="text-white text-5xl case-studies-sub">
+      Case <br />
+      Studies
+    </h2>
     <div class="icons-container lines-background-case-studies">
       <div class="flex items-center justify-center icon-item">
         <img class="icon" src="../assets/Nike.png" alt="nike" />
@@ -36,8 +39,8 @@
         />
       </div>
       <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
-        <img id="square" class="bg-shape" src="../assets/square.png" />
-        <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
+      <img id="square" class="bg-shape" src="../assets/square.png" />
+      <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
     </div>
     <!-- <ul class="flex flex-col case-studies-list">
       <li
@@ -82,22 +85,6 @@ export default {
       return featuredCaseStudies
     },
   },
-  mounted() {
-    this.init()
-  },
-  methods: {
-    init() {
-      document
-        .getElementById('scrollEl')
-        .addEventListener('scroll', this.animateCS, false)
-
-      document
-        .getElementById('scrollEl')
-        .addEventListener('wheel', this.animateCS, false)
-    },
-    animateCS() {
-    },
-  },
 }
 </script>
 
@@ -137,7 +124,9 @@ export default {
 @media screen and (min-width: 800px) {
   .case-studies-sub {
     transform: rotate(90deg);
-    margin-right: -25em;
+    position: absolute;
+    top: 60em;
+    right: 1em;
   }
 
   .lines {
@@ -155,14 +144,13 @@ export default {
     margin-left: 25em;
     width: fit-content;
     position: absolute;
-    right: -15em;
+    top: 200em;
+    right: 1em;
   }
 
   .icon-item {
     /* width: 50%; */
   }
-
-
 
   .case-study-container {
     padding: 0;
@@ -176,7 +164,7 @@ export default {
     /* margin-left: 1em; */
   }
 
-   .case-study-outer-container:nth-child(even) {
+  .case-study-outer-container:nth-child(even) {
     /* margin-left: -1em; */
   }
 
@@ -216,8 +204,8 @@ export default {
     margin-bottom: 50em;
     transform: rotate(90deg);
     position: absolute;
-    right: -60em;
-    top: 10em;
+    top: 200em;
+    right: -29em;
     width: max-content;
   }
 

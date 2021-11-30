@@ -1,9 +1,7 @@
 <template>
   <div>
     <div id="container">
-      <div id="landingText" class="text-5xl">
-        Human Design for a Digital World
-      </div>
+      <div id="landingText" class="text-5xl">Digital Demystified</div>
       <div id="scrollTextContainer">
         <div id="tagline">
           We design for the future, obsess about the present, and unlock
@@ -34,6 +32,13 @@
 import * as THREE from 'three'
 import * as TWEEN from '@tweenjs/tween.js'
 import { animations } from './animation'
+
+// let triangleTop = 0,
+//   triangleLeft = 10,
+//   circleTop = 70,
+//   circleLeft = 70,
+//   squareTop = 35,
+//   squareLeft = 50
 
 // texture imports
 
@@ -452,6 +457,7 @@ export default {
 
       if (currentStage !== animations[this.mobileSwipes].stage) {
         this.startMovement(this.mobileSwipes)
+        currentStage = animations[this.mobileSwipes].stage
       }
     },
     onresize() {
@@ -499,7 +505,7 @@ export default {
           }
 
           break
-        case 'virtual events':
+        case 'virtual events & experiences':
           this.t += 0.05
           this.allShapes[2].rotation.x -= 0.03
 
@@ -624,7 +630,13 @@ export default {
       //
 
       if (this.isElementInViewport(document.getElementById('spacer'))) {
-        console.log('animating')
+        this.container.style.opacity = 1
+
+        new TWEEN.Tween(this.camera.position)
+          .to(this.initialCameraPos, 500)
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .start()
+
         for (let i = 0; i < animations.length; i++) {
           if (
             this.currentScrollPos >= animations[i].enterAnimation.start &&
@@ -647,21 +659,44 @@ export default {
             } else {
               this.allShapes[0].material.map = tealGreenVideoTexture
             }
-
-            this.container.style.opacity = 1
           }
         }
+      } else if (
+        this.isElementInViewport(document.getElementById('services'))
+      ) {
+        if (window.innerWidth < 800) {
+          this.changeIndicator(this.mobileSwipes)
+          this.startMovement(this.mobileSwipes)
+          currentStage = animations[this.mobileSwipes].stage
+        }
+
+        this.container.style.opacity = 0
+        if (window.innerWidth >= 800) {
+          new TWEEN.Tween(this.camera.position)
+            .to(this.initialCameraPos, 500)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .start()
+        }
+
+        if (window.innerWidth < 800) {
+          document.getElementById('three').style.position = 'static'
+          document.getElementById('three').style.zIndex = '0'
+
+          document.getElementById('landingText').style.display = 'block'
+          document.getElementById('mobileScroll').style.display = 'block'
+        }
+        // else position is always fixed
+      } else if (
+        this.isElementInViewport(document.getElementById('case-studies'))
+      ) {
+        if (window.innerWidth >= 800) {
+          this.startContact()
+        }
+        this.container.style.opacity = 0
       } else if (
         this.isElementInViewport(document.getElementById('contactContainer'))
       ) {
         console.log('contact')
-
-        new TWEEN.Tween(this.camera.position)
-          .to(this.initialCameraPos, 500)
-          .easing(TWEEN.Easing.Quadratic.InOut)
-          .start()
-
-        this.startContact()
 
         this.container.style.opacity = 1
 
@@ -670,9 +705,21 @@ export default {
           currentStage = 'contact'
         }
 
-        this.serviceText.style.opacity = 0
-        this.scrollText.style.opacity = 0
-      } else {
+        if (window.innerWidth >= 800) {
+          this.serviceText.style.opacity = 0
+          this.scrollText.style.opacity = 0
+        }
+
+        if (window.innerWidth < 800) {
+          // document.getElementById('three').style.position = 'fixed'
+          // document.getElementById('three').style.top = '0'
+          // document.getElementById('three').style.left = '0'
+          // document.getElementById('three').style.zIndex = '-1'
+
+          document.getElementById('landingText').style.display = 'none'
+          document.getElementById('mobileScroll').style.display = 'none'
+        }
+      } else if (window.innerWidth >= 800) {
         this.container.style.opacity = 0
         this.serviceText.style.opacity = 1
         this.scrollText.style.opacity = 1
@@ -704,7 +751,7 @@ export default {
       if (arrPos > 0 && arrPos < 4) {
         this.serviceText.innerHTML = self.stage
       } else {
-        this.serviceText.innerHTML = 'Human Design for a Digital World'
+        this.serviceText.innerHTML = 'Digital Demystified'
       }
 
       for (let i = 0; i < 3; i++) {
