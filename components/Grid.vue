@@ -2,7 +2,7 @@
   <div class="flex grid-container md:absolute">
     <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
       <div class="text-container">
-        <h1 class="text-white">{{ title }}</h1>
+        <h3 class="text-white">{{ title }}</h3>
         <div class="paragraph-container md:flex">
           <p class="text-white pt-8 md:w-1/2">{{ blurb }}</p>
           <p class="text-white underline pt-8 md:w-1/2 md:pl-16">

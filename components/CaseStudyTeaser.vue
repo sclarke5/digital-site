@@ -10,10 +10,10 @@
         :alt="caseStudyContent.primary_image.alt"
       />
       <div class="flex flex-col md:absolute bottom-0">
-        <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
+        <h3 class="pt-2 pb-4 text-white">
           {{ caseStudyContent.name }}
-        </h1>
-        <p class="pt-2 pb-4 text-xl font-bold text-white">
+        </h3>
+        <p class="pt-2 pb-4 text-white">
           {{ caseStudyContent.tagline }}
         </p>
         <div
@@ -62,7 +62,6 @@ export default {
       } else if (this.showPanel === true) {
         this.showPanel = false
       }
-
     },
     closeModal() {
       const teaser = this.$el
@@ -78,9 +77,10 @@ export default {
   /* background-color: black; */
 }
 
-h1 {
+h3 {
   margin-top: -0.7em;
   text-shadow: 0 8px 50px #000;
+  line-height: 1em;
 }
 
 h5 {

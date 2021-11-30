@@ -111,4 +111,8 @@ li {
   text-transform: uppercase;
   font-weight: 900;
 }
+
+.company-logo {
+  object-fit: contain;
+}
 </style>

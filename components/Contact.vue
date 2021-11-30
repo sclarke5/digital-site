@@ -92,7 +92,7 @@
               >Services</label
             >
             <div
-              class="service-dropdown py-2 px-3"
+              class="service-dropdown py-2 px-3 font-gothamBook"
               id="services-dropdown"
               v-on:click="toggleDropdown"
             >
@@ -253,15 +253,17 @@
             ></textarea>
           </div>
           <div id="privacy-disclaimer">
-            By clicking submit below, you consent to allow ASTOUND Group to
-            store and process the personal information submitted above to
-            provide you the content requested.
-            <a
-              href="https://www.astoundgroup.com/privacy-policy-astound"
-              target="_blank"
-            >
-              Learn about our Privacy Policy.</a
-            >
+            <p class="text-xs">
+              By clicking submit below, you consent to allow ASTOUND Group to
+              store and process the personal information submitted above to
+              provide you the content requested.
+              <a
+                href="https://www.astoundgroup.com/privacy-policy-astound"
+                target="_blank"
+              >
+                Learn about our Privacy Policy.</a
+              >
+            </p>
           </div>
           <button
             id="astoundSubmitButton"
@@ -470,8 +472,19 @@ h1 {
   padding: 0.5rem;
 }
 
+.service-sub {
+  font-family: 'Gotham Book', sans-serif;
+}
+
+.service-main {
+  font-family: 'DINPro', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 input[type='text'],
-input[type='email'] {
+input[type='email'],
+textarea {
   border-radius: 0;
 }
 
@@ -513,11 +526,6 @@ input[type='checkbox']:checked::after {
 
 .service-line:hover input[type='checkbox']:checked {
   outline: none;
-}
-
-.service-main {
-  font-family: 'DINPro-Bold', sans-serif;
-  text-transform: uppercase;
 }
 
 #privacy-disclaimer {

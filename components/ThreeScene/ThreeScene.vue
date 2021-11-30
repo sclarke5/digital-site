@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="container">
-      <h1 id="landingText" class="text-5xl">Digital Demystified</h1>
+      <h1 id="landingText">Digital Demystified</h1>
       <div id="scrollTextContainer">
         <h2 id="tagline">
           We design for the future, obsess about the present, and unlock
@@ -189,7 +189,7 @@ export default {
       this.gridScale = 0.8
       this.gridHelper.scale.set(this.gridScale, this.gridScale, this.gridScale)
       this.gridHelper.rotation.x = Math.PI / 2
-      this.gridHelper.position.set(0, -0.5, -2)
+      this.gridHelper.position.set(0, 0, -2)
       this.scene.add(this.gridHelper)
 
       // initialize all geometries
@@ -349,7 +349,7 @@ export default {
         }
       }
 
-      this.initialCameraPos = new THREE.Vector3(0, 0, 10)
+      this.initialCameraPos = new THREE.Vector3(0, 0.5, 10)
 
       this.camera.position.set(
         this.initialCameraPos.x,
@@ -447,11 +447,9 @@ export default {
         const element = indicators[i]
 
         if (i === this.mobileSwipes) {
-          element.style.outline = ' 5px solid rgba(29, 173, 228, 0.3)'
-          element.style.backgroundColor = '#1dade4'
+          element.classList.add('focus')
         } else {
-          element.style.outline = 'none'
-          element.style.backgroundColor = 'white'
+          element.classList.remove('focus')
         }
       }
 
@@ -910,8 +908,6 @@ export default {
 
   #mobileTagline {
     color: white;
-    text-transform: uppercase;
-    font-family: 'DINPro-Bold', sans-serif;
   }
 
   #scrollIndicators {
@@ -924,10 +920,17 @@ export default {
 
   .indicator {
     border-radius: 50%;
+    -webkit-border-radius: 50%;
     width: 10px;
     height: 10px;
     background-color: white;
     transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .indicator.focus {
+    -webkit-box-shadow: 0 0 0 5px rgba(29, 173, 228, 0.3);
+    box-shadow: 0 0 0 5px rgba(29, 173, 228, 0.3);
+    background-color: #1dade4;
   }
 
   #scrollTextContainer {
