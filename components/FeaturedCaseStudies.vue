@@ -202,7 +202,7 @@ export default {
     transform: rotate(90deg);
     position: absolute;
     top: 200em;
-    right: -29em;
+    right: -33em;
     width: max-content;
   }
 
@@ -244,5 +244,8 @@ export default {
 
 .case-study-outer-container {
   /* scroll-snap-align: start; */
+  margin-right: 3em;
 }
+
+
 </style>
