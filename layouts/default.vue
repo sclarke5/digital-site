@@ -74,20 +74,41 @@ body {
 h1,
 h3,
 h5,
-h6 {
+h6,
+.font-gothamUltra {
   font-family: 'Gotham Ultra', sans-serif;
   text-transform: uppercase;
 }
 
+h1 {
+  font-size: 3em;
+  line-height: 1em;
+}
+
+h3 {
+  font-size: 2em;
+  line-height: 1em;
+}
+
 h2,
-h4 {
+h4,
+.font-dinProBlack {
   font-family: 'DINPro', sans-serif;
   font-weight: 900;
   text-transform: uppercase;
 }
 
 p,
-li {
+li,
+input,
+textarea,
+.font-gothamBook,
+label,
+button {
   font-family: 'Gotham Book', sans-serif;
+}
+
+p {
+  font-size: 1rem;
 }
 </style>
