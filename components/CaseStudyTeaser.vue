@@ -1,7 +1,7 @@
 <template>
   <div
     :class="caseStudyContent._uid"
-    class="case-study-teaser block py-4 pb-40 relative"
+    class="case-study-teaser block py-4 md:pb-40 relative"
   >
     <div class="case-study-container flex flex-col">
       <img
@@ -9,7 +9,7 @@
         :src="caseStudyContent.primary_image.filename"
         :alt="caseStudyContent.primary_image.alt"
       />
-      <div class="flex flex-col absolute bottom-0">
+      <div class="flex flex-col md:absolute bottom-0">
         <h1 class="pt-2 pb-4 text-4xl font-bold text-white uppercase">
           {{ caseStudyContent.name }}
         </h1>
@@ -26,12 +26,6 @@
       <case-study-panel
         v-show="showPanel"
         :case-study-content="caseStudyContent"
-      />
-      <case-study-modal
-        v-show="showModal"
-        :case-study-content="caseStudyContent"
-        :case-studies-list="caseStudiesList"
-        @close-modal="closeModal"
       />
     </div>
   </div>
@@ -62,20 +56,13 @@ export default {
   methods: {
     openModal(content, list) {
       if (window.innerWidth > 800) {
-        // const doc = document
-
-        // console.log(doc.documentElement)
-
-        this.showModal = true
-        const teaser = this.$el
-        teaser.classList.add('bring-forward')
+        this.$store.dispatch('modal/toggle', { content, list })
       } else if (this.showPanel === false) {
         this.showPanel = true
       } else if (this.showPanel === true) {
         this.showPanel = false
       }
 
-      this.$store.dispatch('modal/toggle', { content, list })
     },
     closeModal() {
       const teaser = this.$el

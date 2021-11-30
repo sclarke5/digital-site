@@ -126,7 +126,7 @@ export default {
     transform: rotate(90deg);
     position: absolute;
     top: 60em;
-    right: 1em;
+    right: 1.8em;
   }
 
   .lines {
