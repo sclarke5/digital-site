@@ -1,7 +1,10 @@
 <template>
   <div>
     <div id="container">
-      <h1 id="landingText">Digital Demystified</h1>
+      <h1 id="landingText">
+        Digital <br />
+        Demystified
+      </h1>
       <div id="scrollTextContainer">
         <h2 id="tagline">
           We design for the future, obsess about the present, and unlock
@@ -749,7 +752,7 @@ export default {
       if (arrPos > 0 && arrPos < 4) {
         this.serviceText.innerHTML = self.stage
       } else {
-        this.serviceText.innerHTML = 'Digital Demystified'
+        this.serviceText.innerHTML = 'Digital <br /> Demystified'
       }
 
       for (let i = 0; i < 3; i++) {

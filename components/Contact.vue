@@ -4,7 +4,7 @@
   <div class="container mt-40">
     <div class="two-column-container flex flex-col gap-4 text-white">
       <div class="col-span-1 px-6">
-        <h1 class="text-5xl" id="contact-title">GET IN TOUCH</h1>
+        <h1 class="text-5xl" id="contact-title">GET IN <br />TOUCH</h1>
         <p id="contact-body">All fields marked with * are required.</p>
         <!-- <br>
               <p>support@example.com</p> -->
@@ -19,7 +19,7 @@
         <form id="astoundContactForm" method="post" @submit="checkForm">
           <div id="fullName" class="mb-4 block">
             <label
-              class="block text-sm mb-2"
+              class="block text-md mb-2"
               :class="{ 'text-red-500': fNameError }"
               for="contactFullName"
               >Name *</label
@@ -45,7 +45,7 @@
             />
           </div>
           <div class="mb-4 block" :class="{ 'text-red-500': emailError }">
-            <label class="block text-sm mb-2" for="contactEmail">Email *</label>
+            <label class="block text-md mb-2" for="contactEmail">Email *</label>
             <input
               id="contactEmail"
               v-model="contactEmail"
@@ -67,7 +67,7 @@
             />
           </div>
           <div id="phone" class="mb-4 block">
-            <label class="block text-sm mb-2" for="contactPhone">Phone</label>
+            <label class="block text-md mb-2" for="contactPhone">Phone</label>
             <input
               id="contactPhone"
               v-model="contactPhone"
@@ -88,11 +88,11 @@
             />
           </div>
           <div id="services" class="text-white mb-4 block">
-            <label class="block text-sm mb-2" for="services-dropdown"
+            <label class="block text-md mb-2" for="services-dropdown"
               >Services</label
             >
             <div
-              class="service-dropdown py-2 px-3 font-gothamBook"
+              class="service-dropdown py-2 px-3 font-gothamBook bg-black"
               id="services-dropdown"
               v-on:click="toggleDropdown"
             >
@@ -230,7 +230,7 @@
             </div>
           </div>
           <div id="message" class="mb-4 block">
-            <label class="block text-sm mb-2" for="contactMessage"
+            <label class="block text-md mb-2" for="contactMessage"
               >Message</label
             >
             <textarea
@@ -441,18 +441,6 @@ h1 {
   background-repeat: no-repeat;
 }
 
-@media screen and (min-width: 800px) {
-  .container {
-    transform: rotate(90deg);
-    position: absolute;
-    top: 460em;
-    right: -12em;
-  }
-  .two-column-container {
-    flex-direction: row;
-  }
-}
-
 #errorContainer {
   margin-bottom: 1rem;
   padding: 1rem;
@@ -539,5 +527,42 @@ input[type='checkbox']:checked::after {
 
 #contact-title {
   text-transform: uppercase;
+}
+
+@media screen and (min-width: 800px) {
+  .container {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 460em;
+    right: -12em;
+  }
+  .two-column-container {
+    flex-direction: row;
+  }
+
+  #services {
+    position: relative;
+  }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 1);
+
+    /* box-shadow: 0 0 1px rgba(255, 255, 255, 1); */
+  }
+
+  #services-container {
+    width: 100%;
+    overflow-y: scroll;
+    max-height: 300px;
+    position: absolute;
+    top: 4.7rem;
+    left: 0;
+  }
 }
 </style>

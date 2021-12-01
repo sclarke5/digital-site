@@ -56,7 +56,7 @@
         <p v-else class="px-4 py-2 text-white bg-red-700 text-center rounded">This content loads on save. <strong>Save the entry & reload.</strong></p>
       </li>
     </ul> -->
-      <Contact />
+    <Contact />
   </div>
 </template>
 
@@ -98,6 +98,7 @@ export default {
 .lines-background-case-studies {
   background-image: url('../assets/grid.png');
   background-size: contain;
+  background-repeat: repeat;
   margin-top: 1em;
   margin-bottom: 5em;
 }

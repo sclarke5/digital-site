@@ -2,7 +2,7 @@
   <div class="flex grid-container md:absolute">
     <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
       <div class="text-container">
-        <h3 class="text-white">{{ title }}</h3>
+        <h1 class="text-white">{{ title }}</h1>
         <div class="paragraph-container md:flex">
           <p class="text-white pt-8 md:w-1/2">{{ blurb }}</p>
           <p class="text-white underline pt-8 md:w-1/2 md:pl-16">
@@ -45,9 +45,9 @@
         </li>
       </ul>
     </div>
-    <div class="flex flex-col grid-right lines-background">
-      <h2 class="our-work-heading text-white px-6 mt-6">OUR SERVICES</h2>
-      <ul v-editable="blok" class="services-list flex mb-6">
+    <div class="flex flex-col grid-right">
+      <ul v-editable="blok" class="services-list flex mb-6 lines-background">
+        <h2 class="our-work-heading text-white px-6 mt-6">OUR SERVICES</h2>
         <li
           :key="blok._uid"
           v-for="blok in blok.columns"
