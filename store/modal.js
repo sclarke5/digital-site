@@ -17,6 +17,11 @@ export const mutations = {
   RESET(state) {
     Object.assign(state, getDefaultState())
   },
+  SYNCNEXT(state, payload){
+    state.content = payload.target
+    state.list = payload.list
+    state.show = !state.show
+  }
 }
 
 export const actions = {
@@ -31,4 +36,11 @@ export const actions = {
       context.commit('SYNC', payload)
     }
   },
+  next(context, payload){
+    context.commit('TOGGLE')
+    
+    if(payload){
+      context.commit('SYNCNEXT', payload)
+    }
+  }
 }

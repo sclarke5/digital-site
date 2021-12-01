@@ -4,7 +4,7 @@
       x
     </button>
     <div class="modal-overlay bg-black flex">
-      <div class="modal flex flex-col p-8 bg-black overflow-auto w-screen">
+      <div class="modal flex flex-col p-20 bg-black overflow-auto w-screen">
         <div class="title-container flex flex-col py-9">
           <h1 class="pt-2 text-white text-5xl text-left uppercase">
             {{ content.name }}
@@ -172,8 +172,8 @@
               - {{ content.testimonial_author }}
             </p>
             <div class="flex cta items-center justify-around">
-              <a :href="ctaURL" target="_blank" class="flex">
-                <p class="uppercase" :href="ctaURL">Go to Site</p>
+              <a href="" target="_blank" class="flex">
+                <p class="uppercase" href="">Go to Site</p>
                 <img src="~/assets/arrow-right.png" />
               </a>
             </div>
@@ -188,7 +188,7 @@
             <li
               v-for="caseStudy in seeMoreWork"
               :key="caseStudy._uid"
-              class="list-item flex flex-column px-6 w-1/3"
+              class="list-item flex flex-column px-6 w-1/3 relative"
             >
               <img
                 class="see-more-image"
@@ -202,6 +202,7 @@
                 {{ caseStudy.content.client }}
               </p>
               <div
+                :id="caseStudy.content._uid"
                 class="
                   mt-4
                   flex
@@ -210,10 +211,10 @@
                   justify-around
                   case-study-link
                 "
-                @click="scrollToCaseStudy"
+                @click="goToCaseStudy(caseStudy, list)"
               >
                 <div class="flex button-container">
-                  <p :id="caseStudy.content._uid" class="uppercase">
+                  <p class="uppercase">
                     View Case Study
                   </p>
                   <img src="~/assets/arrow-right.png" />
@@ -267,11 +268,26 @@ export default {
     toggleModal() {
       this.$store.dispatch('modal/toggle')
     },
+    goToCaseStudy(caseStudy, list) {
+      const target = caseStudy.content
+      this.$store.dispatch('modal/next', { target, list })
+    }
   },
+
 }
 </script>
 
 <style scoped>
+.title-container h1 {
+  font-size: 4em;
+  width: 60%;
+}
+
+.check {
+  height: 50%;
+  object-fit: cover;
+}
+
 .body-container p {
   margin-top: 0.5em;
   text-align: left;
@@ -334,6 +350,15 @@ export default {
     height: 12em;
     width: -webkit-fill-available;
     object-fit: cover;
+  }
+
+  .list-item {
+    min-height: 24em;
+  }
+
+  .case-study-link {
+    position: absolute;
+    bottom: 0;
   }
 
   .close {
