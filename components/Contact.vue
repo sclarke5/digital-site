@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="contactContainer"> -->
   <!-- <div id="response">Hello world</div> -->
-  <div class="container mt-40">
+  <div class="top-container mt-40">
     <div class="two-column-container flex flex-col gap-4 text-white">
       <div class="col-span-1 px-6">
         <h1 class="text-5xl" id="contact-title">GET IN TOUCH</h1>
@@ -442,23 +442,29 @@ h1 {
 }
 
 @media screen and (min-width: 800px) and (max-height: 800px){
-  .container {
+  .top-container {
     transform: rotate(90deg);
     position: absolute;
     top: 560em;
     right: -12em;
   }
+  .two-column-container {
+    margin-right: 10em;
+    min-width: max-content;
+  }
 }
 
 @media screen and (min-width: 800px) and (min-height: 801px) {
-  .container {
+  .top-container {
     transform: rotate(90deg);
     position: absolute;
-    top: 460em;
-    right: -12em;
+    top: 430em;
+    right: -6em;
   }
   .two-column-container {
     flex-direction: row;
+    margin-right: 10em;
+
   }
 }
 
