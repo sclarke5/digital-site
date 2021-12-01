@@ -153,7 +153,7 @@ li {
     margin-bottom: 250vh;
     max-width: 1971px;
     flex-direction: row;
-    right: -34em;
+    right: -36em;
   }
 
   .grid-container h1 {
@@ -168,6 +168,7 @@ li {
   .grid-right ul {
     min-width: 200%;
     flex-direction: row;
+    margin-top: -14em;
   }
 
   .our-work-heading {
@@ -194,7 +195,7 @@ li {
     margin-bottom: 250vh;
     max-width: 1971px;
     flex-direction: row;
-    right: -30em;
+    right: -32em;
   }
 
   .grid-container h1 {

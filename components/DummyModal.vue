@@ -174,7 +174,6 @@
             <div class="flex cta items-center justify-around">
               <a href="" target="_blank" class="flex">
                 <p class="uppercase" href="">Go to Site</p>
-                <img src="~/assets/arrow-right.png" />
               </a>
             </div>
           </div>
@@ -217,7 +216,6 @@
                   <p class="uppercase">
                     View Case Study
                   </p>
-                  <img src="~/assets/arrow-right.png" />
                 </div>
               </div>
             </li>
@@ -271,6 +269,7 @@ export default {
     goToCaseStudy(caseStudy, list) {
       const target = caseStudy.content
       this.$store.dispatch('modal/next', { target, list })
+      document.querySelector('.modal').scrollTop = 0
     }
   },
 
@@ -369,6 +368,7 @@ export default {
     position: fixed;
     right: 0.5em;
     font-size: 8em;
+    text-shadow: 2px 2px 12px black;
   }
 
   video {
