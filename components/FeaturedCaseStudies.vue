@@ -123,6 +123,47 @@ export default {
     transform: rotate(90deg);
     position: absolute;
     top: 60em;
+    right: 0.4em;
+  }
+
+  .lines {
+    margin-left: -12em;
+    width: 100%;
+  }
+
+  .icons-container {
+    transform: rotate(90deg);
+    display: grid;
+    grid-template-columns: 30em 30em;
+    grid-gap: 2rem;
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 25em;
+    width: fit-content;
+    position: absolute;
+    top: 200em;
+    right: -15em;
+  }
+  .case-studies-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 180em;
+    margin-bottom: 50em;
+    transform: rotate(90deg);
+    position: absolute;
+    top: 200em;
+    right: -105em;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5){
+  .case-studies-sub {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 60em;
     right: -1.2em;
   }
 
@@ -158,8 +199,6 @@ export default {
     width: max-content;
   }
 }
-
-
 
 @media screen and (min-width: 800px) and (min-height: 801px) {
   .case-studies-sub {

@@ -446,6 +446,24 @@ h1 {
     transform: rotate(90deg);
     position: absolute;
     top: 560em;
+    right: 1em;
+  }
+  .two-column-container {
+    margin-right: 10em;
+    min-width: max-content;
+  }
+  #astoundContactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5){
+  .top-container {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 560em;
     right: -5em;
   }
   .two-column-container {
