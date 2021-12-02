@@ -1,5 +1,8 @@
 <template>
-  <div class="flex grid-container md:absolute">
+  <div id="aboutUs-marker" class="flex grid-container md:absolute">
+    <div class="sticky-nav">
+      <h2>About Us</h2>
+    </div>
     <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
       <div class="text-container">
         <h1 class="text-white">{{ title }}</h1>

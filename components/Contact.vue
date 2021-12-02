@@ -2,6 +2,9 @@
   <!-- <div class="contactContainer"> -->
   <!-- <div id="response">Hello world</div> -->
   <div class="container mt-40">
+    <div class="sticky-nav">
+      <h2>Contact</h2>
+    </div>
     <div class="two-column-container flex flex-col gap-4 text-white">
       <div class="col-span-1 px-6">
         <h1 class="text-5xl" id="contact-title">GET IN <br />TOUCH</h1>

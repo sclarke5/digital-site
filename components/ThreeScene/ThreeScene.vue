@@ -632,6 +632,8 @@ export default {
 
       if (this.isElementInViewport(document.getElementById('spacer'))) {
         this.container.style.opacity = 1
+        this.serviceText.style.opacity = 1
+        this.scrollText.style.opacity = 1
 
         new TWEEN.Tween(this.camera.position)
           .to(this.initialCameraPos, 500)
@@ -692,23 +694,18 @@ export default {
       ) {
         if (window.innerWidth >= 800) {
           this.startContact()
+          this.serviceText.style.opacity = 0
+          this.scrollText.style.opacity = 0
         }
         this.container.style.opacity = 0
       } else if (
         this.isElementInViewport(document.getElementById('contactContainer'))
       ) {
-        console.log('contact')
-
         this.container.style.opacity = 1
 
         if (currentStage !== 'contact') {
           this.startMovement(4)
           currentStage = 'contact'
-        }
-
-        if (window.innerWidth >= 800) {
-          this.serviceText.style.opacity = 0
-          this.scrollText.style.opacity = 0
         }
 
         if (window.innerWidth < 800) {
@@ -722,8 +719,6 @@ export default {
         }
       } else if (window.innerWidth >= 800) {
         this.container.style.opacity = 0
-        this.serviceText.style.opacity = 1
-        this.scrollText.style.opacity = 1
       }
     },
     getRandomNumber(min, max) {

@@ -1,19 +1,8 @@
 <template>
   <header
-    class="
-      header
-      h-24
-      fixed
-      z-50
-      w-screen
-      flex
-      bg-black
-      md:bg-opacity-0
-      justify-between
-      -top-0
-    "
+    class="header w-screen flex bg-black md:bg-opacity-0 justify-between -top-0"
   >
-    <div class="header-left">
+    <div class="header-left h-24">
       <a href="/"
         ><img
           class="company-logo h-full min-w-max"
@@ -21,7 +10,7 @@
           alt="ASTOUND Group"
       /></a>
     </div>
-    <div class="header-right flex">
+    <div class="header-right flex h-24">
       <nav class="navbar flex justify-between items-center">
         <ul
           class="
@@ -98,6 +87,25 @@ export default {
 }
 .hamburger.active .bar:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
+}
+
+.header-right {
+  z-index: 1001;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: black;
+  width: 50%;
+  text-align: right;
+}
+
+.header-left {
+  width: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  background-color: black;
 }
 
 @media screen and (min-width: 800px) {
