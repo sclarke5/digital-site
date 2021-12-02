@@ -47,4 +47,18 @@ img {
   height: 400px;
   object-fit: contain;
 }
+
+@media screen and (min-width: 800px) and (max-height: 801px){
+  .learn-more {
+    position: absolute;
+    bottom: -3em;
+  }
+}
+
+@media screen and (min-width: 800px) and (min-height: 801px){
+  .learn-more {
+    position: absolute;
+    bottom: -3em;
+  }
+}
 </style>

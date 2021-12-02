@@ -1,7 +1,5 @@
 <template>
-  <header
-    class="header w-screen flex bg-black md:bg-opacity-0 justify-between -top-0"
-  >
+  <header class="header w-screen flex md:bg-opacity-0 justify-between -top-0">
     <div class="header-left h-24">
       <a href="/"
         ><img
@@ -27,29 +25,59 @@
             text-white
           "
         >
-          <li class="nav-item my-6" @click="toggleNav">
-            <nuxt-link to="/"> Home </nuxt-link>
+          <li class="nav-item my-6" @click="homeScroll">
+            Home
+            <!-- <nuxt-link to="/"> Home </nuxt-link> -->
           </li>
-          <li class="nav-item my-6" @click="toggleNav">
-            <nuxt-link to="/about-us">About Us</nuxt-link>
+          <li class="nav-item my-6" @click="aboutScroll">
+            <!-- <nuxt-link to="/about-us">About Us</nuxt-link> -->
+            About Us
           </li>
-          <li class="nav-item my-6" @click="toggleNav">
-            <nuxt-link to="/articles"> Blog </nuxt-link>
+          <li class="nav-item my-6" @click="workScroll">
+            <!-- <nuxt-link to="/case-studies">Case Studies</nuxt-link> -->
+            Case Studies
           </li>
-
-          <li class="nav-item my-6" @click="toggleNav">
-            <nuxt-link to="/case-studies">Case Studies</nuxt-link>
+          <li class="nav-item my-6" @click="contactScroll">
+            <!-- <nuxt-link to="/case-studies">Contact Us</nuxt-link> -->
+            Contact Us
           </li>
         </ul>
         <div class="hamburger block cursor-pointer mr-4" @click="toggleNav">
           <span
-            class="bar block w-8 h-1 m-1.5 transition-all duration-300 bg-white"
+            class="
+              bar
+              block
+              w-8
+              h-0.5
+              m-1.5
+              transition-all
+              duration-300
+              bg-white
+            "
           ></span>
           <span
-            class="bar block w-8 h-1 m-1.5 transition-all duration-300 bg-white"
+            class="
+              bar
+              block
+              w-8
+              h-0.5
+              m-1.5
+              transition-all
+              duration-300
+              bg-white
+            "
           ></span>
           <span
-            class="bar block w-8 h-1 m-1.5 transition-all duration-300 bg-white"
+            class="
+              bar
+              block
+              w-8
+              h-0.5
+              m-1.5
+              transition-all
+              duration-300
+              bg-white
+            "
           ></span>
         </div>
       </nav>
@@ -71,6 +99,42 @@ export default {
       hamburger.classList.toggle('active')
       navMenu.classList.toggle('active')
     },
+    homeScroll() {
+      const aboutUs = document.querySelector('#three')
+
+      aboutUs.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'center',
+      })
+    },
+    aboutScroll() {
+      const aboutUs = document.querySelector('.about-container')
+
+      aboutUs.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'center',
+      })
+    },
+    workScroll() {
+      const caseStudyTeaser = document.querySelector('#case-studies')
+
+      caseStudyTeaser.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'center',
+      })
+    },
+    contactScroll() {
+      const contactDiv = document.querySelector('#contactContainer')
+
+      contactDiv.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'center',
+      })
+    },
   },
 }
 </script>
@@ -83,10 +147,10 @@ export default {
   opacity: 0;
 }
 .hamburger.active .bar:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 .hamburger.active .bar:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .header-right {
@@ -97,6 +161,10 @@ export default {
   background-color: black;
   width: 50%;
   text-align: right;
+
+  /* border-bottom: 1px solid white;
+  border-top: 1px solid white; */
+  justify-content: flex-end;
 }
 
 .header-left {
@@ -106,9 +174,17 @@ export default {
   left: 0;
   z-index: 30;
   background-color: black;
+
+  /* border-bottom: 1px solid white;
+  border-top: 1px solid white; */
 }
 
 @media screen and (min-width: 800px) {
+  .header-right,
+  .header-left {
+    border: 0;
+    background: none;
+  }
   .hamburger {
     display: none;
   }

@@ -109,12 +109,12 @@ export default {
 
 @media screen and (max-width: 799px) {
   .sticky-nav {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     display: block;
     position: -webkit-sticky;
     position: sticky;
+    background-color: black;
     top: 0;
-    color: white;
     z-index: 50;
     width: 100%;
     margin-bottom: 3rem;
@@ -126,8 +126,16 @@ export default {
   }
 
   .sticky-nav h2 {
-    background-color: black;
+    /* background-color: black; */
     width: 50%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 78, 0, 1) 0%,
+      rgba(48, 214, 217, 1) 50%
+    );
+    vertical-align: middle;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .sticky-nav > * {

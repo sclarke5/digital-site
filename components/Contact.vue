@@ -13,12 +13,14 @@
               <p>support@example.com</p> -->
       </div>
       <div id="contactContainer" class="col-span-1 max-w-screen-sm p-8 w-full">
-        <ul v-if="errors.length" id="errorContainer" class="text-red-500">
-          <p>
-            <b>There were {{ errors.length }} errors with your submission.</b>
-          </p>
-          <li v-for="error in errors" :key="error">{{ error }}</li>
-        </ul>
+        <div class="errorToast">
+          <ul v-if="errors.length" id="errorContainer" class="text-red-500">
+            <p>
+              <b>There were {{ errors.length }} errors with your submission.</b>
+            </p>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
+        </div>
         <form id="astoundContactForm" method="post" @submit="checkForm">
           <div id="fullName" class="mb-4 block">
             <label
@@ -419,6 +421,20 @@ export default {
         this.errors.push('Name required.')
         this.fNameError = true
       }
+
+      if (this.errors.length > 0) {
+        this.dismissError()
+      }
+    },
+    dismissError() {
+      document.querySelector('.errorToast').style.display = 'block'
+
+      document.querySelector('.errorToast').classList.add('display')
+
+      setTimeout(() => {
+        document.querySelector('.errorToast').classList.remove('display')
+        document.querySelector('.errorToast').style.display = 'none'
+      }, 5000)
     },
   },
 }
@@ -442,6 +458,55 @@ h1 {
     calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
   background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 800px) and (max-height: 800px) {
+  .top-container {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 560em;
+    right: 1em;
+  }
+  .two-column-container {
+    margin-right: 10em;
+    min-width: max-content;
+  }
+  #astoundContactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
+  .top-container {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 560em;
+    right: -5em;
+  }
+  .two-column-container {
+    margin-right: 10em;
+    min-width: max-content;
+  }
+  #astoundContactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+}
+
+@media screen and (min-width: 800px) and (min-height: 801px) {
+  .top-container {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 430em;
+    right: -6em;
+  }
+  .two-column-container {
+    flex-direction: row;
+    margin-right: 10em;
+  }
 }
 
 #errorContainer {
@@ -532,7 +597,32 @@ input[type='checkbox']:checked::after {
   text-transform: uppercase;
 }
 
+#dismiss {
+  display: none;
+}
+
 @media screen and (min-width: 800px) {
+  #dismiss {
+    font-size: 0.8rem;
+    color: #999;
+    margin: 0.5rem 0;
+    display: block;
+  }
+
+  .errorToast {
+    position: absolute;
+    display: none;
+    background-color: black;
+    opacity: 0;
+    transition: 1s ease;
+    width: 400px;
+    margin-left: 100px;
+  }
+
+  .errorToast.display {
+    opacity: 1;
+  }
+
   .container {
     transform: rotate(90deg);
     position: absolute;

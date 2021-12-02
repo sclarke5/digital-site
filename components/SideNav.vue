@@ -26,7 +26,64 @@
 
 <script>
 export default {
+  mounted() {
+    this.init()
+  },
   methods: {
+    init() {
+      document
+        .getElementById('scrollEl')
+        .addEventListener('wheel', this.onScrollNav, false)
+
+      document
+        .getElementById('scrollEl')
+        .addEventListener('scroll', this.onScrollNav, false)
+    },
+    onScrollNav() {
+      if (window.innerWidth >= 800) {
+        const aboutUsContainer = document.getElementById('aboutUs-marker')
+        const contactContainer = document.getElementById('contact-marker')
+        const caseStudyWrapper = document.getElementsByClassName(
+          'case-studies-wrapper'
+        )[0]
+        const caseStudyHeader =
+          document.getElementsByClassName('case-study-icons')[0]
+
+        const sideNavText = document.querySelectorAll('.ribbon-text')
+
+        if (this.isElementInViewport(aboutUsContainer)) {
+          sideNavText[0].classList.add('current')
+          sideNavText[1].classList.remove('current')
+          sideNavText[2].classList.remove('current')
+        } else if (
+          this.isElementInViewport(caseStudyWrapper) ||
+          this.isElementInViewport(caseStudyHeader)
+        ) {
+          sideNavText[1].classList.add('current')
+          sideNavText[0].classList.remove('current')
+          sideNavText[2].classList.remove('current')
+        } else if (this.isElementInViewport(contactContainer)) {
+          sideNavText[2].classList.add('current')
+          sideNavText[1].classList.remove('current')
+          sideNavText[0].classList.remove('current')
+        }
+      }
+    },
+    isElementInViewport(elem) {
+      const rect = elem.getBoundingClientRect()
+
+      // DOMRect { x: 8, y: 8, width: 100, height: 100, top: 8, right: 108, bottom: 108, left: 8 }
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight
+      const windowWidth =
+        window.innerWidth || document.documentElement.clientWidth
+
+      // http://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap
+      const vertInView = rect.top <= windowHeight && rect.top + rect.height >= 0
+      const horInView = rect.left <= windowWidth && rect.left + rect.width >= 0
+
+      return vertInView && horInView
+    },
     aboutScroll() {
       const aboutUs = document.querySelector('.about-container')
 
@@ -90,6 +147,10 @@ export default {
   cursor: pointer;
 }
 
+.ribbon:hover {
+  background: black padding-box,
+    linear-gradient(0deg, rgba(255, 78, 0, 1) 0%, rgba(48, 214, 217, 1) 100%);
+}
 .ribbon-text {
   height: 100%;
   width: 100%;
@@ -99,5 +160,27 @@ export default {
   writing-mode: vertical-lr;
   text-orientation: mixed;
   transform: rotate(180deg);
+}
+
+.ribbon-text:hover,
+.ribbon:hover .ribbon-text {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 78, 0, 1) 45%,
+    rgba(48, 214, 217, 1) 55%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.8;
+}
+
+.ribbon-text.current {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 78, 0, 1) 45%,
+    rgba(48, 214, 217, 1) 55%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>

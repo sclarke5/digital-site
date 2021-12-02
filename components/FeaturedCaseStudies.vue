@@ -127,7 +127,89 @@ export default {
   display: none;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 800px) and (max-height: 800px) {
+  .case-studies-sub {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 60em;
+    right: 0.4em;
+  }
+
+  .lines {
+    margin-left: -12em;
+    width: 100%;
+  }
+
+  .icons-container {
+    transform: rotate(90deg);
+    display: grid;
+    grid-template-columns: 30em 30em;
+    grid-gap: 2rem;
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 25em;
+    width: fit-content;
+    position: absolute;
+    top: 200em;
+    right: -5em;
+  }
+  .case-studies-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 180em;
+    margin-bottom: 50em;
+    transform: rotate(90deg);
+    position: absolute;
+    top: 200em;
+    right: -100em;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
+  .case-studies-sub {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 60em;
+    right: -1.2em;
+  }
+
+  .lines {
+    margin-left: -12em;
+    width: 100%;
+  }
+
+  .icons-container {
+    transform: rotate(90deg);
+    display: grid;
+    grid-template-columns: 30em 30em;
+    grid-gap: 2rem;
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 25em;
+    width: fit-content;
+    position: absolute;
+    top: 200em;
+    right: -10em;
+  }
+  .case-studies-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 180em;
+    margin-bottom: 50em;
+    transform: rotate(90deg);
+    position: absolute;
+    top: 200em;
+    right: -105em;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+}
+
+@media screen and (min-width: 800px) and (min-height: 801px) {
   .case-studies-sub {
     transform: rotate(90deg);
     position: absolute;
@@ -158,31 +240,9 @@ export default {
     padding: 0;
   }
 
-  .case-study-outer-container:nth-child(odd) .close {
-    /* position: absolute; */
-
-    top: -25em;
-    right: -16em;
-  }
-
-  .case-study-outer-container:nth-child(even) .close {
-    /* position: absolute; */
-
-    top: 23em;
-    right: -26em;
-  }
-
-  .case-study-outer-container:nth-child(even) .modal {
-    top: 5em;
-  }
-
-  .case-study-outer-container:nth-child(odd) .modal {
-    top: 5em;
-  }
-
-  .case-study-outer-container:nth-child(odd) .modal .close {
-    top: -17em;
-    right: -10em;
+  .case-study-outer-container {
+    /* scroll-snap-align: start; */
+    margin-right: 3em;
   }
 
   .case-studies-wrapper {
@@ -193,7 +253,7 @@ export default {
     transform: rotate(90deg);
     position: absolute;
     top: 200em;
-    right: -29em;
+    right: -33em;
     width: max-content;
   }
 
@@ -233,7 +293,8 @@ export default {
   right: 15em;
 }
 
-.case-study-outer-container {
-  /* scroll-snap-align: start; */
-}
+/* .case-study-outer-container {
+  scroll-snap-align: start;
+  margin-right: 3em;
+} */
 </style>
