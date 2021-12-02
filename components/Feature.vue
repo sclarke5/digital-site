@@ -5,9 +5,8 @@
     id="services"
   >
     <img :src="blok.icon.filename" alt="" />
-
     <h1 class="text-lg text-left uppercase">{{ blok.name }}</h1>
-    <p class="mt-8 text-white text-left">{{ blok.description }}</p>
+    <p class="my-4 text-white text-left">{{ blok.description }}</p>
     <div class="learn-more flex items-center">Learn More</div>
   </div>
 </template>

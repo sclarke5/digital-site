@@ -1,25 +1,30 @@
 <template>
   <!-- <div class="contactContainer"> -->
   <!-- <div id="response">Hello world</div> -->
-  <div class="top-container mt-40">
+  <div class="container mt-40">
+    <div class="sticky-nav">
+      <h2>Contact</h2>
+    </div>
     <div class="two-column-container flex flex-col gap-4 text-white">
       <div class="col-span-1 px-6">
-        <h1 class="text-5xl" id="contact-title">GET IN TOUCH</h1>
+        <h1 class="text-5xl" id="contact-title">GET IN <br />TOUCH</h1>
         <p id="contact-body">All fields marked with * are required.</p>
         <!-- <br>
               <p>support@example.com</p> -->
       </div>
       <div id="contactContainer" class="col-span-1 max-w-screen-sm p-8 w-full">
-        <ul v-if="errors.length" id="errorContainer" class="text-red-500">
-          <p>
-            <b>There were {{ errors.length }} errors with your submission.</b>
-          </p>
-          <li v-for="error in errors" :key="error">{{ error }}</li>
-        </ul>
+        <div class="errorToast">
+          <ul v-if="errors.length" id="errorContainer" class="text-red-500">
+            <p>
+              <b>There were {{ errors.length }} errors with your submission.</b>
+            </p>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
+        </div>
         <form id="astoundContactForm" method="post" @submit="checkForm">
           <div id="fullName" class="mb-4 block">
             <label
-              class="block text-sm mb-2"
+              class="block text-md mb-2"
               :class="{ 'text-red-500': fNameError }"
               for="contactFullName"
               >Name *</label
@@ -45,7 +50,7 @@
             />
           </div>
           <div class="mb-4 block" :class="{ 'text-red-500': emailError }">
-            <label class="block text-sm mb-2" for="contactEmail">Email *</label>
+            <label class="block text-md mb-2" for="contactEmail">Email *</label>
             <input
               id="contactEmail"
               v-model="contactEmail"
@@ -67,7 +72,7 @@
             />
           </div>
           <div id="phone" class="mb-4 block">
-            <label class="block text-sm mb-2" for="contactPhone">Phone</label>
+            <label class="block text-md mb-2" for="contactPhone">Phone</label>
             <input
               id="contactPhone"
               v-model="contactPhone"
@@ -88,11 +93,11 @@
             />
           </div>
           <div id="services" class="text-white mb-4 block">
-            <label class="block text-sm mb-2" for="services-dropdown"
+            <label class="block text-md mb-2" for="services-dropdown"
               >Services</label
             >
             <div
-              class="service-dropdown py-2 px-3 font-gothamBook"
+              class="service-dropdown py-2 px-3 font-gothamBook bg-black"
               id="services-dropdown"
               v-on:click="toggleDropdown"
             >
@@ -230,7 +235,7 @@
             </div>
           </div>
           <div id="message" class="mb-4 block">
-            <label class="block text-sm mb-2" for="contactMessage"
+            <label class="block text-md mb-2" for="contactMessage"
               >Message</label
             >
             <textarea
@@ -416,6 +421,20 @@ export default {
         this.errors.push('Name required.')
         this.fNameError = true
       }
+
+      if (this.errors.length > 0) {
+        this.dismissError()
+      }
+    },
+    dismissError() {
+      document.querySelector('.errorToast').style.display = 'block'
+
+      document.querySelector('.errorToast').classList.add('display')
+
+      setTimeout(() => {
+        document.querySelector('.errorToast').classList.remove('display')
+        document.querySelector('.errorToast').style.display = 'none'
+      }, 5000)
     },
   },
 }
@@ -441,7 +460,7 @@ h1 {
   background-repeat: no-repeat;
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px){
+@media screen and (min-width: 800px) and (max-height: 800px) {
   .top-container {
     transform: rotate(90deg);
     position: absolute;
@@ -459,7 +478,7 @@ h1 {
   }
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5){
+@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
   .top-container {
     transform: rotate(90deg);
     position: absolute;
@@ -487,7 +506,6 @@ h1 {
   .two-column-container {
     flex-direction: row;
     margin-right: 10em;
-
   }
 }
 
@@ -577,5 +595,67 @@ input[type='checkbox']:checked::after {
 
 #contact-title {
   text-transform: uppercase;
+}
+
+#dismiss {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  #dismiss {
+    font-size: 0.8rem;
+    color: #999;
+    margin: 0.5rem 0;
+    display: block;
+  }
+
+  .errorToast {
+    position: absolute;
+    display: none;
+    background-color: black;
+    opacity: 0;
+    transition: 1s ease;
+    width: 400px;
+    margin-left: 100px;
+  }
+
+  .errorToast.display {
+    opacity: 1;
+  }
+
+  .container {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 460em;
+    right: -12em;
+  }
+  .two-column-container {
+    flex-direction: row;
+  }
+
+  #services {
+    position: relative;
+  }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 1);
+
+    /* box-shadow: 0 0 1px rgba(255, 255, 255, 1); */
+  }
+
+  #services-container {
+    width: 100%;
+    overflow-y: scroll;
+    max-height: 300px;
+    position: absolute;
+    top: 4.7rem;
+    left: 0;
+  }
 }
 </style>

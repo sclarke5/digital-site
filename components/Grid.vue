@@ -1,5 +1,8 @@
 <template>
-  <div class="flex grid-container md:absolute">
+  <div id="aboutUs-marker" class="flex grid-container md:absolute">
+    <div class="sticky-nav">
+      <h2>About Us</h2>
+    </div>
     <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
       <div class="text-container">
         <h1 class="text-white">{{ title }}</h1>
@@ -45,9 +48,9 @@
         </li>
       </ul>
     </div>
-    <div class="flex flex-col grid-right lines-background">
-      <h2 class="our-work-heading text-white px-6 mt-6">OUR SERVICES</h2>
-      <ul v-editable="blok" class="services-list flex mb-6">
+    <div class="flex flex-col grid-right">
+      <ul v-editable="blok" class="services-list flex mb-6 lines-background">
+        <h2 class="our-work-heading text-white px-6 mt-6">OUR SERVICES</h2>
         <li
           :key="blok._uid"
           v-for="blok in blok.columns"
@@ -144,7 +147,7 @@ li {
   }
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px){
+@media screen and (min-width: 800px) and (max-height: 800px) {
   #process-title {
     display: none;
   }
@@ -186,7 +189,7 @@ li {
   }
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5){
+@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
   #process-title {
     display: none;
   }

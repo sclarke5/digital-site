@@ -1,7 +1,7 @@
 <template>
-  <div v-if="showModal" class="absolute text-white z-50">
-    <button @click="toggleModal" class="close-icon font-bold text-6xl z-50">
-      x
+  <div v-if="showModal" class="absolute text-white modal-wrapper">
+    <button @click="toggleModal" class="close-icon">
+      <img src="../assets/close-icon.png" alt="" />
     </button>
     <div class="modal-overlay bg-black flex">
       <div class="modal flex flex-col p-20 bg-black overflow-auto w-screen">
@@ -213,9 +213,7 @@
                 @click="goToCaseStudy(caseStudy, list)"
               >
                 <div class="flex button-container">
-                  <p class="uppercase">
-                    View Case Study
-                  </p>
+                  <p class="uppercase">View Case Study</p>
                 </div>
               </div>
             </li>
@@ -270,9 +268,8 @@ export default {
       const target = caseStudy.content
       this.$store.dispatch('modal/next', { target, list })
       document.querySelector('.modal').scrollTop = 0
-    }
+    },
   },
-
 }
 </script>
 
@@ -345,6 +342,10 @@ export default {
     height: 100vh;
   }
 
+  .modal-wrapper {
+    z-index: 1010;
+  }
+
   .see-more-image {
     height: 12em;
     width: -webkit-fill-available;
@@ -365,10 +366,17 @@ export default {
   }
 
   .close-icon {
+    width: 50px;
     position: fixed;
-    right: 0.5em;
+    top: 5rem;
+    right: 10rem;
     font-size: 8em;
     text-shadow: 2px 2px 12px black;
+    z-index: 10001;
+  }
+
+  .close-icon img {
+    object-fit: contain;
   }
 
   video {

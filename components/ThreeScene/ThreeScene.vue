@@ -1,7 +1,10 @@
 <template>
   <div>
     <div id="container">
-      <h1 id="landingText">Digital Demystified</h1>
+      <h1 id="landingText">
+        Digital <br />
+        Demystified
+      </h1>
       <div id="scrollTextContainer">
         <h2 id="tagline">
           We design for the future, obsess about the present, and unlock
@@ -629,6 +632,8 @@ export default {
 
       if (this.isElementInViewport(document.getElementById('spacer'))) {
         this.container.style.opacity = 1
+        this.serviceText.style.opacity = 1
+        this.scrollText.style.opacity = 1
 
         new TWEEN.Tween(this.camera.position)
           .to(this.initialCameraPos, 500)
@@ -689,23 +694,18 @@ export default {
       ) {
         if (window.innerWidth >= 800) {
           this.startContact()
+          this.serviceText.style.opacity = 0
+          this.scrollText.style.opacity = 0
         }
         this.container.style.opacity = 0
       } else if (
         this.isElementInViewport(document.getElementById('contactContainer'))
       ) {
-        console.log('contact')
-
         this.container.style.opacity = 1
 
         if (currentStage !== 'contact') {
           this.startMovement(4)
           currentStage = 'contact'
-        }
-
-        if (window.innerWidth >= 800) {
-          this.serviceText.style.opacity = 0
-          this.scrollText.style.opacity = 0
         }
 
         if (window.innerWidth < 800) {
@@ -719,8 +719,6 @@ export default {
         }
       } else if (window.innerWidth >= 800) {
         this.container.style.opacity = 0
-        this.serviceText.style.opacity = 1
-        this.scrollText.style.opacity = 1
       }
     },
     getRandomNumber(min, max) {
@@ -749,7 +747,7 @@ export default {
       if (arrPos > 0 && arrPos < 4) {
         this.serviceText.innerHTML = self.stage
       } else {
-        this.serviceText.innerHTML = 'Digital Demystified'
+        this.serviceText.innerHTML = 'Digital <br /> Demystified'
       }
 
       for (let i = 0; i < 3; i++) {

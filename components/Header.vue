@@ -30,7 +30,7 @@
                 px-1
                 pt-1
                 border-b-2
-                text-sm
+                text-md
                 font-medium
               "
             >
@@ -95,7 +95,7 @@
                   focus:ring-1
                   focus:ring-indigo-500
                   focus:border-indigo-500
-                  sm:text-sm
+                  sm:text-md
                 "
                 placeholder="Search"
                 type="search"

@@ -3,6 +3,7 @@
     <div id="spacer"></div>
     <div v-editable="blok" class="mt-28">
       <component
+        class="component-block"
         v-for="blok in blok.body"
         :key="blok._uid"
         :is="blok.component"

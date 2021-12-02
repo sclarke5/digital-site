@@ -1,46 +1,54 @@
 <template>
-  <div v-editable="blok" class="mt-20 relative" id="case-studies">
-    <h1 class="text-white text-5xl case-studies-sub">
-      Case <br />
-      Studies
-    </h1>
-    <div class="icons-container lines-background-case-studies">
-      <div class="flex items-center justify-center icon-item">
-        <img class="icon" src="../assets/Nike.png" alt="nike" />
+  <div v-editable="blok" class="mt-20 relative">
+    <div>
+      <div class="sticky-nav">
+        <h2>Case Studies</h2>
+        <span></span>
       </div>
-      <div class="flex items-center justify-center icon-item">
-        <img class="icon" src="../assets/PWC.png" alt="nike" />
-      </div>
-      <div class="flex items-center justify-center icon-item">
-        <img class="icon" src="../assets/Volkswagen.png" alt="nike" />
-      </div>
-      <div class="flex items-center justify-center icon-item">
-        <img class="icon" src="../assets/Jordan.png" alt="nike" />
-      </div>
-      <div class="flex items-center justify-center icon-item">
-        <img class="icon" src="../assets/Shure.png" alt="nike" />
-      </div>
-      <div class="flex items-center justify-center icon-item">
-        <img class="icon" src="../assets/HBO.png" alt="nike" />
-      </div>
-    </div>
-
-    <div class="case-studies-wrapper">
+      <h1 class="text-white text-5xl case-studies-sub" id="case-studies">
+        Case <br />
+        Studies
+      </h1>
       <div
-        v-for="caseStudy in sortedCaseStudies"
-        :key="caseStudy._uid"
-        class="flex h-full case-study-outer-container"
+        class="icons-container lines-background-case-studies case-study-icons"
       >
-        <case-study-teaser
-          v-if="caseStudy.content"
-          :case-study-link="caseStudy.full_slug"
-          :case-study-content="caseStudy.content"
-          :case-studies-list="sortedCaseStudies"
-        />
+        <div class="flex items-center justify-center icon-item">
+          <img class="icon" src="../assets/Nike.png" alt="nike" />
+        </div>
+        <div class="flex items-center justify-center icon-item">
+          <img class="icon" src="../assets/PWC.png" alt="nike" />
+        </div>
+        <div class="flex items-center justify-center icon-item">
+          <img class="icon" src="../assets/Volkswagen.png" alt="nike" />
+        </div>
+        <div class="flex items-center justify-center icon-item">
+          <img class="icon" src="../assets/Jordan.png" alt="nike" />
+        </div>
+        <div class="flex items-center justify-center icon-item">
+          <img class="icon" src="../assets/Shure.png" alt="nike" />
+        </div>
+        <div class="flex items-center justify-center icon-item">
+          <img class="icon" src="../assets/HBO.png" alt="nike" />
+        </div>
       </div>
-      <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
+
+      <div class="case-studies-wrapper">
+        <div
+          v-for="caseStudy in sortedCaseStudies"
+          :key="caseStudy._uid"
+          class="flex h-full case-study-outer-container"
+        >
+          <case-study-teaser
+            v-if="caseStudy.content"
+            :case-study-link="caseStudy.full_slug"
+            :case-study-content="caseStudy.content"
+            :case-studies-list="sortedCaseStudies"
+          />
+        </div>
+        <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
       <img id="square" class="bg-shape" src="../assets/square.png" />
       <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
+      </div>
     </div>
     <!-- <ul class="flex flex-col case-studies-list">
       <li
@@ -56,7 +64,7 @@
         <p v-else class="px-4 py-2 text-white bg-red-700 text-center rounded">This content loads on save. <strong>Save the entry & reload.</strong></p>
       </li>
     </ul> -->
-      <Contact />
+    <Contact id="contact-marker" />
   </div>
 </template>
 
@@ -98,6 +106,7 @@ export default {
 .lines-background-case-studies {
   background-image: url('../assets/grid.png');
   background-size: contain;
+  background-repeat: repeat;
   margin-top: 1em;
   margin-bottom: 5em;
 }
@@ -118,7 +127,7 @@ export default {
   display: none;
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px){
+@media screen and (min-width: 800px) and (max-height: 800px) {
   .case-studies-sub {
     transform: rotate(90deg);
     position: absolute;
@@ -159,7 +168,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5){
+@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
   .case-studies-sub {
     transform: rotate(90deg);
     position: absolute;
@@ -288,6 +297,4 @@ export default {
   scroll-snap-align: start;
   margin-right: 3em;
 } */
-
-
 </style>
