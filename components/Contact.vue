@@ -446,11 +446,16 @@ h1 {
     transform: rotate(90deg);
     position: absolute;
     top: 560em;
-    right: -12em;
+    right: -5em;
   }
   .two-column-container {
     margin-right: 10em;
     min-width: max-content;
+  }
+  #astoundContactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
   }
 }
 
