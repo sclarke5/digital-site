@@ -142,7 +142,7 @@ export default {
     width: fit-content;
     position: absolute;
     top: 200em;
-    right: -15em;
+    right: -5em;
   }
   .case-studies-wrapper {
     display: grid;
@@ -152,7 +152,7 @@ export default {
     transform: rotate(90deg);
     position: absolute;
     top: 200em;
-    right: -105em;
+    right: -100em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
