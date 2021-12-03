@@ -289,6 +289,12 @@ export default {
   text-align: left;
 }
 
+.modal-overlay {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
 .services-container ul {
   margin: 20px 0;
 }
@@ -296,6 +302,11 @@ export default {
 .third-image {
   margin-left: -20em;
   margin-top: -10em;
+}
+
+.results-container {
+  margin-right: -5rem;
+  margin-left: -5rem;
 }
 
 .results-column {
@@ -340,6 +351,9 @@ export default {
 @media screen and (min-width: 800px) {
   .modal {
     height: 100vh;
+    padding-bottom: 0;
+
+    /* max-width: 80em; */
   }
 
   .modal-wrapper {
@@ -383,4 +397,31 @@ export default {
     border: 2px solid white;
   }
 }
+  @media screen and (min-width: 1400px) {
+    .modal {
+      padding: 15rem;
+      padding-top: 5rem;
+      padding-bottom: 0;
+    }
+    .results-container {
+      margin-left: -15rem;
+      margin-right: -15rem;
+      padding-right: 12rem;
+      padding-left: 12rem;
+    }
+  }
+
+    @media screen and (min-width: 1900px) {
+    .modal {
+      padding: 25rem;
+      padding-top: 5rem;
+      padding-bottom: 0;
+    }
+    .results-container {
+      margin-left: -25rem;
+      margin-right: -25rem;
+      padding-right: 12rem;
+      padding-left: 12rem;
+    }
+  }
 </style>

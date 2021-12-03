@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="contactContainer"> -->
   <!-- <div id="response">Hello world</div> -->
-  <div class="container mt-40">
+  <div class="top-container mt-40">
     <div class="sticky-nav">
       <h2>Contact</h2>
     </div>
@@ -465,7 +465,8 @@ h1 {
     transform: rotate(90deg);
     position: absolute;
     top: 560em;
-    right: 1em;
+    right: -14em;
+    width: min-content;
   }
   .two-column-container {
     margin-right: 10em;
@@ -483,7 +484,7 @@ h1 {
     transform: rotate(90deg);
     position: absolute;
     top: 560em;
-    right: -5em;
+    right: -16em;
   }
   .two-column-container {
     margin-right: 10em;
@@ -500,8 +501,9 @@ h1 {
   .top-container {
     transform: rotate(90deg);
     position: absolute;
-    top: 430em;
-    right: -6em;
+    top: 610em;
+    right: -7em;
+    width: 80em;
   }
   .two-column-container {
     flex-direction: row;
@@ -623,12 +625,6 @@ input[type='checkbox']:checked::after {
     opacity: 1;
   }
 
-  .container {
-    transform: rotate(90deg);
-    position: absolute;
-    top: 460em;
-    right: -12em;
-  }
   .two-column-container {
     flex-direction: row;
   }

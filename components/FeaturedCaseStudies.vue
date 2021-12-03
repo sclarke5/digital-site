@@ -242,18 +242,18 @@ export default {
 
   .case-study-outer-container {
     /* scroll-snap-align: start; */
-    margin-right: 3em;
+    margin-right: 15em;
   }
 
   .case-studies-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 120em;
     margin-bottom: 50em;
     transform: rotate(90deg);
     position: absolute;
-    top: 200em;
-    right: -33em;
+    top: 310em;
+    right: -131.4em;
     width: max-content;
   }
 
