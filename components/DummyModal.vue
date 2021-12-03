@@ -1,17 +1,24 @@
 <template>
   <div v-if="showModal" class="absolute text-white modal-wrapper">
-    <button @click="toggleModal" class="close-icon">
+    <!-- <button @click="toggleModal" class="close-icon">
       <img src="../assets/close-icon.png" alt="" />
-    </button>
+    </button> -->
     <div class="modal-overlay bg-black flex">
-      <div class="modal flex flex-col p-20 bg-black overflow-auto w-screen">
+      <div class="modal flex flex-col px-20 bg-black overflow-auto w-screen">
         <div class="title-container flex flex-col py-9">
-          <h1 class="pt-2 text-white text-5xl text-left uppercase">
-            {{ content.name }}
-          </h1>
-          <p class="pt-2 text-white text-xl text-left">
-            {{ content.tagline }}
-          </p>
+          <div class="header-left">
+            <h1 class="pt-2 text-white text-5xl text-left uppercase">
+              {{ content.name }}
+            </h1>
+            <p class="pt-2 text-white text-xl text-left">
+              {{ content.tagline }}
+            </p>
+          </div>
+          <div class="header-right">
+            <button @click="toggleModal" class="close-icon">
+              <img src="../assets/close-icon.png" alt="" />
+            </button>
+          </div>
         </div>
 
         <img
@@ -171,11 +178,11 @@
             >
               - {{ content.testimonial_author }}
             </p>
-            <div class="flex cta items-center justify-around">
+            <!-- <div class="flex cta items-center justify-around">
               <a href="" target="_blank" class="flex">
                 <p class="uppercase" href="">Go to Site</p>
               </a>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -274,14 +281,32 @@ export default {
 </script>
 
 <style scoped>
+.title-container {
+  flex-direction: row;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  position: fixed;
+  background-color: black;
+  width: 100%;
+  margin-left: -5em;
+  padding-left: 5em;
+  z-index: 1;
+  align-items: center;
+  justify-content: space-between;
+}
 .title-container h1 {
   font-size: 4em;
   width: 60%;
 }
 
+.header-right {
+  margin-right: 1em;
+}
+
 .check {
   height: 50%;
   object-fit: cover;
+  margin-top: 20em;
 }
 
 .body-container p {
@@ -377,11 +402,11 @@ export default {
 
   .close {
     align-self: flex-end;
+    
   }
 
   .close-icon {
     width: 50px;
-    position: fixed;
     top: 5rem;
     right: 10rem;
     font-size: 8em;
@@ -399,8 +424,9 @@ export default {
 }
   @media screen and (min-width: 1400px) {
     .modal {
-      padding: 15rem;
-      padding-top: 5rem;
+      padding-left: 15rem;
+      padding-right: 15rem;
+      padding-top: 0;
       padding-bottom: 0;
     }
     .results-container {
@@ -409,12 +435,19 @@ export default {
       padding-right: 12rem;
       padding-left: 12rem;
     }
+    .title-container {
+      margin-left: -15rem;
+      padding-left: 15rem;
+    }
+    .header-right {
+      margin-right: 5em;
+    }
   }
 
     @media screen and (min-width: 1900px) {
     .modal {
       padding: 25rem;
-      padding-top: 5rem;
+      padding-top: 0;
       padding-bottom: 0;
     }
     .results-container {
@@ -422,6 +455,10 @@ export default {
       margin-right: -25rem;
       padding-right: 12rem;
       padding-left: 12rem;
+    }
+    .title-container {
+      margin-left: -25rem;
+      padding-left: 25rem;
     }
   }
 </style>
