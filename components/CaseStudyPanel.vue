@@ -55,7 +55,7 @@
         {{ caseStudyContent.result_2 }}
       </p>
     </div>
-    <div class="flex flex-col bg-black pt-12">
+    <div v-if="caseStudyContent.testimonial" class="flex flex-col bg-black pt-12">
       <p class="testimonial text-white">"{{ caseStudyContent.testimonial }}"</p>
       <p class="testimonial-author text-white pt-4">
         {{ caseStudyContent.testimonial_author }}
