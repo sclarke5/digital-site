@@ -20,7 +20,8 @@
           class="view-case-study flex items-center"
           @click="openModal(caseStudyContent, caseStudiesList)"
         >
-          <p class="uppercase">View case study</p>
+          <p v-if="showPanel" class="uppercase">Close Panel</p>
+          <p v-else class="uppercase">View case study</p>
         </div>
       </div>
       <case-study-panel
