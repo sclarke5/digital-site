@@ -128,14 +128,7 @@ export default {
   .sticky-nav h2 {
     /* background-color: black; */
     width: 50%;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 78, 0, 1) 0%,
-      rgba(48, 214, 217, 1) 50%
-    );
-    vertical-align: middle;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
   }
 
   .sticky-nav > * {

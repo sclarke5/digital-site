@@ -418,12 +418,16 @@ export default {
 
           if (this.mobileSwipes < 3) {
             this.mobileSwipes++
+          } else if (this.mobileSwipes === 3) {
+            this.mobileSwipes = 0
           }
         } else {
           /* left swipe */
           console.log('left')
           if (this.mobileSwipes > 0) {
             this.mobileSwipes--
+          } else if (this.mobileSwipes === 0) {
+            this.mobileSwipes = 3
           }
         }
       } else {

@@ -2,12 +2,12 @@
   <div v-editable="blok" class="mt-20 relative">
     <div>
       <div class="sticky-nav">
-        <h2>Case Studies</h2>
+        <h2>Our Work</h2>
         <span></span>
       </div>
       <h1 class="text-white text-5xl case-studies-sub" id="case-studies">
-        Case <br />
-        Studies
+        Our <br />
+        Work
       </h1>
       <div
         class="icons-container lines-background-case-studies case-study-icons"
