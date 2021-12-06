@@ -303,7 +303,7 @@ export default {
 }
 .title-container h1 {
   font-size: 4em;
-  width: 60%;
+  width: 80%;
 }
 
 .header-right {
@@ -431,6 +431,8 @@ export default {
 
   video {
     border: 2px solid white;
+    width: 100%;
+    height: 20%;
   }
 }
   @media screen and (min-width: 1400px) {
