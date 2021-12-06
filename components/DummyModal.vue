@@ -267,6 +267,13 @@ export default {
       return selectedCaseStudies
     },
   },
+  mounted(){
+    document.body.addEventListener('keydown', e => {
+      if(e.key === 'Escape'){
+        this.toggleModal()
+      }
+    })
+  },
   methods: {
     toggleModal() {
       this.$store.dispatch('modal/toggle')
