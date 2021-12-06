@@ -35,7 +35,7 @@
           </li>
           <li class="nav-item my-6" @click="workScroll">
             <!-- <nuxt-link to="/case-studies">Case Studies</nuxt-link> -->
-            Case Studies
+            Our Work
           </li>
           <li class="nav-item my-6" @click="contactScroll">
             <!-- <nuxt-link to="/case-studies">Contact Us</nuxt-link> -->
