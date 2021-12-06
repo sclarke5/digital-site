@@ -242,7 +242,7 @@ export default {
 
   .case-study-outer-container {
     /* scroll-snap-align: start; */
-    margin-right: 15em;
+    margin-right: 5em;
   }
 
   .case-studies-wrapper {
@@ -253,7 +253,7 @@ export default {
     transform: rotate(90deg);
     position: absolute;
     top: 310em;
-    right: -131.4em;
+    right: -100.5em;
     width: max-content;
   }
 
