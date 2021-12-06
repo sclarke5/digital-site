@@ -267,6 +267,13 @@ export default {
       return selectedCaseStudies
     },
   },
+  mounted(){
+    document.body.addEventListener('keydown', e => {
+      if(e.key === 'Escape'){
+        this.toggleModal()
+      }
+    })
+  },
   methods: {
     toggleModal() {
       this.$store.dispatch('modal/toggle')
@@ -402,7 +409,6 @@ export default {
 
   .close {
     align-self: flex-end;
-    
   }
 
   .close-icon {
@@ -412,6 +418,11 @@ export default {
     font-size: 8em;
     text-shadow: 2px 2px 12px black;
     z-index: 10001;
+    transition: opacity 0.2s;
+  }
+
+  .close-icon:hover {
+    opacity: 0.3;
   }
 
   .close-icon img {
