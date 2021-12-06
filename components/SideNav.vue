@@ -55,6 +55,11 @@ export default {
           sideNavText[0].classList.add('current')
           sideNavText[1].classList.remove('current')
           sideNavText[2].classList.remove('current')
+        } else if (this.isElementInViewport(contactContainer)) {
+          sideNavText[2].classList.add('current')
+          sideNavText[1].classList.remove('current')
+          sideNavText[0].classList.remove('current')
+          console.log('in contact')
         } else if (
           this.isElementInViewport(caseStudyWrapper) ||
           this.isElementInViewport(caseStudyHeader)
@@ -62,10 +67,6 @@ export default {
           sideNavText[1].classList.add('current')
           sideNavText[0].classList.remove('current')
           sideNavText[2].classList.remove('current')
-        } else if (this.isElementInViewport(contactContainer)) {
-          sideNavText[2].classList.add('current')
-          sideNavText[1].classList.remove('current')
-          sideNavText[0].classList.remove('current')
         }
       }
     },

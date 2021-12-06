@@ -94,12 +94,11 @@
           </div>
           <div id="services" class="text-white mb-4 block">
             <label class="block text-md mb-2" for="services-dropdown"
-              >Services</label
+              >What can we help you with?</label
             >
             <div
               class="service-dropdown py-2 px-3 font-gothamBook bg-black"
               id="services-dropdown"
-              v-on:click="toggleDropdown"
             >
               Please Select
             </div>
@@ -315,6 +314,28 @@ export default {
           checked.length > 0 ? `${checked.length} selected` : 'Please Select'
       })
     }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.shown) {
+        this.toggleDropdown()
+      }
+    })
+
+    document.getElementById('contact-marker').addEventListener(
+      'click',
+      (e) => {
+        const inside = document
+          .getElementById('services-container')
+          .contains(e.target)
+
+        if (document.getElementById('services-dropdown').contains(e.target)) {
+          this.toggleDropdown()
+        } else if (!inside && this.shown) {
+          this.toggleDropdown()
+        }
+      },
+      false
+    )
   },
   methods: {
     toggleDropdown() {
