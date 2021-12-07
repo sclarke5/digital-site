@@ -522,7 +522,7 @@ h1 {
   .top-container {
     transform: rotate(90deg);
     position: absolute;
-    top: 610em;
+    top: 620em;
     right: -7em;
     width: 80em;
   }

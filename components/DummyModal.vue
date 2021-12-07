@@ -267,6 +267,13 @@ export default {
       return selectedCaseStudies
     },
   },
+  mounted(){
+    document.body.addEventListener('keydown', e => {
+      if(e.key === 'Escape'){
+        this.toggleModal()
+      }
+    })
+  },
   methods: {
     toggleModal() {
       this.$store.dispatch('modal/toggle')
@@ -296,7 +303,7 @@ export default {
 }
 .title-container h1 {
   font-size: 4em;
-  width: 60%;
+  width: 80%;
 }
 
 .header-right {
@@ -402,7 +409,6 @@ export default {
 
   .close {
     align-self: flex-end;
-    
   }
 
   .close-icon {
@@ -412,6 +418,11 @@ export default {
     font-size: 8em;
     text-shadow: 2px 2px 12px black;
     z-index: 10001;
+    transition: opacity 0.2s;
+  }
+
+  .close-icon:hover {
+    opacity: 0.3;
   }
 
   .close-icon img {
@@ -420,6 +431,8 @@ export default {
 
   video {
     border: 2px solid white;
+    width: 100%;
+    height: 20%;
   }
 }
   @media screen and (min-width: 1400px) {
