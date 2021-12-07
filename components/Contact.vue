@@ -94,7 +94,7 @@
           </div>
           <div id="services" class="text-white mb-4 block">
             <label class="block text-md mb-2" for="services-dropdown"
-              >What can we help you with?</label
+              >What are you interested in?</label
             >
             <div
               class="service-dropdown py-2 px-3 font-gothamBook bg-black"
@@ -252,7 +252,7 @@
                 px-3
               "
               name="contactMessage"
-              placeholder="Message"
+              placeholder="Please provide us with any specific questions, details, examples or other content or instructions that can help us better understand your inquiry and respond to you most effectively."
               aria-describedby="messageHelp"
             ></textarea>
           </div>

@@ -25,6 +25,8 @@
 </template>
 
 <script>
+// let aboutSideNav, workSideNav, contactSideNav
+
 export default {
   mounted() {
     this.init()
@@ -33,11 +35,11 @@ export default {
     init() {
       document
         .getElementById('scrollEl')
-        .addEventListener('wheel', this.onScrollNav, false)
-
-      document
-        .getElementById('scrollEl')
         .addEventListener('scroll', this.onScrollNav, false)
+
+      // aboutSideNav = document.getElementById('about-sideNav')
+      // workSideNav = document.getElementById('work-sideNav')
+      // contactSideNav = document.getElementById('contact-sideNav')
     },
     onScrollNav() {
       if (window.innerWidth >= 800) {
@@ -59,12 +61,15 @@ export default {
           sideNavText[2].classList.add('current')
           sideNavText[1].classList.remove('current')
           sideNavText[0].classList.remove('current')
-          console.log('in contact')
         } else if (
           this.isElementInViewport(caseStudyWrapper) ||
           this.isElementInViewport(caseStudyHeader)
         ) {
           sideNavText[1].classList.add('current')
+          sideNavText[0].classList.remove('current')
+          sideNavText[2].classList.remove('current')
+        } else {
+          sideNavText[1].classList.remove('current')
           sideNavText[0].classList.remove('current')
           sideNavText[2].classList.remove('current')
         }
@@ -87,6 +92,8 @@ export default {
     },
     aboutScroll() {
       const aboutUs = document.querySelector('.about-container')
+      // aboutSideNav.classList.add('move')
+      console.log('about us scroll')
 
       aboutUs.scrollIntoView({
         behavior: 'smooth',
@@ -96,6 +103,8 @@ export default {
     },
     caseStudyScroll() {
       const caseStudyTeaser = document.querySelector('#case-studies')
+      // workSideNav.classList.add('move')
+      //  aboutSideNav.classList.add('move')
 
       caseStudyTeaser.scrollIntoView({
         behavior: 'smooth',
@@ -105,6 +114,9 @@ export default {
     },
     contactScroll() {
       const contactDiv = document.querySelector('#contactContainer')
+      //  contactSideNav.classList.add('move')
+      //  workSideNav.classList.add('move')
+      //  aboutSideNav.classList.add('move')
 
       contactDiv.scrollIntoView({
         behavior: 'smooth',
