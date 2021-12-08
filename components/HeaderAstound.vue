@@ -33,7 +33,7 @@
             <!-- <nuxt-link to="/about-us">About Us</nuxt-link> -->
             About Us
           </li>
-          <li class="nav-item my-6" @click="workScroll">
+          <li class="nav-item my-6" @click="caseStudyScroll">
             <!-- <nuxt-link to="/case-studies">Case Studies</nuxt-link> -->
             Our Work
           </li>
@@ -86,11 +86,12 @@
 </template>
 
 <script>
+import { scrollToSection } from '../mixins'
+
 export default {
   data() {
     return { test: 'testtt' }
   },
-
   methods: {
     toggleNav() {
       const hamburger = document.querySelector('.hamburger')
@@ -100,40 +101,16 @@ export default {
       navMenu.classList.toggle('active')
     },
     homeScroll() {
-      const aboutUs = document.querySelector('#three')
-
-      aboutUs.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'start',
-        block: 'start',
-      })
+      scrollToSection(document.querySelector('#three'))
     },
     aboutScroll() {
-      const aboutUs = document.querySelector('.about-container')
-
-      aboutUs.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'start',
-        block: 'start',
-      })
+      scrollToSection(document.querySelector('#aboutUs-marker'))
     },
-    workScroll() {
-      const caseStudyTeaser = document.querySelector('#case-studies')
-
-      caseStudyTeaser.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'start',
-        block: 'start',
-      })
+    caseStudyScroll() {
+      scrollToSection(document.querySelector('#case-studies-marker'))
     },
     contactScroll() {
-      const contactDiv = document.querySelector('#contactContainer')
-
-      contactDiv.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'start',
-        block: 'start',
-      })
+      scrollToSection(document.querySelector('#contact-marker'))
     },
   },
 }

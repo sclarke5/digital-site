@@ -1,5 +1,5 @@
 <template>
-  <div v-editable="blok" class="mt-20 relative">
+  <div v-editable="blok" class="mt-20 relative" id="case-studies-marker">
     <div>
       <div class="sticky-nav">
         <h2>Our Work</h2>

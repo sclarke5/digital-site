@@ -15,12 +15,12 @@
           </p>
         </div>
       </div>
-      <h2
+      <!-- <h2
         id="process-title"
         class="text-white text-center m-5 font-black uppercase"
       >
         Our Process
-      </h2>
+      </h2> -->
       <ul class="flex process-container">
         <li class="process-item">
           <img src="../assets/1-SpotTheProblem.png" alt="" />
@@ -50,9 +50,9 @@
     </div>
     <div class="flex flex-col grid-right">
       <ul v-editable="blok" class="services-list flex mb-6 lines-background">
-        <h2 class="our-work-heading text-white px-6 mt-6 text-center">
+        <!-- <h2 class="our-work-heading text-white px-6 mt-6 text-center">
           OUR SERVICES
-        </h2>
+        </h2> -->
         <li
           :key="blok._uid"
           v-for="blok in blok.columns"
