@@ -201,9 +201,9 @@
                 :src="caseStudy.content.primary_image.filename"
                 alt=""
               />
-              <h1 class="mt-2 text-2xl text-white uppercase">
+              <h3 class="mt-2 text-white">
                 {{ caseStudy.name }}
-              </h1>
+              </h3>
               <p class="mt-2 text-white uppercase">
                 {{ caseStudy.content.client }}
               </p>
@@ -267,9 +267,9 @@ export default {
       return selectedCaseStudies
     },
   },
-  mounted(){
-    document.body.addEventListener('keydown', e => {
-      if(e.key === 'Escape'){
+  mounted() {
+    document.body.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
         this.toggleModal()
       }
     })
@@ -435,43 +435,43 @@ export default {
     height: 20%;
   }
 }
-  @media screen and (min-width: 1400px) {
-    .modal {
-      padding-left: 15rem;
-      padding-right: 15rem;
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-    .results-container {
-      margin-left: -15rem;
-      margin-right: -15rem;
-      padding-right: 12rem;
-      padding-left: 12rem;
-    }
-    .title-container {
-      margin-left: -15rem;
-      padding-left: 15rem;
-    }
-    .header-right {
-      margin-right: 5em;
-    }
+@media screen and (min-width: 1400px) {
+  .modal {
+    padding-left: 15rem;
+    padding-right: 15rem;
+    padding-top: 0;
+    padding-bottom: 0;
   }
+  .results-container {
+    margin-left: -15rem;
+    margin-right: -15rem;
+    padding-right: 12rem;
+    padding-left: 12rem;
+  }
+  .title-container {
+    margin-left: -15rem;
+    padding-left: 15rem;
+  }
+  .header-right {
+    margin-right: 5em;
+  }
+}
 
-    @media screen and (min-width: 1900px) {
-    .modal {
-      padding: 25rem;
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-    .results-container {
-      margin-left: -25rem;
-      margin-right: -25rem;
-      padding-right: 12rem;
-      padding-left: 12rem;
-    }
-    .title-container {
-      margin-left: -25rem;
-      padding-left: 25rem;
-    }
+@media screen and (min-width: 1900px) {
+  .modal {
+    padding: 25rem;
+    padding-top: 0;
+    padding-bottom: 0;
   }
+  .results-container {
+    margin-left: -25rem;
+    margin-right: -25rem;
+    padding-right: 12rem;
+    padding-left: 12rem;
+  }
+  .title-container {
+    margin-left: -25rem;
+    padding-left: 25rem;
+  }
+}
 </style>

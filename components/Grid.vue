@@ -1,11 +1,11 @@
 <template>
   <div id="aboutUs-marker" class="flex grid-container md:absolute">
     <div class="sticky-nav">
-      <h2>About Us</h2>
+      <div class="font-dinProBlack">About Us</div>
     </div>
     <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
       <div class="text-container">
-        <h1 class="text-white">{{ title }}</h1>
+        <h2 class="text-white">{{ title }}</h2>
         <div class="paragraph-container md:flex">
           <p class="text-white pt-8 md:w-1/2">{{ blurb }}</p>
           <p class="text-white underline pt-8 md:w-1/2 md:pl-16">
@@ -146,6 +146,12 @@ li {
   .process-item {
     width: 50%;
     margin: 1rem 0;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .about-container {
+    margin-left: 10rem;
   }
 }
 

@@ -2,13 +2,12 @@
   <div v-editable="blok" class="mt-20 relative" id="case-studies-marker">
     <div>
       <div class="sticky-nav">
-        <h2>Our Work</h2>
-        <span></span>
+        <div class="font-dinProBlack">Our Work</div>
       </div>
-      <h1 class="text-white text-5xl case-studies-sub" id="case-studies">
+      <h2 class="text-white case-studies-sub" id="case-studies">
         Our <br />
         Work
-      </h1>
+      </h2>
       <div
         class="icons-container lines-background-case-studies case-study-icons"
       >
@@ -118,9 +117,9 @@ export default {
 .icons-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 50px;
+  grid-gap: 2rem;
   list-style-type: none;
-  padding-left: 0;
+  padding: 1rem 2rem;
 }
 
 .bg-shape {
@@ -143,15 +142,17 @@ export default {
   .icons-container {
     transform: rotate(90deg);
     display: grid;
-    grid-template-columns: 30em 30em;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;
     list-style-type: none;
-    padding-left: 0;
+    padding: 2rem 10rem;
     margin-left: 25em;
-    width: fit-content;
+    width: 800px;
+
+    /* width: fit-content; */
     position: absolute;
-    top: 200em;
-    right: -5em;
+    top: 187em;
+    right: 0;
   }
   .case-studies-wrapper {
     display: grid;
@@ -160,7 +161,7 @@ export default {
     margin-bottom: 50em;
     transform: rotate(90deg);
     position: absolute;
-    top: 200em;
+    top: 180em;
     right: -100em;
     width: -webkit-max-content;
     width: -moz-max-content;
@@ -184,15 +185,17 @@ export default {
   .icons-container {
     transform: rotate(90deg);
     display: grid;
-    grid-template-columns: 30em 30em;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;
     list-style-type: none;
-    padding-left: 0;
+    padding: 2rem 10rem;
     margin-left: 25em;
-    width: fit-content;
+    width: 800px;
+
+    /* width: fit-content; */
     position: absolute;
-    top: 200em;
-    right: -10em;
+    top: 187em;
+    right: 0;
   }
   .case-studies-wrapper {
     display: grid;
@@ -201,7 +204,7 @@ export default {
     margin-bottom: 50em;
     transform: rotate(90deg);
     position: absolute;
-    top: 200em;
+    top: 190em;
     right: -105em;
     width: -webkit-max-content;
     width: -moz-max-content;
@@ -225,15 +228,17 @@ export default {
   .icons-container {
     transform: rotate(90deg);
     display: grid;
-    grid-template-columns: 30em 30em;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;
     list-style-type: none;
-    padding-left: 0;
+    padding: 2rem 10rem;
     margin-left: 25em;
-    width: fit-content;
+    width: 800px;
+
+    /* width: fit-content; */
     position: absolute;
-    top: 200em;
-    right: 1em;
+    top: 187em;
+    right: 8em;
   }
 
   .case-study-container {
@@ -252,7 +257,7 @@ export default {
     margin-bottom: 50em;
     transform: rotate(90deg);
     position: absolute;
-    top: 265em;
+    top: 250em;
     right: -100.5em;
     width: max-content;
   }
@@ -283,7 +288,7 @@ export default {
 
 .icon {
   min-width: 100px;
-  width: 40%;
+  width: 100%;
   max-width: 300px;
 }
 

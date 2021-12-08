@@ -3,12 +3,14 @@
   <!-- <div id="response">Hello world</div> -->
   <div class="top-container mt-40">
     <div class="sticky-nav">
-      <h2>Contact</h2>
+      <div class="font-dinProBlack">Contact</div>
     </div>
     <div class="two-column-container flex flex-col gap-4 text-white">
       <div class="col-span-1 px-6">
-        <h1 class="text-5xl" id="contact-title">GET IN <br />TOUCH</h1>
-        <p id="contact-body">All fields marked with * are required.</p>
+        <h2 id="contact-title">GET IN <br />TOUCH</h2>
+        <p id="contact-body" class="py-6">
+          All fields marked with * are required.
+        </p>
         <!-- <br>
               <p>support@example.com</p> -->
       </div>
@@ -522,7 +524,7 @@ h1 {
   .top-container {
     transform: rotate(90deg);
     position: absolute;
-    top: 550em;
+    top: 570em;
     right: -7em;
     width: 80em;
   }

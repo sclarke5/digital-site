@@ -5,28 +5,28 @@
       class="ribbon bg-black text-white"
       @click="homeScroll"
     >
-      <h2 class="ribbon-text current">Home</h2>
+      <div class="font-dinProBlack ribbon-text current">Home</div>
     </div>
     <div
       id="about-sideNav"
       class="ribbon bg-black text-white"
       @click="aboutScroll"
     >
-      <h2 class="ribbon-text">About Us</h2>
+      <div class="font-dinProBlack ribbon-text">About Us</div>
     </div>
     <div
       id="work-sideNav"
       class="ribbon bg-black text-white"
       @click="caseStudyScroll"
     >
-      <h2 class="ribbon-text">Our Work</h2>
+      <div class="font-dinProBlack ribbon-text">Our Work</div>
     </div>
     <div
       id="contact-sideNav"
       class="ribbon bg-black text-white"
       @click="contactScroll"
     >
-      <h2 class="ribbon-text">Contact Us</h2>
+      <div class="font-dinProBlack ribbon-text">Contact Us</div>
     </div>
   </div>
 </template>
@@ -149,11 +149,14 @@ export default {
 
 .ribbon {
   border-left: 1px solid white;
-  border-right: 1px solid white;
   padding: 0.5rem 0.25rem;
   width: 2rem;
   transition: 0.5s all linear;
   cursor: pointer;
+}
+
+.ribbon:last-child {
+  border-right: 1px solid white;
 }
 
 .ribbon:hover {

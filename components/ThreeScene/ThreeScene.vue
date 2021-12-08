@@ -1,25 +1,25 @@
 <template>
   <div>
     <div id="container">
-      <h1 id="landingText">
+      <h2 id="landingText">
         Digital <br />
         Demystified
-      </h1>
+      </h2>
       <div id="scrollTextContainer">
-        <h2 id="tagline">
+        <p id="tagline" class="font-dinProBlack">
           We design for the future, obsess about the present, and unlock
           potential.
-        </h2>
+        </p>
         <div id="scrollPrompt">
           <p id="scrollText">Scroll for More</p>
           <span id="scrollLine"><span id="movingLine"></span></span>
         </div>
       </div>
       <div id="mobileScroll">
-        <h2 id="mobileTagline">
+        <p id="mobileTagLine" class="font-dinProBlack text-white">
           We design for the future, obsess about the present, and unlock
           potential.
-        </h2>
+        </p>
         <div id="scrollIndicators">
           <div class="indicator"></div>
           <div class="indicator"></div>

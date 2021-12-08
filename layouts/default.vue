@@ -127,7 +127,7 @@ export default {
     z-index: 0;
   }
 
-  .sticky-nav h2 {
+  .sticky-nav > div {
     /* background-color: black; */
     width: 50%;
     color: white;
@@ -200,25 +200,33 @@ body {
 }
 
 h1,
+h2,
 h3,
-h5,
-h6,
 .font-gothamUltra {
   font-family: 'Gotham Ultra', sans-serif;
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 2.5em;
   line-height: 1em;
+  z-index: 100;
+}
+@media screen and (min-width: 800px) {
+  h2 {
+    font-size: 3em;
+  }
 }
 
 h3 {
-  font-size: 2em;
   line-height: 1em;
+  font-size: 1.75em;
 }
 
-h2,
 h4,
 .font-dinProBlack {
   font-family: 'DINPro', sans-serif;
