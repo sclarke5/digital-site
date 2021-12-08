@@ -364,9 +364,9 @@ export default {
 
       window.addEventListener('touchmove', this.ontouchmove, false)
 
-      document
-        .getElementById('scrollEl')
-        .addEventListener('wheel', this.onscroll, false)
+      // document
+      //   .getElementById('scrollEl')
+      //   .addEventListener('wheel', this.onscroll, false)
 
       document
         .getElementById('scrollEl')

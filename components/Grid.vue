@@ -50,7 +50,9 @@
     </div>
     <div class="flex flex-col grid-right">
       <ul v-editable="blok" class="services-list flex mb-6 lines-background">
-        <h2 class="our-work-heading text-white px-6 mt-6">OUR SERVICES</h2>
+        <h2 class="our-work-heading text-white px-6 mt-6 text-center">
+          OUR SERVICES
+        </h2>
         <li
           :key="blok._uid"
           v-for="blok in blok.columns"

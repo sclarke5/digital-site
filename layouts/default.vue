@@ -10,6 +10,7 @@
 </template>
 <script>
 let direction = ''
+let oldScroll = 0
 
 export default {
   mounted() {
@@ -17,10 +18,6 @@ export default {
   },
   methods: {
     init() {
-      document
-        .getElementById('scrollEl')
-        .addEventListener('wheel', this.windowScroll, false)
-
       document
         .getElementById('scrollEl')
         .addEventListener('scroll', this.windowScroll, false)
@@ -53,38 +50,44 @@ export default {
       const workSideNav = document.getElementById('work-sideNav')
       const contactSideNav = document.getElementById('contact-sideNav')
 
-      if (e.deltaY < 0) {
+      if (e.target.scrollTop > oldScroll) {
         direction = 'up'
-      } else if (e.deltaY > 0) {
+      } else if (e.target.scrollTop < oldScroll) {
         direction = 'down'
       }
 
-      if (direction === 'down') {
+      oldScroll = e.target.scrollTop
+
+      if (direction === 'up') {
         if (this.isElementInViewport(aboutUsContainer)) {
-          console.log('about us in in view')
+          console.log('about us in in view down')
           aboutSideNav.classList.add('move')
+        } else if (this.isElementInViewport(contactContainer)) {
+          console.log('contact is in view')
+          contactSideNav.classList.add('move')
+          aboutSideNav.classList.add('move')
+          workSideNav.classList.add('move')
         } else if (
           this.isElementInViewport(caseStudyWrapper) ||
           this.isElementInViewport(caseStudyHeader)
         ) {
           console.log('case studies in in view')
           workSideNav.classList.add('move')
-        } else if (this.isElementInViewport(contactContainer)) {
-          console.log('contact is in view')
-          contactSideNav.classList.add('move')
+          aboutSideNav.classList.add('move')
         }
-      } else if (direction === 'up') {
-        if (this.isElementInViewport(aboutUsContainer)) {
-          console.log('about us in in view')
+      } else if (direction === 'down') {
+        if (this.isElementInViewport(document.getElementById('spacer'))) {
+          console.log('about us in in view up')
           aboutSideNav.classList.remove('move')
+        } else if (this.isElementInViewport(aboutUsContainer)) {
+          console.log('contact is in view')
+          workSideNav.classList.remove('move')
+          contactSideNav.classList.remove('move')
         } else if (
           this.isElementInViewport(caseStudyWrapper) ||
           this.isElementInViewport(caseStudyHeader)
         ) {
           console.log('case studies in in view')
-          workSideNav.classList.remove('move')
-        } else if (this.isElementInViewport(contactContainer)) {
-          console.log('contact is in view')
           contactSideNav.classList.remove('move')
         }
       }
@@ -117,7 +120,6 @@ export default {
     top: 0;
     z-index: 50;
     width: 100%;
-    margin-bottom: 3rem;
     height: 6rem;
   }
 
@@ -142,6 +144,22 @@ export default {
 }
 body {
   background: black;
+}
+
+@keyframes changeSection {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.changeAnim {
+  animation: changeSection 1s linear 0s 1 forwards none;
 }
 
 @media screen and (min-width: 800px) {
