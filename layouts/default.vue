@@ -56,7 +56,6 @@ export default {
         direction = 'down'
       }
 
-      console.log(direction)
       oldScroll = e.target.scrollTop
 
       if (direction === 'up') {

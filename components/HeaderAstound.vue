@@ -104,8 +104,8 @@ export default {
 
       aboutUs.scrollIntoView({
         behavior: 'smooth',
-        inline: 'center',
-        block: 'center',
+        inline: 'start',
+        block: 'start',
       })
     },
     aboutScroll() {
@@ -113,8 +113,8 @@ export default {
 
       aboutUs.scrollIntoView({
         behavior: 'smooth',
-        inline: 'center',
-        block: 'center',
+        inline: 'start',
+        block: 'start',
       })
     },
     workScroll() {
@@ -122,8 +122,8 @@ export default {
 
       caseStudyTeaser.scrollIntoView({
         behavior: 'smooth',
-        inline: 'center',
-        block: 'center',
+        inline: 'start',
+        block: 'start',
       })
     },
     contactScroll() {
@@ -131,8 +131,8 @@ export default {
 
       contactDiv.scrollIntoView({
         behavior: 'smooth',
-        inline: 'center',
-        block: 'center',
+        inline: 'start',
+        block: 'start',
       })
     },
   },

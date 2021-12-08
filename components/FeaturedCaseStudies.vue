@@ -252,7 +252,7 @@ export default {
     margin-bottom: 50em;
     transform: rotate(90deg);
     position: absolute;
-    top: 310em;
+    top: 265em;
     right: -100.5em;
     width: max-content;
   }

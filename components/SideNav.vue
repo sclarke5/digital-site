@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { scrollToSection } from '../mixins'
 // let aboutSideNav, workSideNav, contactSideNav
 
 export default {
@@ -91,15 +92,16 @@ export default {
       return vertInView && horInView
     },
     aboutScroll() {
-      const aboutUs = document.querySelector('.about-container')
+      // const aboutUs = document.querySelector('.about-container')
       // aboutSideNav.classList.add('move')
-      console.log('about us scroll')
 
-      aboutUs.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center',
-        block: 'center',
-      })
+      scrollToSection(document.querySelector('#aboutUs-marker'))
+
+      // aboutUs.scrollIntoView({
+      //   behavior: 'smooth',
+      //   inline: 'center',
+      //   block: 'center',
+      // })
     },
     caseStudyScroll() {
       const caseStudyTeaser = document.querySelector('#case-studies')
