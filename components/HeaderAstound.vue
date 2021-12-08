@@ -1,12 +1,13 @@
 <template>
   <header class="header w-screen flex md:bg-opacity-0 justify-between -top-0">
     <div class="header-left h-24">
-      <a href="/"
-        ><img
+      <h1 class="h-full">
+        <img
           class="company-logo h-full min-w-max"
           src="../assets/Digital__White_-1-removebg-preview.png"
-          alt="ASTOUND Group"
-      /></a>
+          alt="ASTOUND Digital Logo"
+        />
+      </h1>
     </div>
     <div class="header-right flex h-24">
       <nav class="navbar flex justify-between items-center">
@@ -24,25 +25,30 @@
             duration-300
             text-white
           "
+          id="mobileNavMenu"
         >
-          <li class="nav-item my-6" @click="homeScroll">
+          <li class="nav-item py-4" @click="homeScroll">
             Home
             <!-- <nuxt-link to="/"> Home </nuxt-link> -->
           </li>
-          <li class="nav-item my-6" @click="aboutScroll">
+          <li class="nav-item py-4" @click="aboutScroll">
             <!-- <nuxt-link to="/about-us">About Us</nuxt-link> -->
             About Us
           </li>
-          <li class="nav-item my-6" @click="caseStudyScroll">
+          <li class="nav-item py-4" @click="caseStudyScroll">
             <!-- <nuxt-link to="/case-studies">Case Studies</nuxt-link> -->
             Our Work
           </li>
-          <li class="nav-item my-6" @click="contactScroll">
+          <li class="nav-item py-4" @click="contactScroll">
             <!-- <nuxt-link to="/case-studies">Contact Us</nuxt-link> -->
             Contact Us
           </li>
         </ul>
-        <div class="hamburger block cursor-pointer mr-4" @click="toggleNav">
+        <div
+          class="hamburger block cursor-pointer mr-4"
+          id="ham-icon"
+          @click="toggleNav"
+        >
           <span
             class="
               bar
@@ -90,7 +96,30 @@ import { scrollToSection } from '../mixins'
 
 export default {
   data() {
-    return { test: 'testtt' }
+    return { test: 'testtt', toggled: false }
+  },
+  mounted() {
+    window.addEventListener(
+      'click',
+      (e) => {
+        const insideUl = document
+          .getElementById('mobileNavMenu')
+          .contains(e.target)
+        const insideIcon = document
+          .getElementById('ham-icon')
+          .contains(e.target)
+
+        console.log(insideUl, insideIcon)
+
+        if (insideIcon) {
+          e.stopPropagation()
+        } else if (!insideIcon && !insideUl && this.toggled) {
+          this.toggleNav()
+          console.log(this.toggled)
+        }
+      },
+      false
+    )
   },
   methods: {
     toggleNav() {
@@ -99,18 +128,24 @@ export default {
 
       hamburger.classList.toggle('active')
       navMenu.classList.toggle('active')
+
+      this.toggled = !this.toggled
     },
     homeScroll() {
       scrollToSection(document.querySelector('#three'))
+      this.toggleNav()
     },
     aboutScroll() {
       scrollToSection(document.querySelector('#aboutUs-marker'))
+      this.toggleNav()
     },
     caseStudyScroll() {
       scrollToSection(document.querySelector('#case-studies-marker'))
+      this.toggleNav()
     },
     contactScroll() {
       scrollToSection(document.querySelector('#contact-marker'))
+      this.toggleNav()
     },
   },
 }

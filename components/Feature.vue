@@ -1,12 +1,19 @@
 <template>
   <div
     v-editable="blok"
-    class="h-full py-2 flex flex-col justify-center feature-container"
+    class="
+      h-full
+      py-2
+      flex flex-col
+      justify-center
+      feature-container
+      text-white
+    "
     id="services"
   >
     <img :src="blok.icon.filename" alt="" />
-    <h1 class="text-lg text-left uppercase">{{ blok.name }}</h1>
-    <p class="my-4 text-white text-left">{{ blok.description }}</p>
+    <h3 class="text-left">{{ blok.name }}</h3>
+    <p class="my-4 text-left">{{ blok.description }}</p>
     <!-- <div class="learn-more flex items-center">Learn More</div> -->
   </div>
 </template>
@@ -23,11 +30,6 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-size: 2em;
-  z-index: 10;
-}
-
 .learn-more {
   width: fit-content;
   height: 40px;
@@ -44,18 +46,18 @@ h1 {
 }
 
 img {
-  height: 400px;
+  height: 300px;
   object-fit: contain;
 }
 
-@media screen and (min-width: 800px) and (max-height: 801px){
+@media screen and (min-width: 800px) and (max-height: 801px) {
   .learn-more {
     position: absolute;
     bottom: -3em;
   }
 }
 
-@media screen and (min-width: 800px) and (min-height: 801px){
+@media screen and (min-width: 800px) and (min-height: 801px) {
   .learn-more {
     position: absolute;
     bottom: -3em;
