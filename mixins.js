@@ -1,12 +1,29 @@
 export const scrollToSection = (target) => {
-  const distanceToTarget = target.getBoundingClientRect().left
+  const distanceToTarget =
+    window.innerWidth <= 799
+      ? target.getBoundingClientRect().top
+      : target.getBoundingClientRect().left
 
-  const currentPos = document.getElementById('scrollEl').scrollTop
-  // const bodyPos = document.getElementById('scrollEl').scrollHeight
-  // const targetPos = currentPos + distanceToTarget
+  const currentPos =
+    window.innerWidth <= 799
+      ? window.scrollY
+      : document.getElementById('scrollEl').scrollTop
+
+  const targetPos = currentPos + distanceToTarget
 
   console.log(currentPos, distanceToTarget)
-  // console.log(`currently at ${currentPos}, body is ${bodyPos} long`)
 
-  // document.getElementById('scrollEl').scrollTo(0, targetPos)
+  if (window.innerWidth <= 799) {
+    window.scroll({
+      top: targetPos,
+      left: 0,
+      behavior: 'smooth',
+    })
+  } else {
+    document.getElementById('scrollEl').scroll({
+      top: targetPos,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }
 }

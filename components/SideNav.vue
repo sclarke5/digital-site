@@ -1,6 +1,13 @@
 <template>
   <div id="sideNav" class="sideNav-container">
     <div
+      id="home-sideNav"
+      class="ribbon bg-black text-white"
+      @click="homeScroll"
+    >
+      <h2 class="ribbon-text current">Home</h2>
+    </div>
+    <div
       id="about-sideNav"
       class="ribbon bg-black text-white"
       @click="aboutScroll"
@@ -44,6 +51,7 @@ export default {
     },
     onScrollNav() {
       if (window.innerWidth >= 800) {
+        const homeContainer = document.getElementById('spacer')
         const aboutUsContainer = document.getElementById('aboutUs-marker')
         const contactContainer = document.getElementById('contact-marker')
         const caseStudyWrapper = document.getElementsByClassName(
@@ -54,25 +62,34 @@ export default {
 
         const sideNavText = document.querySelectorAll('.ribbon-text')
 
-        if (this.isElementInViewport(aboutUsContainer)) {
+        if (this.isElementInViewport(homeContainer)) {
           sideNavText[0].classList.add('current')
           sideNavText[1].classList.remove('current')
           sideNavText[2].classList.remove('current')
+          sideNavText[3].classList.remove('current')
+        } else if (this.isElementInViewport(aboutUsContainer)) {
+          sideNavText[1].classList.add('current')
+          sideNavText[2].classList.remove('current')
+          sideNavText[3].classList.remove('current')
+          sideNavText[0].classList.remove('current')
         } else if (this.isElementInViewport(contactContainer)) {
-          sideNavText[2].classList.add('current')
+          sideNavText[3].classList.add('current')
           sideNavText[1].classList.remove('current')
           sideNavText[0].classList.remove('current')
+          sideNavText[2].classList.remove('current')
         } else if (
           this.isElementInViewport(caseStudyWrapper) ||
           this.isElementInViewport(caseStudyHeader)
         ) {
-          sideNavText[1].classList.add('current')
+          sideNavText[2].classList.add('current')
           sideNavText[0].classList.remove('current')
-          sideNavText[2].classList.remove('current')
+          sideNavText[1].classList.remove('current')
+          sideNavText[3].classList.remove('current')
         } else {
           sideNavText[1].classList.remove('current')
           sideNavText[0].classList.remove('current')
           sideNavText[2].classList.remove('current')
+          sideNavText[3].classList.remove('current')
         }
       }
     },
@@ -91,40 +108,17 @@ export default {
 
       return vertInView && horInView
     },
+    homeScroll() {
+      scrollToSection(document.querySelector('#spacer'))
+    },
     aboutScroll() {
-      // const aboutUs = document.querySelector('.about-container')
-      // aboutSideNav.classList.add('move')
-
       scrollToSection(document.querySelector('#aboutUs-marker'))
-
-      // aboutUs.scrollIntoView({
-      //   behavior: 'smooth',
-      //   inline: 'center',
-      //   block: 'center',
-      // })
     },
     caseStudyScroll() {
-      const caseStudyTeaser = document.querySelector('#case-studies')
-      // workSideNav.classList.add('move')
-      //  aboutSideNav.classList.add('move')
-
-      caseStudyTeaser.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center',
-        block: 'center',
-      })
+      scrollToSection(document.querySelector('#case-studies'))
     },
     contactScroll() {
-      const contactDiv = document.querySelector('#contactContainer')
-      //  contactSideNav.classList.add('move')
-      //  workSideNav.classList.add('move')
-      //  aboutSideNav.classList.add('move')
-
-      contactDiv.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center',
-        block: 'center',
-      })
+      scrollToSection(document.querySelector('#contact-marker'))
     },
   },
 }
