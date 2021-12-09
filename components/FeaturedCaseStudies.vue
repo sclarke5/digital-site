@@ -35,7 +35,7 @@
         <div
           v-for="caseStudy in sortedCaseStudies"
           :key="caseStudy._uid"
-          class="flex h-full case-study-outer-container"
+          class="flex h-full case-study-outer-container justify-center"
         >
           <case-study-teaser
             v-if="caseStudy.content"
@@ -126,7 +126,7 @@ export default {
   display: none;
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) {
+@media screen(laptopwh) {
   .case-studies-sub {
     transform: rotate(90deg);
     position: absolute;
@@ -169,7 +169,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
+@media screen and (laptop2xwh) {
   .case-studies-sub {
     transform: rotate(90deg);
     position: absolute;
@@ -212,7 +212,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 800px) and (min-height: 801px) {
+@media screen and (desktopwh) {
   .case-studies-sub {
     transform: rotate(90deg);
     position: absolute;

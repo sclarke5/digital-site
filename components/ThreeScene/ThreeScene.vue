@@ -862,7 +862,7 @@ export default {
   padding: 1rem;
 }
 
-@media screen and (min-width: 800px) {
+@media screen(laptop) {
   #landingText {
     top: 8rem;
     left: 5rem;
@@ -895,7 +895,7 @@ export default {
   position: relative;
 }
 
-@media screen and (max-width: 799px) {
+@media screen(mobile) {
   #container {
     height: 85vh;
   }

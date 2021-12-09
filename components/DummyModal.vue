@@ -380,7 +380,7 @@ export default {
   background-color: white;
 }
 
-@media screen and (min-width: 800px) {
+@media screen(laptop) {
   .modal {
     height: 100vh;
     padding-bottom: 0;
@@ -435,7 +435,7 @@ export default {
     height: 20%;
   }
 }
-@media screen and (min-width: 1400px) {
+@media screen(desktopxl) {
   .modal {
     padding-left: 15rem;
     padding-right: 15rem;
@@ -457,7 +457,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 1900px) {
+@media screen(desktop2xl) {
   .modal {
     padding: 25rem;
     padding-top: 0;

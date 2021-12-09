@@ -74,10 +74,6 @@ export default {
 </script>
 
 <style scoped>
-.case-study-teaser {
-  /* background-color: black; */
-}
-
 h3 {
   margin-top: -0.7em;
   text-shadow: 0 8px 50px #000;
@@ -122,13 +118,5 @@ h5 {
 
 .bring-forward {
   z-index: 999;
-}
-
-@media screen and (min-width: 800px) {
-  .case-study-teaser {
-    /* transform: rotate(90deg);
-    margin-bottom: 30vw;
-    min-width: 45em; */
-  }
 }
 </style>

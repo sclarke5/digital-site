@@ -1,27 +1,42 @@
 <template>
-  <div id="aboutUs-marker" class="flex grid-container md:absolute">
+  <div
+    id="aboutUs-marker"
+    class="flex grid-container desktop:absolute flex-col mt-60 laptop:flex-row"
+  >
     <div class="sticky-nav">
       <div class="font-dinProBlack">About Us</div>
     </div>
-    <div class="flex flex-col grid-left md:mr-16 px-6 about-container">
+    <div
+      class="
+        flex flex-col
+        mb-20
+        laptop:mr-16
+        px-6
+        about-container
+        desktopwh:ml-40
+      "
+    >
       <div class="text-container">
         <h2 class="text-white">{{ title }}</h2>
-        <div class="paragraph-container md:flex">
-          <p class="text-white pt-8 md:w-1/2">{{ blurb }}</p>
-          <p class="text-white underline pt-8 md:w-1/2 md:pl-16">
+        <div class="paragraph-container laptop:flex">
+          <p class="text-white pt-8 laptop:w-1/2">{{ blurb }}</p>
+          <p class="text-white underline pt-8 laptop:w-1/2 laptop:pl-16">
             <a :href="astoundgroup_cta.link">
               {{ astoundgroup_cta.text }}
             </a>
           </p>
         </div>
       </div>
-      <!-- <h2
-        id="process-title"
-        class="text-white text-center m-5 font-black uppercase"
+      <ul
+        class="
+          flex
+          process-container
+          justify-center
+          items-center
+          flex-wrap
+          laptop:flex-nowrap
+        "
       >
-        Our Process
-      </h2> -->
-      <ul class="flex process-container">
         <li class="process-item">
           <img src="../assets/1-SpotTheProblem.png" alt="" />
           <p>Spot the Problem</p>
@@ -48,15 +63,24 @@
         </li>
       </ul>
     </div>
-    <div class="flex flex-col grid-right">
-      <ul v-editable="blok" class="services-list flex mb-6 lines-background">
-        <!-- <h2 class="our-work-heading text-white px-6 mt-6 text-center">
-          OUR SERVICES
-        </h2> -->
+    <div class="flex flex-col grid-right laptop:flex-row laptop:ml-80">
+      <ul
+        v-editable="blok"
+        class="
+          services-list
+          flex
+          mb-6
+          lines-background
+          bg-contain
+          list-none
+          flex-col
+          laptop:flex-row
+        "
+      >
         <li
           :key="blok._uid"
           v-for="blok in blok.columns"
-          class="flex-auto px-6 md:w-1/3 text-white md:mr-12"
+          class="flex-auto px-6 laptop:w-1/3 text-white laptop:mr-12 list-none"
         >
           <component :blok="blok" :is="blok.component" />
         </li>
@@ -93,190 +117,69 @@ export default {
 </script>
 
 <style scoped>
-ul,
-li {
-  list-style-type: none;
-}
-
-.grid-container {
-  flex-direction: column;
-  margin-top: 15em;
-}
-
-.grid-container h1 {
-  /* changed to 2em from 3em because it was adding a few px to the width! */
-  font-size: 2em;
-  line-height: 1.1;
-}
-
-.grid-left {
-  margin-bottom: 5em;
-}
-
-.grid-right ul {
-  flex-direction: column;
-}
-
 .lines-background {
   background-image: url('../assets/grid.png');
-  background-size: contain;
-}
-
-.process-container {
-  justify-content: center;
-  align-items: flex-end;
-  flex-wrap: wrap;
 }
 
 .process-item {
-  padding: 1rem;
+  @apply p-4 my-4 w-1/2;
 }
 
 .process-item > p {
-  height: 2em;
-  color: white;
-  text-transform: uppercase;
-  font-family: 'Gotham Ultra', sans-serif;
-  text-align: center;
-  padding: 0.5em 0.25em 0 0.25em;
-  width: 100%;
+  @apply w-full text-white uppercase text-center h-8 px-1 pt-2 font-primaryHeadline;
 }
 
-@media screen and (max-width: 799px) {
+@media screen(laptop) {
   .process-item {
-    width: 50%;
-    margin: 1rem 0;
+    max-width: calc(100% / 6);
+    flex-basis: 0;
+    flex-grow: 1;
   }
-}
 
-@media screen and (min-width: 800px) {
-  .about-container {
-    margin-left: 10rem;
+  .grid-container h1 {
+    font-size: 3em;
   }
-}
 
-@media screen and (min-width: 800px) and (max-height: 800px) {
-  #process-title {
-    display: none;
-  }
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;
     max-width: 1971px;
-    flex-direction: row;
+  }
+
+  .process-item {
+    max-width: calc(100% / 6);
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  .grid-right ul {
+    min-width: 200%;
+  }
+}
+
+@media screen(laptopwh) {
+  .grid-container {
     right: -36em;
   }
 
-  .grid-container h1 {
-    font-size: 3em;
-  }
-
-  .grid-right {
-    flex-direction: row;
-    margin-left: 20em;
-  }
-
   .grid-right ul {
-    min-width: 200%;
-    flex-direction: row;
     margin-top: -5em;
-  }
-
-  .our-work-heading {
-    display: none;
-  }
-
-  .process-container {
-    flex-wrap: nowrap;
-  }
-
-  .process-item {
-    max-width: calc(100% / 6);
-    flex-basis: 0;
-    flex-grow: 1;
   }
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
-  #process-title {
-    display: none;
-  }
+@media screen(laptop2xwh) {
   .grid-container {
-    transform: rotate(90deg);
-    margin-bottom: 250vh;
-    max-width: 1971px;
-    flex-direction: row;
     right: -41em;
   }
 
-  .grid-container h1 {
-    font-size: 3em;
-  }
-
-  .grid-right {
-    flex-direction: row;
-    margin-left: 20em;
-  }
-
   .grid-right ul {
-    min-width: 200%;
-    flex-direction: row;
     margin-top: -5em;
-  }
-
-  .our-work-heading {
-    display: none;
-  }
-
-  .process-container {
-    flex-wrap: nowrap;
-  }
-
-  .process-item {
-    max-width: calc(100% / 6);
-    flex-basis: 0;
-    flex-grow: 1;
   }
 }
 
-@media screen and (min-width: 800px) and (min-height: 801px) {
-  #process-title {
-    display: none;
-  }
+@media screen(desktopwh) {
   .grid-container {
-    transform: rotate(90deg);
-    margin-bottom: 250vh;
-    max-width: 1971px;
-    flex-direction: row;
     right: -32em;
-  }
-
-  .grid-container h1 {
-    font-size: 3em;
-  }
-
-  .grid-right {
-    flex-direction: row;
-    margin-left: 20em;
-  }
-
-  .grid-right ul {
-    min-width: 200%;
-    flex-direction: row;
-  }
-
-  .our-work-heading {
-    display: none;
-  }
-
-  .process-container {
-    flex-wrap: nowrap;
-  }
-
-  .process-item {
-    max-width: calc(100% / 6);
-    flex-basis: 0;
-    flex-grow: 1;
   }
 }
 </style>

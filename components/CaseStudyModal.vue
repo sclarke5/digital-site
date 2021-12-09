@@ -352,7 +352,7 @@ export default {
   background-color: white;
 }
 
-@media screen and (min-width: 800px) {
+@media screen(laptop) {
   .modal {
     position: fixed;
     width: 85vw;

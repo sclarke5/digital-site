@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (min-width: 800px) {
+@media screen(laptop) {
   img {
     height: 90vh;
   }
