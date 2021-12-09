@@ -14,7 +14,7 @@ let oldScroll = 0
 
 export default {
   mounted() {
-    // this.init()
+    this.init()
   },
   methods: {
     init() {
@@ -60,35 +60,41 @@ export default {
 
       if (direction === 'up') {
         if (this.isElementInViewport(aboutUsContainer)) {
-          console.log('about us in in view down')
           aboutSideNav.classList.add('move')
+          document.getElementById('header-logo-img').style.transform =
+            'translate(4rem,0)'
         } else if (this.isElementInViewport(contactContainer)) {
-          console.log('contact is in view')
           contactSideNav.classList.add('move')
           aboutSideNav.classList.add('move')
           workSideNav.classList.add('move')
+          document.getElementById('header-logo-img').style.transform =
+            'translate(8rem,0)'
         } else if (
           this.isElementInViewport(caseStudyWrapper) ||
           this.isElementInViewport(caseStudyHeader)
         ) {
-          console.log('case studies in in view')
           workSideNav.classList.add('move')
           aboutSideNav.classList.add('move')
+          document.getElementById('header-logo-img').style.transform =
+            'translate(6rem,0)'
         }
       } else if (direction === 'down') {
         if (this.isElementInViewport(document.getElementById('spacer'))) {
-          console.log('about us in in view up')
           aboutSideNav.classList.remove('move')
+          document.getElementById('header-logo-img').style.transform =
+            'translate(2rem,0)'
         } else if (this.isElementInViewport(aboutUsContainer)) {
-          console.log('contact is in view')
           workSideNav.classList.remove('move')
           contactSideNav.classList.remove('move')
+          document.getElementById('header-logo-img').style.transform =
+            'translate(4rem,0)'
         } else if (
           this.isElementInViewport(caseStudyWrapper) ||
           this.isElementInViewport(caseStudyHeader)
         ) {
-          console.log('case studies in in view')
           contactSideNav.classList.remove('move')
+          document.getElementById('header-logo-img').style.transform =
+            'translate(6rem,0)'
         }
       }
     },

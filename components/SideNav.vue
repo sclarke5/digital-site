@@ -2,7 +2,7 @@
   <div id="sideNav" class="sideNav-container">
     <div
       id="home-sideNav"
-      class="ribbon bg-black text-white"
+      class="ribbon bg-black text-white move"
       @click="homeScroll"
     >
       <div class="font-dinProBlack ribbon-text current">Home</div>
@@ -131,7 +131,7 @@ export default {
   }
 }
 .move {
-  transform: translate(calc(-100vw + 6rem), 0);
+  transform: translate(calc(-100vw + 8rem), 0);
 }
 
 #sideNav {
@@ -148,15 +148,12 @@ export default {
 }
 
 .ribbon {
-  border-left: 1px solid white;
+  border-left: 0.25px solid white;
+  border-right: 0.25px solid white;
   padding: 0.5rem 0.25rem;
   width: 2rem;
-  transition: 0.5s all linear;
+  transition: 0.25s all linear;
   cursor: pointer;
-}
-
-.ribbon:last-child {
-  border-right: 1px solid white;
 }
 
 .ribbon:hover {
