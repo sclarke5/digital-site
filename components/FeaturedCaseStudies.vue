@@ -5,8 +5,8 @@
         <div class="font-dinProBlack">Our Work</div>
       </div>
       <h2 class="text-white case-studies-sub" id="case-studies">
-        Our <br />
-        Work
+        Our Clients<br />
+        & Work
       </h2>
       <div
         class="icons-container lines-background-case-studies case-study-icons"
@@ -131,7 +131,7 @@ export default {
     transform: rotate(90deg);
     position: absolute;
     top: 60em;
-    right: 0.4em;
+    right: -0.4em;
   }
 
   .lines {
@@ -217,7 +217,7 @@ export default {
     transform: rotate(90deg);
     position: absolute;
     top: 60em;
-    right: 1.8em;
+    right: 0;
   }
 
   .lines {
