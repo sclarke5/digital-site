@@ -1,7 +1,7 @@
 <template>
   <div
     id="aboutUs-marker"
-    class="flex grid-container desktop:absolute flex-col mt-60 laptop:flex-row"
+    class="flex grid-container laptop:absolute flex-col mt-60 laptop:flex-row"
   >
     <div class="sticky-nav">
       <div class="font-dinProBlack">About Us</div>

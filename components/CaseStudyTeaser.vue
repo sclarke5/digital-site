@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     openModal(content, list) {
-      if (window.innerWidth > 800) {
+      if (window.innerWidth > 1024) {
         this.$store.dispatch('modal/toggle', { content, list })
       } else if (this.showPanel === false) {
         this.showPanel = true
