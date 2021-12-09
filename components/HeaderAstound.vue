@@ -3,6 +3,7 @@
     <div class="header-left h-24">
       <h1 class="h-full">
         <img
+          id="header-logo-img"
           class="company-logo h-full min-w-max"
           src="../assets/Digital__White_-1-removebg-preview.png"
           alt="ASTOUND Digital Logo"
@@ -189,6 +190,11 @@ export default {
 
   /* border-bottom: 1px solid white;
   border-top: 1px solid white; */
+}
+
+#header-logo-img {
+  transition: 0.5s linear transform;
+  transform: translate(2rem, 0);
 }
 
 @media screen and (min-width: 800px) {
