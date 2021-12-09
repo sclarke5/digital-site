@@ -11,10 +11,12 @@
     "
     id="services"
   >
-    <img :src="blok.icon.filename" alt="" />
+    <img :src="blok.icon.filename" alt="" class="py-6" />
     <h3 class="text-left">{{ blok.name }}</h3>
     <p class="my-4 text-left">{{ blok.description }}</p>
-    <!-- <div class="learn-more flex items-center">Learn More</div> -->
+    <!-- <div class="learn-more flex items-center">
+      <button>
+      <p>Learn More</p></button></div> -->
   </div>
 </template>
 
@@ -33,16 +35,11 @@ export default {
 .learn-more {
   width: fit-content;
   height: 40px;
-  color: white;
   font-size: 14px;
-  cursor: pointer;
-  border: 2px solid white;
   justify-content: space-around;
   transition: background-color 0.5s ease, color 0.5s ease;
   padding: 1.5em;
-  text-transform: uppercase;
   margin-top: 1em;
-  font-family: 'Gotham Book', sans-serif;
 }
 
 img {
@@ -50,14 +47,7 @@ img {
   object-fit: contain;
 }
 
-@media screen and (min-width: 800px) and (max-height: 801px) {
-  .learn-more {
-    position: absolute;
-    bottom: -3em;
-  }
-}
-
-@media screen and (min-width: 800px) and (min-height: 801px) {
+@media screen(laptop) {
   .learn-more {
     position: absolute;
     bottom: -3em;

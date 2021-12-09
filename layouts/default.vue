@@ -14,7 +14,7 @@ let oldScroll = 0
 
 export default {
   mounted() {
-    this.init()
+    // this.init()
   },
   methods: {
     init() {
@@ -116,7 +116,11 @@ export default {
   display: none;
 }
 
-@media screen and (max-width: 799px) {
+button {
+  border: 2px solid white;
+}
+
+@media screen(mobile) {
   .sticky-nav {
     /* border: 1px solid white; */
     display: block;
@@ -168,7 +172,7 @@ body {
   animation: changeSection 1s linear 0s 1 forwards none;
 }
 
-@media screen and (min-width: 800px) {
+@media screen(laptop) {
   body {
     overflow-x: hidden;
     overflow-y: hidden;
@@ -209,8 +213,7 @@ h1,
 h2,
 h3,
 .font-gothamUltra {
-  font-family: 'Gotham Ultra', sans-serif;
-  text-transform: uppercase;
+  @apply font-primaryHeadline uppercase;
 }
 
 h1 {
@@ -222,7 +225,7 @@ h2 {
   line-height: 1em;
   z-index: 100;
 }
-@media screen and (min-width: 800px) {
+@media screen(laptop) {
   h2 {
     font-size: 3em;
   }
@@ -235,9 +238,7 @@ h3 {
 
 h4,
 .font-dinProBlack {
-  font-family: 'DINPro', sans-serif;
-  font-weight: 900;
-  text-transform: uppercase;
+  @apply font-subHeadline uppercase font-black;
 }
 
 p,
@@ -247,7 +248,7 @@ textarea,
 .font-gothamBook,
 label,
 button {
-  font-family: 'Gotham Book', sans-serif;
+  @apply font-body;
 }
 
 p {

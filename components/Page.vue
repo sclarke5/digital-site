@@ -31,7 +31,7 @@ export default {
   margin-top: -100vh;
 } */
 
-@media screen and (min-width: 800px) {
+@media screen(laptop) {
   #spacer {
     width: 100vw;
     height: 300vh;
