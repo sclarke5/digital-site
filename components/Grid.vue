@@ -153,7 +153,7 @@ export default {
 
 @media screen(laptopwh) {
   .grid-container {
-    right: -36em;
+    right: -37em;
   }
 
   .grid-right ul {
@@ -163,11 +163,11 @@ export default {
 
 @media screen(laptop2xwh) {
   .grid-container {
-    right: -41em;
+    right: -38em;
   }
 
   .grid-right ul {
-    margin-top: -5em;
+    margin-top: -3em;
   }
 }
 
