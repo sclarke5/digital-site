@@ -171,7 +171,7 @@ export default {
   }
 }
 
-@media screen and (laptop2xwh) {
+@media screen(laptop2xwh) {
   .case-studies-sub {
     top: 60em;
     right: -1.2em;
@@ -204,7 +204,7 @@ export default {
   }
 }
 
-@media screen and (desktopwh) {
+@media screen(desktopwh) {
   .case-studies-sub {
     top: 60em;
     right: 0;

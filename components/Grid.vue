@@ -146,12 +146,6 @@ export default {
     max-width: 1971px;
   }
 
-  .process-item {
-    max-width: calc(100% / 6);
-    flex-basis: 0;
-    flex-grow: 1;
-  }
-
   .grid-right ul {
     min-width: 200%;
   }

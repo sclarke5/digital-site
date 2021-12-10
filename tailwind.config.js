@@ -29,7 +29,7 @@ module.exports = {
         desktopwh: { raw: '(min-width: 1025px) and (min-height:801px)' },
         // longer than 800px, same width as laptop
         laptop2xwh: {
-          raw: '(min-width: 1025px) and(max-height:800px) and (-webkit-device-pixel-ratio: 1.5) ',
+          raw: '(min-width: 1025px) and (max-height:800px) and (-webkit-device-pixel-ratio: 1.5)',
         },
         // laptop is for shorter than 800px
         desktop2xwh: {
