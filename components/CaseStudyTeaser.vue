@@ -9,7 +9,7 @@
         :src="caseStudyContent.primary_image.filename"
         :alt="caseStudyContent.primary_image.alt"
       />
-      <div class="flex flex-col md:absolute bottom-0">
+      <div class="flex flex-col laptop:absolute bottom-0">
         <h3 class="pt-2 pb-4 text-white">
           {{ caseStudyContent.name }}
         </h3>

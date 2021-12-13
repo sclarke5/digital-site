@@ -40,7 +40,7 @@
         <div
           v-for="caseStudy in sortedCaseStudies"
           :key="caseStudy._uid"
-          class="flex h-full case-study-outer-container justify-center"
+          class="flex h-full case-study-outer-container laptop:justify-center"
         >
           <case-study-teaser
             v-if="caseStudy.content"
