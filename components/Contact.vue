@@ -522,17 +522,18 @@ export default {
 
 @media screen(laptopwh) {
   .top-container {
-    top: 590em;
-    right: -66em;
+    top: 570em;
+    right: -24.5em;
     width: min-content;
   }
   .two-column-container {
-    /* margin-right: 10em; */
+    margin-right: 10em;
     min-width: max-content;
+    margin-bottom: 10em;
   }
   #astoundContactForm {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 32em 32em;
     grid-gap: 10px;
     width: 30%;
   }
@@ -540,8 +541,8 @@ export default {
 
 @media screen(laptop2xwh) {
   .top-container {
-    top: 600em;
-    right: -71em;
+    top: 530;
+    right: -23em;
   }
   .two-column-container {
     margin-right: 10em;
@@ -549,7 +550,7 @@ export default {
   }
   #astoundContactForm {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 30em 30em;
     grid-gap: 10px;
   }
 }
