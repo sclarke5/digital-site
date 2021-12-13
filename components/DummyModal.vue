@@ -4,18 +4,18 @@
       <img src="../assets/close-icon.png" alt="" />
     </button> -->
     <div class="modal-overlay bg-black flex">
-      <div class="modal flex flex-col px-20 bg-black overflow-auto w-screen">
+      <div class="modal flex flex-col px-20 bg-black overflow-auto w-screen" @scroll="collapseHeader">
         <div class="title-container flex flex-col py-9">
           <div class="header-left">
             <h1 class="pt-2 text-white text-5xl text-left uppercase">
               {{ content.name }}
             </h1>
-            <p class="pt-2 text-white text-xl text-left">
+            <p class="pt-2 text-white text-xl text-left tagline">
               {{ content.tagline }}
             </p>
           </div>
           <div class="header-right">
-            <button @click="toggleModal" class="close-icon">
+            <button class="close-icon"  @click="toggleModal">
               <img src="../assets/close-icon.png" alt="" />
             </button>
           </div>
@@ -283,6 +283,15 @@ export default {
       this.$store.dispatch('modal/next', { target, list })
       document.querySelector('.modal').scrollTop = 0
     },
+    collapseHeader(){
+      if(document.querySelector('.modal').scrollTop > 20){
+        document.querySelector('.text-left').style.fontSize = '2em';
+        document.querySelector('.tagline').style.display = 'none';
+      } else {
+        document.querySelector('.text-left').style.fontSize = '4em';
+        document.querySelector('.tagline').style.display = 'block';
+      }
+    }
   },
 }
 </script>
@@ -304,6 +313,14 @@ export default {
 .title-container h1 {
   font-size: 4em;
   width: 80%;
+}
+
+.text-left {
+  transition: 0.5s;
+}
+
+.tagline {
+  transition: 0.5s;
 }
 
 .header-right {
@@ -459,7 +476,7 @@ export default {
 
 @media screen(desktop2xl) {
   .modal {
-    padding: 25rem;
+    /* padding: 25rem; */
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -469,9 +486,10 @@ export default {
     padding-right: 12rem;
     padding-left: 12rem;
   }
-  .title-container {
+
+  /* .title-container {
     margin-left: -25rem;
     padding-left: 25rem;
-  }
+  } */
 }
 </style>

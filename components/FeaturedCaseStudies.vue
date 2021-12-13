@@ -1,10 +1,10 @@
 <template>
-  <div v-editable="blok" class="mt-20 relative" id="case-studies-marker">
+  <div id="case-studies-marker" v-editable="blok" class="mt-20 relative">
     <div>
       <div class="sticky-nav">
         <div class="font-dinProBlack">Our Work</div>
       </div>
-      <h2 class="text-white case-studies-sub" id="case-studies">
+      <h2 id="case-studies" class="text-white case-studies-sub">
         Our Clients<br />
         & Work
       </h2>

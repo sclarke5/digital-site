@@ -78,11 +78,11 @@
         "
       >
         <li
-          :key="blok._uid"
           v-for="blok in blok.columns"
+          :key="blok._uid"
           class="flex-auto px-6 laptop:w-1/3 text-white laptop:mr-12 list-none"
         >
-          <component :blok="blok" :is="blok.component" />
+          <component :is="blok.component" :blok="blok" />
         </li>
       </ul>
     </div>
