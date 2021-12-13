@@ -102,7 +102,7 @@ export default {
       title:
         "We're creatively led Digital Thinkers who solve business challenges and spark human connection.",
       blurb:
-        'Technology is a tool to enhance human connection. We bring stories to life that inspire audiences, we innovate solutions that enhance experiences, and we reveal opportunities that serve new markets and drive business.',
+        'Technology is a tool to enhance connection. We bring stories to life that inspire audiences, we innovate solutions that enhance experiences, and we reveal opportunities that drive business.',
       archfab_cta: {
         text: 'Looking for architectural fabrication?',
         link: 'https://www.astoundarchfab.com',
