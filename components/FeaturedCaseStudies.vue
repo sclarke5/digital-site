@@ -139,8 +139,8 @@ export default {
   }
 
   .case-studies-sub {
-    top: 60em;
-    right: -2em;
+    top: 56em;
+    right: -1.3em;
   }
 
   .lines {
