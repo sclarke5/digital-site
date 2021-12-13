@@ -485,8 +485,8 @@ export default {
     padding-bottom: 0;
   }
   .results-container {
-    margin-left: -25rem;
-    margin-right: -25rem;
+    /* margin-left: -25rem;
+    margin-right: -25rem; */
     padding-right: 12rem;
     padding-left: 12rem;
   }

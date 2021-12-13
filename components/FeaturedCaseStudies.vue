@@ -40,7 +40,7 @@
         <div
           v-for="caseStudy in sortedCaseStudies"
           :key="caseStudy._uid"
-          class="h-full case-study-outer-container laptop:justify-center"
+          class="flex h-full case-study-outer-container laptop:justify-center"
         >
           <case-study-teaser
             v-if="caseStudy.content"
@@ -145,8 +145,8 @@ export default {
   }
 
   .case-studies-sub {
-    top: 60em;
-    right: -2em;
+    top: 56em;
+    right: -1.3em;
   }
 
   .lines {
@@ -162,7 +162,7 @@ export default {
     margin-left: 25em;
     width: 800px;
     top: 187em;
-    right: -5rem;
+    right: -2rem;
   }
 
   .case-studies-wrapper {
@@ -170,7 +170,7 @@ export default {
     margin-top: 180em;
     margin-bottom: 50em;
     top: 180em;
-    right: -105em;
+    right: -94em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
