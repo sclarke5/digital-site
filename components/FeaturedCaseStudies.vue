@@ -40,7 +40,7 @@
         <div
           v-for="caseStudy in sortedCaseStudies"
           :key="caseStudy._uid"
-          class="flex h-full case-study-outer-container laptop:justify-center"
+          class="h-full case-study-outer-container laptop:justify-center"
         >
           <case-study-teaser
             v-if="caseStudy.content"
@@ -115,10 +115,6 @@ export default {
   margin-bottom: 5em;
 }
 
-.case-study-container {
-  padding: 1.5em;
-}
-
 .icons-container {
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
@@ -128,6 +124,16 @@ export default {
 
 .bg-shape {
   display: none;
+}
+
+.icon-item img {
+  padding: 1rem;
+}
+
+@media screen(mobile) {
+  #contact-marker {
+    min-height: 100vh;
+  }
 }
 
 @media screen(laptopwh) {
@@ -231,10 +237,6 @@ export default {
     width: 800px;
     top: 187em;
     right: 5rem;
-  }
-
-  .case-study-container {
-    padding: 0;
   }
 
   .case-study-outer-container {

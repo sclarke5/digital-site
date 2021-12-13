@@ -122,11 +122,19 @@ export default {
 }
 
 .process-item {
-  @apply p-4 my-4 w-1/2;
+  @apply p-4 my-4 w-1/2 text-center;
 }
 
 .process-item > p {
-  @apply w-full text-white uppercase text-center h-8 px-1 pt-2 font-primaryHeadline;
+  @apply w-full text-white uppercase h-8 px-1 pt-2 font-primaryHeadline;
+}
+
+@media screen(mobile) {
+  .process-item > img {
+    max-width: 200px;
+    width: 100%;
+    display: inline-block;
+  }
 }
 
 @media screen(laptop) {

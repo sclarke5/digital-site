@@ -4,7 +4,10 @@
       <img src="../assets/close-icon.png" alt="" />
     </button> -->
     <div class="modal-overlay bg-black flex">
-      <div class="modal flex flex-col px-20 bg-black overflow-auto w-screen" @scroll="collapseHeader">
+      <div
+        class="modal flex flex-col px-20 bg-black overflow-auto w-screen"
+        @scroll="collapseHeader"
+      >
         <div class="title-container flex flex-col py-9">
           <div class="header-left">
             <h1 class="pt-2 text-white text-5xl text-left uppercase">
@@ -15,7 +18,7 @@
             </p>
           </div>
           <div class="header-right">
-            <button class="close-icon"  @click="toggleModal">
+            <button class="close-icon" @click="toggleModal">
               <img src="../assets/close-icon.png" alt="" />
             </button>
           </div>
@@ -283,15 +286,15 @@ export default {
       this.$store.dispatch('modal/next', { target, list })
       document.querySelector('.modal').scrollTop = 0
     },
-    collapseHeader(){
-      if(document.querySelector('.modal').scrollTop > 20){
-        document.querySelector('.text-left').style.fontSize = '2em';
-        document.querySelector('.tagline').style.display = 'none';
+    collapseHeader() {
+      if (document.querySelector('.modal').scrollTop > 20) {
+        document.querySelector('.text-left').style.fontSize = '2em'
+        document.querySelector('.tagline').style.display = 'none'
       } else {
-        document.querySelector('.text-left').style.fontSize = '4em';
-        document.querySelector('.tagline').style.display = 'block';
+        document.querySelector('.text-left').style.fontSize = '4em'
+        document.querySelector('.tagline').style.display = 'block'
       }
-    }
+    },
   },
 }
 </script>
@@ -436,6 +439,7 @@ export default {
     text-shadow: 2px 2px 12px black;
     z-index: 10001;
     transition: opacity 0.2s;
+    border: 0;
   }
 
   .close-icon:hover {
