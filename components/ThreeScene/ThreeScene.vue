@@ -7,8 +7,7 @@
       </h2>
       <div id="scrollTextContainer">
         <p id="tagline" class="font-dinProBlack">
-          We design for the future, obsess about the present, and unlock
-          potential.
+          We design technology that elevates your brand and customer experiences.
         </p>
         <div id="scrollPrompt">
           <p id="scrollText">Scroll for More</p>
@@ -17,8 +16,7 @@
       </div>
       <div id="mobileScroll">
         <p id="mobileTagLine" class="font-dinProBlack text-white text-center">
-          We design for the future, obsess about the present, and unlock
-          potential.
+          We design technology that elevates your brand and customer experiences.
         </p>
         <div id="scrollIndicators">
           <div class="indicator"></div>

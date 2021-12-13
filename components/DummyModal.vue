@@ -316,11 +316,11 @@ export default {
 }
 
 .text-left {
-  transition: 0.5s;
+  transition: 0.25s;
 }
 
 .tagline {
-  transition: 0.5s;
+  transition: 0.25s;
 }
 
 .header-right {
