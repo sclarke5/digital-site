@@ -471,6 +471,10 @@ export default {
 }
 
 @media screen(laptop) {
+  #contactContainer {
+    max-width: 50vw;
+  }
+
   .top-container {
     transform: rotate(90deg);
     position: absolute;
@@ -492,6 +496,7 @@ export default {
 
   .two-column-container {
     flex-direction: row;
+    min-width: max-content;
   }
 
   #services {
@@ -523,11 +528,11 @@ export default {
 @media screen(laptopwh) {
   .top-container {
     top: 570em;
-    right: -24.5em;
+    right: -10em;
     width: min-content;
   }
   .two-column-container {
-    margin-right: 10em;
+    /* margin-right: 10em; */
     min-width: max-content;
     margin-bottom: 10em;
   }
@@ -535,7 +540,6 @@ export default {
     display: grid;
     grid-template-columns: 32em 32em;
     grid-gap: 10px;
-    width: 30%;
   }
 }
 
@@ -558,7 +562,7 @@ export default {
 @media screen(desktopwh) {
   .top-container {
     top: 570em;
-    right: -8em;
+    right: -7em;
     width: 80em;
   }
   .two-column-container {

@@ -1,15 +1,24 @@
 <template>
   <div
     :class="caseStudyContent._uid"
-    class="case-study-teaser block py-4 md:pb-40 relative"
+    class="case-study-teaser block mobile:my-6 md:pb-40 relative"
   >
-    <div class="case-study-container flex flex-col">
+    <div class="case-study-container flex flex-col mobile:items-center">
       <img
-        class="primary-image"
+        class="primary-image px-6"
         :src="caseStudyContent.primary_image.filename"
         :alt="caseStudyContent.primary_image.alt"
       />
-      <div class="flex flex-col laptop:absolute bottom-0">
+      <div
+        class="
+          flex flex-col
+          laptop:absolute
+          bottom-0
+          w-full
+          case-text-wrapper
+          px-6
+        "
+      >
         <h3 class="pt-2 pb-4 text-white">
           {{ caseStudyContent.name }}
         </h3>
@@ -118,5 +127,9 @@ h5 {
 
 .bring-forward {
   z-index: 999;
+}
+
+.case-text-wrapper {
+  max-width: 620px;
 }
 </style>

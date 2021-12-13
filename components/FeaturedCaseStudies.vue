@@ -115,10 +115,6 @@ export default {
   margin-bottom: 5em;
 }
 
-.case-study-container {
-  padding: 1.5em;
-}
-
 .icons-container {
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
@@ -128,6 +124,16 @@ export default {
 
 .bg-shape {
   display: none;
+}
+
+.icon-item img {
+  padding: 1rem;
+}
+
+@media screen(mobile) {
+  #contact-marker {
+    min-height: 100vh;
+  }
 }
 
 @media screen(laptopwh) {
@@ -156,7 +162,7 @@ export default {
     margin-left: 25em;
     width: 800px;
     top: 187em;
-    right: -5rem;
+    right: -2rem;
   }
 
   .case-studies-wrapper {
@@ -164,7 +170,7 @@ export default {
     margin-top: 180em;
     margin-bottom: 50em;
     top: 180em;
-    right: -105em;
+    right: -94em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -231,10 +237,6 @@ export default {
     width: 800px;
     top: 187em;
     right: 5rem;
-  }
-
-  .case-study-container {
-    padding: 0;
   }
 
   .case-study-outer-container {
