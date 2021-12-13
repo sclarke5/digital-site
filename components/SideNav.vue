@@ -1,8 +1,8 @@
 <template>
-  <div id="sideNav" class="sideNav-container">
+  <div id="sideNav" class="sideNav-container hidden laptop:flex">
     <div
       id="home-sideNav"
-      class="ribbon bg-black text-white move"
+      class="ribbon bg-black text-white"
       @click="homeScroll"
     >
       <div class="font-dinProBlack ribbon-text current">Home</div>
@@ -125,11 +125,6 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 799px) {
-  #sideNav {
-    display: none;
-  }
-}
 .move {
   transform: translate(calc(-100vw + 8rem), 0);
 }
@@ -141,10 +136,6 @@ export default {
   background-color: none;
   z-index: 1001;
   height: 100%;
-}
-
-.sideNav-container {
-  display: flex;
 }
 
 .ribbon {

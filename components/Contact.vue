@@ -1,6 +1,4 @@
 <template>
-  <!-- <div class="contactContainer"> -->
-  <!-- <div id="response">Hello world</div> -->
   <div class="top-container mt-40">
     <div class="sticky-nav">
       <div class="font-dinProBlack">Contact</div>
@@ -11,10 +9,8 @@
         <p id="contact-body" class="py-6">
           All fields marked with * are required.
         </p>
-        <!-- <br>
-              <p>support@example.com</p> -->
       </div>
-      <div id="contactContainer" class="col-span-1 max-w-screen-sm p-8 w-full">
+      <div id="contactContainer" class="col-span-1 p-8 w-full">
         <div class="errorToast">
           <ul v-if="errors.length" id="errorContainer" class="text-red-500">
             <p>
@@ -464,29 +460,68 @@ export default {
 </script>
 
 <style scoped>
-button {
-  border: 2px solid white;
-}
-
-h1 {
-  line-height: 1.1;
-  font-weight: 800;
-}
-
 .service-dropdown {
-  border: 1px solid white;
+  @apply border border-solid border-white bg-no-repeat;
+
   background-image: linear-gradient(45deg, transparent 50%, white 50%),
     linear-gradient(135deg, white 50%, transparent 50%);
   background-position: calc(100% - 20px) calc(1em + 2px),
     calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
   background-size: 5px 5px, 5px 5px, 1px 1.5em;
-  background-repeat: no-repeat;
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) {
+@media screen(laptop) {
   .top-container {
     transform: rotate(90deg);
     position: absolute;
+  }
+
+  .errorToast {
+    position: absolute;
+    display: none;
+    background-color: black;
+    opacity: 0;
+    transition: 1s ease;
+    width: 400px;
+    margin-left: 100px;
+  }
+
+  .errorToast.display {
+    opacity: 1;
+  }
+
+  .two-column-container {
+    flex-direction: row;
+  }
+
+  #services {
+    position: relative;
+  }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 1);
+
+    /* box-shadow: 0 0 1px rgba(255, 255, 255, 1); */
+  }
+
+  #services-container {
+    width: 100%;
+    overflow-y: scroll;
+    max-height: 300px;
+    position: absolute;
+    top: 4.7rem;
+    left: 0;
+  }
+}
+
+@media screen(laptopwh) {
+  .top-container {
     top: 560em;
     right: -14em;
     width: min-content;
@@ -502,10 +537,8 @@ h1 {
   }
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
+@media screen(laptop2xwh) {
   .top-container {
-    transform: rotate(90deg);
-    position: absolute;
     top: 560em;
     right: -16em;
   }
@@ -520,10 +553,8 @@ h1 {
   }
 }
 
-@media screen and (min-width: 800px) and (min-height: 801px) {
+@media screen(desktopwh) {
   .top-container {
-    transform: rotate(90deg);
-    position: absolute;
     top: 570em;
     right: -7em;
     width: 80em;
@@ -554,13 +585,11 @@ h1 {
 }
 
 .service-sub {
-  font-family: 'Gotham Book', sans-serif;
+  @apply font-body;
 }
 
 .service-main {
-  font-family: 'DINPro', sans-serif;
-  font-weight: 900;
-  text-transform: uppercase;
+  @apply font-subHeadline uppercase font-black;
 }
 
 input[type='text'],
@@ -616,65 +645,5 @@ input[type='checkbox']:checked::after {
 
 #privacy-disclaimer a {
   text-decoration: underline;
-}
-
-#contact-title {
-  text-transform: uppercase;
-}
-
-#dismiss {
-  display: none;
-}
-
-@media screen and (min-width: 800px) {
-  #dismiss {
-    font-size: 0.8rem;
-    color: #999;
-    margin: 0.5rem 0;
-    display: block;
-  }
-
-  .errorToast {
-    position: absolute;
-    display: none;
-    background-color: black;
-    opacity: 0;
-    transition: 1s ease;
-    width: 400px;
-    margin-left: 100px;
-  }
-
-  .errorToast.display {
-    opacity: 1;
-  }
-
-  .two-column-container {
-    flex-direction: row;
-  }
-
-  #services {
-    position: relative;
-  }
-
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-radius: 0;
-    background-color: rgba(255, 255, 255, 1);
-
-    /* box-shadow: 0 0 1px rgba(255, 255, 255, 1); */
-  }
-
-  #services-container {
-    width: 100%;
-    overflow-y: scroll;
-    max-height: 300px;
-    position: absolute;
-    top: 4.7rem;
-    left: 0;
-  }
 }
 </style>

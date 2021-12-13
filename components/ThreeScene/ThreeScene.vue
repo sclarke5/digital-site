@@ -16,7 +16,7 @@
         </div>
       </div>
       <div id="mobileScroll">
-        <p id="mobileTagLine" class="font-dinProBlack text-white">
+        <p id="mobileTagLine" class="font-dinProBlack text-white text-center">
           We design for the future, obsess about the present, and unlock
           potential.
         </p>
@@ -671,21 +671,21 @@ export default {
       } else if (
         this.isElementInViewport(document.getElementById('services'))
       ) {
-        if (window.innerWidth < 800) {
+        if (window.innerWidth < 1024) {
           this.changeIndicator(this.mobileSwipes)
           this.startMovement(this.mobileSwipes)
           currentStage = animations[this.mobileSwipes].stage
         }
 
         this.container.style.opacity = 0
-        if (window.innerWidth >= 800) {
+        if (window.innerWidth >= 1024) {
           new TWEEN.Tween(this.camera.position)
             .to(this.initialCameraPos, 500)
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
         }
 
-        if (window.innerWidth < 800) {
+        if (window.innerWidth < 1024) {
           document.getElementById('three').style.position = 'static'
           document.getElementById('three').style.zIndex = '0'
 
@@ -696,7 +696,7 @@ export default {
       } else if (
         this.isElementInViewport(document.getElementById('case-studies'))
       ) {
-        if (window.innerWidth >= 800) {
+        if (window.innerWidth >= 1024) {
           this.startContact()
           this.serviceText.style.opacity = 0
           this.scrollText.style.opacity = 0
@@ -712,7 +712,7 @@ export default {
           currentStage = 'contact'
         }
 
-        if (window.innerWidth < 800) {
+        if (window.innerWidth < 1024) {
           // document.getElementById('three').style.position = 'fixed'
           // document.getElementById('three').style.top = '0'
           // document.getElementById('three').style.left = '0'
@@ -721,7 +721,7 @@ export default {
           document.getElementById('landingText').style.display = 'none'
           document.getElementById('mobileScroll').style.display = 'none'
         }
-      } else if (window.innerWidth >= 800) {
+      } else if (window.innerWidth >= 1024) {
         this.container.style.opacity = 0
       }
     },
@@ -862,7 +862,7 @@ export default {
   padding: 1rem;
 }
 
-@media screen and (min-width: 800px) {
+@media screen(laptop) {
   #landingText {
     top: 8rem;
     left: 5rem;
@@ -895,7 +895,7 @@ export default {
   position: relative;
 }
 
-@media screen and (max-width: 799px) {
+@media screen(mobile) {
   #container {
     height: 85vh;
   }

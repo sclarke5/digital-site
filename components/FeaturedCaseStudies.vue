@@ -9,7 +9,12 @@
         & Work
       </h2>
       <div
-        class="icons-container lines-background-case-studies case-study-icons"
+        class="
+          icons-container
+          lines-background-case-studies
+          case-study-icons
+          grid
+        "
       >
         <div class="flex items-center justify-center icon-item">
           <img class="icon" src="../assets/Nike.png" alt="nike" />
@@ -31,11 +36,11 @@
         </div>
       </div>
 
-      <div class="case-studies-wrapper">
+      <div class="case-studies-wrapper grid">
         <div
           v-for="caseStudy in sortedCaseStudies"
           :key="caseStudy._uid"
-          class="flex h-full case-study-outer-container"
+          class="flex h-full case-study-outer-container justify-center"
         >
           <case-study-teaser
             v-if="caseStudy.content"
@@ -115,7 +120,6 @@ export default {
 }
 
 .icons-container {
-  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
   list-style-type: none;
@@ -126,10 +130,15 @@ export default {
   display: none;
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) {
-  .case-studies-sub {
+@media screen(laptop) {
+  .case-studies-sub,
+  .icons-container,
+  .case-studies-wrapper {
     transform: rotate(90deg);
     position: absolute;
+  }
+
+  .case-studies-sub {
     top: 60em;
     right: -0.4em;
   }
@@ -140,27 +149,20 @@ export default {
   }
 
   .icons-container {
-    transform: rotate(90deg);
-    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;
     list-style-type: none;
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-
-    /* width: fit-content; */
-    position: absolute;
     top: 187em;
-    right: 0;
+    right: 8rem;
   }
+
   .case-studies-wrapper {
-    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    transform: rotate(90deg);
-    position: absolute;
     top: 180em;
     right: -100em;
     width: -webkit-max-content;
@@ -169,10 +171,8 @@ export default {
   }
 }
 
-@media screen and (min-width: 800px) and (max-height: 800px) and (-webkit-device-pixel-ratio: 1.5) {
+@media screen and (laptop2xwh) {
   .case-studies-sub {
-    transform: rotate(90deg);
-    position: absolute;
     top: 60em;
     right: -1.2em;
   }
@@ -183,27 +183,19 @@ export default {
   }
 
   .icons-container {
-    transform: rotate(90deg);
-    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;
     list-style-type: none;
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-
-    /* width: fit-content; */
-    position: absolute;
     top: 187em;
-    right: 0;
+    right: 8rem;
   }
   .case-studies-wrapper {
-    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    transform: rotate(90deg);
-    position: absolute;
     top: 190em;
     right: -105em;
     width: -webkit-max-content;
@@ -212,10 +204,8 @@ export default {
   }
 }
 
-@media screen and (min-width: 800px) and (min-height: 801px) {
+@media screen and (desktopwh) {
   .case-studies-sub {
-    transform: rotate(90deg);
-    position: absolute;
     top: 60em;
     right: 0;
   }
@@ -226,19 +216,14 @@ export default {
   }
 
   .icons-container {
-    transform: rotate(90deg);
-    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;
     list-style-type: none;
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-
-    /* width: fit-content; */
-    position: absolute;
     top: 187em;
-    right: 8em;
+    right: 8rem;
   }
 
   .case-study-container {
@@ -251,12 +236,9 @@ export default {
   }
 
   .case-studies-wrapper {
-    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 120em;
     margin-bottom: 50em;
-    transform: rotate(90deg);
-    position: absolute;
     top: 250em;
     right: -100.5em;
     width: max-content;
@@ -267,22 +249,6 @@ export default {
     width: 300px;
     position: absolute;
     z-index: -1;
-  }
-
-  #triangle {
-    left: 10%;
-    top: 0%;
-  }
-
-  #square {
-    left: 50%;
-    top: 35%;
-    transform: rotate(30deg);
-  }
-
-  #circle {
-    left: 70%;
-    top: 70%;
   }
 }
 
