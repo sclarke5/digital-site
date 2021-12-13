@@ -471,9 +471,9 @@ export default {
 }
 
 @media screen(laptop) {
-  #contactContainer {
+  /* #contactContainer {
     max-width: 50vw;
-  }
+  } */
 
   .top-container {
     transform: rotate(90deg);
@@ -527,12 +527,12 @@ export default {
 
 @media screen(laptopwh) {
   .top-container {
-    top: 570em;
-    right: -10em;
+    top: 530em;
+    right: -24.5em;
     width: min-content;
   }
   .two-column-container {
-    /* margin-right: 10em; */
+    margin-right: 10em;
     min-width: max-content;
     margin-bottom: 10em;
   }
@@ -560,14 +560,17 @@ export default {
 }
 
 @media screen(desktopwh) {
+  #contactContainer {
+    margin-right: 10em;
+  }
   .top-container {
-    top: 570em;
-    right: -7em;
+    top: 550em;
+    right: -9em;
     width: 80em;
   }
   .two-column-container {
     flex-direction: row;
-    margin-right: 10em;
+    margin-right: 15em;
   }
 }
 
