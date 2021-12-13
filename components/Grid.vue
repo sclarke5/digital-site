@@ -146,12 +146,6 @@ export default {
     max-width: 1971px;
   }
 
-  .process-item {
-    max-width: calc(100% / 6);
-    flex-basis: 0;
-    flex-grow: 1;
-  }
-
   .grid-right ul {
     min-width: 200%;
   }
@@ -159,7 +153,7 @@ export default {
 
 @media screen(laptopwh) {
   .grid-container {
-    right: -36em;
+    right: -37em;
   }
 
   .grid-right ul {
@@ -169,11 +163,11 @@ export default {
 
 @media screen(laptop2xwh) {
   .grid-container {
-    right: -41em;
+    right: -38em;
   }
 
   .grid-right ul {
-    margin-top: -5em;
+    margin-top: -3em;
   }
 }
 

@@ -195,6 +195,7 @@ export default {
 #header-logo-img {
   transition: 0.5s linear transform;
   max-width: 200px;
+  
   /* transform: translate(2rem, 0); */
 }
 
