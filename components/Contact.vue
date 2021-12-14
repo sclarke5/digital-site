@@ -471,10 +471,6 @@ export default {
 }
 
 @media screen(laptop) {
-  /* #contactContainer {
-    max-width: 50vw;
-  } */
-
   .top-container {
     transform: rotate(90deg);
     position: absolute;
@@ -562,7 +558,9 @@ export default {
 @media screen(desktopwh) {
   #contactContainer {
     margin-right: 10em;
+    max-width: 50vw;
   }
+
   .top-container {
     top: 550em;
     right: -9em;
