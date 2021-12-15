@@ -7,7 +7,8 @@
       </h2>
       <div id="scrollTextContainer">
         <p id="tagline" class="font-dinProBlack">
-          We design technology that elevates your brand and customer experiences.
+          We design technology that elevates your brand and customer
+          experiences.
         </p>
         <div id="scrollPrompt">
           <p id="scrollText">Scroll for More</p>
@@ -16,7 +17,8 @@
       </div>
       <div id="mobileScroll">
         <p id="mobileTagLine" class="font-dinProBlack text-white text-center">
-          We design technology that elevates your brand and customer experiences.
+          We design technology that elevates your brand and customer
+          experiences.
         </p>
         <div id="scrollIndicators">
           <div class="indicator"></div>
@@ -694,10 +696,10 @@ export default {
       } else if (
         this.isElementInViewport(document.getElementById('case-studies'))
       ) {
-        if (window.innerWidth >= 1024) {
-          this.startContact()
-          this.serviceText.style.opacity = 0
-          this.scrollText.style.opacity = 0
+        if (window.innerWidth >= 1025) {
+          // this.startContact()
+          // this.serviceText.style.opacity = 0
+          // this.scrollText.style.opacity = 0
         }
         this.container.style.opacity = 0
       } else if (
@@ -710,7 +712,7 @@ export default {
           currentStage = 'contact'
         }
 
-        if (window.innerWidth < 1024) {
+        if (window.innerWidth < 1025) {
           // document.getElementById('three').style.position = 'fixed'
           // document.getElementById('three').style.top = '0'
           // document.getElementById('three').style.left = '0'
@@ -718,6 +720,10 @@ export default {
 
           document.getElementById('landingText').style.display = 'none'
           document.getElementById('mobileScroll').style.display = 'none'
+        } else {
+          this.startContact()
+          this.serviceText.style.opacity = 0
+          this.scrollText.style.opacity = 0
         }
       } else if (window.innerWidth >= 1024) {
         this.container.style.opacity = 0
