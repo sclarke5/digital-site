@@ -31,163 +31,134 @@
         />
 
         <div class="body-container flex justify-between pt-12">
-          <div class="services-container flex flex-col">
-            <h4 class="text-white">CLIENT</h4>
-            <p class="text-white">
-              {{ content.client }}
-            </p>
-            <h4 class="text-white mt-6">SERVICES PROVIDED</h4>
-            <ul>
-              <li
-                v-for="(service, index) in parsedCaseStudies.services_provided"
-                :key="index"
-                class="text-white"
-              >
-                {{ service }}
-              </li>
-            </ul>
-            <h4 class="text-white">DISCIPLINES</h4>
-            <ul>
-              <li
-                v-for="(discipline, index) in parsedCaseStudies.disciplines"
-                :key="index"
-                class="text-white"
-              >
-                {{ discipline }}
-              </li>
-            </ul>
-          </div>
-
-          <div class="challenege-approach-container w-2/3">
-            <div class="challenge-approach-first flex flex-col mb-12">
-              <h4 class="text-white uppercase">Challenge</h4>
+          <div class="services-container flex">
+            <div class="client-container">
+              <h4 class="text-white">CLIENT</h4>
               <p class="text-white">
-                {{ content.challenge }}
+                {{ content.client }}
               </p>
             </div>
+            <div class="services-provided">
+              <h4 class="text-white">SERVICES PROVIDED</h4>
+              <ul>
+                <li
+                  v-for="(service, index) in parsedCaseStudies.services_provided"
+                  :key="index"
+                  class="text-white"
+                >
+                  {{ service }}
+                </li>
+              </ul>
+            </div>
+            <div class="disciplines-container">
+              <h4 class="text-white">DISCIPLINES</h4>
+              <ul>
+                <li
+                  v-for="(discipline, index) in parsedCaseStudies.disciplines"
+                  :key="index"
+                  class="text-white"
+                >
+                  {{ discipline }}
+                </li>
+              </ul>
+            </div>
+          </div>
 
+          <hr class="my-20">
+
+          <div class="testimonial-container flex">
             <!-- whenever we render a visual, check whether the filetype includes video extentions. TODO: add other formats in addition to webm -->
-            <video
-              v-if="visualsArray[0].filename.includes('webm')"
-              controls
-              :src="visualsArray[0].filename"
-              :alt="visualsArray[0].alt"
-            ></video>
-            <img
-              v-else
-              :src="visualsArray[0].filename"
-              :alt="visualsArray[0].alt"
-            />
-
-            <div class="challenge-approach-second flex flex-col py-12">
-              <h4 class="text-white uppercase">Approach</h4>
-              <p class="text-white">
-                {{ content.approach }}
-              </p>
+            <div class="testimonial-visual-container w-1/2 pb-40">
+              <video
+                v-if="visualsArray[0].filename.includes('webm')"
+                controls
+                :src="visualsArray[0].filename"
+                :alt="visualsArray[0].alt">
+              </video>
+              <img
+                v-else
+                :src="visualsArray[0].filename"
+                :alt="visualsArray[0].alt"
+              />
             </div>
-
-            <video
-              v-if="visualsArray[1].filename.includes('webm')"
-              controls
-              :src="visualsArray[1].filename"
-              :alt="visualsArray[1].alt"
-            ></video>
-            <img
-              v-else
-              :src="visualsArray[1].filename"
-              :alt="visualsArray[1].alt"
-              class="mb-16 second-image"
-            />
-
-            <video
-              v-if="visualsArray[2].filename.includes('webm')"
-              controls
-              :src="visualsArray[2].filename"
-              :alt="visualsArray[2].alt"
-            ></video>
-            <img
-              :src="visualsArray[2].filename"
-              :alt="visualsArray[2].alt"
-              class="mb-16 third-image"
-            />
-          </div>
-        </div>
-
-        <div
-          v-if="content.result_1 && content.result_2 && content.result_3"
-          class="results-container bg-white"
-        >
-          <h4 class="uppercase pt-12 pb-4 pl-20 text-black">Results</h4>
-
-          <div class="results-columns flex">
-            <div class="results-column first-column w-1/3 px-20 pb-16">
-              <p>
-                {{ content.result_1 }}
-              </p>
-            </div>
-            <div class="results-column second-column w-1/3 px-20 pb-16">
-              <p>
-                {{ content.result_2 }}
-              </p>
-            </div>
-            <div class="results-column third-colum w-1/3 px-20 pb-16">
-              <p>
-                {{ content.result_3 }}
-              </p>
+            <div class="testimonial-text-container relative flex items-end w-1/2">
+              <div class="flex flex-col pl-36">
+                <p v-if="content.testimonial" class="testimonial text-white">
+                  "{{ content.testimonial }}"
+                </p>
+                <p
+                  v-if="content.testimonial_author"
+                  class="testimonial-author text-white mt-4 mb-8"
+                >
+                  - {{ content.testimonial_author }}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div
-          v-if="content.result_1 && content.result_2 && !content.result_3"
-          class="results-container bg-white"
-        >
-          <h4 class="uppercase pt-12 pb-4 pl-52 text-black">Results</h4>
-          <div class="results-columns flex px-40">
-            <div class="results-column first-column w-1/2 px-12 pb-16">
-              <p>
-                {{ content.result_1 }}
-              </p>
-            </div>
-            <div class="results-column second-column w-1/2 px-12 pb-16">
-              <p>
-                {{ content.result_2 }}
-              </p>
+
+          <hr class="my-20">
+
+          <div class="challenege-approach-container flex flex-col items-center">
+            <div class="challenge-approach-results w-2/3">
+              <div class="challenge-approach-first flex flex-col">
+                <h4 class="text-white uppercase">Challenge</h4>
+                <p class="text-white">
+                {{ content.challenge }}
+                </p>
+              </div>
+              <div class="challenge-approach-second flex flex-col py-12">
+                <h4 class="text-white uppercase">Approach</h4>
+                <p class="text-white">
+                  {{ content.approach }}
+                </p>
+              </div>
+              <div class="results">
+                <h4 class="text-white uppercase">Results</h4>
+                <p>
+                  {{ content.result_1 }}
+                </p>
+              </div>
             </div>
           </div>
+
+          <hr class="my-20">
+
+          <div class="visuals-container flex items-center">
+            <div class="visuals-left w-1/2">
+              <video
+                v-if="visualsArray[1].filename.includes('webm')"
+                controls
+                :src="visualsArray[1].filename"
+                :alt="visualsArray[1].alt"
+              ></video>
+              <img
+                v-else
+                :src="visualsArray[1].filename"
+                :alt="visualsArray[1].alt"
+                class="second-image"
+              />
+            </div>
+
+            <div class="visuals-right w-1/2">
+              <video
+                v-if="visualsArray[2].filename.includes('webm')"
+                controls
+                :src="visualsArray[2].filename"
+                :alt="visualsArray[2].alt"
+              ></video>
+              <img
+                :src="visualsArray[2].filename"
+                :alt="visualsArray[2].alt"
+                class="third-image"
+              />
+            </div>          
+          </div>
+
+          <hr class="my-20">
+
+        <!-- end of body container, open back up for More Work -->
         </div>
 
-        <div
-          v-if="content.result_1 && !content.result_2"
-          class="results-container bg-white"
-        >
-          <h4 class="uppercase pt-12 pb-4 px-72 text-black">Results</h4>
-          <div class="results-columns flex px-72 w-full">
-            <div class="results-column first-column pb-16">
-              <p>
-                {{ content.result_1 }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex flex-col items-end">
-          <div class="flex flex-col p-12 w-2/3">
-            <p v-if="content.testimonial" class="testimonial text-white">
-              "{{ content.testimonial }}"
-            </p>
-            <p
-              v-if="content.testimonial_author"
-              class="testimonial-author text-white mt-4 mb-8"
-            >
-              - {{ content.testimonial_author }}
-            </p>
-            <!-- <div class="flex cta items-center justify-around">
-              <a href="" target="_blank" class="flex">
-                <p class="uppercase" href="">Go to Site</p>
-              </a>
-            </div> -->
-          </div>
-        </div>
 
         <div class="more-work mt-8 mb-80">
           <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">
@@ -336,24 +307,19 @@ export default {
   margin-top: 20em;
 }
 
-.body-container p {
-  margin-top: 0.5em;
-  text-align: left;
+.body-container {
+  flex-direction: column;
+}
+
+.services-container {
+  justify-content: space-between;
+  width: 60%;
 }
 
 .modal-overlay {
   width: 100vw;
   display: flex;
   justify-content: center;
-}
-
-.services-container ul {
-  margin: 20px 0;
-}
-
-.third-image {
-  margin-left: -20em;
-  margin-top: -10em;
 }
 
 .results-container {
@@ -363,6 +329,14 @@ export default {
 
 .results-column {
   padding-top: 0;
+}
+
+.visuals-container {
+  max-height: 55em;
+}
+
+.visuals-container img {
+  max-height: 100%;
 }
 
 .results-column p {
