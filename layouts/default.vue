@@ -3,6 +3,7 @@
     <HeaderAstound />
     <DummyModal />
     <SideNav />
+    <ScrollBar />
     <ThreeScene id="three" />
     <Nuxt id="scrollEl" class="layout-container" />
     <!-- <Footer /> -->
