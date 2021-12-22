@@ -516,35 +516,34 @@ export default {
 
           this.allShapes[2].position.x = 0.5 * Math.cos(this.t) + 0
           this.allShapes[2].position.z = 0.5 * Math.sin(this.t) + 1.5
-
           break
 
-        case 'contact':
+        default:
           this.bounds = [
             {
               // cube
-              x1: 2.45,
+              x1: 1.6,
               x2: -1.3,
-              y1: 1.9,
-              y2: -2,
+              y1: 2,
+              y2: -2.1,
             },
             {
               // pyramid
-              x1: 2.7,
+              x1: 1.7,
               x2: -1.25,
               y1: 2,
-              y2: -2,
+              y2: -2.1,
             },
             {
               // sphere
-              x1: 3,
-              x2: -1.25,
-              y1: 1.9,
-              y2: -1.8,
+              x1: 1.8,
+              x2: -1.75,
+              y1: 2,
+              y2: -1.9,
             },
           ]
 
-          for (let i = 0; i < this.allShapes.length / 2; i++) {
+          for (let i = 0; i < 3; i++) {
             this.allShapes[i].position.x += this.angles[i].xAngle
             this.allShapes[i].position.y += this.angles[i].yAngle
 
@@ -582,9 +581,6 @@ export default {
                 .start()
             }
           }
-          break
-
-        default:
           break
       }
 
@@ -692,40 +688,9 @@ export default {
           document.getElementById('landingText').style.display = 'block'
           document.getElementById('mobileScroll').style.display = 'block'
         }
-        // else position is always fixed
       } else if (
-        this.isElementInViewport(document.getElementById('case-studies'))
+        this.isElementInViewport(document.getElementById('aboutUs-marker'))
       ) {
-        if (window.innerWidth >= 1025) {
-          // this.startContact()
-          // this.serviceText.style.opacity = 0
-          // this.scrollText.style.opacity = 0
-        }
-        this.container.style.opacity = 0
-      } else if (
-        this.isElementInViewport(document.getElementById('contactContainer'))
-      ) {
-        this.container.style.opacity = 1
-
-        if (currentStage !== 'contact') {
-          this.startMovement(4)
-          currentStage = 'contact'
-        }
-
-        if (window.innerWidth < 1025) {
-          // document.getElementById('three').style.position = 'fixed'
-          // document.getElementById('three').style.top = '0'
-          // document.getElementById('three').style.left = '0'
-          // document.getElementById('three').style.zIndex = '-1'
-
-          document.getElementById('landingText').style.display = 'none'
-          document.getElementById('mobileScroll').style.display = 'none'
-        } else {
-          this.startContact()
-          this.serviceText.style.opacity = 0
-          this.scrollText.style.opacity = 0
-        }
-      } else if (window.innerWidth >= 1024) {
         this.container.style.opacity = 0
       }
     },
@@ -733,19 +698,6 @@ export default {
       min = Math.ceil(min)
       max = Math.floor(max)
       return Math.floor(Math.random() * (max - min + 1) + min)
-    },
-    startContact() {
-      new TWEEN.Tween(this.camera.position)
-        .to(
-          {
-            x: 5,
-            y: 2,
-            z: 15,
-          },
-          500
-        )
-        .easing(TWEEN.Easing.Quadratic.InOut)
-        .start()
     },
     startMovement(arrPos) {
       const self = animations[arrPos]

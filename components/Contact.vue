@@ -5,10 +5,13 @@
     </div>
     <div class="two-column-container flex flex-col gap-4 text-white">
       <div class="col-span-1 px-6">
-        <h2 id="contact-title">GET IN <br />TOUCH</h2>
-        <p id="contact-body" class="py-6">
-          All fields marked with * are required.
-        </p>
+        <div id="contact-label">
+          <h2 id="contact-title">GET IN <br />TOUCH</h2>
+          <p id="contact-body" class="py-6">
+            All fields marked with * are required.
+          </p>
+        </div>
+        <contact-three-scene></contact-three-scene>
       </div>
       <div id="contactContainer" class="col-span-1 p-8 w-full">
         <div class="errorToast">
@@ -18,6 +21,20 @@
             </p>
             <li v-for="error in errors" :key="error">{{ error }}</li>
           </ul>
+        </div>
+        <div class="form-success h-full flex-col justify-center">
+          <h2 id="success-title">THANK YOU!</h2>
+          <p id="success-body" class="py-6">
+            Our team will be in touch with you shortly.
+          </p>
+          <div>
+            <button
+              class="p-2 btn btn-dark btn-lg block uppercase"
+              @click="submitAnotherForm"
+            >
+              Submit Another Form
+            </button>
+          </div>
         </div>
         <form id="astoundContactForm" method="post" @submit="checkForm">
           <div id="fullName" class="mb-4 block">
@@ -97,137 +114,35 @@
             <div
               class="service-dropdown py-2 px-3 font-gothamBook bg-black"
               id="services-dropdown"
+              @mousedown.prevent.stop
+              @focus="toggleDropdown"
+              @click="toggleDropdown"
+              tabindex="0"
             >
-              Please Select
+              Select all that apply
             </div>
             <div id="services-container">
-              <div class="service-line">
-                <label for="service-digitalCraft" class="service-main"
-                  >Digital Craft</label
+              <div
+                class="service-line w-full"
+                v-for="(subservices, index) in subservices"
+                :key="index"
+              >
+                <label
+                  :for="subservices.for"
+                  class="w-full"
+                  :class="{
+                    'service-main': subservices.type === 'main',
+                    'service-sub': subservices.type === 'sub',
+                  }"
                 >
-                <input
-                  type="checkbox"
-                  id="service-digitalCraft"
-                  name="Digital Craft"
-                  value="Digital Craft"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-ux" class="service-sub"
-                  >User Experience</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-ux"
-                  name="User Experience"
-                  value="User Experience"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-website" class="service-sub">Website</label>
-                <input
-                  type="checkbox"
-                  id="service-website"
-                  name="Website"
-                  value="Website"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-app" class="service-sub">Mobile App</label>
-                <input
-                  type="checkbox"
-                  id="service-app"
-                  name="Mobile App"
-                  value="Mobile App"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-xr" class="service-main"
-                  >Extended Reality</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-xr"
-                  name="Extended Reality"
-                  value="Extended Reality"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-sales" class="service-sub"
-                  >Sales and Marketing Tools</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-sales"
-                  name="Sales and Marketing Tools"
-                  value="Sales and Marketing Tools"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-adventures" class="service-sub"
-                  >Enhanced Objects and Outdoor Adventures</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-adventures"
-                  name="Enhanced Objects and Outdoor Adventures"
-                  value="Enhanced Objects and Outdoor Adventures"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-social" class="service-sub"
-                  >Social Media AR Experiences</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-social"
-                  name="Social Media AR Experiences"
-                  value="Social Media AR Experiences"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-virtual" class="service-main"
-                  >Virtual Events and Experiences</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-virtual"
-                  name="Virtual Events and Experiences"
-                  value="Virtual Events and Experiences"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-live" class="service-sub"
-                  >Live & Pre-recorded Video Production</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-live"
-                  name="Live & Pre-recorded Video Production"
-                  value="Live & Pre-recorded Video Production"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-2d3d" class="service-sub"
-                  >2D & 3D Graphics and Animation</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-2d3d"
-                  name="2D & 3D Graphics and Animation"
-                  value="2D & 3D Graphics and Animation"
-                />
-              </div>
-              <div class="service-line">
-                <label for="service-environments" class="service-sub"
-                  >Augmented and Simulated Environments</label
-                >
-                <input
-                  type="checkbox"
-                  id="service-environments"
-                  name="Augmented and Simulated Environments"
-                  value="Augmented and Simulated Environments"
-                />
+                  <span class="flex justify-between items-center">
+                    {{ subservices.name }}
+                    <input
+                      type="checkbox"
+                      :id="subservices.for"
+                      :name="subservices.for"
+                      :value="subservices.name" /></span
+                ></label>
               </div>
             </div>
           </div>
@@ -236,6 +151,7 @@
               >Message</label
             >
             <textarea
+              @focus="closeDropdown"
               id="contactMessage"
               v-model="contactMessage"
               rows="5"
@@ -282,10 +198,12 @@
 </template>
 
 <script>
+import ContactThreeScene from './ThreeScene/ContactThreeScene.vue'
 const hubspotURL =
   'https://api.hsforms.com/submissions/v3/integration/submit/485178/62db6a4e-9f21-4410-bde4-4e0d8c1952f1'
 
 export default {
+  components: { ContactThreeScene },
   data() {
     return {
       errors: [],
@@ -297,6 +215,68 @@ export default {
       emailError: false,
       fNameError: false,
       shown: false,
+      subservices: [
+        {
+          name: 'Digital Craft',
+          type: 'main',
+          for: 'digitalCraft',
+        },
+        {
+          name: 'User Experience',
+          type: 'sub',
+          for: 'ux',
+        },
+        {
+          name: 'Website',
+          type: 'sub',
+          for: 'website',
+        },
+        {
+          name: 'Mobile App',
+          type: 'sub',
+          for: 'app',
+        },
+        {
+          name: 'Extended Reality',
+          type: 'main',
+          for: 'xr',
+        },
+        {
+          name: 'Sales and Marketing Tools',
+          type: 'sub',
+          for: 'sales',
+        },
+        {
+          name: 'Enhanced Objects and Outdoor Adventures',
+          type: 'sub',
+          for: 'outdoor',
+        },
+        {
+          name: 'Social Media AR Experiences',
+          type: 'sub',
+          for: 'social',
+        },
+        {
+          name: 'Virtual Events and Experiences',
+          type: 'main',
+          for: 'vux',
+        },
+        {
+          name: 'Live & Pre-recorded Video Production',
+          type: 'sub',
+          for: 'live',
+        },
+        {
+          name: '2D & 3D Graphics and Animation',
+          type: 'sub',
+          for: 'animation',
+        },
+        {
+          name: 'Augmented and Simulated Environments',
+          type: 'sub',
+          for: 'environments',
+        },
+      ],
     }
   },
   mounted() {
@@ -319,29 +299,42 @@ export default {
       }
     })
 
-    document.getElementById('contact-marker').addEventListener(
-      'click',
-      (e) => {
-        const inside = document
-          .getElementById('services-container')
-          .contains(e.target)
+    window.addEventListener('click', (e) => {
+      const inside = document
+        .getElementById('services-dropdown')
+        .contains(e.target)
 
-        if (document.getElementById('services-dropdown').contains(e.target)) {
-          this.toggleDropdown()
-        } else if (!inside && this.shown) {
-          this.toggleDropdown()
-        }
-      },
-      false
-    )
+      const insideDropdown = document
+        .getElementById('services-container')
+        .contains(e.target)
+
+      if (inside && insideDropdown) {
+        e.stopPropagation()
+      } else if (!inside && !insideDropdown && this.shown) {
+        this.toggleDropdown()
+      }
+    })
   },
   methods: {
-    toggleDropdown() {
+    toggleDropdown(e) {
       document.getElementById('services-container').style.display = this.shown
         ? 'none'
         : 'block'
 
       this.shown = !this.shown
+
+      console.log(e)
+    },
+    openDropdown(e) {
+      document.getElementById('services-container').style.display = 'block'
+
+      this.shown = true
+      console.log(e)
+    },
+    closeDropdown() {
+      document.getElementById('services-container').style.display = 'none'
+
+      this.shown = false
     },
     submitContactForm(data) {
       const submitData = JSON.stringify({
@@ -379,14 +372,27 @@ export default {
           this.emailError = false
           this.fNameError = false
           console.log('submitted')
-          document.getElementById('contact-title').innerHTML = 'Thank You!'
-          document.getElementById('contact-body').innerHTML =
-            'Our team will reach out to you shortly.'
-          document.getElementById('astoundContactForm').reset()
+          // document.getElementById('contact-title').innerHTML = 'Thank You!'
+          // document.getElementById('contact-body').innerHTML =
+          //   'Our team will reach out to you shortly.'
+          // document.getElementById('astoundContactForm').reset()
+
+          document.querySelector('.form-success').style.display = 'flex'
+          document.getElementById('astoundContactForm').style.display = 'none'
+          document.getElementById('contact-label').style.visibility = 'hidden'
         })
         .catch((error) => {
           return console.log('error: ' + error)
         })
+    },
+    submitAnotherForm() {
+      document.getElementById('services-dropdown').innerHTML =
+        'Select all that apply'
+      document.querySelector('.form-success').style.display = 'none'
+      document.getElementById('astoundContactForm').style.display = 'block'
+      document.getElementById('contact-label').style.visibility = 'visible'
+
+      document.getElementById('astoundContactForm').reset()
     },
     checkForm(e) {
       e.preventDefault()
@@ -497,6 +503,7 @@ export default {
 
   #services {
     position: relative;
+    max-width: 500px;
   }
 
   ::-webkit-scrollbar {
@@ -518,6 +525,13 @@ export default {
     position: absolute;
     top: 4.7rem;
     left: 0;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  textarea,
+  #privacy-disclaimer {
+    max-width: 500px;
   }
 }
 
@@ -558,7 +572,7 @@ export default {
 @media screen(desktopwh) {
   #contactContainer {
     margin-right: 10em;
-    max-width: 50vw;
+    width: 50vw;
   }
 
   .top-container {
@@ -582,12 +596,10 @@ export default {
   display: none;
   border: 1px solid white;
   background-color: black;
+  overscroll-behavior: contain;
 }
 
 .service-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 0.5rem;
 }
 
@@ -652,5 +664,9 @@ input[type='checkbox']:checked::after {
 
 #privacy-disclaimer a {
   text-decoration: underline;
+}
+
+.form-success {
+  display: none;
 }
 </style>
