@@ -664,9 +664,7 @@ export default {
             }
           }
         }
-      } else if (
-        this.isElementInViewport(document.getElementById('services'))
-      ) {
+      } else {
         if (window.innerWidth < 1024) {
           this.changeIndicator(this.mobileSwipes)
           this.startMovement(this.mobileSwipes)
@@ -688,10 +686,6 @@ export default {
           document.getElementById('landingText').style.display = 'block'
           document.getElementById('mobileScroll').style.display = 'block'
         }
-      } else if (
-        this.isElementInViewport(document.getElementById('aboutUs-marker'))
-      ) {
-        this.container.style.opacity = 0
       }
     },
     getRandomNumber(min, max) {

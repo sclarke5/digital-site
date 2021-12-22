@@ -138,6 +138,7 @@
                   <span class="flex justify-between items-center">
                     {{ subservices.name }}
                     <input
+                      tabindex="0"
                       type="checkbox"
                       :id="subservices.for"
                       :name="subservices.for"
