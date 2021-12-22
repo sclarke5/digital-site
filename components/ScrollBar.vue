@@ -24,14 +24,20 @@ export default {
 
 <style scoped>
 .scroll-bar {
-  position: fixed;
-  width: calc(100vw - 10rem);
-  margin: 0 1rem;
-  height: 2px;
-  bottom: 1rem;
-  right: 8rem;
-  background-color: white;
-  z-index: 2000;
+  display: none;
+}
+@media screen(laptop) {
+  .scroll-bar {
+    display: block;
+    position: fixed;
+    width: calc(100vw - 10rem);
+    margin: 0 1rem;
+    height: 2px;
+    bottom: 1rem;
+    right: 8rem;
+    background-color: white;
+    z-index: 2000;
+  }
 }
 
 .progress {
