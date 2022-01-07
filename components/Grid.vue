@@ -78,7 +78,9 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col grid-right laptop:flex-row laptop:ml-80">
+    <div
+      class="flex flex-col grid-right items-center laptop:flex-row laptop:ml-80"
+    >
       <ul
         v-editable="blok"
         class="
@@ -92,6 +94,9 @@
           laptop:flex-row
         "
       >
+        <h3 style="margin-left: -3rem; margin-top: -2rem" class="text-white">
+          Our Services
+        </h3>
         <li
           v-for="blok in blok.columns"
           :key="blok._uid"
@@ -182,10 +187,11 @@ export default {
 
   .grid-right ul {
     min-width: 200%;
+    height: 80%;
   }
 
   .text-container {
-    width: 70vw;
+    width: 900px;
   }
 }
 

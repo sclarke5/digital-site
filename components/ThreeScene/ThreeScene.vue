@@ -11,7 +11,7 @@
           experiences.
         </p>
         <div id="scrollPrompt">
-          <p id="scrollText">Scroll for More</p>
+          <p id="scrollText">Scroll to Explore</p>
           <span id="scrollLine"><span id="movingLine"></span></span>
         </div>
       </div>
@@ -519,68 +519,68 @@ export default {
           break
 
         default:
-          this.bounds = [
-            {
-              // cube
-              x1: 1.6,
-              x2: -1.3,
-              y1: 2,
-              y2: -2.1,
-            },
-            {
-              // pyramid
-              x1: 1.7,
-              x2: -1.25,
-              y1: 2,
-              y2: -2.1,
-            },
-            {
-              // sphere
-              x1: 1.8,
-              x2: -1.75,
-              y1: 2,
-              y2: -1.9,
-            },
-          ]
+          // this.bounds = [
+          //   {
+          //     // cube
+          //     x1: 1.6,
+          //     x2: -1.3,
+          //     y1: 2,
+          //     y2: -2.1,
+          //   },
+          //   {
+          //     // pyramid
+          //     x1: 1.7,
+          //     x2: -1.25,
+          //     y1: 2,
+          //     y2: -2.1,
+          //   },
+          //   {
+          //     // sphere
+          //     x1: 1.8,
+          //     x2: -1.75,
+          //     y1: 2,
+          //     y2: -1.9,
+          //   },
+          // ]
 
-          for (let i = 0; i < 3; i++) {
-            this.allShapes[i].position.x += this.angles[i].xAngle
-            this.allShapes[i].position.y += this.angles[i].yAngle
+          // for (let i = 0; i < 3; i++) {
+          //   this.allShapes[i].position.x += this.angles[i].xAngle
+          //   this.allShapes[i].position.y += this.angles[i].yAngle
 
-            if (
-              this.allShapes[i].position.x >= this.bounds[i].x1 ||
-              this.allShapes[i].position.x <= this.bounds[i].x2
-            ) {
-              this.angles[i].xAngle = -this.angles[i].xAngle
+          //   if (
+          //     this.allShapes[i].position.x >= this.bounds[i].x1 ||
+          //     this.allShapes[i].position.x <= this.bounds[i].x2
+          //   ) {
+          //     this.angles[i].xAngle = -this.angles[i].xAngle
 
-              new TWEEN.Tween(this.allShapes[i].rotation)
-                .to(
-                  {
-                    y: this.allShapes[i].rotation.y + Math.PI / 2,
-                  },
-                  3000
-                )
-                .easing(TWEEN.Easing.Quadratic.InOut)
-                .start()
-            }
+          //     new TWEEN.Tween(this.allShapes[i].rotation)
+          //       .to(
+          //         {
+          //           y: this.allShapes[i].rotation.y + Math.PI / 2,
+          //         },
+          //         3000
+          //       )
+          //       .easing(TWEEN.Easing.Quadratic.InOut)
+          //       .start()
+          //   }
 
-            if (
-              this.allShapes[i].position.y >= this.bounds[i].y1 ||
-              this.allShapes[i].position.y <= this.bounds[i].y2
-            ) {
-              this.angles[i].yAngle = -this.angles[i].yAngle
+          //   if (
+          //     this.allShapes[i].position.y >= this.bounds[i].y1 ||
+          //     this.allShapes[i].position.y <= this.bounds[i].y2
+          //   ) {
+          //     this.angles[i].yAngle = -this.angles[i].yAngle
 
-              new TWEEN.Tween(this.allShapes[i].rotation)
-                .to(
-                  {
-                    x: this.allShapes[i].rotation.x + Math.PI / 2,
-                  },
-                  3000
-                )
-                .easing(TWEEN.Easing.Quadratic.InOut)
-                .start()
-            }
-          }
+          //     new TWEEN.Tween(this.allShapes[i].rotation)
+          //       .to(
+          //         {
+          //           x: this.allShapes[i].rotation.x + Math.PI / 2,
+          //         },
+          //         3000
+          //       )
+          //       .easing(TWEEN.Easing.Quadratic.InOut)
+          //       .start()
+          //   }
+          // }
           break
       }
 
@@ -899,7 +899,8 @@ export default {
 
 #scrollText {
   width: 100%;
-  margin-left: 30%;
+
+  /* margin-left: 30%; */
 }
 
 #scrollLine {

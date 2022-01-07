@@ -36,7 +36,7 @@ export default {
     bottom: 1rem;
     right: 8rem;
     background-color: white;
-    z-index: 2000;
+    z-index: 900;
   }
 }
 
