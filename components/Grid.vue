@@ -10,58 +10,73 @@
       class="
         flex flex-col
         mb-20
-        laptop:mr-16
+        laptop:mr-4
         px-6
         about-container
         desktopwh:ml-40
       "
     >
-      <div class="text-container">
-        <h2 class="text-white">{{ title }}</h2>
-        <div class="paragraph-container laptop:flex">
-          <p class="text-white pt-8 laptop:w-1/2">{{ blurb }}</p>
-          <p class="text-white underline pt-8 laptop:w-1/2 laptop:pl-16">
-            <a :href="astoundgroup_cta.link">
-              {{ astoundgroup_cta.text }}
-            </a>
-          </p>
+      <div
+        class="text-container flex flex-col justify-between items-start h-full"
+      >
+        <div>
+          <h2 class="text-white laptop:text-6xl">{{ title }}</h2>
+          <div class="paragraph-container">
+            <p class="text-white pt-8 laptop:w-1/2">{{ blurb }}</p>
+          </div>
+        </div>
+        <p class="text-white underline pt-8">
+          <a :href="astoundgroup_cta.link">
+            <!-- {{ astoundgroup_cta.text }} -->
+
+            Go to Main Website &nearr;
+          </a>
+        </p>
+      </div>
+    </div>
+    <div
+      class="
+        grid-right
+        p-4
+        laptop:p-0
+        mb-8
+        laptop:mb-0 laptop:ml-24
+        process-wrapper
+      "
+    >
+      <div class="flex flex-col process-container justify-center items-start">
+        <h3 class="text-white">Our Process</h3>
+        <div class="process-group">
+          <div class="process-item">
+            <img src="../assets/1-SpotTheProblem.png" alt="" />
+            <p>Spot the Problem</p>
+          </div>
+          <div class="process-item">
+            <img src="../assets/2-UnderstandUser.png" alt="" />
+            <p>Understand the User</p>
+          </div>
+        </div>
+        <div class="process-group laptop:ml-48">
+          <div class="process-item">
+            <img src="../assets/3-AnalyzeFindings.png" alt="" />
+            <p>Analyze Findings</p>
+          </div>
+          <div class="process-item">
+            <img src="../assets/4-Ideate.png" alt="" />
+            <p>Ideate &amp; Create Mockups</p>
+          </div>
+        </div>
+        <div class="process-group laptop:ml-96">
+          <div class="process-item">
+            <img src="../assets/5-BuildMVP.png" alt="" />
+            <p>Build MVP &amp; Distribute</p>
+          </div>
+          <div class="process-item">
+            <img src="../assets/6-ReviewFeedbackIterate.png" alt="" />
+            <p>Review Feedback &amp; Iterate</p>
+          </div>
         </div>
       </div>
-      <ul
-        class="
-          flex
-          process-container
-          justify-center
-          items-center
-          flex-wrap
-          laptop:flex-nowrap
-        "
-      >
-        <li class="process-item">
-          <img src="../assets/1-SpotTheProblem.png" alt="" />
-          <p>Spot the Problem</p>
-        </li>
-        <li class="process-item">
-          <img src="../assets/2-UnderstandUser.png" alt="" />
-          <p>Understand the User</p>
-        </li>
-        <li class="process-item">
-          <img src="../assets/3-AnalyzeFindings.png" alt="" />
-          <p>Analyze Findings</p>
-        </li>
-        <li class="process-item">
-          <img src="../assets/4-Ideate.png" alt="" />
-          <p>Ideate &amp; Create Mockups</p>
-        </li>
-        <li class="process-item">
-          <img src="../assets/5-BuildMVP.png" alt="" />
-          <p>Build MVP &amp; Distribute</p>
-        </li>
-        <li class="process-item">
-          <img src="../assets/6-ReviewFeedbackIterate.png" alt="" />
-          <p>Review Feedback &amp; Iterate</p>
-        </li>
-      </ul>
     </div>
     <div class="flex flex-col grid-right laptop:flex-row laptop:ml-80">
       <ul
@@ -129,6 +144,10 @@ export default {
   @apply w-full text-white uppercase h-8 px-1 pt-2 font-primaryHeadline;
 }
 
+.process-group {
+  @apply flex;
+}
+
 @media screen(mobile) {
   .process-item > img {
     max-width: 200px;
@@ -138,10 +157,17 @@ export default {
 }
 
 @media screen(laptop) {
+  .process-group {
+    width: 30vw;
+  }
+
   .process-item {
-    max-width: calc(100% / 6);
-    flex-basis: 0;
-    flex-grow: 1;
+    @apply p-4 my-4 text-center flex flex-col justify-end;
+  }
+
+  .process-item > img {
+    width: 300px;
+    display: inline-block;
   }
 
   .grid-container h1 {
@@ -156,6 +182,10 @@ export default {
 
   .grid-right ul {
     min-width: 200%;
+  }
+
+  .text-container {
+    width: 70vw;
   }
 }
 

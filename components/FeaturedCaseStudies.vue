@@ -145,7 +145,7 @@ export default {
   }
 
   .case-studies-sub {
-    top: 56em;
+    top: 83em;
     right: -1.3em;
   }
 
@@ -161,7 +161,7 @@ export default {
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-    top: 187em;
+    top: 256em;
     right: -2rem;
   }
 
@@ -169,7 +169,7 @@ export default {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    top: 180em;
+    top: 310em;
     right: -94em;
     width: -webkit-max-content;
     width: -moz-max-content;
@@ -179,7 +179,7 @@ export default {
 
 @media screen(laptop2xwh) {
   .case-studies-sub {
-    top: 57em;
+    top: 83em;
     right: -1.2em;
   }
 
@@ -195,14 +195,14 @@ export default {
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-    top: 187em;
+    top: 256em;
     right: -6rem;
   }
   .case-studies-wrapper {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    top: 190em;
+    top: 310em;
     right: -105em;
     width: -webkit-max-content;
     width: -moz-max-content;
@@ -219,7 +219,7 @@ export default {
   }
 
   .case-studies-sub {
-    top: 60em;
+    top: 83em;
     right: 0.3em;
   }
 
@@ -235,7 +235,7 @@ export default {
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-    top: 187em;
+    top: 256em;
     right: 5rem;
   }
 
@@ -248,7 +248,7 @@ export default {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 120em;
     margin-bottom: 50em;
-    top: 250em;
+    top: 310em;
     right: -104em;
     width: max-content;
   }
