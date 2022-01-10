@@ -160,16 +160,17 @@
         </div>
 
 
-        <div class="more-work mt-8">
-          <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">
+        <div class="more-work">
+          <h1 class="pl-6 pb-16 text-white text-5xl text-left uppercase">
             More of our work
           </h1>
-          <ul class="flex py-6 mb-6 case-list">
-            <li
+          <!-- <ul class="flex py-6 mb-6 case-list-slider"> -->
+          <agile :options="slideOptions">
+            <div
               v-for="caseStudy in seeMoreWork"
               :key="caseStudy._uid"
-              class="list-item flex flex-column px-6 w-1/3 relative"
-            >
+              class="list-item flex flex-column px-6 relative"
+              >
               <img
                 class="see-more-image"
                 :src="caseStudy.content.primary_image.filename"
@@ -197,8 +198,18 @@
                   <p class="uppercase">View Case Study</p>
                 </div>
               </div>
-            </li>
-          </ul>
+            </div>
+            <template slot="prevButton">
+              <svg class="nav-button nav-previous" width="16" height="30" viewBox="0 0 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 29L1 15L15 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </template>
+            <template slot="nextButton" class="test-slider" >
+              <svg class="nav-button nav-next" width="16" height="30" viewBox="0 0 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L15 15L1 29" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </template>
+          </agile>
         </div>
 
         <div class="contact-us mt-8 mb-80">
@@ -213,8 +224,29 @@
 </template>
 
 <script>
+// eslint-disable-next-line import/no-named-as-default
+import { VueAgile } from 'vue-agile'
 import { scrollToSection } from '../mixins'
 export default {
+  components: {
+    agile: VueAgile
+  },
+  data(){
+    return {
+      slideOptions: {
+        responsive: [
+          {
+            breakpoint: 400,
+            settings: {
+              dots: false,
+              slidesToShow: 3,
+              navButtons: true
+            }
+          }
+        ]
+      }
+    }
+  },
   computed: {
     showModal() {
       return this.$store.state.modal.show
@@ -245,8 +277,8 @@ export default {
         }
       })
       // below temporary to keep it simple; TODO: figure out how many/which "other case studies" to display
-      const selectedCaseStudies = otherCaseStudies.slice(0, 3)
-      return selectedCaseStudies
+      // const selectedCaseStudies = otherCaseStudies.slice(0, 3)
+      return otherCaseStudies
     },
   },
   mounted() {
@@ -386,15 +418,41 @@ export default {
   background-color: white;
 }
 
+.case-list-slider {
+  display: flex;
+}
+
 .contact-us {
   background-image: url('../assets/grid.png');
-  padding-top: 10em;
+  padding-top: 10.1em;
   padding-bottom: 10em;
 }
 
 /* .contact-us-link {
 
 } */
+
+.nav-loaded {
+  display: none;
+  border: none;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+}
+
+.nav-next {
+  right: -2em;
+}
+
+.nav-previous {
+  left: -2em;
+}
+
+.agile__nav-button .agile__nav-button--next {
+  border: none;
+}
 
 .contact-us-link:hover {
   cursor: pointer;
@@ -453,7 +511,6 @@ export default {
   video {
     border: 2px solid white;
     width: 100%;
-    height: 20%;
   }
 }
 @media screen(desktopxl) {

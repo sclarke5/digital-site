@@ -67,11 +67,18 @@ export default {
     openModal(content, list) {
       if (window.innerWidth > 1024) {
         this.$store.dispatch('modal/toggle', { content, list })
+        setTimeout(this.removeDefaultNavButtons, 200)
       } else if (this.showPanel === false) {
         this.showPanel = true
       } else if (this.showPanel === true) {
         this.showPanel = false
       }
+    },
+    removeDefaultNavButtons(){
+      const navContainers = document.querySelectorAll('.agile__nav-button')
+      navContainers.forEach(container => {
+        container.style.border = 'none'
+      })
     },
     closeModal() {
       const teaser = this.$el

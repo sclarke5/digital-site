@@ -13,7 +13,7 @@ export default {
       const distanceFromTop = scrollContainer.scrollTop
 
       const height = scrollContainer.scrollHeight - document.body.clientHeight
-      console.log((distanceFromTop / height) * 100)
+      // console.log((distanceFromTop / height) * 100)
 
       document.querySelector('.progress').style.width =
         (distanceFromTop / height) * 100 + '%'
