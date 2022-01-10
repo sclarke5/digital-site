@@ -160,7 +160,7 @@
         </div>
 
 
-        <div class="more-work mt-8 mb-80">
+        <div class="more-work mt-8">
           <h1 class="pt-2 pl-6 text-white text-5xl text-left uppercase">
             More of our work
           </h1>
@@ -200,12 +200,20 @@
             </li>
           </ul>
         </div>
+
+        <div class="contact-us mt-8 mb-80">
+          <h1 
+            class="contact-us-link pt-2 pl-6 text-white text-5xl text-left uppercase text-center" @click="contactScroll">
+            Contact Us
+          </h1>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { scrollToSection } from '../mixins'
 export default {
   computed: {
     showModal() {
@@ -251,6 +259,10 @@ export default {
   methods: {
     toggleModal() {
       this.$store.dispatch('modal/toggle')
+    },
+    contactScroll() {
+      this.toggleModal()
+      scrollToSection(document.querySelector('#contact-marker'))
     },
     goToCaseStudy(caseStudy, list) {
       const target = caseStudy.content
@@ -372,6 +384,20 @@ export default {
 .cta:hover {
   color: black;
   background-color: white;
+}
+
+.contact-us {
+  background-image: url('../assets/grid.png');
+  padding-top: 10em;
+  padding-bottom: 10em;
+}
+
+/* .contact-us-link {
+
+} */
+
+.contact-us-link:hover {
+  cursor: pointer;
 }
 
 @media screen(laptop) {

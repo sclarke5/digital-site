@@ -26,7 +26,7 @@
           </div>
         </div>
         <p class="text-white underline pt-8">
-          <a :href="astoundgroup_cta.link">
+          <a :href="astoundgroup_cta.link" target="blank">
             <!-- {{ astoundgroup_cta.text }} -->
 
             Go to Main Website &nearr;
