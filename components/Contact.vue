@@ -289,8 +289,6 @@ export default {
           'input[type=checkbox]:checked'
         )
 
-        // document.getElementById('services-dropdown').innerHTML =
-        //   checked.length > 0 ? `${checked.length} selected` : 'Please Select'
         const servicesDropdown = document.getElementById('services-dropdown')
 
         if(checked.length > 0){
