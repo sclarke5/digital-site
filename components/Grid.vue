@@ -26,7 +26,7 @@
           </div>
         </div>
         <p class="text-white underline pt-8">
-          <a :href="astoundgroup_cta.link">
+          <a :href="astoundgroup_cta.link" target="blank">
             <!-- {{ astoundgroup_cta.text }} -->
 
             Go to Main Website &nearr;
@@ -182,7 +182,8 @@ export default {
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;
-    max-width: 1971px;
+    
+    /* max-width: 1971px; */
   }
 
   .grid-right ul {
@@ -217,7 +218,7 @@ export default {
 
 @media screen(desktopwh) {
   .grid-container {
-    right: -32em;
+    right: -70em;
   }
 }
 </style>
