@@ -6,16 +6,7 @@
     <div class="sticky-nav">
       <div class="font-dinProBlack">About Us</div>
     </div>
-    <div
-      class="
-        flex flex-col
-        mb-20
-        laptop:mr-4
-        px-6
-        about-container
-        desktopwh:ml-40
-      "
-    >
+    <div class="flex flex-col laptop:mr-4 px-6 about-container desktopwh:ml-40">
       <div
         class="text-container flex flex-col justify-between items-start h-full"
       >
@@ -44,8 +35,16 @@
         process-wrapper
       "
     >
-      <div class="flex flex-col process-container justify-center items-start">
-        <h3 class="text-white">Our Process</h3>
+      <div
+        class="
+          flex flex-col
+          process-container
+          justify-center
+          items-center
+          laptop:items-start
+        "
+      >
+        <h3 class="text-white self-start">Our Process</h3>
         <div class="process-group">
           <div class="process-item">
             <img src="../assets/1-SpotTheProblem.png" alt="" />
@@ -55,18 +54,16 @@
             <img src="../assets/2-UnderstandUser.png" alt="" />
             <p>Understand the User</p>
           </div>
-        </div>
-        <div class="process-group laptop:ml-48">
           <div class="process-item">
             <img src="../assets/3-AnalyzeFindings.png" alt="" />
             <p>Analyze Findings</p>
           </div>
+        </div>
+        <div class="process-group laptop:ml-48">
           <div class="process-item">
             <img src="../assets/4-Ideate.png" alt="" />
             <p>Ideate &amp; Create Mockups</p>
           </div>
-        </div>
-        <div class="process-group laptop:ml-96">
           <div class="process-item">
             <img src="../assets/5-BuildMVP.png" alt="" />
             <p>Build MVP &amp; Distribute</p>
@@ -94,9 +91,7 @@
           laptop:flex-row
         "
       >
-        <h3 style="margin-left: -3rem; margin-top: -2rem" class="text-white">
-          Our Services
-        </h3>
+        <h3 class="text-white pl-6 pt-6">Our Services</h3>
         <li
           v-for="blok in blok.columns"
           :key="blok._uid"
@@ -163,7 +158,7 @@ export default {
 
 @media screen(laptop) {
   .process-group {
-    width: 30vw;
+    height: 30vh;
   }
 
   .process-item {
@@ -171,7 +166,7 @@ export default {
   }
 
   .process-item > img {
-    width: 300px;
+    max-width: 300px;
     display: inline-block;
   }
 
@@ -182,7 +177,7 @@ export default {
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;
-    
+
     /* max-width: 1971px; */
   }
 
@@ -198,7 +193,7 @@ export default {
 
 @media screen(laptopwh) {
   .grid-container {
-    right: -37em;
+    right: -82em;
   }
 
   .grid-right ul {
@@ -208,7 +203,7 @@ export default {
 
 @media screen(laptop2xwh) {
   .grid-container {
-    right: -38em;
+    right: -82em;
   }
 
   .grid-right ul {
@@ -218,7 +213,7 @@ export default {
 
 @media screen(desktopwh) {
   .grid-container {
-    right: -70em;
+    right: -82em;
   }
 }
 </style>
