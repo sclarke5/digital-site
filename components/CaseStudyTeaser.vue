@@ -68,10 +68,28 @@ export default {
       if (window.innerWidth > 1024) {
         this.$store.dispatch('modal/toggle', { content, list })
         setTimeout(this.removeDefaultNavButtons, 200)
+        setTimeout(this.addListener, 200)
       } else if (this.showPanel === false) {
         this.showPanel = true
       } else if (this.showPanel === true) {
         this.showPanel = false
+      }
+    },
+    addListener(){
+      const modalBody = document.querySelector('.modal')
+      modalBody.addEventListener('scroll', this.revealHeader)
+    },
+    revealHeader() {
+      const header = document.querySelector('.secondary-header')
+      const modal = document.querySelector('.modal')
+      const scrollY = modal.scrollTop
+
+      if(scrollY >= 950){
+        header.classList.remove('hide-header');
+        header.classList.add('reveal-header');
+      } else {
+        header.classList.remove('reveal-header')
+        header.classList.add('hide-header');
       }
     },
     removeDefaultNavButtons(){

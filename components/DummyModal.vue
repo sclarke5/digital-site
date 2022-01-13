@@ -8,7 +8,7 @@
         class="modal flex flex-col bg-black overflow-auto w-screen"
       >
         <div class="header-container relative">
-          <div class="title-container flex flex-col py-9">
+          <div class="title-container flex py-9">
             <div class="header-left">
               <img
                 id="header-logo-img"
@@ -50,6 +50,27 @@
             :src="content.primary_image.filename"
             :alt="content.primary_image.alt"
           />
+        </div>
+
+        <div class="secondary-header hide-header flex py-12">
+          <div class="header-left">
+              <h2 class="text-white">{{ content.name}}</h2>
+          </div>
+          <div class="header-right">
+            <button class="close-icon" @click="toggleModal">
+              <svg 
+                class="" 
+                width="16" 
+                height="30" 
+                viewBox="0 0 16 30" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 29L1 15L15 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <h6 class="back-button text-white uppercase">
+                Back to Case Studies</h6>
+            </button>
+          </div>
         </div>
         
         <div class="body-centering-container flex">
@@ -259,11 +280,21 @@
 
 
 
-        <div class="contact-us mt-8 mb-80">
+        <div class="contact-us mt-8">
           <h1 
-            class="contact-us-link pt-2 pl-6 text-white text-5xl text-left uppercase text-center" @click="contactScroll">
-            Contact Us
+            class="pt-2 ml-20 text-5xl text-left uppercase text-black text-left">
+            Like what you see?
           </h1>
+          <div class="flex px-4 py-2 ml-20 mt-6 contact-button-container">
+            <p 
+              class="uppercase text-black" 
+              @click="contactScroll"
+            >Contact Us
+            </p>
+          </div>
+          <div>
+            <p class="back-to-top mr-20 uppercase text-black text-right" @click="scrollToTop">Back to Top</p>
+          </div>
         </div>
       </div>
     </div>
@@ -357,11 +388,26 @@ export default {
         document.querySelector('.tagline').style.display = 'block'
       }
     },
+    scrollToTop() {
+      const modal = document.querySelector('.modal')
+      modal.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    },
   },
 }
 </script>
 
 <style scoped>
+.reveal-header {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hide-header {
+  opacity: 0;
+  z-index: 0;
+}
+
 .title-container {
   flex-direction: row;
   position: absolute;
@@ -389,6 +435,16 @@ export default {
 
 .text-left {
   transition: 0.25s;
+}
+
+.secondary-header {
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  transition: opacity 0.5s ease;
 }
 
 .tagline {
@@ -561,14 +617,39 @@ export default {
 }
 
 .contact-us {
-  background-image: url('../assets/grid.png');
-  padding-top: 10.1em;
-  padding-bottom: 10em;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  background: white;
 }
 
-/* .contact-us-link {
+.contact-button-container {
+  border: solid black 2px;
+  width: fit-content;
+  transition: background-color 0.5s;
+}
 
-} */
+.contact-button-container p {
+  transition: color 0.5s;
+}
+
+.contact-button-container:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+.contact-button-container:hover p {
+  color: white;
+
+}
+
+
+.back-to-top {
+  /* width: fit-content; */
+}
+
+.back-to-top:hover {
+  cursor: pointer;
+}
 
 .nav-loaded {
   display: none;
