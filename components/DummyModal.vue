@@ -134,7 +134,7 @@
           </div>
         </div>
 
-        <div class="testimonial-container flex bg-white">              
+        <div v-if="content.testimonial" class="testimonial-container flex bg-white">              
           <div class="testimonial-text-container relative flex py-20">
             <div class="flex flex-col w-1/2">
               <p v-if="content.testimonial" class="testimonial text-black">
@@ -162,13 +162,14 @@
             </div>
             <video
               v-if="visualsArray[4].filename.includes('webm')"
+              class="my-20"
               controls
               :src="visualsArray[4].filename"
               :alt="visualsArray[4].alt">
             </video>
             <img
               v-else
-              class="py-20"
+              class="my-20"
               :src="visualsArray[4].filename"
               :alt="visualsArray[4].alt"
             />
@@ -489,6 +490,10 @@ export default {
   font-style: italic;
 }
 
+.testimonial-container {
+  justify-content: center;
+}
+
 .testimonial-text-container {
   justify-content: center;
 }
@@ -508,6 +513,15 @@ export default {
 .results-text-container h3 {
   text-transform: none;
   font-size: 3em;
+}
+
+.results-container video {
+  height: 50vh;
+  width: 100%;
+}
+
+.results-container img {
+  width: 100%;
 }
 
 .services-container h4 {
