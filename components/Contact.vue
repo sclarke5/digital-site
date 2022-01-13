@@ -6,7 +6,7 @@
     <div class="two-column-container flex flex-col gap-4 text-white">
       <div class="col-span-1 px-6">
         <div id="contact-label">
-          <h2 id="contact-title">GET IN <br />TOUCH</h2>
+          <h2 id="contact-title" class="mt-4">GET IN <br />TOUCH</h2>
           <p id="contact-body" class="py-6">
             All fields marked with * are required.
           </p>
@@ -291,9 +291,9 @@ export default {
 
         const servicesDropdown = document.getElementById('services-dropdown')
 
-        if(checked.length > 0){
+        if (checked.length > 0) {
           servicesDropdown.innerHTML = ''
-          checked.forEach(item => {
+          checked.forEach((item) => {
             servicesDropdown.innerHTML += `${item.value}, `
           })
         } else {

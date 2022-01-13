@@ -7,15 +7,9 @@
 import * as THREE from 'three'
 import * as TWEEN from '@tweenjs/tween.js'
 
-const tealOrangeTexture = new THREE.TextureLoader().load(
-  './assets/blueOrange.png'
-)
-const greenOrangeTexture = new THREE.TextureLoader().load(
-  './assets/tealOrange.png'
-)
-const tealGreenTexture = new THREE.TextureLoader().load(
-  './assets/tealGreen.png'
-)
+const tealOrangeTexture = new THREE.TextureLoader().load('./assets/1.png')
+const greenOrangeTexture = new THREE.TextureLoader().load('./assets/3.png')
+const tealGreenTexture = new THREE.TextureLoader().load('./assets/2.png')
 
 const tealOrange = new THREE.MeshPhongMaterial({
   map: tealOrangeTexture,

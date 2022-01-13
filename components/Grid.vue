@@ -6,16 +6,7 @@
     <div class="sticky-nav">
       <div class="font-dinProBlack">About Us</div>
     </div>
-    <div
-      class="
-        flex flex-col
-        mb-20
-        laptop:mr-4
-        px-6
-        about-container
-        desktopwh:ml-40
-      "
-    >
+    <div class="flex flex-col laptop:mr-4 px-6 about-container desktopwh:ml-40">
       <div
         class="text-container flex flex-col justify-between items-start h-full"
       >
@@ -44,9 +35,46 @@
         process-wrapper
       "
     >
-      <div class="flex flex-col process-container justify-center items-start">
-        <h3 class="text-white">Our Process</h3>
-        <div class="process-group">
+      <div
+        class="
+          flex flex-col
+          process-container
+          justify-center
+          items-center
+          laptop:items-start
+        "
+      >
+        <h3 class="text-white self-start">Our Process</h3>
+        <div class="process-group hidden laptop:flex">
+          <div class="process-item">
+            <img src="../assets/1-SpotTheProblem.png" alt="" />
+            <p>Spot the Problem</p>
+          </div>
+          <div class="process-item">
+            <img src="../assets/2-UnderstandUser.png" alt="" />
+            <p>Understand the User</p>
+          </div>
+          <div class="process-item">
+            <img src="../assets/3-AnalyzeFindings.png" alt="" />
+            <p>Analyze Findings</p>
+          </div>
+        </div>
+        <div class="process-group ml-48 hidden laptop:flex">
+          <div class="process-item">
+            <img src="../assets/4-Ideate.png" alt="" />
+            <p>Ideate &amp; Create Mockups</p>
+          </div>
+          <div class="process-item">
+            <img src="../assets/5-BuildMVP.png" alt="" />
+            <p>Build MVP &amp; Distribute</p>
+          </div>
+          <div class="process-item">
+            <img src="../assets/6-ReviewFeedbackIterate.png" alt="" />
+            <p>Review Feedback &amp; Iterate</p>
+          </div>
+        </div>
+
+        <div class="process-group flex laptop:hidden">
           <div class="process-item">
             <img src="../assets/1-SpotTheProblem.png" alt="" />
             <p>Spot the Problem</p>
@@ -56,17 +84,18 @@
             <p>Understand the User</p>
           </div>
         </div>
-        <div class="process-group laptop:ml-48">
+        <div class="process-group flex laptop:hidden">
           <div class="process-item">
             <img src="../assets/3-AnalyzeFindings.png" alt="" />
             <p>Analyze Findings</p>
           </div>
+
           <div class="process-item">
             <img src="../assets/4-Ideate.png" alt="" />
             <p>Ideate &amp; Create Mockups</p>
           </div>
         </div>
-        <div class="process-group laptop:ml-96">
+        <div class="process-group flex laptop:hidden">
           <div class="process-item">
             <img src="../assets/5-BuildMVP.png" alt="" />
             <p>Build MVP &amp; Distribute</p>
@@ -94,9 +123,7 @@
           laptop:flex-row
         "
       >
-        <h3 style="margin-left: -3rem; margin-top: -2rem" class="text-white">
-          Our Services
-        </h3>
+        <h3 class="service-text text-white pl-6 pt-6">Our Services</h3>
         <li
           v-for="blok in blok.columns"
           :key="blok._uid"
@@ -149,10 +176,6 @@ export default {
   @apply w-full text-white uppercase h-8 px-1 pt-2 font-primaryHeadline;
 }
 
-.process-group {
-  @apply flex;
-}
-
 @media screen(mobile) {
   .process-item > img {
     max-width: 200px;
@@ -162,8 +185,14 @@ export default {
 }
 
 @media screen(laptop) {
+  .service-text {
+    padding: 0;
+    margin-top: -2rem;
+    white-space: nowrap;
+  }
+
   .process-group {
-    width: 30vw;
+    height: 30vh;
   }
 
   .process-item {
@@ -171,7 +200,7 @@ export default {
   }
 
   .process-item > img {
-    width: 300px;
+    max-width: 300px;
     display: inline-block;
   }
 
@@ -182,7 +211,8 @@ export default {
   .grid-container {
     transform: rotate(90deg);
     margin-bottom: 250vh;
-    
+    right: -87em;
+
     /* max-width: 1971px; */
   }
 
@@ -197,10 +227,6 @@ export default {
 }
 
 @media screen(laptopwh) {
-  .grid-container {
-    right: -37em;
-  }
-
   .grid-right ul {
     margin-top: -5em;
   }
@@ -216,12 +242,6 @@ export default {
   }
   .about-container {
     max-height: 32em;
-  }
-}
-
-@media screen(desktopwh) {
-  .grid-container {
-    right: -70em;
   }
 }
 </style>
