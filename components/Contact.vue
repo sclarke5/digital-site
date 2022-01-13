@@ -564,8 +564,8 @@ export default {
 
 @media screen(laptop2xwh) {
   .top-container {
-    top: 592em;
-    right: -23em;
+    top: 552em;
+    right: -25em;
   }
   .two-column-container {
     margin-right: 10em;

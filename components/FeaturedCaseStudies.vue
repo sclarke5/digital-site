@@ -179,8 +179,8 @@ export default {
 
 @media screen(laptop2xwh) {
   .case-studies-sub {
-    top: 83em;
-    right: -1.2em;
+    top: 70em;
+    right: -1.7em;
   }
 
   .lines {
@@ -195,15 +195,15 @@ export default {
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-    top: 256em;
+    top: 220em;
     right: -6rem;
   }
   .case-studies-wrapper {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    top: 310em;
-    right: -105em;
+    top: 210em;
+    right: -98em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;

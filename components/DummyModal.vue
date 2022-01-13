@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="visuals-container flex items-center my-40">
-                  <div class="visuals-left w-1/2">
+                  <div class="visuals-left">
                     <video
                       v-if="visualsArray[0].filename.includes('webm')"
                       controls
@@ -80,7 +80,7 @@
                     />
                   </div>
 
-                  <div class="visuals-right w-1/2">
+                  <div class="visuals-right">
                     <video
                       v-if="visualsArray[1].filename.includes('webm')"
                       controls
@@ -461,10 +461,21 @@ export default {
 
 .visuals-container {
   max-height: 55em;
+  flex-direction: column-reverse;
 }
 
 .visuals-container img {
   max-height: 100%;
+}
+
+.visuals-left {
+  width: 80%;
+  margin-top: -15em;
+}
+
+.visuals-right {
+  width: 30%;
+  align-self: flex-end;
 }
 
 .results-column p {
