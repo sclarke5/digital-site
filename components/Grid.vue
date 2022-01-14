@@ -227,14 +227,24 @@ export default {
 }
 
 @media screen(laptopwh) {
+  .grid-container {
+    right: -80em;
+  }
   .grid-right ul {
     margin-top: -5em;
+  }
+  .process-item > img {
+    max-width: 200px;
+    display: inline-block;
+  }
+  .process-group {
+    margin-top: 3em;
   }
 }
 
 @media screen(laptop2xwh) {
   .grid-container {
-    right: -70em;
+    right: -81em;
   }
 
   .grid-right ul {
@@ -242,6 +252,13 @@ export default {
   }
   .about-container {
     max-height: 32em;
+  }
+  .process-item > img {
+    max-width: 200px;
+    display: inline-block;
+  }
+  .process-group {
+    margin-top: 3em;
   }
 }
 </style>
