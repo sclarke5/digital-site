@@ -233,8 +233,15 @@ export default {
 }
 
 @media screen(laptop2xwh) {
+  .grid-container {
+    right: -70em;
+  }
+
   .grid-right ul {
     margin-top: -3em;
+  }
+  .about-container {
+    max-height: 32em;
   }
 }
 </style>

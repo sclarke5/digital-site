@@ -1,4 +1,5 @@
 <template>
+<transition name="fade" appear>
   <div v-if="showModal" class="absolute text-white modal-wrapper">
     <!-- <button @click="toggleModal" class="close-icon">
       <img src="../assets/close-icon.png" alt="" />
@@ -8,7 +9,7 @@
         class="modal flex flex-col bg-black overflow-auto w-screen"
       >
         <div class="header-container relative">
-          <div class="title-container flex flex-col py-9">
+          <div class="title-container flex py-9">
             <div class="header-left">
               <img
                 id="header-logo-img"
@@ -51,6 +52,27 @@
             :alt="content.primary_image.alt"
           />
         </div>
+
+        <div class="secondary-header hide-header flex py-12">
+          <div class="header-left">
+              <h3 class="text-white">{{ content.name}}</h3>
+          </div>
+          <div class="header-right">
+            <button class="close-icon" @click="toggleModal">
+              <svg 
+                class="" 
+                width="16" 
+                height="30" 
+                viewBox="0 0 16 30" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 29L1 15L15 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <h6 class="back-button text-white uppercase">
+                Back to Case Studies</h6>
+            </button>
+          </div>
+        </div>
         
         <div class="body-centering-container flex">
           <div class="body-container flex pt-40">
@@ -65,7 +87,7 @@
                 </div>
 
                 <div class="visuals-container flex items-center my-40">
-                  <div class="visuals-left w-1/2">
+                  <div class="visuals-left">
                     <video
                       v-if="visualsArray[0].filename.includes('webm')"
                       controls
@@ -80,7 +102,7 @@
                     />
                   </div>
 
-                  <div class="visuals-right w-1/2">
+                  <div class="visuals-right">
                     <video
                       v-if="visualsArray[1].filename.includes('webm')"
                       controls
@@ -134,7 +156,7 @@
           </div>
         </div>
 
-        <div class="testimonial-container flex bg-white">              
+        <div v-if="content.testimonial" class="testimonial-container flex bg-white">              
           <div class="testimonial-text-container relative flex py-20">
             <div class="flex flex-col w-1/2">
               <p v-if="content.testimonial" class="testimonial text-black">
@@ -162,13 +184,14 @@
             </div>
             <video
               v-if="visualsArray[4].filename.includes('webm')"
+              class="my-20"
               controls
               :src="visualsArray[4].filename"
               :alt="visualsArray[4].alt">
             </video>
             <img
               v-else
-              class="py-20"
+              class="my-20"
               :src="visualsArray[4].filename"
               :alt="visualsArray[4].alt"
             />
@@ -258,19 +281,37 @@
 
 
 
-        <div class="contact-us mt-8 mb-80">
+        <div class="contact-us mt-8">
           <h1 
-            class="contact-us-link pt-2 pl-6 text-white text-5xl text-left uppercase text-center" @click="contactScroll">
-            Contact Us
+            class="pt-2 ml-20 text-5xl text-left uppercase text-black text-left">
+            Like what you see?
           </h1>
+          <div class="flex px-4 py-2 ml-20 mt-6 contact-button-container" @click="contactScroll">
+            <p 
+              class="uppercase text-black"
+            >Contact Us
+            </p>
+          </div>
+          <div class="back-to-top flex float-right">
+            <svg 
+              class="" 
+              width="10" 
+              height="30" 
+              viewBox="0 0 16 30" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 29L1 15L15 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="mr-20 uppercase text-black text-right" @click="scrollToTop">Back to Top</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  </transition>
 </template>
 
 <script>
-// eslint-disable-next-line import/no-named-as-default
 import { VueAgile } from 'vue-agile'
 import { scrollToSection } from '../mixins'
 export default {
@@ -322,8 +363,6 @@ export default {
           otherCaseStudies.push(caseStudy)
         }
       })
-      // below temporary to keep it simple; TODO: figure out how many/which "other case studies" to display
-      // const selectedCaseStudies = otherCaseStudies.slice(0, 3)
       return otherCaseStudies
     },
   },
@@ -340,7 +379,7 @@ export default {
     },
     contactScroll() {
       this.toggleModal()
-      scrollToSection(document.querySelector('#contact-marker'))
+      scrollToSection(document.querySelector('#contact-marker'), 'auto')
     },
     goToCaseStudy(caseStudy, list) {
       const target = caseStudy.content
@@ -356,11 +395,35 @@ export default {
         document.querySelector('.tagline').style.display = 'block'
       }
     },
+    scrollToTop() {
+      const modal = document.querySelector('.modal')
+      modal.scrollTo({ top: 0, behavior: 'smooth'})
+    },
   },
 }
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.reveal-header {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hide-header {
+  opacity: 0;
+  z-index: 0;
+}
+
 .title-container {
   flex-direction: row;
   position: absolute;
@@ -388,6 +451,16 @@ export default {
 
 .text-left {
   transition: 0.25s;
+}
+
+.secondary-header {
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  transition: opacity 0.25s ease;
 }
 
 .tagline {
@@ -446,7 +519,11 @@ export default {
 }
 
 .services-container {
-  justify-content: space-evenly;
+  justify-content: center;
+}
+
+.services-provided {
+  margin-right: 5em;
 }
 
 .modal-overlay {
@@ -461,10 +538,21 @@ export default {
 
 .visuals-container {
   max-height: 55em;
+  flex-direction: column-reverse;
 }
 
 .visuals-container img {
   max-height: 100%;
+}
+
+.visuals-left {
+  width: 80%;
+  margin-top: -15em;
+}
+
+.visuals-right {
+  width: 30%;
+  align-self: flex-end;
 }
 
 .results-column p {
@@ -476,6 +564,10 @@ export default {
   line-height: 1.5;
   font-family: 'Adobe Caslon Pro', sans-serif;
   font-style: italic;
+}
+
+.testimonial-container {
+  justify-content: center;
 }
 
 .testimonial-text-container {
@@ -499,6 +591,15 @@ export default {
   font-size: 3em;
 }
 
+.results-container video {
+  height: 50vh;
+  width: 100%;
+}
+
+.results-container img {
+  width: 100%;
+}
+
 .services-container h4 {
   color: rgba(29, 173, 228, 1);
 }
@@ -506,7 +607,7 @@ export default {
 .cta {
   border: 2px solid white;
   color: white;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   height: 40px;
   width: fit-content;
   padding: 1.5em;
@@ -536,14 +637,41 @@ export default {
 }
 
 .contact-us {
-  background-image: url('../assets/grid.png');
-  padding-top: 10.1em;
-  padding-bottom: 10em;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  background: white;
 }
 
-/* .contact-us-link {
+.contact-button-container {
+  border: solid black 2px;
+  width: fit-content;
+  transition: background-color 0.25s;
+}
 
-} */
+.contact-button-container p {
+  transition: color 0.25s;
+}
+
+.contact-button-container:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+.contact-button-container:hover p {
+  color: white;
+
+}
+
+
+.back-to-top svg {
+  transform: rotate(90deg);
+  margin-right: 1em;
+  margin-top: -0.3em
+}
+
+.back-to-top:hover {
+  cursor: pointer;
+}
 
 .nav-loaded {
   display: none;

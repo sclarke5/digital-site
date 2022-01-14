@@ -68,10 +68,30 @@ export default {
       if (window.innerWidth > 1024) {
         this.$store.dispatch('modal/toggle', { content, list })
         setTimeout(this.removeDefaultNavButtons, 200)
+        setTimeout(this.addListener, 200)
       } else if (this.showPanel === false) {
         this.showPanel = true
       } else if (this.showPanel === true) {
         this.showPanel = false
+      }
+    },
+    addListener(){
+      const modalBody = document.querySelector('.modal')
+      modalBody.addEventListener('scroll', this.revealHeader)
+    },
+    revealHeader() {
+      const header = document.querySelector('.secondary-header')
+      const modal = document.querySelector('.modal')
+
+      const scrollY = modal.scrollTop
+      const clientHeight = document.documentElement.clientHeight
+
+      if(scrollY >= clientHeight){
+        header.classList.remove('hide-header');
+        header.classList.add('reveal-header');
+      } else {
+        header.classList.remove('reveal-header')
+        header.classList.add('hide-header');
       }
     },
     removeDefaultNavButtons(){
@@ -114,7 +134,7 @@ h5 {
   cursor: pointer;
   border: 2px solid white;
   justify-content: space-around;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   padding: 1.5em;
 }
 
