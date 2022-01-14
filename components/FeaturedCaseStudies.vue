@@ -145,7 +145,7 @@ export default {
   }
 
   .case-studies-sub {
-    top: 83em;
+    top: 78em;
     right: -1.3em;
   }
 
@@ -161,15 +161,15 @@ export default {
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-    top: 256em;
-    right: -2rem;
+    top: 246em;
+    right: -5rem;
   }
 
   .case-studies-wrapper {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    top: 310em;
+    top: 230em;
     right: -94em;
     width: -webkit-max-content;
     width: -moz-max-content;
