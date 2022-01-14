@@ -1,4 +1,5 @@
 <template>
+<transition name="fade" appear>
   <div v-if="showModal" class="absolute text-white modal-wrapper">
     <!-- <button @click="toggleModal" class="close-icon">
       <img src="../assets/close-icon.png" alt="" />
@@ -54,7 +55,7 @@
 
         <div class="secondary-header hide-header flex py-12">
           <div class="header-left">
-              <h2 class="text-white">{{ content.name}}</h2>
+              <h3 class="text-white">{{ content.name}}</h3>
           </div>
           <div class="header-right">
             <button class="close-icon" @click="toggleModal">
@@ -285,24 +286,32 @@
             class="pt-2 ml-20 text-5xl text-left uppercase text-black text-left">
             Like what you see?
           </h1>
-          <div class="flex px-4 py-2 ml-20 mt-6 contact-button-container">
+          <div class="flex px-4 py-2 ml-20 mt-6 contact-button-container" @click="contactScroll">
             <p 
-              class="uppercase text-black" 
-              @click="contactScroll"
+              class="uppercase text-black"
             >Contact Us
             </p>
           </div>
-          <div>
-            <p class="back-to-top mr-20 uppercase text-black text-right" @click="scrollToTop">Back to Top</p>
+          <div class="back-to-top flex float-right">
+            <svg 
+              class="" 
+              width="10" 
+              height="30" 
+              viewBox="0 0 16 30" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 29L1 15L15 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="mr-20 uppercase text-black text-right" @click="scrollToTop">Back to Top</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+  </transition>
 </template>
 
 <script>
-// eslint-disable-next-line import/no-named-as-default
 import { VueAgile } from 'vue-agile'
 import { scrollToSection } from '../mixins'
 export default {
@@ -354,8 +363,6 @@ export default {
           otherCaseStudies.push(caseStudy)
         }
       })
-      // below temporary to keep it simple; TODO: figure out how many/which "other case studies" to display
-      // const selectedCaseStudies = otherCaseStudies.slice(0, 3)
       return otherCaseStudies
     },
   },
@@ -372,7 +379,7 @@ export default {
     },
     contactScroll() {
       this.toggleModal()
-      scrollToSection(document.querySelector('#contact-marker'))
+      scrollToSection(document.querySelector('#contact-marker'), 'auto')
     },
     goToCaseStudy(caseStudy, list) {
       const target = caseStudy.content
@@ -390,14 +397,23 @@ export default {
     },
     scrollToTop() {
       const modal = document.querySelector('.modal')
-      modal.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
+      modal.scrollTo({ top: 0, behavior: 'smooth'})
     },
   },
 }
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .reveal-header {
   opacity: 1;
   z-index: 2;
@@ -444,7 +460,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: black;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.25s ease;
 }
 
 .tagline {
@@ -503,7 +519,11 @@ export default {
 }
 
 .services-container {
-  justify-content: space-evenly;
+  justify-content: center;
+}
+
+.services-provided {
+  margin-right: 5em;
 }
 
 .modal-overlay {
@@ -587,7 +607,7 @@ export default {
 .cta {
   border: 2px solid white;
   color: white;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   height: 40px;
   width: fit-content;
   padding: 1.5em;
@@ -625,11 +645,11 @@ export default {
 .contact-button-container {
   border: solid black 2px;
   width: fit-content;
-  transition: background-color 0.5s;
+  transition: background-color 0.25s;
 }
 
 .contact-button-container p {
-  transition: color 0.5s;
+  transition: color 0.25s;
 }
 
 .contact-button-container:hover {
@@ -643,8 +663,10 @@ export default {
 }
 
 
-.back-to-top {
-  /* width: fit-content; */
+.back-to-top svg {
+  transform: rotate(90deg);
+  margin-right: 1em;
+  margin-top: -0.3em
 }
 
 .back-to-top:hover {

@@ -1,4 +1,4 @@
-export const scrollToSection = (target) => {
+export const scrollToSection = (target, behavior = 'smooth') => {
   // target parameter being pass is the element we want to see
 
   const distanceToTarget =
@@ -30,7 +30,7 @@ export const scrollToSection = (target) => {
     document.getElementById('scrollEl').scroll({
       top: targetPos,
       left: 0,
-      behavior: 'smooth',
+      behavior,
     })
   }
 }

@@ -82,9 +82,11 @@ export default {
     revealHeader() {
       const header = document.querySelector('.secondary-header')
       const modal = document.querySelector('.modal')
-      const scrollY = modal.scrollTop
 
-      if(scrollY >= 950){
+      const scrollY = modal.scrollTop
+      const clientHeight = document.documentElement.clientHeight
+
+      if(scrollY >= clientHeight){
         header.classList.remove('hide-header');
         header.classList.add('reveal-header');
       } else {
@@ -132,7 +134,7 @@ h5 {
   cursor: pointer;
   border: 2px solid white;
   justify-content: space-around;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   padding: 1.5em;
 }
 
