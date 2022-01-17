@@ -6,8 +6,8 @@
     <div class="case-study-container flex flex-col mobile:items-center">
       <img
         class="primary-image px-6"
-        :src="caseStudyContent.primary_image.filename"
-        :alt="caseStudyContent.primary_image.alt"
+        :src="caseStudyContent.teaser_image.filename"
+        :alt="caseStudyContent.teaser_image.alt"
       />
       <div
         class="

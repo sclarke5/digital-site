@@ -56,8 +56,8 @@
 
             <img
               class="check w-full"
-              :src="content.primary_image.filename"
-              :alt="content.primary_image.alt"
+              :src="content.teaser_image.filename"
+              :alt="content.teaser_image.alt"
             />
           </div>
 
@@ -102,30 +102,17 @@
 
                 <div class="visuals-container flex items-center my-40">
                   <div class="visuals-left">
-                    <video
-                      v-if="visualsArray[0].filename.includes('webm')"
-                      controls
-                      :src="visualsArray[0].filename"
-                      :alt="visualsArray[0].alt"
-                    ></video>
                     <img
-                      v-else
-                      :src="visualsArray[0].filename"
-                      :alt="visualsArray[0].alt"
+                      :src="content.primary_image_large.filename"
+                      :alt="content.primary_image_large.alt"
                       class="second-image"
                     />
                   </div>
 
                   <div class="visuals-right">
-                    <video
-                      v-if="visualsArray[1].filename.includes('webm')"
-                      controls
-                      :src="visualsArray[1].filename"
-                      :alt="visualsArray[1].alt"
-                    ></video>
                     <img
-                      :src="visualsArray[1].filename"
-                      :alt="visualsArray[1].alt"
+                      :src="content.primary_image_small.filename"
+                      :alt="content.primary_image_small.alt"
                       class="third-image"
                     />
                   </div>
@@ -139,29 +126,15 @@
                 </div>
 
                 <div class="second-visuals-container py-40 flex flex-col">
-                  <video
-                    v-if="visualsArray[2].filename.includes('webm')"
-                    controls
-                    :src="visualsArray[2].filename"
-                    :alt="visualsArray[2].alt"
-                  ></video>
                   <img
-                    v-else
                     class="w-2/5 first-image"
-                    :src="visualsArray[2].filename"
-                    :alt="visualsArray[2].alt"
+                    :src="content.secondary_image_large.filename"
+                    :alt="content.secondary_image_large.alt"
                   />
-                  <video
-                    v-if="visualsArray[3].filename.includes('webm')"
-                    controls
-                    :src="visualsArray[3].filename"
-                    :alt="visualsArray[3].alt"
-                  ></video>
                   <img
-                    v-else
                     class="w-5/6 self-end second-image"
-                    :src="visualsArray[3].filename"
-                    :alt="visualsArray[3].alt"
+                    :src="content.secondary_image_small.filename"
+                    :alt="content.secondary_image_small.alt"
                   />
                 </div>
               </div>
@@ -202,18 +175,19 @@
                   {{ content.result_3 }}
                 </p>
               </div>
+              <!-- <p>{{ content.visual }}</p> -->
               <video
-                v-if="visualsArray[4].filename.includes('webm')"
+                v-if="content.visual.filename.includes('webm')"
                 class="my-20"
                 controls
-                :src="visualsArray[4].filename"
-                :alt="visualsArray[4].alt"
+                :src="content.visual.filename"
+                :alt="content.visual.alt"
               ></video>
               <img
                 v-else
                 class="my-20"
-                :src="visualsArray[4].filename"
-                :alt="visualsArray[4].alt"
+                :src="content.visual.filename"
+                :alt="content.visual.alt"
               />
             </div>
           </div>
@@ -260,7 +234,7 @@
                   >
                     <img
                       class="see-more-image"
-                      :src="caseStudy.content.primary_image.filename"
+                      :src="caseStudy.content.teaser_image.filename"
                       alt=""
                     />
                     <h3 class="mt-2 text-white">
