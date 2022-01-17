@@ -626,7 +626,9 @@ export default {
 
       //
 
-      if (this.isElementInViewport(document.getElementById('spacer'))) {
+      if (this.isElementInViewport(document.getElementById('aboutUs-marker'))) {
+        this.container.style.opacity = 0
+      } else if (this.isElementInViewport(document.getElementById('spacer'))) {
         this.container.style.opacity = 1
         this.serviceText.style.opacity = 1
         this.scrollText.style.opacity = 1
@@ -665,22 +667,19 @@ export default {
           this.changeIndicator(this.mobileSwipes)
           this.startMovement(this.mobileSwipes)
           currentStage = animations[this.mobileSwipes].stage
-        }
 
-        this.container.style.opacity = 0
-        if (window.innerWidth >= 1024) {
-          new TWEEN.Tween(this.camera.position)
-            .to(this.initialCameraPos, 500)
-            .easing(TWEEN.Easing.Quadratic.InOut)
-            .start()
-        }
-
-        if (window.innerWidth < 1024) {
           document.getElementById('three').style.position = 'static'
           document.getElementById('three').style.zIndex = '0'
 
           document.getElementById('landingText').style.display = 'block'
           document.getElementById('mobileScroll').style.display = 'block'
+        }
+
+        if (window.innerWidth >= 1024) {
+          new TWEEN.Tween(this.camera.position)
+            .to(this.initialCameraPos, 500)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .start()
         }
       }
     },

@@ -7,7 +7,7 @@
       <div class="modal-overlay bg-black flex">
         <div class="modal flex flex-col bg-black overflow-auto w-screen">
           <div class="header-container relative">
-            <div class="title-container flex py-9">
+            <div class="title-container flex py-4">
               <div class="header-left">
                 <img
                   id="header-logo-img"
@@ -16,10 +16,9 @@
                   alt="ASTOUND Digital Logo"
                 />
               </div>
-              <div class="header-right">
+              <div class="pr-4 header-right">
                 <button class="close-icon" @click="toggleModal">
                   <svg
-                    class=""
                     width="16"
                     height="30"
                     viewBox="0 0 16 30"
@@ -62,14 +61,13 @@
             />
           </div>
 
-          <div class="secondary-header hide-header flex py-12">
+          <div class="secondary-header hide-header flex py-8 px-4">
             <div class="header-left">
               <h3 class="text-white">{{ content.name }}</h3>
             </div>
-            <div class="header-right">
+            <div class="header-right text-right">
               <button class="close-icon" @click="toggleModal">
                 <svg
-                  class=""
                   width="16"
                   height="30"
                   viewBox="0 0 16 30"
@@ -298,7 +296,6 @@
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        class="styled-arrow"
                         d="M15 29L1 15L15 1"
                         stroke="white"
                         stroke-width="2"
@@ -317,7 +314,6 @@
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        class="styled-arrow"
                         d="M1 1L15 15L1 29"
                         stroke="white"
                         stroke-width="2"
@@ -485,12 +481,16 @@ export default {
 
 .reveal-header {
   opacity: 1;
+  transform: translate(0, 0);
   z-index: 2;
 }
 
 .hide-header {
-  opacity: 0;
-  z-index: 0;
+  z-index: 2;
+  transform: translate(0, -150px);
+
+  /* opacity: 0;
+  z-index: 0; */
 }
 
 .title-container {
@@ -500,10 +500,6 @@ export default {
   z-index: 1;
   align-items: center;
   justify-content: space-between;
-}
-
-.header-left {
-  margin-left: 3em;
 }
 
 .header-bottom {
@@ -529,15 +525,15 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: black;
-  transition: opacity 0.25s ease;
+  transition: 0.5s ease;
+}
+
+.company-logo {
+  max-height: 100px;
 }
 
 .tagline {
   transition: 0.25s;
-}
-
-.header-right {
-  margin-right: 1em;
 }
 
 .check {
@@ -549,26 +545,6 @@ export default {
 
 .back-button {
   font-size: 1.2rem;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-}
-
-.back-button:hover,
-.close-icon:hover .back-button,
-.close-icon:hover {
-  background: linear-gradient(
-    -90deg,
-    rgba(255, 78, 0, 1) 0%,
-    rgba(48, 214, 217, 1) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.styled-arrow:hover,
-.close-icon:hover .styled-arrow {
-  stroke: rgba(48, 214, 217, 1);
 }
 
 .body-centering-container {
@@ -820,12 +796,26 @@ export default {
   .close-icon {
     display: flex;
     z-index: 1;
-    transition: opacity 0.2s;
+    transition: 0.2s;
     border: 0;
   }
 
   .close-icon svg {
     margin-right: 1em;
+  }
+
+  .close-icon:hover {
+    background: linear-gradient(
+      80deg,
+      rgba(48, 214, 217, 1) 0%,
+      rgba(255, 78, 0, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .close-icon:hover .styled-arrow {
+    stroke: rgba(48, 214, 217, 1);
   }
 
   .close-icon img {
@@ -856,9 +846,6 @@ export default {
     margin-left: -15rem;
     padding-left: 15rem;
   } */
-  .header-right {
-    margin-right: 5em;
-  }
 }
 
 @media screen(desktop2xl) {
