@@ -1,88 +1,104 @@
 <template>
-<transition name="fade" appear>
-  <div v-if="showModal" class="absolute text-white modal-wrapper">
-    <!-- <button @click="toggleModal" class="close-icon">
+  <transition name="fade" appear>
+    <div v-if="showModal" class="absolute text-white modal-wrapper">
+      <!-- <button @click="toggleModal" class="close-icon">
       <img src="../assets/close-icon.png" alt="" />
     </button> -->
-    <div class="modal-overlay bg-black flex">
-      <div
-        class="modal flex flex-col bg-black overflow-auto w-screen"
-      >
-        <div class="header-container relative">
-          <div class="title-container flex py-9">
+      <div class="modal-overlay bg-black flex">
+        <div class="modal flex flex-col bg-black overflow-auto w-screen">
+          <div class="header-container relative">
+            <div class="title-container flex py-9">
+              <div class="header-left">
+                <img
+                  id="header-logo-img"
+                  class="company-logo h-full"
+                  src="../assets/Digital__White_-1-removebg-preview.png"
+                  alt="ASTOUND Digital Logo"
+                />
+              </div>
+              <div class="header-right">
+                <button class="close-icon" @click="toggleModal">
+                  <svg
+                    class=""
+                    width="16"
+                    height="30"
+                    viewBox="0 0 16 30"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class="styled-arrow"
+                      d="M15 29L1 15L15 1"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <h6 class="back-button text-white uppercase">
+                    Back to Case Studies
+                  </h6>
+                  <!-- <img src="../assets/close-icon.png" alt="" /> -->
+                </button>
+              </div>
+            </div>
+
+            <div class="header-bottom">
+              <p class="pt-2 text-white text-xl text-left">
+                {{ content.client }}
+              </p>
+              <h1 class="pt-2 text-white text-5xl text-left uppercase">
+                {{ content.name }}
+              </h1>
+              <p class="pt-2 text-white text-xl text-left tagline">
+                {{ content.tagline }}
+              </p>
+            </div>
+
+            <img
+              class="check w-full"
+              :src="content.primary_image.filename"
+              :alt="content.primary_image.alt"
+            />
+          </div>
+
+          <div class="secondary-header hide-header flex py-12">
             <div class="header-left">
-              <img
-                id="header-logo-img"
-                class="company-logo h-full"
-                src="../assets/Digital__White_-1-removebg-preview.png"
-                alt="ASTOUND Digital Logo"
-              />
+              <h3 class="text-white">{{ content.name }}</h3>
             </div>
             <div class="header-right">
               <button class="close-icon" @click="toggleModal">
-                <svg 
-                  class="" 
-                  width="16" 
-                  height="30" 
-                  viewBox="0 0 16 30" 
-                  fill="none" 
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 29L1 15L15 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg
+                  class=""
+                  width="16"
+                  height="30"
+                  viewBox="0 0 16 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="styled-arrow"
+                    d="M15 29L1 15L15 1"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
                 <h6 class="back-button text-white uppercase">
-                  Back to Case Studies</h6>
-                <!-- <img src="../assets/close-icon.png" alt="" /> -->
+                  Back to Case Studies
+                </h6>
               </button>
             </div>
           </div>
 
-          <div class="header-bottom">
-            <p class="pt-2 text-white text-xl text-left">{{ content.client }}</p>
-            <h1 class="pt-2 text-white text-5xl text-left uppercase">
-                {{ content.name }}
-            </h1>
-            <p class="pt-2 text-white text-xl text-left tagline">
-              {{ content.tagline }}
-            </p>
-          </div>
-
-          <img
-            class="check w-full"
-            :src="content.primary_image.filename"
-            :alt="content.primary_image.alt"
-          />
-        </div>
-
-        <div class="secondary-header hide-header flex py-12">
-          <div class="header-left">
-              <h3 class="text-white">{{ content.name}}</h3>
-          </div>
-          <div class="header-right">
-            <button class="close-icon" @click="toggleModal">
-              <svg 
-                class="" 
-                width="16" 
-                height="30" 
-                viewBox="0 0 16 30" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 29L1 15L15 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <h6 class="back-button text-white uppercase">
-                Back to Case Studies</h6>
-            </button>
-          </div>
-        </div>
-        
-        <div class="body-centering-container flex">
-          <div class="body-container flex pt-40">
-
-            <div class="challenege-approach-container flex flex-col">
-              
+          <div class="body-centering-container flex">
+            <div class="body-container flex pt-40">
+              <div class="challenege-approach-container flex flex-col">
                 <div class="challenge-approach-first flex flex-col">
                   <h4 class="uppercase">Challenge</h4>
                   <h3 class="text-white pt-4">
-                  {{ content.challenge }}
+                    {{ content.challenge }}
                   </h3>
                 </div>
 
@@ -114,7 +130,7 @@
                       :alt="visualsArray[1].alt"
                       class="third-image"
                     />
-                  </div>          
+                  </div>
                 </div>
 
                 <div class="challenge-approach-second flex flex-col py-12">
@@ -124,190 +140,243 @@
                   </p>
                 </div>
 
-              <div class="second-visuals-container py-40 flex flex-col">
-                <video
-                  v-if="visualsArray[2].filename.includes('webm')"
-                  controls
-                  :src="visualsArray[2].filename"
-                  :alt="visualsArray[2].alt">
-                </video>
-                <img
-                  v-else
-                  class="w-2/5 first-image"
-                  :src="visualsArray[2].filename"
-                  :alt="visualsArray[2].alt"
-                />
-                <video
-                  v-if="visualsArray[3].filename.includes('webm')"
-                  controls
-                  :src="visualsArray[3].filename"
-                  :alt="visualsArray[3].alt">
-                </video>
-                <img
-                  v-else
-                  class="w-5/6 self-end second-image"
-                  :src="visualsArray[3].filename"
-                  :alt="visualsArray[3].alt"
-                />
-              </div>
-
-            </div>
-          <!-- end of first body container--need to keep exiting for full-screen width parts -->
-          </div>
-        </div>
-
-        <div v-if="content.testimonial" class="testimonial-container flex bg-white">              
-          <div class="testimonial-text-container relative flex py-20">
-            <div class="flex flex-col w-1/2">
-              <p v-if="content.testimonial" class="testimonial text-black">
-                "{{ content.testimonial }}"
-              </p>
-              <p
-                v-if="content.testimonial_author"
-                class="testimonial-author text-black mt-4 mb-8"
-              >
-                - {{ content.testimonial_author }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="results-centering-container flex justify-center my-20">
-          <div class="results-container">
-            <div class="results-text-container">
-              <h4 class="text-white">Results</h4>
-              <h3 class="pt-4">
-                {{ content.result_1 }}
-              </h3>
-              <p v-if="content.result_2" class="text-white pt-4">{{ content.result_2 }}</p>
-              <p v-if="content.result_3" class="text-white pt-4">{{ content.result_3 }}</p>
-            </div>
-            <video
-              v-if="visualsArray[4].filename.includes('webm')"
-              class="my-20"
-              controls
-              :src="visualsArray[4].filename"
-              :alt="visualsArray[4].alt">
-            </video>
-            <img
-              v-else
-              class="my-20"
-              :src="visualsArray[4].filename"
-              :alt="visualsArray[4].alt"
-            />
-          </div>
-        </div>
-        
-        <div class="services-container flex bg-white py-20">
-          <div class="services-provided">
-            <h4 class="text-black pb-4">SERVICES PROVIDED</h4>
-            <ul>
-              <li
-                v-for="(service, index) in parsedCaseStudies.services_provided"
-                :key="index"
-                class="text-black"
-              >
-                {{ service }}
-              </li>
-            </ul>
-          </div>
-          <div class="disciplines-container">
-            <h4 class="text-black pb-4">DISCIPLINES</h4>
-            <ul>
-              <li
-                v-for="(discipline, index) in parsedCaseStudies.disciplines"
-                :key="index"
-                class="text-black"
-              >
-                {{ discipline }}
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="extra-container flex justify-center">
-          <div class="more-work py-20">
-            <h1 class="pl-6 pb-16 text-white text-5xl text-left uppercase">
-              More of our work
-            </h1>
-            <div class="more-work-centering">
-              <agile :options="slideOptions">
-                <div
-                  v-for="caseStudy in seeMoreWork"
-                  :key="caseStudy._uid"
-                  class="list-item flex flex-column px-6 relative"
-                  >
+                <div class="second-visuals-container py-40 flex flex-col">
+                  <video
+                    v-if="visualsArray[2].filename.includes('webm')"
+                    controls
+                    :src="visualsArray[2].filename"
+                    :alt="visualsArray[2].alt"
+                  ></video>
                   <img
-                    class="see-more-image"
-                    :src="caseStudy.content.primary_image.filename"
-                    alt=""
+                    v-else
+                    class="w-2/5 first-image"
+                    :src="visualsArray[2].filename"
+                    :alt="visualsArray[2].alt"
                   />
-                  <h3 class="mt-2 text-white">
-                    {{ caseStudy.name }}
-                  </h3>
-                  <p class="mt-2 text-white uppercase">
-                    {{ caseStudy.content.client }}
-                  </p>
+                  <video
+                    v-if="visualsArray[3].filename.includes('webm')"
+                    controls
+                    :src="visualsArray[3].filename"
+                    :alt="visualsArray[3].alt"
+                  ></video>
+                  <img
+                    v-else
+                    class="w-5/6 self-end second-image"
+                    :src="visualsArray[3].filename"
+                    :alt="visualsArray[3].alt"
+                  />
+                </div>
+              </div>
+              <!-- end of first body container--need to keep exiting for full-screen width parts -->
+            </div>
+          </div>
+
+          <div
+            v-if="content.testimonial"
+            class="testimonial-container flex bg-white"
+          >
+            <div class="testimonial-text-container relative flex py-20">
+              <div class="flex flex-col w-1/2">
+                <p v-if="content.testimonial" class="testimonial text-black">
+                  "{{ content.testimonial }}"
+                </p>
+                <p
+                  v-if="content.testimonial_author"
+                  class="testimonial-author text-black mt-4 mb-8"
+                >
+                  - {{ content.testimonial_author }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="results-centering-container flex justify-center my-20">
+            <div class="results-container">
+              <div class="results-text-container">
+                <h4 class="text-white">Results</h4>
+                <h3 class="pt-4">
+                  {{ content.result_1 }}
+                </h3>
+                <p v-if="content.result_2" class="text-white pt-4">
+                  {{ content.result_2 }}
+                </p>
+                <p v-if="content.result_3" class="text-white pt-4">
+                  {{ content.result_3 }}
+                </p>
+              </div>
+              <video
+                v-if="visualsArray[4].filename.includes('webm')"
+                class="my-20"
+                controls
+                :src="visualsArray[4].filename"
+                :alt="visualsArray[4].alt"
+              ></video>
+              <img
+                v-else
+                class="my-20"
+                :src="visualsArray[4].filename"
+                :alt="visualsArray[4].alt"
+              />
+            </div>
+          </div>
+
+          <div class="services-container flex bg-white py-20">
+            <div class="services-provided">
+              <h4 class="text-black pb-4">SERVICES PROVIDED</h4>
+              <ul>
+                <li
+                  v-for="(
+                    service, index
+                  ) in parsedCaseStudies.services_provided"
+                  :key="index"
+                  class="text-black"
+                >
+                  {{ service }}
+                </li>
+              </ul>
+            </div>
+            <div class="disciplines-container">
+              <h4 class="text-black pb-4">DISCIPLINES</h4>
+              <ul>
+                <li
+                  v-for="(discipline, index) in parsedCaseStudies.disciplines"
+                  :key="index"
+                  class="text-black"
+                >
+                  {{ discipline }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="extra-container flex justify-center">
+            <div class="more-work py-20">
+              <h1 class="pl-6 pb-16 text-white text-5xl text-left uppercase">
+                More of our work
+              </h1>
+              <div class="more-work-centering">
+                <agile :options="slideOptions">
                   <div
-                    :id="caseStudy.content._uid"
-                    class="
-                      mt-4
-                      flex
-                      cta
-                      items-center
-                      justify-around
-                      case-study-link
-                    "
-                    @click="goToCaseStudy(caseStudy, list)"
+                    v-for="caseStudy in seeMoreWork"
+                    :key="caseStudy._uid"
+                    class="list-item flex flex-column px-6 relative"
                   >
-                    <div class="flex button-container">
-                      <p class="uppercase">View Case Study</p>
+                    <img
+                      class="see-more-image"
+                      :src="caseStudy.content.primary_image.filename"
+                      alt=""
+                    />
+                    <h3 class="mt-2 text-white">
+                      {{ caseStudy.name }}
+                    </h3>
+                    <p class="mt-2 text-white uppercase">
+                      {{ caseStudy.content.client }}
+                    </p>
+                    <div
+                      :id="caseStudy.content._uid"
+                      class="
+                        mt-4
+                        flex
+                        cta
+                        items-center
+                        justify-around
+                        case-study-link
+                      "
+                      @click="goToCaseStudy(caseStudy, list)"
+                    >
+                      <div class="flex button-container">
+                        <p class="uppercase">View Case Study</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <template slot="prevButton">
-                  <svg class="nav-button nav-previous" width="16" height="30" viewBox="0 0 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 29L1 15L15 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </template>
-                <template slot="nextButton" class="test-slider" >
-                  <svg class="nav-button nav-next" width="16" height="30" viewBox="0 0 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L15 15L1 29" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </template>
-              </agile>
+                  <template slot="prevButton">
+                    <svg
+                      class="nav-button nav-previous"
+                      width="16"
+                      height="30"
+                      viewBox="0 0 16 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        class="styled-arrow"
+                        d="M15 29L1 15L15 1"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </template>
+                  <template slot="nextButton" class="test-slider">
+                    <svg
+                      class="nav-button nav-next"
+                      width="16"
+                      height="30"
+                      viewBox="0 0 16 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        class="styled-arrow"
+                        d="M1 1L15 15L1 29"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </template>
+                </agile>
+              </div>
             </div>
           </div>
-        </div>
 
-
-
-        <div class="contact-us mt-8">
-          <h1 
-            class="pt-2 ml-20 text-5xl text-left uppercase text-black text-left">
-            Like what you see?
-          </h1>
-          <div class="flex px-4 py-2 ml-20 mt-6 contact-button-container" @click="contactScroll">
-            <p 
-              class="uppercase text-black"
-            >Contact Us
-            </p>
-          </div>
-          <div class="back-to-top flex float-right">
-            <svg 
-              class="" 
-              width="10" 
-              height="30" 
-              viewBox="0 0 16 30" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 29L1 15L15 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <p class="mr-20 uppercase text-black text-right" @click="scrollToTop">Back to Top</p>
+          <div class="contact-us mt-8">
+            <h1
+              class="
+                pt-2
+                ml-20
+                text-5xl text-left
+                uppercase
+                text-black text-left
+              "
+            >
+              Like what you see?
+            </h1>
+            <div
+              class="flex px-4 py-2 ml-20 mt-6 contact-button-container"
+              @click="contactScroll"
+            >
+              <p class="uppercase text-black">Contact Us</p>
+            </div>
+            <div class="back-to-top flex float-right">
+              <svg
+                class=""
+                width="10"
+                height="30"
+                viewBox="0 0 16 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 29L1 15L15 1"
+                  stroke="black"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p
+                class="mr-20 uppercase text-black text-right"
+                @click="scrollToTop"
+              >
+                Back to Top
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </transition>
 </template>
 
@@ -316,9 +385,9 @@ import { VueAgile } from 'vue-agile'
 import { scrollToSection } from '../mixins'
 export default {
   components: {
-    agile: VueAgile
+    agile: VueAgile,
   },
-  data(){
+  data() {
     return {
       slideOptions: {
         responsive: [
@@ -327,11 +396,11 @@ export default {
             settings: {
               dots: false,
               slidesToShow: 3,
-              navButtons: true
-            }
-          }
-        ]
-      }
+              navButtons: true,
+            },
+          },
+        ],
+      },
     }
   },
   computed: {
@@ -397,7 +466,7 @@ export default {
     },
     scrollToTop() {
       const modal = document.querySelector('.modal')
-      modal.scrollTo({ top: 0, behavior: 'smooth'})
+      modal.scrollTo({ top: 0, behavior: 'smooth' })
     },
   },
 }
@@ -406,7 +475,7 @@ export default {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .2s linear;
+  transition: opacity 0.2s linear;
 }
 
 .fade-enter,
@@ -480,6 +549,26 @@ export default {
 
 .back-button {
   font-size: 1.2rem;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.back-button:hover,
+.close-icon:hover .back-button,
+.close-icon:hover {
+  background: linear-gradient(
+    -90deg,
+    rgba(255, 78, 0, 1) 0%,
+    rgba(48, 214, 217, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.styled-arrow:hover,
+.close-icon:hover .styled-arrow {
+  stroke: rgba(48, 214, 217, 1);
 }
 
 .body-centering-container {
@@ -659,14 +748,12 @@ export default {
 
 .contact-button-container:hover p {
   color: white;
-
 }
-
 
 .back-to-top svg {
   transform: rotate(90deg);
   margin-right: 1em;
-  margin-top: -0.3em
+  margin-top: -0.3em;
 }
 
 .back-to-top:hover {
@@ -739,10 +826,6 @@ export default {
 
   .close-icon svg {
     margin-right: 1em;
-  }
-
-  .close-icon:hover {
-    opacity: 0.3;
   }
 
   .close-icon img {

@@ -155,8 +155,9 @@
               @focus="closeDropdown"
               id="contactMessage"
               v-model="contactMessage"
-              rows="5"
+              rows="6"
               class="
+                resize-none
                 text-white
                 block
                 w-full
@@ -283,6 +284,10 @@ export default {
   mounted() {
     const checkbox = document.querySelectorAll('input[type=checkbox]')
 
+    const maxCount = 15
+
+    let word
+
     for (let i = 0; i < checkbox.length; i++) {
       checkbox[i].addEventListener('change', () => {
         const checked = document.querySelectorAll(
@@ -294,7 +299,12 @@ export default {
         if (checked.length > 0) {
           servicesDropdown.innerHTML = ''
           checked.forEach((item) => {
-            servicesDropdown.innerHTML += `${item.value}, `
+            if (item.value.length > maxCount) {
+              word = item.value.substring(0, maxCount) + '...'
+            } else {
+              word = item.value
+            }
+            servicesDropdown.innerHTML += `${word}, `
           })
         } else {
           servicesDropdown.innerHTML = 'Please Select'
@@ -677,5 +687,12 @@ input[type='checkbox']:checked::after {
 
 .form-success {
   display: none;
+}
+
+#services-dropdown {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 1.75rem;
 }
 </style>

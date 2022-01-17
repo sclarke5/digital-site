@@ -16,8 +16,8 @@
             <p class="text-white pt-8 laptop:w-1/2">{{ blurb }}</p>
           </div>
         </div>
-        <p class="text-white underline pt-8">
-          <a :href="astoundgroup_cta.link" target="blank">
+        <p class="text-white underline pt-8 cta-container">
+          <a :href="astoundgroup_cta.link" target="blank" class="cta-link">
             <!-- {{ astoundgroup_cta.text }} -->
 
             Go to Main Website &nearr;
@@ -243,5 +243,17 @@ export default {
   .about-container {
     max-height: 32em;
   }
+}
+
+.cta-link:hover,
+.cta-container:hover .cta-link,
+.cta-container:hover {
+  background: linear-gradient(
+    -90deg,
+    rgba(255, 78, 0, 1) 0%,
+    rgba(48, 214, 217, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
