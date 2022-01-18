@@ -165,7 +165,12 @@ export default {
 
 <style scoped>
 .lines-background {
-  background-image: url('../assets/grid.png');
+  background-size: 59.47px 60.2px;
+  background-position: 4.6% 6.5%;
+  background-image: linear-gradient(to right, #3A3B3C 1px, transparent 1px),
+    linear-gradient(to bottom, #3A3B3C 1px, transparent 1px);
+
+  /* background-image: url('../assets/grid.png'); */
 }
 
 .process-item {
@@ -218,7 +223,7 @@ export default {
 
   .grid-right ul {
     min-width: 200%;
-    height: 80%;
+    height: 34em;
   }
 
   .text-container {
@@ -228,10 +233,10 @@ export default {
 
 @media screen(laptopwh) {
   .grid-container {
-    right: -80em;
+    right: -78em;
   }
   .grid-right ul {
-    margin-top: -5em;
+    margin-top: 2em;
   }
   .process-item > img {
     max-width: 200px;
@@ -244,11 +249,11 @@ export default {
 
 @media screen(laptop2xwh) {
   .grid-container {
-    right: -81em;
+    right: -80em;
   }
 
   .grid-right ul {
-    margin-top: -3em;
+    margin-top: 2em;
   }
   .about-container {
     max-height: 32em;

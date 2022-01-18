@@ -108,8 +108,12 @@ export default {
 }
 
 .lines-background-case-studies {
-  background-image: url('../assets/grid.png');
-  background-size: contain;
+  /* background-image: url('../assets/grid.png');
+  background-size: contain; */
+  background-size: 59.47px 60.2px;
+  background-position: 6% 4%;
+  background-image: linear-gradient(to right, #3A3B3C 1px, transparent 1px),
+    linear-gradient(to bottom, #3A3B3C 1px, transparent 1px);
   background-repeat: repeat;
   margin-top: 1em;
   margin-bottom: 5em;
@@ -166,7 +170,7 @@ export default {
     margin-left: 25em;
     width: 800px;
     top: 246em;
-    right: -5rem;
+    right: -2rem;
   }
 
   .case-studies-wrapper {
