@@ -130,6 +130,10 @@ export default {
   padding: 1rem;
 }
 
+  .case-studies-wrapper {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
 @media screen(mobile) {
   #contact-marker {
     min-height: 100vh;
@@ -166,11 +170,10 @@ export default {
   }
 
   .case-studies-wrapper {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    top: 230em;
-    right: -94em;
+    top: 250em;
+    right: -114em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -199,11 +202,10 @@ export default {
     right: -6rem;
   }
   .case-studies-wrapper {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    top: 210em;
-    right: -98em;
+    top: 225em;
+    right: -115em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -245,11 +247,10 @@ export default {
   }
 
   .case-studies-wrapper {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 120em;
     margin-bottom: 50em;
-    top: 310em;
-    right: -104em;
+    top: 335em;
+    right: -124em;
     width: max-content;
   }
 

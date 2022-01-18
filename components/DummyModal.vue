@@ -177,7 +177,7 @@
               </div>
               <!-- <p>{{ content.visual }}</p> -->
               <video
-                v-if="content.visual.filename.includes('webm')"
+                v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4')"
                 class="my-20"
                 controls
                 :src="content.visual.filename"
@@ -511,8 +511,8 @@ export default {
 }
 
 .check {
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100vh;
+  width: 100vw;
   object-fit: cover;
   opacity: 0.6;
 }
@@ -631,7 +631,7 @@ export default {
 }
 
 .results-container video {
-  height: 50vh;
+  max-height: 70vh;
   width: 100%;
 }
 
