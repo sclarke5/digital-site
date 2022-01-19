@@ -176,19 +176,38 @@
                 </p>
               </div>
               <!-- <p>{{ content.visual }}</p> -->
-              <video
-                v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4')"
-                class="my-20"
-                controls
-                :src="content.visual.filename"
-                :alt="content.visual.alt"
-              ></video>
-              <img
-                v-else
-                class="my-20"
-                :src="content.visual.filename"
-                :alt="content.visual.alt"
-              />
+              <div>
+                <div 
+                  v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4')"
+                  class="video-container relative" @click="playVideo">
+                  <video
+                    class="my-20 video"
+                    controls
+                    :src="content.visual.filename"
+                    :alt="content.visual.alt"
+                  ></video>
+                  <svg 
+                    version="1.1" 
+                    class="video-icon" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    x="0px" 
+                    y="0px"
+                    viewBox="0 0 210 210" 
+                    style="fill:white" 
+                    xml:space="preserve" 
+                    >
+                    <path d="M179.07,105L30.93,210V0L179.07,105z"/>
+                  </svg>
+                </div>
+                
+               <img
+                  v-else
+                  class="my-20"
+                  :src="content.visual.filename"
+                  :alt="content.visual.alt"
+                />
+              </div> 
             </div>
           </div>
 
@@ -438,6 +457,10 @@ export default {
       const modal = document.querySelector('.modal')
       modal.scrollTo({ top: 0, behavior: 'smooth' })
     },
+    playVideo() {
+      const icon = document.querySelector('.video-icon')
+      icon.classList.toggle('active')
+    }
   },
 }
 </script>
@@ -639,6 +662,23 @@ export default {
   width: 100%;
 }
 
+.video-container svg {
+  width: 10em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.active {
+  opacity: 0;
+}
+
+.video-icon {
+  transition: opacity 0.5s;
+}
+
 .services-container h4 {
   color: rgba(29, 173, 228, 1);
 }
@@ -797,7 +837,7 @@ export default {
   }
 
   video {
-    border: 2px solid white;
+    /* border: 2px solid white; */
     width: 100%;
   }
 }
