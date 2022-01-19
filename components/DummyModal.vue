@@ -179,15 +179,15 @@
               <div>
                 <div 
                   v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4')"
-                  class="video-container relative" @click="playVideo">
+                  class="video-container relative" @click="hideIcon">
                   <video
                     class="my-20 video"
                     controls
                     :src="content.visual.filename"
                     :alt="content.visual.alt"
                   ></video>
-                  <svg 
-                    version="1.1" 
+                  <svg
+                    version="1.1"
                     class="video-icon" 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -196,6 +196,7 @@
                     viewBox="0 0 210 210" 
                     style="fill:white" 
                     xml:space="preserve" 
+                    @click="playVideo"
                     >
                     <path d="M179.07,105L30.93,210V0L179.07,105z"/>
                   </svg>
@@ -457,9 +458,24 @@ export default {
       const modal = document.querySelector('.modal')
       modal.scrollTo({ top: 0, behavior: 'smooth' })
     },
-    playVideo() {
+    hideIcon() {
       const icon = document.querySelector('.video-icon')
+      const video = document.querySelector('.video')
+      video.classList.toggle('video-playing')
+      if(icon.classList.contains('icon-active')){
+        icon.classList.remove('icon-active')
+      }
       icon.classList.toggle('active')
+    },
+    playVideo(){
+      const video = document.querySelector('.video')
+      const icon = document.querySelector('.video-icon')
+      icon.classList.toggle('icon-active')
+      if(!video.classList.contains('video-playing')){
+        video.play()
+      } else {
+        video.pause()
+      }
     }
   },
 }
@@ -672,6 +688,10 @@ export default {
 }
 
 .active {
+  opacity: 0;
+}
+
+.icon-active {
   opacity: 0;
 }
 
