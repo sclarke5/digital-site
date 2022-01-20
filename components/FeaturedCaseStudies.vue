@@ -100,11 +100,12 @@ export default {
   },
   mounted(){
     const sections = document.querySelectorAll('.from-right')
+    const margin = window.outerWidth < 1000 ? '0px 0px 500px 0px' : '0px'
     const options = { 
       root: null,
       threshold: 0,
       // number between 0-1; with 1, 100% of element must be visible; with 0, any amount of an element will fire
-      rootMargin: '0px'
+      rootMargin: margin
       // above to add margin to the viewport, i.e. opens up 'appear when closer to the middle of the viewport'
      }
     const observer = new IntersectionObserver(function(entries, observer) {
@@ -129,12 +130,12 @@ export default {
 <style>
 .from-right {
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateY(100%);
   transition: transform 1s, opacity 1s ease-in;
 }
 
 .from-right.slide-in {
-  transform: translateX(0);
+  transform: translateY(0);
   opacity: 1;
 }
 
@@ -180,13 +181,22 @@ export default {
   padding: 1rem;
 }
 
-  .case-studies-wrapper {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
 @media screen(mobile) {
   #contact-marker {
     min-height: 100vh;
+  }
+}
+
+@media screen(laptop){
+  .from-right {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 1s, opacity 1s ease-in;
+  }
+
+  .from-right.slide-in {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -220,6 +230,7 @@ export default {
   }
 
   .case-studies-wrapper {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
     top: 250em;
@@ -227,6 +238,7 @@ export default {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+    
   }
 }
 
@@ -259,6 +271,7 @@ export default {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -302,6 +315,7 @@ export default {
     top: 335em;
     right: -124em;
     width: max-content;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
   .bg-shape {

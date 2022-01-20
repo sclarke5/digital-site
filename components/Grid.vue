@@ -164,7 +164,7 @@ export default {
     const sections = document.querySelectorAll('.fade-in')
     const options = { 
       root: null,
-      threshold: 0.5,
+      threshold: 1,
       // number between 0-1; with 1, 100% of element must be visible; with 0, any amount of an element will fire
       rootMargin: '0px'
       // above to add margin to the viewport, i.e. opens up 'appear when closer to the middle of the viewport'
@@ -177,7 +177,10 @@ export default {
           entry.target.classList.remove('appear')
         }
       })
+      console.log(entries)
     }, options)
+
+    // console.log()
 
     sections.forEach(section => {
       observer.observe(section)
