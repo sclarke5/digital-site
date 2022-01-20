@@ -46,61 +46,61 @@
       >
         <h3 class="text-white self-start">Our Process</h3>
         <div class="process-group hidden laptop:flex">
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/1-SpotTheProblem.png" alt="" />
             <p>Spot the Problem</p>
           </div>
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/2-UnderstandUser.png" alt="" />
             <p>Understand the User</p>
           </div>
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/3-AnalyzeFindings.png" alt="" />
             <p>Analyze Findings</p>
           </div>
         </div>
         <div class="process-group ml-48 hidden laptop:flex">
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/4-Ideate.png" alt="" />
             <p>Ideate &amp; Create Mockups</p>
           </div>
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/5-BuildMVP.png" alt="" />
             <p>Build MVP &amp; Distribute</p>
           </div>
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/6-ReviewFeedbackIterate.png" alt="" />
             <p>Review Feedback &amp; Iterate</p>
           </div>
         </div>
 
         <div class="process-group flex laptop:hidden">
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/1-SpotTheProblem.png" alt="" />
             <p>Spot the Problem</p>
           </div>
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/2-UnderstandUser.png" alt="" />
             <p>Understand the User</p>
           </div>
         </div>
         <div class="process-group flex laptop:hidden">
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/3-AnalyzeFindings.png" alt="" />
             <p>Analyze Findings</p>
           </div>
 
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/4-Ideate.png" alt="" />
             <p>Ideate &amp; Create Mockups</p>
           </div>
         </div>
         <div class="process-group flex laptop:hidden">
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/5-BuildMVP.png" alt="" />
             <p>Build MVP &amp; Distribute</p>
           </div>
-          <div class="process-item">
+          <div class="process-item fade-in">
             <img src="../assets/6-ReviewFeedbackIterate.png" alt="" />
             <p>Review Feedback &amp; Iterate</p>
           </div>
@@ -127,7 +127,7 @@
         <li
           v-for="blok in blok.columns"
           :key="blok._uid"
-          class="flex-auto px-6 laptop:w-1/3 text-white laptop:mr-12 list-none"
+          class="flex-auto px-6 laptop:w-1/3 text-white laptop:mr-12 list-none fade-in"
         >
           <component :is="blok.component" :blok="blok" />
         </li>
@@ -160,10 +160,43 @@ export default {
       },
     }
   },
+  mounted(){
+    const sections = document.querySelectorAll('.fade-in')
+    const options = { 
+      root: null,
+      threshold: 0.5,
+      // number between 0-1; with 1, 100% of element must be visible; with 0, any amount of an element will fire
+      rootMargin: '0px'
+      // above to add margin to the viewport, i.e. opens up 'appear when closer to the middle of the viewport'
+     }
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if(entry.isIntersecting === true){
+          entry.target.classList.add('appear')
+        } else {
+          entry.target.classList.remove('appear')
+        }
+      })
+    }, options)
+
+    sections.forEach(section => {
+      observer.observe(section)
+    })
+  },
+
 }
 </script>
 
 <style scoped>
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.fade-in.appear {
+  opacity: 1;
+}
+
 .lines-background {
   background-size: 59.47px 60.2px;
   background-position: 4.6% 6.5%;

@@ -16,22 +16,22 @@
           grid
         "
       >
-        <div class="flex items-center justify-center icon-item">
+        <div class="flex items-center justify-center icon-item fade-in">
           <img class="icon" src="../assets/Nike.png" alt="nike" />
         </div>
-        <div class="flex items-center justify-center icon-item">
+        <div class="flex items-center justify-center icon-item fade-in">
           <img class="icon" src="../assets/PWC.png" alt="nike" />
         </div>
-        <div class="flex items-center justify-center icon-item">
+        <div class="flex items-center justify-center icon-item fade-in">
           <img class="icon" src="../assets/Volkswagen.png" alt="nike" />
         </div>
-        <div class="flex items-center justify-center icon-item">
+        <div class="flex items-center justify-center icon-item fade-in">
           <img class="icon" src="../assets/Jordan.png" alt="nike" />
         </div>
-        <div class="flex items-center justify-center icon-item">
+        <div class="flex items-center justify-center icon-item fade-in">
           <img class="icon" src="../assets/Shure.png" alt="nike" />
         </div>
-        <div class="flex items-center justify-center icon-item">
+        <div class="flex items-center justify-center icon-item fade-in">
           <img class="icon" src="../assets/HBO.png" alt="nike" />
         </div>
       </div>
@@ -47,6 +47,7 @@
             :case-study-link="caseStudy.full_slug"
             :case-study-content="caseStudy.content"
             :case-studies-list="sortedCaseStudies"
+            class="from-right"
           />
         </div>
         <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
@@ -97,10 +98,55 @@ export default {
       return featuredCaseStudies
     },
   },
+  mounted(){
+    const sections = document.querySelectorAll('.from-right')
+    const options = { 
+      root: null,
+      threshold: 0,
+      // number between 0-1; with 1, 100% of element must be visible; with 0, any amount of an element will fire
+      rootMargin: '0px'
+      // above to add margin to the viewport, i.e. opens up 'appear when closer to the middle of the viewport'
+     }
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if(entry.isIntersecting === true){
+          entry.target.classList.add('slide-in')
+          observer.unobserve(entry.target)
+        } else {
+          entry.target.classList.remove('slide-in')
+        }
+        console.log(entry.target)
+      })
+    }, options)
+
+    sections.forEach(section => {
+      observer.observe(section)
+    })
+  }
 }
 </script>
 
 <style>
+.from-right {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 1s, opacity 1s ease-in;
+}
+
+.from-right.slide-in {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.fade-in.appear {
+  opacity: 1;
+}
+
 .case-studies-sub {
   margin-bottom: 1em;
   padding-left: 0.5em;
