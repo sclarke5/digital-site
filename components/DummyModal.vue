@@ -105,7 +105,7 @@
                     <img
                       :src="content.primary_image_large.filename"
                       :alt="content.primary_image_large.alt"
-                      class="second-image"
+                      class="second-image slider"
                     />
                   </div>
 
@@ -113,7 +113,7 @@
                     <img
                       :src="content.primary_image_small.filename"
                       :alt="content.primary_image_small.alt"
-                      class="third-image"
+                      class="third-image slider"
                     />
                   </div>
                 </div>
@@ -127,12 +127,12 @@
 
                 <div class="second-visuals-container py-40 flex flex-col">
                   <img
-                    class="w-2/5 first-image"
+                    class="w-2/5 first-image slider"
                     :src="content.secondary_image_large.filename"
                     :alt="content.secondary_image_large.alt"
                   />
                   <img
-                    class="w-5/6 self-end second-image"
+                    class="w-5/6 self-end second-image slider"
                     :src="content.secondary_image_small.filename"
                     :alt="content.secondary_image_small.alt"
                   />
@@ -412,6 +412,35 @@ export default {
       }
     })
   },
+  updated() {
+    // eslint-disable-next-line nuxt/no-globals-in-created
+    if(window.outerWidth < 1000){
+      return;
+    }
+    // eslint-disable-next-line nuxt/no-globals-in-created
+    const sections = document.querySelectorAll('.slider')
+
+    const options = { 
+      root: null,
+      threshold: 0,
+      // number between 0-1; with 1, 100% of element must be visible; with 0, any amount of an element will fire
+      rootMargin: '0px'
+      // above to add margin to the viewport, i.e. opens up 'appear when closer to the middle of the viewport'
+     }
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if(entry.isIntersecting === true){
+          entry.target.classList.add('slide-up')
+        }
+      })
+    }, options)
+
+    // console.log()
+
+    sections.forEach(section => {
+      observer.observe(section)
+    })
+  },
   methods: {
     toggleModal() {
       this.$store.dispatch('modal/toggle')
@@ -421,8 +450,8 @@ export default {
       scrollToSection(document.querySelector('#contact-marker'), 'auto')
     },
     goToCaseStudy(caseStudy, list) {
-      const target = caseStudy.content
-      this.$store.dispatch('modal/next', { target, list })
+      const content = caseStudy.content
+      this.$store.dispatch('modal/next', { content, list })
       document.querySelector('.modal').scrollTop = 0
     },
     collapseHeader() {
@@ -443,6 +472,16 @@ export default {
 </script>
 
 <style scoped>
+.slider {
+  opacity: 0;
+  transform: translateY(55%);
+  transition: transform 0.7s, opacity 0.7s;
+}
+
+.slider.slide-up {
+  transform: translateY(0);
+  opacity: 1;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s linear;
