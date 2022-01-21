@@ -161,10 +161,13 @@ export default {
     }
   },
   mounted(){
+    if(window.outerWidth < 1000){
+      return;
+    }
     const sections = document.querySelectorAll('.fade-in')
     const options = { 
       root: null,
-      threshold: 1,
+      threshold: 0.25,
       // number between 0-1; with 1, 100% of element must be visible; with 0, any amount of an element will fire
       rootMargin: '0px'
       // above to add margin to the viewport, i.e. opens up 'appear when closer to the middle of the viewport'
@@ -177,7 +180,6 @@ export default {
           entry.target.classList.remove('appear')
         }
       })
-      console.log(entries)
     }, options)
 
     // console.log()
@@ -191,15 +193,6 @@ export default {
 </script>
 
 <style scoped>
-.fade-in {
-  opacity: 0;
-  transition: opacity 1s ease-in;
-}
-
-.fade-in.appear {
-  opacity: 1;
-}
-
 .lines-background {
   background-size: 59.47px 60.2px;
   background-position: 4.6% 6.5%;
@@ -226,6 +219,14 @@ export default {
 }
 
 @media screen(laptop) {
+  .fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+
+  .fade-in.appear {
+    opacity: 1;
+  }
   .service-text {
     padding: 0;
     margin-top: -2rem;

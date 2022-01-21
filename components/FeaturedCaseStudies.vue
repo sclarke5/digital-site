@@ -40,35 +40,18 @@
         <div
           v-for="caseStudy in sortedCaseStudies"
           :key="caseStudy._uid"
-          class="h-full case-study-outer-container laptop:justify-center"
+          class="h-full case-study-outer-container laptop:justify-center from-right"
         >
           <case-study-teaser
             v-if="caseStudy.content"
             :case-study-link="caseStudy.full_slug"
             :case-study-content="caseStudy.content"
             :case-studies-list="sortedCaseStudies"
-            class="from-right"
+            class=""
           />
         </div>
-        <!-- <img id="triangle" class="bg-shape" src="../assets/triangle.png" />
-      <img id="square" class="bg-shape" src="../assets/square.png" />
-      <img id="circle" class="bg-shape" src="../assets/circle.png" /> -->
       </div>
     </div>
-    <!-- <ul class="flex flex-col case-studies-list">
-      <li
-        v-for="caseStudy in sortedCaseStudies" 
-        :key="caseStudy._uid"
-        class="flex-auto px-6 case-studies-list-item" 
-        style="min-width: 33%">
-        <case-study-teaser
-          v-if="caseStudy.content"
-          :case-study-link="caseStudy.full_slug"
-          :case-study-content="caseStudy.content"
-          :case-studies-list="sortedCaseStudies" />
-        <p v-else class="px-4 py-2 text-white bg-red-700 text-center rounded">This content loads on save. <strong>Save the entry & reload.</strong></p>
-      </li>
-    </ul> -->
     <Contact id="contact-marker" />
   </div>
 </template>
@@ -100,7 +83,8 @@ export default {
   },
   mounted(){
     const sections = document.querySelectorAll('.from-right')
-    const margin = window.outerWidth < 1000 ? '0px 0px 500px 0px' : '0px'
+    const margin = window.outerWidth < 1000 ? '0px 0px 350px 0px' : '0px'
+
     const options = { 
       root: null,
       threshold: 0,
@@ -116,7 +100,6 @@ export default {
         } else {
           entry.target.classList.remove('slide-in')
         }
-        console.log(entry.target)
       })
     }, options)
 
@@ -136,15 +119,6 @@ export default {
 
 .from-right.slide-in {
   transform: translateY(0);
-  opacity: 1;
-}
-
-.fade-in {
-  opacity: 0;
-  transition: opacity 1s ease-in;
-}
-
-.fade-in.appear {
   opacity: 1;
 }
 
@@ -188,9 +162,17 @@ export default {
 }
 
 @media screen(laptop){
+  .fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+
+  .fade-in.appear {
+    opacity: 1;
+  }
   .from-right {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(30%);
     transition: transform 1s, opacity 1s ease-in;
   }
 
