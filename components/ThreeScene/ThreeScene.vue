@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="container">
-      <h2 id="landingText">
+      <h2 id="landingText" class="pre-animation">
         Digital <br />
         Demystified
       </h2>
@@ -639,7 +639,6 @@ export default {
         this.container.style.opacity = 0
       } else if (this.isElementInViewport(document.getElementById('spacer'))) {
         this.container.style.opacity = 1
-        this.serviceText.style.opacity = 1
         this.scrollText.style.opacity = 1
 
         new TWEEN.Tween(this.camera.position)
@@ -697,15 +696,23 @@ export default {
       max = Math.floor(max)
       return Math.floor(Math.random() * (max - min + 1) + min)
     },
+    changeText(text) {
+      this.serviceText.classList.add('pre-animation')
+
+      setTimeout(() => {
+        this.serviceText.innerHTML = text
+        this.serviceText.classList.remove('pre-animation')
+      }, 600)
+    },
     startMovement(arrPos) {
       const self = animations[arrPos]
 
       const anim = self.enterAnimation.movements
 
       if (arrPos > 0 && arrPos < 4) {
-        this.serviceText.innerHTML = self.stage
+        this.changeText(self.stage)
       } else {
-        this.serviceText.innerHTML = 'Digital <br /> Demystified'
+        this.changeText('Digital <br /> Demystified')
       }
 
       for (let i = 0; i < 3; i++) {
@@ -814,7 +821,17 @@ export default {
   margin-top: 1rem;
   text-transform: uppercase;
   padding: 1rem;
+  transition: 0.2s ease-in-out;
+  opacity: 1;
 }
+
+#landingText.pre-animation {
+  opacity: 0;
+}
+
+/* #landingText.fadeIn {
+  opacity: 1;
+} */
 
 @media screen(laptop) {
   #landingText {
