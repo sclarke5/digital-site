@@ -2,13 +2,17 @@
   <div
     :class="caseStudyContent._uid"
     class="case-study-teaser block mobile:my-6 md:pb-40 relative"
+    @click="openModal(caseStudyContent, caseStudiesList)"
   >
     <div class="case-study-container flex flex-col mobile:items-center">
-      <img
-        class="primary-image px-6"
-        :src="caseStudyContent.teaser_image.filename"
-        :alt="caseStudyContent.teaser_image.alt"
-      />
+      <div class="image-container">
+        <img
+          class="laptopwh:px-6 primary-image"
+          :src="caseStudyContent.teaser_image.filename"
+          :alt="caseStudyContent.teaser_image.alt"
+        />
+      </div>
+
       <div
         class="
           flex flex-col
@@ -16,10 +20,9 @@
           bottom-0
           w-full
           case-text-wrapper
-          px-6
-        "
+          laptopwh:px-6 mobile:px-6"
       >
-        <h3 class="pt-2 pb-4 text-white">
+        <h3 class="mobile:z-50 pt-2 pb-4 text-white">
           {{ caseStudyContent.name }}
         </h3>
         <p class="pt-2 pb-4 text-white">
@@ -27,7 +30,6 @@
         </p>
         <div
           class="view-case-study flex items-center"
-          @click="openModal(caseStudyContent, caseStudiesList)"
         >
           <p v-if="showPanel" class="uppercase">Close Panel</p>
           <p v-else class="uppercase">View case study</p>
@@ -124,6 +126,7 @@ h5 {
   width: 620px;
   height: 280px;
   object-fit: cover;
+  transition: transform 0.5s, opacity 0.5s;
 }
 
 .view-case-study {
@@ -134,7 +137,7 @@ h5 {
   cursor: pointer;
   border: 2px solid white;
   justify-content: space-around;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.2s, color 0.2s;
   padding: 1.5em;
 }
 
@@ -147,10 +150,10 @@ h5 {
   margin-left: 1em;
 }
 
-.view-case-study:hover {
+/* .view-case-study:hover {
   color: black;
   background-color: white;
-}
+} */
 
 .bring-forward {
   z-index: 999;
@@ -159,4 +162,27 @@ h5 {
 .case-text-wrapper {
   max-width: 620px;
 }
+
+/* .case-study-teaser {
+  transition: transform .2s;
+} */
+
+.image-container {
+  overflow: hidden;
+}
+
+.case-study-teaser:hover {
+  cursor: pointer;
+}
+
+.case-study-teaser:hover .view-case-study {
+  color: black;
+  background-color: white;
+}
+
+.case-study-teaser:hover .primary-image {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
 </style>
