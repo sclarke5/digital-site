@@ -1,9 +1,6 @@
 <template>
   <transition name="fade" appear>
     <div v-if="showModal" class="absolute text-white modal-wrapper">
-      <!-- <button @click="toggleModal" class="close-icon">
-      <img src="../assets/close-icon.png" alt="" />
-    </button> -->
       <div class="modal-overlay bg-black flex">
         <div class="modal flex flex-col bg-black overflow-auto w-screen">
           <div class="header-container relative">
@@ -371,6 +368,7 @@ export default {
           },
         ],
       },
+      revealModal: false
     }
   },
   computed: {
@@ -432,6 +430,7 @@ export default {
         if(entry.isIntersecting === true){
           entry.target.classList.add('slide-up')
         }
+        // console.log(entry)
       })
     }, options)
 
@@ -451,17 +450,19 @@ export default {
     },
     goToCaseStudy(caseStudy, list) {
       const content = caseStudy.content
+      // const modal = document.querySelector('.modal')
+      // modal.classList.add('modal-slide')
       this.$store.dispatch('modal/next', { content, list })
       document.querySelector('.modal').scrollTop = 0
-    },
-    collapseHeader() {
-      if (document.querySelector('.modal').scrollTop > 20) {
-        document.querySelector('.text-left').style.fontSize = '2em'
-        document.querySelector('.tagline').style.display = 'none'
-      } else {
-        document.querySelector('.text-left').style.fontSize = '4em'
-        document.querySelector('.tagline').style.display = 'block'
-      }
+      
+      const sections = document.querySelectorAll('.slider')
+      sections.forEach(section => {
+        section.classList.remove('slide-up')
+      })
+      // setTimeout(() => {
+      //   modal.classList.remove('modal-slide')
+      // }, 200)
+
     },
     scrollToTop() {
       const modal = document.querySelector('.modal')
@@ -472,6 +473,15 @@ export default {
 </script>
 
 <style scoped>
+
+.modal {
+  transition: opacity 0.2s, transform 0.2s;
+}
+.modal-slide {
+  opacity: 0;
+  transform: translateY(55%)
+}
+
 .slider {
   opacity: 0;
   transform: translateY(55%);
@@ -482,9 +492,16 @@ export default {
   transform: translateY(0);
   opacity: 1;
 }
+
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s linear;
+  transition: opacity 0.25s ease-in;
+}
+
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
 }
 
 .fade-enter,
