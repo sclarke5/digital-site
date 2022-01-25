@@ -626,7 +626,16 @@ export default {
 
       //
 
-      if (this.isElementInViewport(document.getElementById('aboutUs-marker'))) {
+      if (
+        this.isElementInViewport(document.getElementById('aboutUs-marker')) ||
+        this.isElementInViewport(document.getElementById('contact-marker')) ||
+        this.isElementInViewport(
+          document.getElementsByClassName('case-studies-wrapper')[0]
+        ) ||
+        this.isElementInViewport(
+          document.getElementsByClassName('case-study-icons')[0]
+        )
+      ) {
         this.container.style.opacity = 0
       } else if (this.isElementInViewport(document.getElementById('spacer'))) {
         this.container.style.opacity = 1

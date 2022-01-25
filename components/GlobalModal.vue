@@ -174,7 +174,10 @@
               </div>
               <!-- <p>{{ content.visual }}</p> -->
               <video
-                v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4')"
+                v-if="
+                  content.visual.filename.includes('webm') ||
+                  content.visual.filename.includes('mp4')
+                "
                 class="my-20"
                 controls
                 :src="content.visual.filename"
@@ -316,7 +319,7 @@
             >
               <p class="uppercase text-black">Contact Us</p>
             </div>
-            <div class="back-to-top flex float-right">
+            <div class="back-to-top flex float-right" @click="scrollToTop">
               <svg
                 class=""
                 width="10"
@@ -326,6 +329,7 @@
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  class="styled-arrow"
                   d="M15 29L1 15L15 1"
                   stroke="black"
                   stroke-width="2"
@@ -333,12 +337,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              <p
-                class="mr-20 uppercase text-black text-right"
-                @click="scrollToTop"
-              >
-                Back to Top
-              </p>
+              <p class="mr-20 uppercase text-black text-right">Back to Top</p>
             </div>
           </div>
         </div>
@@ -368,7 +367,7 @@ export default {
           },
         ],
       },
-      revealModal: false
+      revealModal: false,
     }
   },
   computed: {
@@ -412,22 +411,22 @@ export default {
   },
   updated() {
     // eslint-disable-next-line nuxt/no-globals-in-created
-    if(window.outerWidth < 1000){
-      return;
+    if (window.outerWidth < 1000) {
+      return
     }
     // eslint-disable-next-line nuxt/no-globals-in-created
     const sections = document.querySelectorAll('.slider')
 
-    const options = { 
+    const options = {
       root: null,
       threshold: 0,
       // number between 0-1; with 1, 100% of element must be visible; with 0, any amount of an element will fire
-      rootMargin: '0px'
+      rootMargin: '0px',
       // above to add margin to the viewport, i.e. opens up 'appear when closer to the middle of the viewport'
-     }
-    const observer = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(entry => {
-        if(entry.isIntersecting === true){
+    }
+    const observer = new IntersectionObserver(function (entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting === true) {
           entry.target.classList.add('slide-up')
         }
         // console.log(entry)
@@ -436,7 +435,7 @@ export default {
 
     // console.log()
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       observer.observe(section)
     })
   },
@@ -454,15 +453,14 @@ export default {
       // modal.classList.add('modal-slide')
       this.$store.dispatch('modal/next', { content, list })
       document.querySelector('.modal').scrollTop = 0
-      
+
       const sections = document.querySelectorAll('.slider')
-      sections.forEach(section => {
+      sections.forEach((section) => {
         section.classList.remove('slide-up')
       })
       // setTimeout(() => {
       //   modal.classList.remove('modal-slide')
       // }, 200)
-
     },
     scrollToTop() {
       const modal = document.querySelector('.modal')
@@ -473,13 +471,12 @@ export default {
 </script>
 
 <style scoped>
-
 .modal {
   transition: opacity 0.2s, transform 0.2s;
 }
 .modal-slide {
   opacity: 0;
-  transform: translateY(55%)
+  transform: translateY(55%);
 }
 
 .slider {
@@ -492,7 +489,6 @@ export default {
   transform: translateY(0);
   opacity: 1;
 }
-
 
 .fade-enter-active,
 .fade-leave-active {
@@ -834,7 +830,10 @@ export default {
     margin-right: 1em;
   }
 
-  .close-icon:hover {
+  .back-button:hover,
+  .close-icon:hover .back-button,
+  .close-icon:hover,
+  .back-to-top:hover p {
     background: linear-gradient(
       80deg,
       rgba(48, 214, 217, 1) 0%,
@@ -844,7 +843,8 @@ export default {
     -webkit-text-fill-color: transparent;
   }
 
-  .close-icon:hover .styled-arrow {
+  .close-icon:hover .styled-arrow,
+  .back-to-top:hover .styled-arrow {
     stroke: rgba(48, 214, 217, 1);
   }
 
