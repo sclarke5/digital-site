@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderAstound />
-    <DummyModal />
+    <GlobalModal />
     <SideNav />
     <ScrollBar />
     <ThreeScene id="three" />
