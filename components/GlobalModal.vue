@@ -231,12 +231,15 @@
                     v-for="caseStudy in seeMoreWork"
                     :key="caseStudy._uid"
                     class="list-item flex flex-column px-6 relative"
+                    @click="goToCaseStudy(caseStudy, list)"
                   >
-                    <img
+                    <div class="more-work-image-container">
+                      <img
                       class="see-more-image"
                       :src="caseStudy.content.teaser_image.filename"
                       alt=""
                     />
+                    </div>
                     <h3 class="mt-2 text-white">
                       {{ caseStudy.name }}
                     </h3>
@@ -253,7 +256,6 @@
                         justify-around
                         case-study-link
                       "
-                      @click="goToCaseStudy(caseStudy, list)"
                     >
                       <div class="flex button-container">
                         <p class="uppercase">View Case Study</p>
@@ -600,6 +602,15 @@ export default {
   align-self: flex-end;
 }
 
+.second-image {
+  max-height: 30em;
+  object-fit: cover;
+}
+
+.visuals-left .second-image {
+  width: 100%;
+}
+
 .second-visuals-container .first-image {
   z-index: 1;
 }
@@ -632,9 +643,9 @@ export default {
   flex-direction: column-reverse;
 }
 
-.visuals-container img {
+/* .visuals-container img {
   max-height: 100%;
-}
+} */
 
 .visuals-left {
   width: 80%;
@@ -714,13 +725,36 @@ export default {
   margin-left: 1em;
 }
 
+/* 
 .cta:hover {
+  color: black;
+  background-color: white;
+} */
+
+.more-work {
+  width: 90%;
+}
+
+.more-work-image-container {
+  overflow: hidden;
+}
+
+.more-work .list-item:hover {
+  cursor: pointer;
+}
+
+.more-work .list-item:hover .cta {
   color: black;
   background-color: white;
 }
 
-.more-work {
-  width: 90%;
+.see-more-image {
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.more-work .list-item:hover .see-more-image {
+  opacity: 0.7;
+  transform: scale(1.2);
 }
 
 .case-list-slider {

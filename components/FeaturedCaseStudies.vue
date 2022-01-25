@@ -4,7 +4,7 @@
       <div class="sticky-nav">
         <div class="font-dinProBlack">Our Work</div>
       </div>
-      <h2 id="case-studies" class="text-white case-studies-sub">
+      <h2 id="case-studies" class="text-white case-studies-sub fade-in">
         Our Clients<br />
         & Work
       </h2>
