@@ -19,7 +19,7 @@
 
     <div class="case-study-section">
       <video
-        v-if="visualsArray[0].filename.includes('webm')"
+        v-if="visualsArray[0].filename.includes('webm') || visualsArray[0].filename.includes('mov')"
         controls
         :src="visualsArray[0].filename"
         class="pt-4"
@@ -34,7 +34,7 @@
       </p>
       <div class="case-study-section"></div>
       <video
-        v-if="visualsArray[1].filename.includes('webm')"
+        v-if="visualsArray[1].filename.includes('webm') || visualsArray[0].filename.includes('mov')"
         controls
         :src="visualsArray[1].filename"
         class="pt-4"
@@ -44,7 +44,7 @@
 
     <div class="case-study-section">
       <video
-        v-if="visualsArray[2].filename.includes('webm')"
+        v-if="visualsArray[2].filename.includes('webm') || visualsArray[2].filename.includes('mov')"
         controls
         :src="visualsArray[2].filename"
         class="pt-4"

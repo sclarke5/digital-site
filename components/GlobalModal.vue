@@ -173,22 +173,41 @@
                 </p>
               </div>
               <!-- <p>{{ content.visual }}</p> -->
-              <video
-                v-if="
-                  content.visual.filename.includes('webm') ||
-                  content.visual.filename.includes('mp4')
-                "
-                class="my-20"
-                controls
-                :src="content.visual.filename"
-                :alt="content.visual.alt"
-              ></video>
-              <img
-                v-else
-                class="my-20"
-                :src="content.visual.filename"
-                :alt="content.visual.alt"
-              />
+              <div>
+                <div 
+                  v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4') || content.visual.filename.includes('mov')"
+                  class="video-container relative">
+                  <video
+                    class="my-20 video"
+                    controls
+                    :src="content.visual.filename"
+                    :alt="content.visual.alt"
+                    @play="hideIcon"
+                    @pause="hideIcon"
+                  ></video>
+                  <svg
+                    version="1.1"
+                    class="video-icon" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    x="0px" 
+                    y="0px"
+                    viewBox="0 0 210 210" 
+                    style="fill:white" 
+                    xml:space="preserve"
+                    @click="playVideo"
+                    >
+                    <path class="play-icon" d="M179.07,105L30.93,210V0L179.07,105z"/>
+                  </svg>
+                </div>
+                
+               <img
+                  v-else
+                  class="my-20"
+                  :src="content.visual.filename"
+                  :alt="content.visual.alt"
+                />
+              </div> 
             </div>
           </div>
 
@@ -231,12 +250,15 @@
                     v-for="caseStudy in seeMoreWork"
                     :key="caseStudy._uid"
                     class="list-item flex flex-column px-6 relative"
+                    @click="goToCaseStudy(caseStudy, list)"
                   >
-                    <img
+                    <div class="more-work-image-container">
+                      <img
                       class="see-more-image"
                       :src="caseStudy.content.teaser_image.filename"
                       alt=""
                     />
+                    </div>
                     <h3 class="mt-2 text-white">
                       {{ caseStudy.name }}
                     </h3>
@@ -253,7 +275,6 @@
                         justify-around
                         case-study-link
                       "
-                      @click="goToCaseStudy(caseStudy, list)"
                     >
                       <div class="flex button-container">
                         <p class="uppercase">View Case Study</p>
@@ -466,6 +487,26 @@ export default {
       const modal = document.querySelector('.modal')
       modal.scrollTo({ top: 0, behavior: 'smooth' })
     },
+    hideIcon() {
+      const icon = document.querySelector('.video-icon')
+      const video = document.querySelector('.video')
+      video.classList.toggle('video-playing')
+      if(icon.classList.contains('icon-active')){
+        icon.classList.remove('icon-active')
+      }
+      icon.classList.toggle('active')
+    },
+    playVideo(){
+      const video = document.querySelector('.video')
+      const icon = document.querySelector('.video-icon')
+      icon.classList.toggle('icon-active')
+      if(!video.classList.contains('video-playing')){
+        video.play()
+        
+      } else {
+        video.pause()
+      }
+    }
   },
 }
 </script>
@@ -600,6 +641,15 @@ export default {
   align-self: flex-end;
 }
 
+.second-image {
+  max-height: 30em;
+  object-fit: cover;
+}
+
+.visuals-left .second-image {
+  width: 100%;
+}
+
 .second-visuals-container .first-image {
   z-index: 1;
 }
@@ -632,9 +682,9 @@ export default {
   flex-direction: column-reverse;
 }
 
-.visuals-container img {
+/* .visuals-container img {
   max-height: 100%;
-}
+} */
 
 .visuals-left {
   width: 80%;
@@ -691,6 +741,37 @@ export default {
   width: 100%;
 }
 
+.back-to-top svg {
+  transform: rotate(90deg);
+  margin-right: 1em;
+  margin-top: -0.3em;
+}
+
+.back-to-top:hover {
+  cursor: pointer;
+}
+
+.video-container svg {
+  width: 7em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.active {
+  opacity: 0;
+}
+
+.icon-active {
+  opacity: 0;
+}
+
+.video-icon {
+  transition: opacity 0.2s;
+}
+
 .services-container h4 {
   color: rgba(29, 173, 228, 1);
 }
@@ -714,13 +795,36 @@ export default {
   margin-left: 1em;
 }
 
+/* 
 .cta:hover {
+  color: black;
+  background-color: white;
+} */
+
+.more-work {
+  width: 90%;
+}
+
+.more-work-image-container {
+  overflow: hidden;
+}
+
+.more-work .list-item:hover {
+  cursor: pointer;
+}
+
+.more-work .list-item:hover .cta {
   color: black;
   background-color: white;
 }
 
-.more-work {
-  width: 90%;
+.see-more-image {
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.more-work .list-item:hover .see-more-image {
+  opacity: 0.7;
+  transform: scale(1.2);
 }
 
 .case-list-slider {
@@ -750,16 +854,6 @@ export default {
 
 .contact-button-container:hover p {
   color: white;
-}
-
-.back-to-top svg {
-  transform: rotate(90deg);
-  margin-right: 1em;
-  margin-top: -0.3em;
-}
-
-.back-to-top:hover {
-  cursor: pointer;
 }
 
 .nav-loaded {
@@ -853,7 +947,7 @@ export default {
   }
 
   video {
-    border: 2px solid white;
+    /* border: 2px solid white; */
     width: 100%;
   }
 }

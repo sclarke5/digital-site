@@ -1,7 +1,7 @@
 <template>
   <div
     id="aboutUs-marker"
-    class="flex grid-container laptop:absolute flex-col mt-60 laptop:flex-row"
+    class="flex grid-container laptop:absolute flex-col laptop:mt-60 laptop:flex-row"
   >
     <div class="sticky-nav">
       <div class="font-dinProBlack">About Us</div>
@@ -44,7 +44,7 @@
           laptop:items-start
         "
       >
-        <h3 class="text-white self-start">Our Process</h3>
+        <h3 class="text-white fade-in self-start">Our Process</h3>
         <div class="process-group hidden laptop:flex">
           <div class="process-item fade-in">
             <img src="../assets/1-SpotTheProblem.png" alt="" />
@@ -123,7 +123,7 @@
           laptop:flex-row
         "
       >
-        <h3 class="service-text text-white pl-6 pt-6">Our Services</h3>
+        <h3 class="service-text fade-in text-white pl-6 pt-6">Our Services</h3>
         <li
           v-for="blok in blok.columns"
           :key="blok._uid"
