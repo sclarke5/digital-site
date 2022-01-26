@@ -1,6 +1,6 @@
 <template>
   <!-- creating a new scene for the contact form  -->
-  <div id="contact3d-container"></div>
+  <div id="contact3d-container" class="lines-background"></div>
 </template>
 
 <script>
@@ -109,7 +109,7 @@ export default {
       this.gridHelper.scale.set(this.gridScale, this.gridScale, this.gridScale)
       this.gridHelper.rotation.x = Math.PI / 2
       this.gridHelper.position.set(0, 0, -2)
-      this.scene.add(this.gridHelper)
+      // this.scene.add(this.gridHelper)
 
       // initialize all geometries
       const sphereGeometry = new THREE.SphereGeometry(4, 32, 16)
@@ -231,6 +231,13 @@ export default {
 </script>
 
 <style scoped>
+.lines-background {
+  background-size: 56px 56px;
+  background-position: 4.6% 6.5%;
+  background-image: linear-gradient(to right, #3a3b3c 1px, transparent 1px),
+    linear-gradient(to bottom, #3a3b3c 1px, transparent 1px);
+}
+
 #contact3d-container {
   width: 500px;
   height: 500px;

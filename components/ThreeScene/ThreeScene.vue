@@ -1,6 +1,10 @@
 <template>
   <div>
     <div id="container">
+      <div class="flex justify-center items-center h-full">
+        <div id="three-canvas" class="lines-background"></div>
+      </div>
+
       <h2 id="landingText" class="pre-animation">
         Digital <br />
         Demystified
@@ -142,7 +146,7 @@ export default {
       this.serviceText = document.getElementById('landingText')
       this.scrollText = document.getElementById('scrollTextContainer')
 
-      this.container = document.getElementById('container')
+      this.container = document.getElementById('three-canvas')
 
       // setting up the threejs scene
       this.camera = new THREE.PerspectiveCamera(
@@ -189,7 +193,7 @@ export default {
       this.gridHelper.scale.set(this.gridScale, this.gridScale, this.gridScale)
       this.gridHelper.rotation.x = Math.PI / 2
       this.gridHelper.position.set(0, 0, -2)
-      this.scene.add(this.gridHelper)
+      // this.scene.add(this.gridHelper)
 
       // initialize all geometries
       const sphereGeometry = new THREE.SphereGeometry(4, 32, 16)
@@ -462,9 +466,14 @@ export default {
       }
     },
     onresize() {
-      this.camera.aspect = window.innerWidth / window.innerHeight
+      this.camera.aspect =
+        this.container.clientWidth / this.container.clientHeight
       this.camera.updateProjectionMatrix()
-      this.renderer.setSize(window.innerWidth, window.innerHeight, false)
+      this.renderer.setSize(
+        this.container.clientWidth,
+        this.container.clientHeight,
+        false
+      )
       this.render()
     },
     animate() {
@@ -636,10 +645,11 @@ export default {
           document.getElementsByClassName('case-study-icons')[0]
         )
       ) {
-        this.container.style.opacity = 0
+        document.getElementById('container').style.opacity = 0
       } else if (this.isElementInViewport(document.getElementById('spacer'))) {
-        this.container.style.opacity = 1
+        document.getElementById('container').style.opacity = 1
         this.scrollText.style.opacity = 1
+        this.serviceText.style.display = 'block'
 
         new TWEEN.Tween(this.camera.position)
           .to(this.initialCameraPos, 500)
@@ -811,6 +821,13 @@ export default {
 </script>
 
 <style scoped>
+.lines-background {
+  background-size: 59.47px 60.2px;
+  background-position: 4.6% 6.5%;
+  background-image: linear-gradient(to right, #3a3b3c 1px, transparent 1px),
+    linear-gradient(to bottom, #3a3b3c 1px, transparent 1px);
+}
+
 #landingText {
   top: 7rem;
   left: 0;
@@ -866,6 +883,11 @@ export default {
   position: relative;
 }
 
+#three-canvas {
+  width: 100%;
+  height: 100%;
+}
+
 @media screen(mobile) {
   #container {
     height: 85vh;
@@ -908,6 +930,13 @@ export default {
 
   #scrollTextContainer {
     display: none;
+  }
+}
+
+@media screen(laptop) {
+  #three-canvas {
+    max-width: 700px;
+    max-height: 700px;
   }
 }
 
