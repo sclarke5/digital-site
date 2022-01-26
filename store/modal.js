@@ -20,7 +20,7 @@ export const mutations = {
   SYNCNEXT(state, payload){
     state.content = payload.target
     state.list = payload.list
-    state.show = !state.show
+    // state.show = !state.show
   }
 }
 
@@ -36,11 +36,9 @@ export const actions = {
       context.commit('SYNC', payload)
     }
   },
-  next(context, payload){
-    context.commit('TOGGLE')
-    
+  next(context, payload){    
     if(payload){
-      context.commit('SYNCNEXT', payload)
+      context.commit('SYNC', payload)
     }
   }
 }

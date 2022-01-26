@@ -1,9 +1,6 @@
 <template>
   <transition name="fade" appear>
     <div v-if="showModal" class="absolute text-white modal-wrapper">
-      <!-- <button @click="toggleModal" class="close-icon">
-      <img src="../assets/close-icon.png" alt="" />
-    </button> -->
       <div class="modal-overlay bg-black flex">
         <div class="modal flex flex-col bg-black overflow-auto w-screen">
           <div class="header-container relative">
@@ -105,7 +102,7 @@
                     <img
                       :src="content.primary_image_large.filename"
                       :alt="content.primary_image_large.alt"
-                      class="second-image"
+                      class="second-image slider"
                     />
                   </div>
 
@@ -113,7 +110,7 @@
                     <img
                       :src="content.primary_image_small.filename"
                       :alt="content.primary_image_small.alt"
-                      class="third-image"
+                      class="third-image slider"
                     />
                   </div>
                 </div>
@@ -127,12 +124,12 @@
 
                 <div class="second-visuals-container py-40 flex flex-col">
                   <img
-                    class="w-2/5 first-image"
+                    class="w-2/5 first-image slider"
                     :src="content.secondary_image_large.filename"
                     :alt="content.secondary_image_large.alt"
                   />
                   <img
-                    class="w-5/6 self-end second-image"
+                    class="w-5/6 self-end second-image slider"
                     :src="content.secondary_image_small.filename"
                     :alt="content.secondary_image_small.alt"
                   />
@@ -179,12 +176,14 @@
               <div>
                 <div 
                   v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4')"
-                  class="video-container relative" @click="hideIcon">
+                  class="video-container relative">
                   <video
                     class="my-20 video"
                     controls
                     :src="content.visual.filename"
                     :alt="content.visual.alt"
+                    @play="hideIcon"
+                    @pause="hideIcon"
                   ></video>
                   <svg
                     version="1.1"
@@ -195,10 +194,10 @@
                     y="0px"
                     viewBox="0 0 210 210" 
                     style="fill:white" 
-                    xml:space="preserve" 
+                    xml:space="preserve"
                     @click="playVideo"
                     >
-                    <path d="M179.07,105L30.93,210V0L179.07,105z"/>
+                    <path class="play-icon" d="M179.07,105L30.93,210V0L179.07,105z"/>
                   </svg>
                 </div>
                 
@@ -251,12 +250,15 @@
                     v-for="caseStudy in seeMoreWork"
                     :key="caseStudy._uid"
                     class="list-item flex flex-column px-6 relative"
+                    @click="goToCaseStudy(caseStudy, list)"
                   >
-                    <img
+                    <div class="more-work-image-container">
+                      <img
                       class="see-more-image"
                       :src="caseStudy.content.teaser_image.filename"
                       alt=""
                     />
+                    </div>
                     <h3 class="mt-2 text-white">
                       {{ caseStudy.name }}
                     </h3>
@@ -273,7 +275,6 @@
                         justify-around
                         case-study-link
                       "
-                      @click="goToCaseStudy(caseStudy, list)"
                     >
                       <div class="flex button-container">
                         <p class="uppercase">View Case Study</p>
@@ -339,7 +340,7 @@
             >
               <p class="uppercase text-black">Contact Us</p>
             </div>
-            <div class="back-to-top flex float-right">
+            <div class="back-to-top flex float-right" @click="scrollToTop">
               <svg
                 class=""
                 width="10"
@@ -349,6 +350,7 @@
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  class="styled-arrow"
                   d="M15 29L1 15L15 1"
                   stroke="black"
                   stroke-width="2"
@@ -356,12 +358,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              <p
-                class="mr-20 uppercase text-black text-right"
-                @click="scrollToTop"
-              >
-                Back to Top
-              </p>
+              <p class="mr-20 uppercase text-black text-right">Back to Top</p>
             </div>
           </div>
         </div>
@@ -391,6 +388,7 @@ export default {
           },
         ],
       },
+      revealModal: false,
     }
   },
   computed: {
@@ -432,6 +430,36 @@ export default {
       }
     })
   },
+  updated() {
+    // eslint-disable-next-line nuxt/no-globals-in-created
+    if (window.outerWidth < 1000) {
+      return
+    }
+    // eslint-disable-next-line nuxt/no-globals-in-created
+    const sections = document.querySelectorAll('.slider')
+
+    const options = {
+      root: null,
+      threshold: 0,
+      // number between 0-1; with 1, 100% of element must be visible; with 0, any amount of an element will fire
+      rootMargin: '0px',
+      // above to add margin to the viewport, i.e. opens up 'appear when closer to the middle of the viewport'
+    }
+    const observer = new IntersectionObserver(function (entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting === true) {
+          entry.target.classList.add('slide-up')
+        }
+        // console.log(entry)
+      })
+    }, options)
+
+    // console.log()
+
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
+  },
   methods: {
     toggleModal() {
       this.$store.dispatch('modal/toggle')
@@ -441,18 +469,19 @@ export default {
       scrollToSection(document.querySelector('#contact-marker'), 'auto')
     },
     goToCaseStudy(caseStudy, list) {
-      const target = caseStudy.content
-      this.$store.dispatch('modal/next', { target, list })
+      const content = caseStudy.content
+      // const modal = document.querySelector('.modal')
+      // modal.classList.add('modal-slide')
+      this.$store.dispatch('modal/next', { content, list })
       document.querySelector('.modal').scrollTop = 0
-    },
-    collapseHeader() {
-      if (document.querySelector('.modal').scrollTop > 20) {
-        document.querySelector('.text-left').style.fontSize = '2em'
-        document.querySelector('.tagline').style.display = 'none'
-      } else {
-        document.querySelector('.text-left').style.fontSize = '4em'
-        document.querySelector('.tagline').style.display = 'block'
-      }
+
+      const sections = document.querySelectorAll('.slider')
+      sections.forEach((section) => {
+        section.classList.remove('slide-up')
+      })
+      // setTimeout(() => {
+      //   modal.classList.remove('modal-slide')
+      // }, 200)
     },
     scrollToTop() {
       const modal = document.querySelector('.modal')
@@ -473,6 +502,7 @@ export default {
       icon.classList.toggle('icon-active')
       if(!video.classList.contains('video-playing')){
         video.play()
+        
       } else {
         video.pause()
       }
@@ -482,9 +512,33 @@ export default {
 </script>
 
 <style scoped>
+.modal {
+  transition: opacity 0.2s, transform 0.2s;
+}
+.modal-slide {
+  opacity: 0;
+  transform: translateY(55%);
+}
+
+.slider {
+  opacity: 0;
+  transform: translateY(55%);
+  transition: transform 0.7s, opacity 0.7s;
+}
+
+.slider.slide-up {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s linear;
+  transition: opacity 0.25s ease-in;
+}
+
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
 }
 
 .fade-enter,
@@ -587,6 +641,15 @@ export default {
   align-self: flex-end;
 }
 
+.second-image {
+  max-height: 30em;
+  object-fit: cover;
+}
+
+.visuals-left .second-image {
+  width: 100%;
+}
+
 .second-visuals-container .first-image {
   z-index: 1;
 }
@@ -619,9 +682,9 @@ export default {
   flex-direction: column-reverse;
 }
 
-.visuals-container img {
+/* .visuals-container img {
   max-height: 100%;
-}
+} */
 
 .visuals-left {
   width: 80%;
@@ -678,6 +741,16 @@ export default {
   width: 100%;
 }
 
+.back-to-top svg {
+  transform: rotate(90deg);
+  margin-right: 1em;
+  margin-top: -0.3em;
+}
+
+.back-to-top:hover {
+  cursor: pointer;
+}
+
 .video-container svg {
   width: 10em;
   position: absolute;
@@ -696,7 +769,7 @@ export default {
 }
 
 .video-icon {
-  transition: opacity 0.5s;
+  transition: opacity 0.2s;
 }
 
 .services-container h4 {
@@ -722,13 +795,36 @@ export default {
   margin-left: 1em;
 }
 
+/* 
 .cta:hover {
+  color: black;
+  background-color: white;
+} */
+
+.more-work {
+  width: 90%;
+}
+
+.more-work-image-container {
+  overflow: hidden;
+}
+
+.more-work .list-item:hover {
+  cursor: pointer;
+}
+
+.more-work .list-item:hover .cta {
   color: black;
   background-color: white;
 }
 
-.more-work {
-  width: 90%;
+.see-more-image {
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.more-work .list-item:hover .see-more-image {
+  opacity: 0.7;
+  transform: scale(1.2);
 }
 
 .case-list-slider {
@@ -758,16 +854,6 @@ export default {
 
 .contact-button-container:hover p {
   color: white;
-}
-
-.back-to-top svg {
-  transform: rotate(90deg);
-  margin-right: 1em;
-  margin-top: -0.3em;
-}
-
-.back-to-top:hover {
-  cursor: pointer;
 }
 
 .nav-loaded {
@@ -838,7 +924,10 @@ export default {
     margin-right: 1em;
   }
 
-  .close-icon:hover {
+  .back-button:hover,
+  .close-icon:hover .back-button,
+  .close-icon:hover,
+  .back-to-top:hover p {
     background: linear-gradient(
       80deg,
       rgba(48, 214, 217, 1) 0%,
@@ -848,7 +937,8 @@ export default {
     -webkit-text-fill-color: transparent;
   }
 
-  .close-icon:hover .styled-arrow {
+  .close-icon:hover .styled-arrow,
+  .back-to-top:hover .styled-arrow {
     stroke: rgba(48, 214, 217, 1);
   }
 
