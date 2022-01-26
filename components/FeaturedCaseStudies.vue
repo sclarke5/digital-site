@@ -212,11 +212,11 @@ export default {
   }
 
   .case-studies-wrapper {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 180em;
     margin-bottom: 50em;
-    top: 250em;
-    right: -114em;
+    top: 282em;
+    right: -152em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -248,12 +248,12 @@ export default {
   .case-studies-wrapper {
     margin-top: 180em;
     margin-bottom: 50em;
-    top: 225em;
-    right: -115em;
+    top: 255em;
+    right: -154em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -294,10 +294,10 @@ export default {
   .case-studies-wrapper {
     margin-top: 120em;
     margin-bottom: 50em;
-    top: 335em;
-    right: -124em;
+    top: 375em;
+    right: -166em;
     width: max-content;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
   .bg-shape {
