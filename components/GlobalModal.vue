@@ -175,7 +175,7 @@
               <!-- <p>{{ content.visual }}</p> -->
               <div>
                 <div 
-                  v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4')"
+                  v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4') || content.visual.filename.includes('mov')"
                   class="video-container relative">
                   <video
                     class="my-20 video"
