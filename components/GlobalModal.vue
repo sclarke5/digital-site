@@ -752,7 +752,7 @@ export default {
 }
 
 .video-container svg {
-  width: 10em;
+  width: 7em;
   position: absolute;
   top: 50%;
   left: 50%;
