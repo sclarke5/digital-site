@@ -556,7 +556,7 @@ export default {
 
 @media screen(laptopwh) {
   .top-container {
-    top: 622em;
+    top: 682em;
     right: -24.5em;
     width: min-content;
   }
@@ -574,7 +574,7 @@ export default {
 
 @media screen(laptop2xwh) {
   .top-container {
-    top: 582em;
+    top: 652em;
     right: -25em;
   }
   .two-column-container {
@@ -595,7 +595,7 @@ export default {
   }
 
   .top-container {
-    top: 642em;
+    top: 722em;
     right: -9em;
     width: 80em;
   }
