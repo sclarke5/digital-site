@@ -1,5 +1,6 @@
 <template>
   <div
+
     :class="caseStudyContent._uid"
     class="case-study-teaser block mobile:my-6 md:pb-40 relative"
     @click="openModal(caseStudyContent, caseStudiesList)"
@@ -30,6 +31,7 @@
         </p>
         <div
           class="view-case-study flex items-center"
+          @click="togglePanel"
         >
           <p v-if="showPanel" class="uppercase">Close Panel</p>
           <p v-else class="uppercase">View case study</p>
@@ -67,13 +69,16 @@ export default {
   },
   methods: {
     openModal(content, list) {
-      if (window.innerWidth > 1024) {
+      if (window.innerWidth > 1000) {
         this.$store.dispatch('modal/toggle', { content, list })
         setTimeout(this.removeDefaultNavButtons, 200)
         setTimeout(this.addListener, 200)
-      } else if (this.showPanel === false) {
+      }
+    },
+    togglePanel(){
+      if(window.innerWidth < 1000 && this.showPanel === false){
         this.showPanel = true
-      } else if (this.showPanel === true) {
+      } else {
         this.showPanel = false
       }
     },

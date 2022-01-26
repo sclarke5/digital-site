@@ -110,7 +110,7 @@ export default {
           .getElementById('ham-icon')
           .contains(e.target)
 
-        console.log(insideUl, insideIcon)
+        // console.log(insideUl, insideIcon)
 
         if (insideIcon) {
           e.stopPropagation()
