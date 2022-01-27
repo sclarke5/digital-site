@@ -88,7 +88,7 @@
           </div>
 
           <div class="body-centering-container flex">
-            <div class="body-container flex pt-40">
+            <div class="body-container flex pt-20">
               <div class="challenege-approach-container flex flex-col">
                 <div class="challenge-approach-first flex flex-col">
                   <h4 class="uppercase">Challenge</h4>
@@ -97,7 +97,7 @@
                   </h3>
                 </div>
 
-                <div class="visuals-container flex items-center my-40">
+                <div class="visuals-container flex items-center mt-20 mb-20">
                   <div class="visuals-left">
                     <img
                       :src="content.primary_image_large.filename"
@@ -115,14 +115,14 @@
                   </div>
                 </div>
 
-                <div class="challenge-approach-second flex flex-col py-12">
+                <div class="challenge-approach-second flex flex-col">
                   <h4 class="text-white uppercase">Approach</h4>
                   <p class="text-white pt-4">
                     {{ content.approach }}
                   </p>
                 </div>
 
-                <div class="second-visuals-container py-40 flex flex-col">
+                <div class="second-visuals-container my-20 flex flex-col">
                   <img
                     class="w-2/5 first-image slider"
                     :src="content.secondary_image_large.filename"
@@ -150,7 +150,7 @@
                 </p>
                 <p
                   v-if="content.testimonial_author"
-                  class="testimonial-author text-black mt-4 mb-8"
+                  class="testimonial-author text-black mt-4"
                 >
                   - {{ content.testimonial_author }}
                 </p>
@@ -158,26 +158,27 @@
             </div>
           </div>
 
-          <div class="results-centering-container flex justify-center my-20">
+          <div class="results-centering-container flex justify-center my-10">
             <div class="results-container">
               <div class="results-text-container">
                 <h4 class="text-white">Results</h4>
-                <h3 class="pt-4">
+                <h3 class="pt-8">
                   {{ content.result_1 }}
                 </h3>
-                <p v-if="content.result_2" class="text-white pt-4">
+                <p v-if="content.result_2" class="text-white pt-8">
                   {{ content.result_2 }}
                 </p>
-                <p v-if="content.result_3" class="text-white pt-4">
+                <p v-if="content.result_3" class="text-white pt-8">
                   {{ content.result_3 }}
                 </p>
               </div>
               <!-- <p>{{ content.visual }}</p> -->
               <div>
                 <div 
-                  v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4') || content.visual.filename.includes('mov')"
+                  v-if="content.visual.filename.includes('webm') || content.visual.filename.includes('mp4') || content.visual.filename.includes('mov') || content.visual.filename.includes('mpeg')"
                   class="video-container relative">
                   <video
+                    :poster="hasThumbnail"
                     class="my-20 video"
                     controls
                     :src="content.visual.filename"
@@ -421,6 +422,14 @@ export default {
         }
       })
       return otherCaseStudies
+    },
+    hasThumbnail(){
+      if(this.content.video_thumbnail){
+        return this.content.video_thumbnail.filename
+      } else {
+        console.log('second')
+        return ''
+      }
     },
   },
   mounted() {
@@ -696,6 +705,11 @@ export default {
   align-self: flex-end;
 }
 
+.visuals-right img {
+  height: 20em;
+  object-fit: cover;
+}
+
 .results-column p {
   color: black;
 }
@@ -723,7 +737,7 @@ export default {
   color: rgba(29, 173, 228, 1);
 }
 
-.results-text-container {
+.results-text-container p {
   width: 50%;
 }
 
@@ -733,8 +747,9 @@ export default {
 }
 
 .results-container video {
-  max-height: 70vh;
+  height: 60vh;
   width: 100%;
+  object-fit: cover;
 }
 
 .results-container img {
