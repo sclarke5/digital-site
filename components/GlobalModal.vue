@@ -499,11 +499,13 @@ export default {
     hideIcon() {
       const icon = document.querySelector('.video-icon')
       const video = document.querySelector('.video')
-      video.classList.toggle('video-playing')
-      if(icon.classList.contains('icon-active')){
-        icon.classList.remove('icon-active')
+      if(video){
+        video.classList.toggle('video-playing')
+        if(icon.classList.contains('icon-active')){
+          icon.classList.remove('icon-active')
+        }
+        icon.classList.toggle('active')
       }
-      icon.classList.toggle('active')
     },
     playVideo(){
       const video = document.querySelector('.video')

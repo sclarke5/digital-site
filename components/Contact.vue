@@ -1,5 +1,5 @@
 <template>
-  <div class="top-container mt-40">
+  <div class="top-container">
     <div class="sticky-nav">
       <div class="font-dinProBlack">Contact</div>
     </div>
@@ -497,8 +497,10 @@ export default {
 
 @media screen(laptop) {
   .top-container {
-    transform: rotate(90deg);
+    /* transform: rotate(90deg); */
     position: absolute;
+    left: 15em;
+    top: -8em;
   }
 
   .errorToast {
@@ -590,13 +592,13 @@ export default {
 
 @media screen(desktopwh) {
   #contactContainer {
-    margin-right: 10em;
+    margin-right: -50em;
     width: 50vw;
   }
 
   .top-container {
-    top: 722em;
-    right: -9em;
+    /* top: 722em;
+    right: -9em; */
     width: 80em;
   }
   .two-column-container {

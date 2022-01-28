@@ -36,23 +36,30 @@
         </div>
       </div>
 
-      <div class="case-studies-wrapper grid">
-        <div
-          v-for="caseStudy in sortedCaseStudies"
-          :key="caseStudy._uid"
-          class="h-full case-study-outer-container laptop:justify-center from-right"
-        >
-          <case-study-teaser
-            v-if="caseStudy.content"
-            :case-study-link="caseStudy.full_slug"
-            :case-study-content="caseStudy.content"
-            :case-studies-list="sortedCaseStudies"
-            class=""
-          />
+        <div class="case-studies-wrapper">
+          <div
+            v-for="caseStudy in sortedCaseStudies"
+            :key="caseStudy._uid"
+            class="h-full case-study-outer-container laptop:justify-center from-right"
+          >
+            <case-study-teaser
+              v-if="caseStudy.content"
+              :case-study-link="caseStudy.full_slug"
+              :case-study-content="caseStudy.content"
+              :case-studies-list="sortedCaseStudies"
+              class=""
+            />
+          </div>
+          
+          <div class="positioning-container relative">
+            <Contact id="contact-marker" />
+          </div>
+          
+
         </div>
-      </div>
+
+
     </div>
-    <Contact id="contact-marker" />
   </div>
 </template>
 
@@ -212,10 +219,11 @@ export default {
   }
 
   .case-studies-wrapper {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    margin-top: 180em;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+
+    display: flex;
     margin-bottom: 50em;
-    top: 282em;
+    top: 462em;
     right: -152em;
     width: -webkit-max-content;
     width: -moz-max-content;
@@ -246,21 +254,20 @@ export default {
     right: -6rem;
   }
   .case-studies-wrapper {
-    margin-top: 180em;
     margin-bottom: 50em;
-    top: 255em;
+    top: 435em;
     right: -154em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
   }
 }
 
 @media screen(desktopwh) {
   .case-studies-sub,
-  .icons-container,
-  .case-studies-wrapper {
+  .icons-container {
     transform: rotate(90deg);
     position: absolute;
   }
@@ -291,13 +298,21 @@ export default {
     margin-right: 5em;
   }
 
+  .positioning-teasers-container {
+    top: 15em;
+    left: 23em;
+    position: absolute;
+  }
+
   .case-studies-wrapper {
-    margin-top: 120em;
-    margin-bottom: 50em;
-    top: 375em;
-    right: -166em;
-    width: max-content;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    top: 500em;
+    right: -168em;
+    min-width: max-content;
+    display: flex;
+    transform: rotate(90deg);
+    position: absolute;
+
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
   }
 
   .bg-shape {
