@@ -1,48 +1,49 @@
 <template>
   <div class="case-study-panel bg-black w-full">
     <div class="case-study-section">
-      <h4 class="text-white pt-4">SERVICES PROVIDED</h4>
-      <ul class="pt-4">
-        <li
-          v-for="(service, index) in parsedCaseStudies.services_provided"
-          :key="index"
-          class="text-white"
-        >
-          {{ service }}
-        </li>
-      </ul>
-      <h4 class="text-white uppercase pt-4">Challenge</h4>
+      <h4 class="text-white uppercase">Challenge</h4>
       <p class="text-white pt-4">
         {{ caseStudyContent.challenge }}
       </p>
     </div>
 
-    <div class="case-study-section">
-      <video
+    <div class="case-study-visual">
+      <!-- <video
         v-if="visualsArray[0].filename.includes('webm') || visualsArray[0].filename.includes('mov')"
         controls
         :src="visualsArray[0].filename"
         class="pt-4"
       ></video>
-      <img v-else :src="visualsArray[0].filename" alt="" class="pt-4" />
+      <img v-else :src="visualsArray[0].filename" alt="" class="pt-4" /> -->
+      <img
+        :src="caseStudyContent.primary_image_large.filename"
+        :alt="caseStudyContent.primary_image_large.alt"
+        class="second-image"
+      />
     </div>
 
     <div class="case-study-section">
-      <h4 class="text-white uppercase pt-4">Approach</h4>
+      <h4 class="text-white uppercase">Approach</h4>
       <p class="text-white pt-4">
         {{ caseStudyContent.approach }}
       </p>
-      <div class="case-study-section"></div>
-      <video
+    </div>
+     <div class="case-study-visual">
+     <!-- <video
         v-if="visualsArray[1].filename.includes('webm') || visualsArray[0].filename.includes('mov')"
         controls
         :src="visualsArray[1].filename"
         class="pt-4"
       ></video>
-      <img v-else :src="visualsArray[1].filename" alt="" class="pt-4" />
+      <img v-else :src="visualsArray[1].filename" alt="" class="pt-4" /> -->
+      <img
+        :src="caseStudyContent.primary_image_small.filename"
+        :alt="caseStudyContent.primary_image_small.alt"
+        class="third-image slider"
+      />
     </div>
 
-    <div class="case-study-section">
+    <!-- <div class="case-study-visual mt-6">
       <video
         v-if="visualsArray[2].filename.includes('webm') || visualsArray[2].filename.includes('mov')"
         controls
@@ -50,9 +51,9 @@
         class="pt-4"
       ></video>
       <img :src="visualsArray[2].filename" alt="" class="pt-4" />
-    </div>
+    </div> -->
 
-    <div class="results-container bg-white w-full my-12">
+    <div class="results-container bg-white w-full">
       <div class="case-study-section">
         <h4 class="text-black uppercase">Results</h4>
         <p class="text-black pt-4">
@@ -67,10 +68,10 @@
       </div>
     </div>
 
-    <div class="case-study-section">
+    <div v-if="caseStudyContent.testimonial" class="case-study-section">
       <div
         v-if="caseStudyContent.testimonial"
-        class="flex flex-col bg-black pt-12"
+        class="flex flex-col bg-black py-12"
       >
         <p class="testimonial text-white">
           "{{ caseStudyContent.testimonial }}"
@@ -78,16 +79,84 @@
         <p class="testimonial-author text-white pt-4">
           {{ caseStudyContent.testimonial_author }}
         </p>
-        <!-- <div class="flex cta items-center justify-around">
-        <a :href="ctaURL" target="_blank" class="flex">
-          <span class="uppercase" :href="ctaURL" >Go to Site</span>
-          <img src="~/assets/arrow-right.png" />
-        </a>
-      </div> -->
       </div>
     </div>
-
-    <hr class="mt-16 mx-6" />
+    <div 
+      v-if="caseStudyContent.visual.filename.includes('webm') || caseStudyContent.visual.filename.includes('mp4') || caseStudyContent.visual.filename.includes('mov') || caseStudyContent.visual.filename.includes('mpeg')"
+      class="video-container relative">
+      <video
+        :poster="hasThumbnail"
+        class="video"
+        controls
+        :src="caseStudyContent.visual.filename"
+        :alt="caseStudyContent.visual.alt"
+        @play="hideIcon"
+        @pause="hideIcon"
+      ></video>
+      <!-- <svg
+        version="1.1"
+        class="video-icon" 
+        xmlns="http://www.w3.org/2000/svg" 
+        xmlns:xlink="http://www.w3.org/1999/xlink" 
+        x="0px" 
+        y="0px"
+        viewBox="0 0 210 210" 
+        style="fill:white" 
+        xml:space="preserve"
+        @click="playVideo"
+        >
+        <path class="play-icon" d="M179.07,105L30.93,210V0L179.07,105z"/>
+      </svg> -->
+    </div>
+    <img
+        v-else
+        class="my-20"
+        :src="caseStudyContent.visual.filename"
+        :alt="caseStudyContent.visual.alt"
+      />
+    <div class="services-container text-center mt-8 flex flex-col justify-center items-center">
+      <h4 class="text-white" @click="disciplinesAndServices">DISCIPLINES PROVIDED</h4>
+      <ul class="pt-4">
+        <li v-for="(discipline, index) in caseStudyContent.disciplines"
+          :key="index"
+          class="text-white"
+        >
+          {{ discipline }}
+        </li>
+      </ul>
+      <hr class="my-4 w-2/3">
+      <h4 class="text-white" @click="disciplinesAndServices">SERVICES PROVIDED</h4>
+      <ul class="pt-4">
+        <li v-for="(service, index) in caseStudyContent.services_provided"
+          :key="index"
+          class="text-white"
+        >
+          {{ service }}
+        </li>
+      </ul>
+    </div>
+    <div class="scroll-for-more flex p-8 justify-center items-center">
+      <h4 class="text-white">Scroll for more</h4>
+      <svg
+        class="ml-8"
+        width="10"
+        height="30"
+        viewBox="0 0 16 30"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class="styled-arrow"
+          d="M15 29L1 15L15 1"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+              
+    </div>
+    <!-- <hr class="mt-16 mx-6" /> -->
   </div>
 </template>
 
@@ -103,14 +172,21 @@ export default {
     parsedCaseStudies() {
       return JSON.parse(JSON.stringify(this.caseStudyContent))
     },
-    visualsArray() {
-      const visualsArr = []
-      this.caseStudyContent.visuals?.forEach((visual) => {
-        if (visual.filename) {
-          visualsArr.push(visual)
-        }
-      })
-      return visualsArr
+    // visualsArray() {
+    //   const visualsArr = []
+    //   this.caseStudyContent.visuals?.forEach((visual) => {
+    //     if (visual.filename) {
+    //       visualsArr.push(visual)
+    //     }
+    //   })
+    //   return visualsArr
+    // },
+    hasThumbnail(){
+      if(this.caseStudyContent.video_thumbnail){
+        return this.caseStudyContent.video_thumbnail.filename
+      } else {
+        return ''
+      }
     },
   },
 }
@@ -129,7 +205,7 @@ img {
   max-width: 60vh;
   width: 100%;
   object-fit: cover;
-  margin: 1rem auto;
+  margin: 0;
   padding: 0;
 }
 
@@ -138,6 +214,15 @@ img {
   line-height: 1.4;
   font-family: 'Adobe Caslon Pro', sans-serif;
   font-style: italic;
+}
+
+.scroll-for-more h4 {
+  font-size: 1.5em;
+  font-family: 'Gotham', sans-serif;
+}
+
+.scroll-for-more svg {
+  transform: rotate(-90deg);
 }
 
 hr {

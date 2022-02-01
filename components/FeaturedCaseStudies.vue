@@ -1,6 +1,5 @@
 <template>
-  <div id="case-studies-marker" v-editable="blok" class="mt-20 relative">
-    <div>
+  <div id="case-studies-marker" v-editable="blok" class="mt-20 relative case-studies-top-container">
       <div class="sticky-nav">
         <div class="font-dinProBlack">Our Work</div>
       </div>
@@ -36,7 +35,7 @@
         </div>
       </div>
 
-      <div class="case-studies-wrapper grid">
+      <div class="case-studies-wrapper">
         <div
           v-for="caseStudy in sortedCaseStudies"
           :key="caseStudy._uid"
@@ -50,9 +49,12 @@
             class=""
           />
         </div>
+        
+        <div class="positioning-container relative">
+          <Contact id="contact-marker" />
+        </div>
       </div>
-    </div>
-    <Contact id="contact-marker" />
+      
   </div>
 </template>
 
@@ -172,27 +174,42 @@ export default {
   }
   .from-right {
     opacity: 0;
-    transform: translateX(30%);
+    transform: translateY(30%) rotate(90deg);
     transition: transform 1s, opacity 1s ease-in;
   }
 
   .from-right.slide-in {
-    transform: translateX(0);
+    transform: translateY(0) rotate(90deg);
     opacity: 1;
   }
 }
 
 @media screen(laptopwh) {
   .case-studies-sub,
-  .icons-container,
-  .case-studies-wrapper {
+  .icons-container {
     transform: rotate(90deg);
     position: absolute;
+  }
+
+  .case-studies-top-container {
+    bottom: 20em;
   }
 
   .case-studies-sub {
     top: 78em;
     right: -1.3em;
+  }
+
+  .from-right {
+    opacity: 0;
+    transform: translateY(30%) rotate(90deg);
+    transition: transform 1s, opacity 1s ease-in;
+    margin-bottom: 13em;
+  }
+
+  .from-right.slide-in {
+    transform: translateY(0) rotate(90deg);
+    opacity: 1;
   }
 
   .lines {
@@ -212,11 +229,14 @@ export default {
   }
 
   .case-studies-wrapper {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    margin-top: 180em;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+
+    flex-direction: column;
+    position: absolute;
+    top: 305em;
+    right: 3em;
+    display: flex;
     margin-bottom: 50em;
-    top: 282em;
-    right: -152em;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -225,6 +245,10 @@ export default {
 }
 
 @media screen(laptop2xwh) {
+  .case-studies-top-container {
+    bottom: 0;
+  }
+
   .case-studies-sub {
     top: 70em;
     right: -1.7em;
@@ -246,27 +270,29 @@ export default {
     right: -6rem;
   }
   .case-studies-wrapper {
-    margin-top: 180em;
     margin-bottom: 50em;
-    top: 255em;
-    right: -154em;
+    top: 280em;
+    right: 0;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
   }
 }
 
 @media screen(desktopwh) {
   .case-studies-sub,
-  .icons-container,
-  .case-studies-wrapper {
+  .icons-container {
     transform: rotate(90deg);
     position: absolute;
   }
 
+  .case-studies-top-container {
+    top: 240em;
+  }
+
   .case-studies-sub {
-    top: 83em;
     right: 0.3em;
   }
 
@@ -282,22 +308,28 @@ export default {
     padding: 2rem 10rem;
     margin-left: 25em;
     width: 800px;
-    top: 256em;
     right: 5rem;
   }
 
+  
   .case-study-outer-container {
-    /* scroll-snap-align: start; */
-    margin-right: 5em;
+    margin-bottom: 17em;
+  }
+
+  .positioning-teasers-container {
+    top: 15em;
+    left: 23em;
+    position: absolute;
   }
 
   .case-studies-wrapper {
-    margin-top: 120em;
-    margin-bottom: 50em;
-    top: 375em;
-    right: -166em;
-    width: max-content;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60em;
+    right: 10em;
+
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
   }
 
   .bg-shape {
