@@ -497,9 +497,9 @@ export default {
 
 @media screen(laptop) {
   .top-container {
-    /* transform: rotate(90deg); */
+    transform: rotate(90deg);
     position: absolute;
-    left: 15em;
+    left: -15em;
     top: -8em;
   }
 
@@ -558,8 +558,8 @@ export default {
 
 @media screen(laptopwh) {
   .top-container {
-    top: 682em;
-    right: -24.5em;
+    top: 32em;
+    left: -45em;
     width: min-content;
   }
   .two-column-container {
@@ -576,8 +576,8 @@ export default {
 
 @media screen(laptop2xwh) {
   .top-container {
-    top: 652em;
-    right: -25em;
+    top: 30em;
+    left: -45em;
   }
   .two-column-container {
     margin-right: 10em;
@@ -597,8 +597,8 @@ export default {
   }
 
   .top-container {
-    /* top: 722em;
-    right: -9em; */
+    left: -23em;
+    top: 15em;
     width: 80em;
   }
   .two-column-container {
