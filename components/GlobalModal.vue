@@ -125,13 +125,13 @@
                 <div class="second-visuals-container my-20 flex flex-col">
                   <img
                     class="w-2/5 first-image slider"
-                    :src="content.secondary_image_large.filename"
-                    :alt="content.secondary_image_large.alt"
+                    :src="content.secondary_image_small.filename"
+                    :alt="content.secondary_image_small.alt"
                   />
                   <img
                     class="w-5/6 self-end second-image slider"
-                    :src="content.secondary_image_small.filename"
-                    :alt="content.secondary_image_small.alt"
+                    :src="content.secondary_image_large.filename"
+                    :alt="content.secondary_image_large.alt"
                   />
                 </div>
               </div>
@@ -427,7 +427,6 @@ export default {
       if(this.content.video_thumbnail){
         return this.content.video_thumbnail.filename
       } else {
-        console.log('second')
         return ''
       }
     },
