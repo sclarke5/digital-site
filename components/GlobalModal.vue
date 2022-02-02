@@ -117,9 +117,7 @@
 
                 <div class="challenge-approach-second flex flex-col">
                   <h4 class="text-white uppercase">Approach</h4>
-                  <p class="text-white pt-4">
-                    {{ content.approach }}
-                  </p>
+                  <rich-text-renderer v-if="content.approach_rich" :document="content.approach_rich" />
                 </div>
 
                 <div class="second-visuals-container my-20 flex flex-col">
@@ -649,6 +647,10 @@ export default {
 .challenge-approach-second {
   width: 50%;
   align-self: flex-end;
+}
+
+.challenge-approach-second p {
+  padding-top: 1em;
 }
 
 .second-image {

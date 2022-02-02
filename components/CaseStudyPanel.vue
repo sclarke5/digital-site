@@ -22,11 +22,10 @@
       />
     </div>
 
-    <div class="case-study-section">
+    <div class="case-study-section approach">
       <h4 class="text-white uppercase">Approach</h4>
-      <p class="text-white pt-4">
-        {{ caseStudyContent.approach }}
-      </p>
+      <rich-text-renderer v-if="caseStudyContent.approach_rich" :document="caseStudyContent.approach_rich" />
+
     </div>
      <div class="case-study-visual">
      <!-- <video
@@ -205,6 +204,11 @@ img {
   object-fit: cover;
   margin: 0;
   padding: 0;
+}
+
+.approach p {
+  color: white;
+  padding-top: 1em;
 }
 
 .testimonial {
