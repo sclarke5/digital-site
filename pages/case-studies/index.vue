@@ -30,7 +30,7 @@ export default {
     return context.app.$storyapi
       .get('cdn/stories', {
         starts_with: 'case-studies/',
-        version: 'draft',
+        version: process.env.storyblokVersion
       })
       .then((res) => {
         return res.data

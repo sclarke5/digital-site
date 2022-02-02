@@ -21,7 +21,7 @@ export default {
   asyncData (context) {
     return context.app.$storyapi.get('cdn/stories', {
       starts_with: 'articles/',
-      version: 'draft'
+      version: process.env.storyblokVersion,
     }).then((res) => {
       return res.data
     }).catch((res) => {
