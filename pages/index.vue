@@ -15,7 +15,7 @@ export default {
   asyncData(context) {
     return context.app.$storyapi
       .get('cdn/stories/home', {
-        version: 'draft',
+        version: process.env.storyblokVersion,
       })
       .then((res) => {
         return res.data
@@ -55,7 +55,7 @@ export default {
     if (context.store.state.articles.loaded !== '1') {
       const articlesRefRes = await context.app.$storyapi.get(`cdn/stories/`, {
         starts_with: 'articles/',
-        version: 'draft',
+        version: process.env.storyblokVersion,
       })
       context.store.commit('articles/setArticles', articlesRefRes.data.stories)
       context.store.commit('articles/setLoaded', '1')
@@ -63,7 +63,7 @@ export default {
     if (context.store.state.caseStudies.loaded !== '1') {
       const caseSudiesRefRes = await context.app.$storyapi.get(`cdn/stories/`, {
         starts_with: 'case-studies/',
-        version: 'draft',
+        version: process.env.storyblokVersion,
       })
       context.store.commit(
         'caseStudies/setCaseStudies',

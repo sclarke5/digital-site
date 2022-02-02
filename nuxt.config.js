@@ -60,6 +60,10 @@ export default {
     ],
   ],
 
+  env: {
+    storyblokVersion: process.env.STORYBLOK_VERSION || 'published'
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
