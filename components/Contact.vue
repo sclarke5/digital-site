@@ -200,7 +200,9 @@
 </template>
 
 <script>
+import { scrollToSection } from '../mixins'
 import ContactThreeScene from './ThreeScene/ContactThreeScene.vue'
+
 const hubspotURL =
   'https://api.hsforms.com/submissions/v3/integration/submit/485178/62db6a4e-9f21-4410-bde4-4e0d8c1952f1'
 
@@ -282,6 +284,10 @@ export default {
     }
   },
   mounted() {
+    if(window.location.href.includes('contact')){
+      scrollToSection(document.querySelector('#contact-marker'), 'auto')
+    } 
+
     const checkbox = document.querySelectorAll('input[type=checkbox]')
 
     const maxCount = 15

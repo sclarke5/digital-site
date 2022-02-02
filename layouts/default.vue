@@ -14,9 +14,6 @@ let direction = ''
 let oldScroll = 0
 
 export default {
-  mounted() {
-    // this.init()
-  },
   methods: {
     init() {
       document
@@ -104,14 +101,11 @@ export default {
 </script>
 
 <style>
-/* @import url('http://fonts.cdnfonts.com/css/din-pro');
-@import url('http://fonts.cdnfonts.com/css/dinpro-bold');
-@import url('http://fonts.cdnfonts.com/css/dinpro-black');
-@import url('http://fonts.cdnfonts.com/css/adobe-caslon-pro'); */
-
-/* .layout-container {
-  margin-top: -20em;
-} */
+@media (-webkit-device-pixel-ratio: 1.5){
+  * {
+    zoom: 0.99;
+  }
+}
 
 .sticky-nav {
   display: none;

@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import { scrollToSection } from '../mixins'
+
 export default {
   props: {
     blok: {
@@ -84,6 +86,10 @@ export default {
     },
   },
   mounted(){
+    if(window.location.href.includes('case-studies')){
+      scrollToSection(document.querySelector('#case-studies'), 'auto')
+    } 
+
     const sections = document.querySelectorAll('.from-right')
     const margin = window.outerWidth < 1000 ? '0px 0px 350px 0px' : '0px'
 
