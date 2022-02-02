@@ -90,8 +90,6 @@
         controls
         :src="caseStudyContent.visual.filename"
         :alt="caseStudyContent.visual.alt"
-        @play="hideIcon"
-        @pause="hideIcon"
       ></video>
       <!-- <svg
         version="1.1"
@@ -115,7 +113,7 @@
         :alt="caseStudyContent.visual.alt"
       />
     <div class="services-container text-center mt-8 flex flex-col justify-center items-center">
-      <h4 class="text-white" @click="disciplinesAndServices">DISCIPLINES PROVIDED</h4>
+      <h4 class="text-white">DISCIPLINES PROVIDED</h4>
       <ul class="pt-4">
         <li v-for="(discipline, index) in caseStudyContent.disciplines"
           :key="index"
@@ -125,7 +123,7 @@
         </li>
       </ul>
       <hr class="my-4 w-2/3">
-      <h4 class="text-white" @click="disciplinesAndServices">SERVICES PROVIDED</h4>
+      <h4 class="text-white">SERVICES PROVIDED</h4>
       <ul class="pt-4">
         <li v-for="(service, index) in caseStudyContent.services_provided"
           :key="index"

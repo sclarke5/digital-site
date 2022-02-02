@@ -137,6 +137,8 @@
 </template>
 
 <script>
+import { scrollToSection } from '../mixins'
+
 export default {
   props: {
     blok: {
@@ -161,6 +163,10 @@ export default {
     }
   },
   mounted(){
+    if(window.location.href.includes('about')){
+      scrollToSection(document.querySelector('#aboutUs-marker'), 'auto')
+    } 
+
     if(window.outerWidth < 1000){
       return;
     }
