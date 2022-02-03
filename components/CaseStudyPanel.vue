@@ -24,7 +24,7 @@
 
     <div class="case-study-section approach">
       <h4 class="text-white uppercase">Approach</h4>
-      <rich-text-renderer v-if="caseStudyContent.approach_rich" :document="caseStudyContent.approach_rich" />
+      <rich-text-renderer v-if="caseStudyContent.approach" :document="caseStudyContent.approach" />
 
     </div>
      <div class="case-study-visual">
@@ -58,11 +58,11 @@
         <p class="text-black pt-4">
           {{ caseStudyContent.result_1 }}
         </p>
-        <p class="text-black pt-4">
+        <p v-if="caseStudyContent.result_2" class="text-black pt-4">
           {{ caseStudyContent.result_2 }}
         </p>
-        <p class="text-black pt-4">
-          {{ caseStudyContent.result_2 }}
+        <p v-if="caseStudyContent.result_3" class="text-black pt-4">
+          {{ caseStudyContent.result_3 }}
         </p>
       </div>
     </div>
