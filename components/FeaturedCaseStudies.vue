@@ -47,9 +47,10 @@
             :case-study-content="caseStudy.content"
             :case-studies-list="sortedCaseStudies"
             class=""
+            tabindex="0"
           />
         </div>
-        
+    
         <div class="positioning-container relative">
           <Contact id="contact-marker" />
         </div>
@@ -210,7 +211,7 @@ export default {
     opacity: 0;
     transform: translateY(30%) rotate(90deg);
     transition: transform 1s, opacity 1s ease-in;
-    margin-bottom: 13em;
+    margin-bottom: 15em;
   }
 
   .from-right.slide-in {
