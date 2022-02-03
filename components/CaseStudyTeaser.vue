@@ -4,11 +4,12 @@
     :class="caseStudyContent._uid"
     class="case-study-teaser block mobile:my-6 md:pb-40 relative"
     @click="openModal(caseStudyContent, caseStudiesList)"
+    @keyup.enter="openModal(caseStudyContent, caseStudiesList)"
   >
     <div class="case-study-container flex flex-col mobile:items-center">
       <div class="image-container">
         <img
-          class="laptopwh:px-6 primary-image"
+          class="primary-image"
           :src="caseStudyContent.teaser_image.filename"
           :alt="caseStudyContent.teaser_image.alt"
         />

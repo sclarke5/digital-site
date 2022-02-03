@@ -117,7 +117,7 @@
 
                 <div class="challenge-approach-second flex flex-col">
                   <h4 class="text-white uppercase">Approach</h4>
-                  <rich-text-renderer v-if="content.approach_rich" :document="content.approach_rich" />
+                  <rich-text-renderer v-if="content.approach" :document="content.approach" />
                 </div>
 
                 <div class="second-visuals-container my-20 flex flex-col">

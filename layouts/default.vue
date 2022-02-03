@@ -103,7 +103,7 @@ export default {
 <style>
 @media (-webkit-device-pixel-ratio: 1.5){
   * {
-    zoom: 0.99;
+    /* zoom: 0.99; */
   }
 }
 
