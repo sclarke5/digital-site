@@ -43,16 +43,17 @@ build production:
   only:
     - main
   when: manual
-# flushcache:
-#   image: docker:stable
-#   stage: flushcache
-#   tags:
-#     - digital
-#     - flushcache
-#   before_script:
-#     - apk add --update curl && rm -rf /var/cache/apk/*
-#   script:
-#     - |
-#       curl --fail --output "/dev/null" --silent --show-error -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
-#       -H "Authorization: Bearer $CF_CACHE_API_TOKEN" -H "Content-Type: application/json" \
-#       --data '{"purge_everything":true}'
+
+flushcache:
+  image: docker:stable
+  stage: flushcache
+  tags:
+    - digital
+    - flushcache
+  before_script:
+    - apk add --update curl && rm -rf /var/cache/apk/*
+  script:
+    - |
+      curl --fail --output "/dev/null" --silent --show-error -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+      -H "Authorization: Bearer $CF_CACHE_API_TOKEN" -H "Content-Type: application/json" \
+      --data '{"purge_everything":true}'
