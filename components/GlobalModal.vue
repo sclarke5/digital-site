@@ -5,7 +5,7 @@
         <div class="modal flex flex-col bg-black overflow-auto w-screen" tabindex="-1">
           <div class="header-container relative">
             <div class="title-container flex py-4">
-              <div class="header-left">
+              <div class="header-left" @click="goToHome">
                 <img
                   id="header-logo-img"
                   class="company-logo h-full"
@@ -13,7 +13,7 @@
                   alt="ASTOUND Digital Logo"
                 />
               </div>
-              <div class="pr-4 header-right">
+              <div class="pr-8 header-right">
                 <button class="close-icon" @click="toggleModal">
                   <svg
                     width="16"
@@ -476,6 +476,10 @@ export default {
       this.toggleModal()
       scrollToSection(document.querySelector('#contact-marker'), 'auto')
     },
+    goToHome(){
+      this.toggleModal()
+      scrollToSection(document.querySelector('#spacer'), 'auto')
+    },
     goToCaseStudy(caseStudy, list) {
       const content = caseStudy.content
       // const modal = document.querySelector('.modal')
@@ -576,7 +580,29 @@ export default {
   width: 100%;
   z-index: 1;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.title-container .header-left {
+  position: absolute;
+  left: 3.5em;
+  top: 0;
+  cursor: pointer;
+}
+
+.title-container .header-right {
+  position: absolute;
+  right: 3.5em;
+  top: 0;
+  padding-top: 1.8em;
+}
+
+.secondary-header .header-left {
+  margin-left: 4em;
+}
+
+.secondary-header .header-right {
+  margin-right: 4.5em;
 }
 
 .header-bottom {
@@ -916,8 +942,10 @@ export default {
 
   .see-more-image {
     height: 12em;
-    width: -webkit-fill-available;
     object-fit: cover;
+    width: 100%;
+
+    /* width: -webkit-fill-available; */
   }
 
   .list-item {
