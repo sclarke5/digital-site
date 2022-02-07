@@ -51,6 +51,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/gtm',
     [
       'storyblok-nuxt',
       {
@@ -60,6 +61,11 @@ export default {
       },
     ],
   ],
+
+  gtm: {
+    id: 'GTM-T95LXLR',
+    enabled: true
+  },
 
   env: {
     storyblokVersion: process.env.STORYBLOK_VERSION || 'published',
