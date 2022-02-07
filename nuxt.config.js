@@ -54,14 +54,15 @@ export default {
     [
       'storyblok-nuxt',
       {
-        accessToken: process.env.STORYBLOK_ACCESS_KEY,
+        accessToken:
+          process.env.STORYBLOK_ACCESS_KEY || 'QvsBVair6axmuUssULOQ6gtt',
         cacheProvider: 'memory',
       },
     ],
   ],
 
   env: {
-    storyblokVersion: process.env.STORYBLOK_VERSION || 'published'
+    storyblokVersion: process.env.STORYBLOK_VERSION || 'published',
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

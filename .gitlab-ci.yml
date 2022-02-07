@@ -22,32 +22,32 @@ build staging:
     - staging
   only:
     - main
-# build production:
-#   stage: build
-#   before_script:
-#     - docker-compose run node yarn install --check-files
-#   variables:
-#     NODE_ENV: production
-#   script:
-#     - docker-compose run node yarn nuxt generate
-#     - docker-compose -f ../docker/production.docker-compose.yml down --remove-orphans --volumes
-#     - docker-compose -f ../docker/production.docker-compose.yml up -d
-#     - docker-compose -f ../docker/production.docker-compose.yml ps
-#   environment:
-#     name: production
-#     url: https://digital.astoundgroup.com
-#   tags:
-#     - collage
-#     - production
-#   only:
-#     - master
-#   when: manual
 
+build production:
+  stage: build
+  before_script:
+    - docker-compose -f app.docker-compose.yml run node yarn install --check-files
+  variables:
+    NODE_ENV: production
+  script:
+    - docker-compose -f app.docker-compose.yml run node yarn nuxt generate
+    - docker-compose down --remove-orphans --volumes
+    - docker-compose up -d
+    - docker-compose ps
+  environment:
+    name: production
+    url: https://digital.astoundgroup.com
+  tags:
+    - digital
+    - production
+  only:
+    - main
+  when: manual
 # flushcache:
 #   image: docker:stable
 #   stage: flushcache
 #   tags:
-#     - collage
+#     - digital
 #     - flushcache
 #   before_script:
 #     - apk add --update curl && rm -rf /var/cache/apk/*
