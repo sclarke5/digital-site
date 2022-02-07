@@ -3,7 +3,7 @@ version: '3.8'
 services:
   server:
     container_name: staging-digital-server
-    image: nginx:1.21.3-alpine
+    image: nginx:1.21.6-alpine
     restart: always
     working_dir: /var/www/
     ports:

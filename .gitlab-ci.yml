@@ -1,6 +1,6 @@
 stages:
   - build
-  # - flushcache
+  - flushcache
 
 build staging:
   stage: build
@@ -22,37 +22,38 @@ build staging:
     - staging
   only:
     - main
-# build production:
-#   stage: build
-#   before_script:
-#     - docker-compose run node yarn install --check-files
-#   variables:
-#     NODE_ENV: production
-#   script:
-#     - docker-compose run node yarn nuxt generate
-#     - docker-compose -f ../docker/production.docker-compose.yml down --remove-orphans --volumes
-#     - docker-compose -f ../docker/production.docker-compose.yml up -d
-#     - docker-compose -f ../docker/production.docker-compose.yml ps
-#   environment:
-#     name: production
-#     url: https://digital.astoundgroup.com
-#   tags:
-#     - collage
-#     - production
-#   only:
-#     - master
-#   when: manual
 
-# flushcache:
-#   image: docker:stable
-#   stage: flushcache
-#   tags:
-#     - collage
-#     - flushcache
-#   before_script:
-#     - apk add --update curl && rm -rf /var/cache/apk/*
-#   script:
-#     - |
-#       curl --fail --output "/dev/null" --silent --show-error -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
-#       -H "Authorization: Bearer $CF_CACHE_API_TOKEN" -H "Content-Type: application/json" \
-#       --data '{"purge_everything":true}'
+build production:
+  stage: build
+  before_script:
+    - docker-compose -f app.docker-compose.yml run node yarn install --check-files
+  variables:
+    NODE_ENV: production
+  script:
+    - docker-compose -f app.docker-compose.yml run node yarn nuxt generate
+    - docker-compose down --remove-orphans --volumes
+    - docker-compose up -d
+    - docker-compose ps
+  environment:
+    name: production
+    url: https://digital.astoundgroup.com
+  tags:
+    - digital
+    - production
+  only:
+    - main
+  when: manual
+
+flushcache:
+  image: docker:stable
+  stage: flushcache
+  tags:
+    - digital
+    - flushcache
+  before_script:
+    - apk add --update curl && rm -rf /var/cache/apk/*
+  script:
+    - |
+      curl --fail --output "/dev/null" --silent --show-error -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+      -H "Authorization: Bearer $CF_CACHE_API_TOKEN" -H "Content-Type: application/json" \
+      --data '{"purge_everything":true}'

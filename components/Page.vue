@@ -35,7 +35,7 @@ export default {
   #spacer {
     width: 100vw;
     height: 300vh;
-    margin-bottom: 200vh;
+    margin-bottom: 400vh;
   }
 }
 </style>
