@@ -116,7 +116,6 @@ export default {
           e.stopPropagation()
         } else if (!insideIcon && !insideUl && this.toggled) {
           this.toggleNav()
-          console.log(this.toggled)
         }
       },
       false
@@ -218,5 +217,14 @@ li {
 
 .company-logo {
   object-fit: contain;
+  cursor: pointer;
+}
+
+@media screen(laptop) {
+  #header-logo-img {
+    margin-left: 1.8em;
+
+    /* margin-top: 0.5em; */
+  }
 }
 </style>

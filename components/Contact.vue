@@ -29,7 +29,7 @@
           </p>
           <div>
             <button
-              class="p-2 btn btn-dark btn-lg block uppercase"
+              class="p-2 btn btn-dark btn-lg block uppercase submit-button"
               @click="submitAnotherForm"
             >
               Submit Another Form
@@ -188,7 +188,7 @@
           <button
             id="astoundSubmitButton"
             type="submit"
-            class="p-2 btn btn-dark btn-lg"
+            class="p-2 btn btn-dark btn-lg submit-button"
           >
             SUBMIT
           </button>
@@ -559,6 +559,15 @@ export default {
   textarea,
   #privacy-disclaimer {
     max-width: 500px;
+  }
+
+  .submit-button {
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .submit-button:hover {
+    color: black;
+    background-color: white;
   }
 }
 
