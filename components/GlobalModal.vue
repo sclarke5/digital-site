@@ -2,7 +2,7 @@
   <transition name="fade" appear>
     <div v-if="showModal" class="absolute text-white modal-wrapper">
       <div class="modal-overlay bg-black flex">
-        <div class="modal flex flex-col bg-black overflow-auto w-screen">
+        <div class="modal flex flex-col bg-black overflow-auto w-screen" tabindex="-1">
           <div class="header-container relative">
             <div class="title-container flex py-4">
               <div class="header-left">
@@ -441,6 +441,8 @@ export default {
     if (window.outerWidth < 1000) {
       return
     }
+
+    document.querySelector('.modal').focus()
     // eslint-disable-next-line nuxt/no-globals-in-created
     const sections = document.querySelectorAll('.slider')
 
