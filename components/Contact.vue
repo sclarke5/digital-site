@@ -192,6 +192,9 @@
           >
             SUBMIT
           </button>
+          <div class="p-2 submit-button" @click="testFunc">
+            TEST
+          </div>
         </form>
       </div>
     </div>
@@ -347,8 +350,9 @@ export default {
         : 'block'
 
       this.shown = !this.shown
-
-      console.log(e)
+    },
+    testFunc(){
+      console.log(this.$store.state.contactSource.source)
     },
     openDropdown(e) {
       document.getElementById('services-container').style.display = 'block'
@@ -362,6 +366,13 @@ export default {
       this.shown = false
     },
     submitContactForm(data) {
+      // eslint-disable-next-line eqeqeq
+      if(this.$store.state.contactSource.source){
+        const source = {}
+        source.name = 'source'
+        source.value = this.$store.state.contactSource.source
+        data.push(source)
+      }
       const submitData = JSON.stringify({
         fields: data,
         legalConsentOptions: {
@@ -378,8 +389,8 @@ export default {
           },
         },
       })
-
-      console.log(submitData)
+      console.log(data)
+      console.log(this.$store.state.contactSource.source)
 
       fetch(hubspotURL, {
         method: 'POST',
@@ -392,7 +403,6 @@ export default {
           res.json()
         })
         .then((data) => {
-          console.log(data)
           this.errors = []
           this.emailError = false
           this.fNameError = false

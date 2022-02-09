@@ -339,6 +339,7 @@
             >
               <p class="uppercase text-black">Contact Us</p>
             </div>
+            <p>{{ content.name }}</p>
             <div class="back-to-top flex float-right" @click="scrollToTop">
               <svg
                 class=""
@@ -473,6 +474,10 @@ export default {
       this.$store.dispatch('modal/toggle')
     },
     contactScroll() {
+      const sourceCaseStudy = this.content.name
+      this.$store.dispatch('contactSource/update', { sourceCaseStudy })
+      console.log(this.$store.state.contactSource.source)
+
       this.toggleModal()
       scrollToSection(document.querySelector('#contact-marker'), 'auto')
     },
