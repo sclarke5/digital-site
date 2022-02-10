@@ -34,7 +34,6 @@
                   <h6 class="back-button text-white uppercase">
                     Back to Case Studies
                   </h6>
-                  <!-- <img src="../assets/close-icon.png" alt="" /> -->
                 </button>
               </div>
             </div>
@@ -339,6 +338,7 @@
             >
               <p class="uppercase text-black">Contact Us</p>
             </div>
+            <p>{{ content.name }}</p>
             <div class="back-to-top flex float-right" @click="scrollToTop">
               <svg
                 class=""
@@ -437,13 +437,11 @@ export default {
     })
   },
   updated() {
-    // eslint-disable-next-line nuxt/no-globals-in-created
     if (window.outerWidth < 1000) {
       return
     }
-
+    
     document.querySelector('.modal').focus()
-    // eslint-disable-next-line nuxt/no-globals-in-created
     const sections = document.querySelectorAll('.slider')
 
     const options = {
@@ -458,11 +456,8 @@ export default {
         if (entry.isIntersecting === true) {
           entry.target.classList.add('slide-up')
         }
-        // console.log(entry)
       })
     }, options)
-
-    // console.log()
 
     sections.forEach((section) => {
       observer.observe(section)
@@ -473,6 +468,8 @@ export default {
       this.$store.dispatch('modal/toggle')
     },
     contactScroll() {
+      const sourceCaseStudy = this.content.name
+      this.$store.dispatch('contactSource/update', { sourceCaseStudy })
       this.toggleModal()
       scrollToSection(document.querySelector('#contact-marker'), 'auto')
     },
