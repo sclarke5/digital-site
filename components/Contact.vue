@@ -112,20 +112,20 @@
               >What are you interested in?</label
             >
             <div
-              class="service-dropdown py-2 px-3 font-gothamBook bg-black"
               id="services-dropdown"
+              class="service-dropdown py-2 px-3 font-gothamBook bg-black"
+              tabindex="0"
               @mousedown.prevent.stop
               @focus="toggleDropdown"
               @click="toggleDropdown"
-              tabindex="0"
             >
               Select all that apply
             </div>
             <div id="services-container">
               <div
-                class="service-line w-full"
                 v-for="(subservices, index) in subservices"
                 :key="index"
+                class="service-line w-full"
               >
                 <label
                   :for="subservices.for"
@@ -138,9 +138,9 @@
                   <span class="flex justify-between items-center">
                     {{ subservices.name }}
                     <input
+                      :id="subservices.for"
                       tabindex="0"
                       type="checkbox"
-                      :id="subservices.for"
                       :name="subservices.for"
                       :value="subservices.name" /></span
                 ></label>
@@ -152,7 +152,6 @@
               >Message</label
             >
             <textarea
-              @focus="closeDropdown"
               id="contactMessage"
               v-model="contactMessage"
               rows="6"
@@ -170,6 +169,7 @@
               name="contactMessage"
               placeholder="Please provide us with any specific questions, details, examples or other content or instructions that can help us better understand your inquiry and respond to you most effectively."
               aria-describedby="messageHelp"
+              @focus="closeDropdown"
             ></textarea>
           </div>
           <div id="privacy-disclaimer">
@@ -192,9 +192,6 @@
           >
             SUBMIT
           </button>
-          <div class="p-2 submit-button" @click="testFunc">
-            TEST
-          </div>
         </form>
       </div>
     </div>
@@ -351,14 +348,10 @@ export default {
 
       this.shown = !this.shown
     },
-    testFunc(){
-      console.log(this.$store.state.contactSource.source)
-    },
     openDropdown(e) {
       document.getElementById('services-container').style.display = 'block'
 
       this.shown = true
-      console.log(e)
     },
     closeDropdown() {
       document.getElementById('services-container').style.display = 'none'
@@ -403,7 +396,6 @@ export default {
           this.errors = []
           this.emailError = false
           this.fNameError = false
-          console.log('submitted')
           // document.getElementById('contact-title').innerHTML = 'Thank You!'
           // document.getElementById('contact-body').innerHTML =
           //   'Our team will reach out to you shortly.'
