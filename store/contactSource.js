@@ -7,8 +7,6 @@ export const state = () => getDefaultState()
 export const mutations = {
   UPDATE(state, payload) {
     state.source = payload.sourceCaseStudy
-    console.log('inside modal')
-    console.log(state.source)
   },
 }
 

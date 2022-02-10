@@ -366,12 +366,11 @@ export default {
       this.shown = false
     },
     submitContactForm(data) {
-      // eslint-disable-next-line eqeqeq
       if(this.$store.state.contactSource.source){
-        const source = {}
-        source.name = 'source'
-        source.value = this.$store.state.contactSource.source
-        data.push(source)
+        const caseStudySource = {}
+        caseStudySource.name = 'casestudysource'
+        caseStudySource.value = this.$store.state.contactSource.source
+        data.push(caseStudySource)
       }
       const submitData = JSON.stringify({
         fields: data,
@@ -389,8 +388,6 @@ export default {
           },
         },
       })
-      console.log(data)
-      console.log(this.$store.state.contactSource.source)
 
       fetch(hubspotURL, {
         method: 'POST',

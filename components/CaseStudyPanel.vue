@@ -169,15 +169,6 @@ export default {
     parsedCaseStudies() {
       return JSON.parse(JSON.stringify(this.caseStudyContent))
     },
-    // visualsArray() {
-    //   const visualsArr = []
-    //   this.caseStudyContent.visuals?.forEach((visual) => {
-    //     if (visual.filename) {
-    //       visualsArr.push(visual)
-    //     }
-    //   })
-    //   return visualsArr
-    // },
     hasThumbnail(){
       if(this.caseStudyContent.video_thumbnail){
         return this.caseStudyContent.video_thumbnail.filename
@@ -198,8 +189,7 @@ export default {
 }
 
 img {
-  max-height: 60vh;
-  max-width: 60vh;
+  max-height: 50vh;
   width: 100%;
   object-fit: cover;
   margin: 0;
