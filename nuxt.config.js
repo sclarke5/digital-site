@@ -51,21 +51,15 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/gtm',
     [
       'storyblok-nuxt',
       {
         accessToken:
-          process.env.STORYBLOK_ACCESS_KEY || 'QvsBVair6axmuUssULOQ6gtt',
+          process.env.STORYBLOK_ACCESS_KEY,
         cacheProvider: 'memory',
       },
     ],
   ],
-
-  gtm: {
-    id: 'GTM-T95LXLR',
-    enabled: true
-  },
 
   env: {
     storyblokVersion: process.env.STORYBLOK_VERSION || 'published',
